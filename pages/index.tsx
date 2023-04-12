@@ -1,13 +1,14 @@
 import type { NextPage } from "next";
 
-import { Typography } from "@mui/material";
+import MySwitch from "../src/components/MyButton";
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <Typography variant="h2" textAlign="center">
-        Hello, World
-      </Typography>
+    <div className="container mx-auto p-10">
+      <MySwitch />
+      <MySwitch defaultChecked />
+      <MySwitch disabled />
+      <MySwitch defaultChecked disabled />
     </div>
   );
 };
