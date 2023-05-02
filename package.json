@@ -14,10 +14,15 @@
     "@emotion/styled": "^11.10.6",
     "@mui/base": "^5.0.0-alpha.125",
     "@mui/material": "^5.11.16",
+    "@tanstack/react-query": "^4.29.5",
+    "@types/classnames": "^2.3.1",
+    "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "jotai": "^2.0.4",
     "next": "13.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/node": "18.15.11",

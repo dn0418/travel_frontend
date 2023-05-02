@@ -1,16 +1,16 @@
+import createEmotionServer from "@emotion/server/create-instance";
+import { AppType } from "next/app";
 import Document, {
-  Html,
+  DocumentContext,
+  DocumentProps,
   Head,
+  Html,
   Main,
   NextScript,
-  DocumentProps,
-  DocumentContext,
 } from "next/document";
-import { AppType } from "next/app";
-import { MyAppProps } from "./_app";
+import defaultTheme from "../themes/defaultTheme";
 import createEmotionCache from "../utils/createEmotionCache";
-import createEmotionServer from "@emotion/server/create-instance";
-import defaultTheme from "../src/themes/defaultTheme";
+import { MyAppProps } from "./_app";
 
 interface MyDocumentProps extends DocumentProps {
   emotionStyleTags: JSX.Element[];
@@ -18,13 +18,13 @@ interface MyDocumentProps extends DocumentProps {
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
-    <Html lang="en">
+    <Html lang='en'>
       <Head>
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel='shortcut icon' href='/favicon.ico' />
         {/* PWA primary color */}
-        <meta name="theme-color" content={defaultTheme.palette.primary.main} />
+        <meta name='theme-color' content={defaultTheme.palette.primary.main} />
         {/* Insertion point for client. This connects with createEmotionCache.ts */}
-        <meta name="emotion-insertion-point" content="" />
+        <meta name='emotion-insertion-point' content='' />
         {emotionStyleTags}
       </Head>
       <body>
@@ -49,7 +49,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (
-        App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>
+        App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>,
       ) =>
         function EnhanceApp(props) {
           return <App emotionCache={cache} {...props} />;
