@@ -1,9 +1,9 @@
-import type { NextPage } from "next";
-
 import { Button } from "@mui/material";
 import MySwitch from "../components/MyButton";
+import HomeLayout from "../components/layouts/_home";
+import { NextPageWithLayout } from "../types";
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
   return (
     <div className='container mx-auto p-10 flex items-center justify-center gap-5'>
       <MySwitch />
@@ -14,6 +14,10 @@ const Home: NextPage = () => {
       <Button className='text-white bg-emerald-500'>Another</Button>
     </div>
   );
+};
+
+Home.getLayout = function getLayout(page) {
+  return <HomeLayout>{page}</HomeLayout>;
 };
 
 export default Home;
