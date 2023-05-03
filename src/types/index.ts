@@ -18,3 +18,13 @@ export interface NavLinkTypes {
 export interface NavDataTypes extends NavLinkTypes {
   children: NavLinkTypes[];
 }
+
+export interface FooterDataTypes {
+  id: number;
+  title: string;
+  children: {
+    id: number;
+    title: string;
+    route: string;
+  }[];
+}
