@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.MuiPopper-root {
+  z-index: 9999;
+}
+
+a {
+  text-decoration: none;
+}

@@ -8,8 +8,8 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import defaultTheme from "../themes/defaultTheme";
-import createEmotionCache from "../utils/createEmotionCache";
+import defaultTheme from "../src/themes/defaultTheme";
+import createEmotionCache from "../src/utils/createEmotionCache";
 import { MyAppProps } from "./_app";
 
 interface MyDocumentProps extends DocumentProps {

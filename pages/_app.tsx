@@ -3,11 +3,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import QueryProvider from "../rest/client/query-provider";
-import "../styles/globals.css";
-import defaultTheme from "../themes/defaultTheme";
-import { NextPageWithLayout } from "../types";
-import createEmotionCache from "../utils/createEmotionCache";
+import QueryProvider from "../src/rest/client/query-provider";
+import "../src/styles/globals.css";
+import defaultTheme from "../src/themes/defaultTheme";
+import { NextPageWithLayout } from "../src/types";
+import createEmotionCache from "../src/utils/createEmotionCache";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 

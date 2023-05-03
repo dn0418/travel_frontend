@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
-import MySwitch from "../components/MyButton";
-import HomeLayout from "../components/layouts/_home";
-import { NextPageWithLayout } from "../types";
+import MySwitch from "../src/components/MyButton";
+import HomeLayout from "../src/components/layouts/_home";
+import { NextPageWithLayout } from "../src/types";
 
 const Home: NextPageWithLayout = () => {
   return (
