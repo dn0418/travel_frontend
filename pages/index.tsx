@@ -5,12 +5,20 @@ import { NextPageWithLayout } from "../src/types";
 
 const Home: NextPageWithLayout = () => {
   return (
-    <div className='container mx-auto p-10 flex items-center justify-center gap-5'>
+    <div className='container mx-auto p-10 flex flex-col items-center justify-center gap-5'>
       <MySwitch />
       <MySwitch defaultChecked />
       <MySwitch disabled />
       <MySwitch defaultChecked disabled />
       <Button className='text-white bg-blue-500'>New</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
+      <Button className='text-white bg-emerald-500'>Another</Button>
       <Button className='text-white bg-emerald-500'>Another</Button>
     </div>
   );
