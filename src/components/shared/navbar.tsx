@@ -11,178 +11,39 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
+import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
-import { NavDataTypes, NavLinkTypes } from "../../types";
+import { NavLinkTypes } from "../../types";
+import { navData } from "../../utils/data/navbar-data";
 import logo from "/public/Logo.png";
 
-const navData: NavDataTypes[] = [
-  {
-    id: 1,
-    title: "Tours",
-    route: "tours",
-    children: [
-      {
-        id: 1,
-        title: "Active Tours",
-        route: "active-tours",
-      },
-      {
-        id: 2,
-        title: "Gastro Tours",
-        route: "gastro-tours",
-      },
-      {
-        id: 3,
-        title: "Oneday Tours",
-        route: "oneday-tours",
-      },
-      {
-        id: 4,
-        title: "Classic Tours",
-        route: "classic-tours",
-      },
-      {
-        id: 5,
-        title: "Fixed date Tour",
-        route: "fixed-date-tour",
-      },
-      {
-        id: 6,
-        title: "Themed Tours",
-        route: "themed-tours",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Services",
-    route: "services",
-    children: [
-      {
-        id: 1,
-        title: "Rent A Transport",
-        route: "rent-a-transport",
-      },
-      {
-        id: 2,
-        title: "Hotels",
-        route: "hotels",
-      },
-      {
-        id: 3,
-        title: "Tour Accessories",
-        route: "tour-accessories",
-      },
-      {
-        id: 4,
-        title: "MICE",
-        route: "mice",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Armenia",
-    route: "armenia",
-    children: [
-      {
-        id: 1,
-        title: "Things to See",
-        route: "things-to-see",
-      },
-      {
-        id: 2,
-        title: "Things to Do",
-        route: "things-to-do",
-      },
-      {
-        id: 3,
-        title: "Food and Drink",
-        route: "food-and-drink",
-      },
-      {
-        id: 4,
-        title: "Useful To Know",
-        route: "useful-to-know",
-      },
-      {
-        id: 5,
-        title: "Events",
-        route: "events",
-      },
-      {
-        id: 6,
-        title: "Brochure",
-        route: "brochure",
-      },
-      {
-        id: 7,
-        title: "Todo In Surrounding",
-        route: "todo-in-surrounding",
-      },
-      {
-        id: 8,
-        title: "Travel Blog",
-        route: "travel-blog",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "About us",
-    route: "about-us",
-    children: [
-      {
-        id: 1,
-        title: "Who are  you",
-        route: "who-are-you",
-      },
-      {
-        id: 2,
-        title: "How to book a tour",
-        route: "how-to-book-a-tour",
-      },
-      {
-        id: 3,
-        title: "Vacancy",
-        route: "vacancy",
-      },
-      {
-        id: 4,
-        title: "Review",
-        route: "review",
-      },
-    ],
-  },
-];
+interface StateTypes {
+  children: NavLinkTypes[] | undefined;
+  anchor: HTMLElement;
+  id: number;
+}
 
 export default function Navbar({ handleDrawerToggle }: any) {
-  const [anchorEl, setAnchorEl] = useState<{
-    children: NavLinkTypes[] | undefined;
-    anchor: HTMLElement;
-  } | null>(null);
-
-  // const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<StateTypes | null>(null);
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement>,
     id: number,
   ) => {
-    const findSelectedChildren = navData.find((item) => item.id === id);
+    const findSelected = navData.find((item) => item.id === id);
 
     setAnchorEl({
-      children: findSelectedChildren?.children,
+      children: findSelected?.children,
       anchor: event.currentTarget,
+      id,
     });
-    // setOpen(!open);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-    // setOpen(false);
   };
 
   return (
@@ -217,8 +78,12 @@ export default function Navbar({ handleDrawerToggle }: any) {
                 <Button
                   key={item.id}
                   onClick={(e) => handleClick(e, item.id)}
-                  className='text-black rounded-none hover:pb-[3px] px-0  transition-all 
-                  duration-300  hover:bg-transparent bg-transparent min-w-fit hover:border-b-[3px] hover:text-[#EDA592] hover:border-solid border-[#EDA592]'>
+                  className={classNames(
+                    "text-black rounded-none hover:pb-[3px] px-0  transition-all  duration-300  hover:bg-transparent bg-transparent min-w-fit hover:border-b-[3px] hover:text-[#EDA592] hover:border-solid border-[#EDA592]",
+                    anchorEl?.id === item.id
+                      ? "border-b-[3px] text-[#EDA592] border-solid border-[#EDA592]"
+                      : "",
+                  )}>
                   {item.title}
                 </Button>
               ))}
@@ -233,11 +98,11 @@ export default function Navbar({ handleDrawerToggle }: any) {
                 vertical: "bottom",
                 horizontal: "center",
               }}
+              sx={{ marginTop: 1 }}
               transformOrigin={{
                 vertical: "top",
                 horizontal: "center",
-              }}
-              className='-ml-5'>
+              }}>
               <Box sx={{ paddingY: 2 }}>
                 {anchorEl?.children?.map((item: NavLinkTypes) => (
                   <Link
