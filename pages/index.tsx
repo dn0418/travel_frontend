@@ -1,25 +1,17 @@
-import { Button } from "@mui/material";
-import MySwitch from "../src/components/MyButton";
+import { useRouter } from "next/router";
 import HomeLayout from "../src/components/layouts/_home";
+import HeroSection from "../src/components/page-components/homepage/hero-section";
 import { NextPageWithLayout } from "../src/types";
 
 const Home: NextPageWithLayout = () => {
+  const router = useRouter();
+  const { locales } = router;
+
+  console.log(locales);
+
   return (
-    <div className='container mx-auto p-10 flex flex-col items-center justify-center gap-5'>
-      <MySwitch />
-      <MySwitch defaultChecked />
-      <MySwitch disabled />
-      <MySwitch defaultChecked disabled />
-      <Button className='text-white bg-blue-500'>New</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
-      <Button className='text-white bg-emerald-500'>Another</Button>
+    <div className='container'>
+      <HeroSection />
     </div>
   );
 };

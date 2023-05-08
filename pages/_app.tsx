@@ -17,7 +17,7 @@ export interface MyAppProps extends AppProps {
   Component: NextPageWithLayout;
 }
 
-export default function MyApp(props: MyAppProps) {
+function MyApp(props: MyAppProps) {
   // If there's no emotionCache rendered by the server, use the clientSideEmotionCache
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
@@ -37,3 +37,5 @@ export default function MyApp(props: MyAppProps) {
     </QueryProvider>
   );
 }
+
+export default MyApp;
