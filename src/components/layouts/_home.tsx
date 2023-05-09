@@ -5,7 +5,7 @@ export default function HomeLayout({ children }: React.PropsWithChildren) {
   return (
     <div className='flex min-h-screen flex-col transition-colors duration-150'>
       <Header />
-      <div className=''>{children}</div>
+      <div className='mt-16 sm:mt-24'>{children}</div>
       <Footer />
     </div>
   );

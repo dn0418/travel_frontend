@@ -14,3 +14,13 @@
 a {
   text-decoration: none;
 }
+
+.MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.react-datepicker::placeholder {
+  color: #000000;
+  font-weight: 500;
+  font-size: 16px;
+}
