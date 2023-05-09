@@ -7,6 +7,10 @@
   display: none;
 }
 
+body {
+  width: 100vw;
+}
+
 .MuiPopper-root {
   z-index: 9999;
 }
@@ -15,12 +19,29 @@ a {
   text-decoration: none;
 }
 
-.MuiOutlinedInput-notchedOutline {
+/* .MuiOutlinedInput-notchedOutline {
   border: none;
-}
+} */
 
 .react-datepicker::placeholder {
   color: #000000;
   font-weight: 500;
   font-size: 16px;
+}
+
+.home-quality-section,
+.home-filter-section {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.home-quality-section div:nth-child(2),
+.home-quality-section div:nth-child(3),
+.home-quality-section div:nth-child(4) {
+  border-left: 1px solid #eda592;
+}
+
+@media (max-width: 768px) {
+  .home-quality-section div:nth-child(3) {
+    border: none;
+  }
 }

@@ -1,19 +1,17 @@
 import { useRouter } from "next/router";
 import HomeLayout from "../src/components/layouts/_home";
-import FilterSection from "../src/components/page-components/homepage/filter-section";
-import HeroSection from "../src/components/page-components/homepage/hero-section";
+import Homepage from "../src/components/page-components/homepage/homepage";
 import { NextPageWithLayout } from "../src/types";
 
 const Home: NextPageWithLayout = () => {
   const router = useRouter();
   const { locales } = router;
 
-  console.log(locales);
+  // console.log(locales);
 
   return (
     <div className='container'>
-      <HeroSection />
-      <FilterSection />
+      <Homepage />
     </div>
   );
 };

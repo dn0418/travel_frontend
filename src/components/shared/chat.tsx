@@ -1,4 +1,4 @@
-import { TbMessageCircle } from "react-icons/tb";
+import { BsChatDots } from "react-icons/bs";
 
 function ChatIcon() {
   const scrollToTop = () => {
@@ -12,7 +12,7 @@ function ChatIcon() {
           className='outline-none border-none cursor-pointer bg-transparent text-white '
           onClick={scrollToTop}
           aria-label='Back to top'>
-          <TbMessageCircle className='text-xl  md:text-3xl' />
+          <BsChatDots className='text-xl  md:text-3xl' />
         </button>
       </div>
     </div>
