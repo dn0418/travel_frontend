@@ -3,7 +3,9 @@
 import { Container } from "@mui/material";
 import FilterSection from "./filter-section";
 import HeroSection from "./hero-section";
+import PaymentMethod from "./payment-method";
 import RidePlanContact from "./ride-plan-contact";
+import Testimonial from "./testimonial";
 
 const qualities = [
   {
@@ -44,6 +46,8 @@ function Homepage() {
           </div>
         </Container>
       </div>
+      <Testimonial />
+      <PaymentMethod />
     </>
   );
 }

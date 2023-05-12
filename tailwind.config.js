@@ -14,6 +14,11 @@ module.exports = {
   important: "#__next",
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+      serif: ['Poppins', 'serif'],
+      mono: ['Poppins', 'monospace'],
+    },
   },
   plugins: [],
 };
