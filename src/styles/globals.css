@@ -50,5 +50,23 @@ a {
 }
 
 .slick-slide {
-  padding: 0 12px;
+  padding: 12px;
+}
+
+.regular-shadow {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-tabs .MuiTabs-flexContainer {
+  justify-content: space-between;
+}
+
+.about-us-tabs .Mui-selected {
+  background-color: #6f7531;
+  border-radius: 8px;
+  color: #ffffff;
+}
+.MuiPagination-ul .Mui-selected {
+  background-color: #000000;
+  color: #ffffff;
 }

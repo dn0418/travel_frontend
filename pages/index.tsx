@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import HomeLayout from "../src/components/layouts/_home";
+import GeneralLayout from "../src/components/layouts/_general";
 import Homepage from "../src/components/page-components/homepage/homepage";
 import { NextPageWithLayout } from "../src/types";
 
@@ -17,7 +17,7 @@ const Home: NextPageWithLayout = () => {
 };
 
 Home.getLayout = function getLayout(page) {
-  return <HomeLayout>{page}</HomeLayout>;
+  return <GeneralLayout>{page}</GeneralLayout>;
 };
 
 export default Home;

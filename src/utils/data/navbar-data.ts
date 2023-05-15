@@ -135,7 +135,7 @@ export const navData: NavDataTypes[] = [
       {
         id: 4,
         title: "Review",
-        route: "review",
+        route: "about-us/review",
       },
     ],
   },

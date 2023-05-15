@@ -1,11 +1,11 @@
 // @flow strict
 
-import { Button, Card, Container } from "@mui/material";
-import Image from "next/image";
+import { Button, Container } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { testimonials } from "../../../utils/data/testimonial-data";
+import ReviewCard from "../../shared/cards/review-card";
 import SectionTitle from "../../shared/section-title";
 
 function SampleNextArrow(props: { onClick: any }) {
@@ -81,26 +81,7 @@ function Testimonial() {
           className='flex gap-4'
           {...settings}>
           {testimonials.map((item, i) => (
-            <Card
-              key={i}
-              className='bg-white p-3 md:p-8 h-[300px] shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-3xl'>
-              <div className='md:flex items-center gap-3 md:gap-5 md:mb-5'>
-                <Image
-                  src={item.imageSrc}
-                  width={64}
-                  height={64}
-                  className='rounded-full'
-                  alt={item.name}
-                />
-                <div className=''>
-                  <p className='my-1 text-xl'>{item.name}</p>
-                  <p className='my-0'>{item.location}</p>
-                </div>
-              </div>
-              <p className='text-[#626262] my-2 line-clamp-5 md:line-clamp-6'>
-                {item.message}
-              </p>
-            </Card>
+            <ReviewCard review={item} key={i} />
           ))}
         </Slider>
       </Container>

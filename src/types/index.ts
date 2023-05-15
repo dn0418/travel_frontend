@@ -28,3 +28,11 @@ export interface FooterDataTypes {
     route: string;
   }[];
 }
+
+export interface ReviewTypes {
+  name: string;
+  location: string;
+  message: string;
+  imageSrc: string;
+  imageAlt: string;
+}
