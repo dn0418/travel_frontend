@@ -2,31 +2,45 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Select,
-  SelectChangeEvent,
+  Select
 } from "@mui/material";
-import { useState } from "react";
+
+export interface CustomSelectPropsType {
+  title: string;
+  handleOnChange: Function;
+  value: string;
+  name: string;
+  isHideTitle?: boolean;
+  options: any[]
+}
 
 const CustomSelectInput = ({
-  options,
   title,
   handleOnChange,
   value,
-  predictionInput,
-}: any) => {
-  const [age, setAge] = useState("");
+  name,
+  isHideTitle = false,
+  options
+}: CustomSelectPropsType) => {
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
-  };
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel className='text-black p-0'>{title}</InputLabel>
-      <Select value={age} onChange={handleChange} className='border-0'>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+      {
+        !isHideTitle &&
+        <InputLabel className='text-black p-0'>{title}</InputLabel>
+      }
+      <Select
+        onChange={(e) => handleOnChange(e)}
+        name={name}
+        value={value}
+        className='border-0'>
+        {
+          options.length > 0 &&
+          options.map((item, index) => (
+            <MenuItem key={index} className='px-6' value={item?.value}>{item?.title}</MenuItem>
+          ))
+        }
       </Select>
     </FormControl>
   );

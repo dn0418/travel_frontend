@@ -73,7 +73,7 @@ function Testimonial() {
   };
 
   return (
-    <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen'>
+    <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen home-testimonial-section'>
       <Container>
         <SectionTitle title='What Travelers Think About Us' />
         <Slider

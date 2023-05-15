@@ -22,10 +22,6 @@ a {
   text-decoration: none;
 }
 
-/* .MuiOutlinedInput-notchedOutline {
-  border: none;
-} */
-
 .react-datepicker::placeholder {
   color: #000000;
   font-weight: 500;
@@ -49,7 +45,7 @@ a {
   }
 }
 
-.slick-slide {
+.home-testimonial-section .slick-slide {
   padding: 12px;
 }
 
@@ -66,7 +62,31 @@ a {
   border-radius: 8px;
   color: #ffffff;
 }
+
 .MuiPagination-ul .Mui-selected {
   background-color: #000000;
   color: #ffffff;
+}
+
+.home-filter-section .MuiFormControl-root {
+  min-width: 136px;
+  width: fit-content;
+}
+.home-filter-section .MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.filter-date-count .MuiOutlinedInput-root {
+  width: 80px;
+}
+
+.home-tours-section .slick-prev {
+  left: -2px;
+  z-index: 1;
+  background-color: black;
+}
+.home-tours-section .slick-next {
+  right: -2px;
+  z-index: 1;
+  background-color: black;
 }
