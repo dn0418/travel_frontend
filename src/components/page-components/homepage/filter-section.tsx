@@ -35,7 +35,7 @@ function FilterSection() {
 
   return (
     <div className='w-screen flex justify-center items-center my-5'>
-      <div className='w-full lg:w-3/4 home-filter-section rounded-xl p-3 md:px-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 items-center gap-4 home-filter-section'>
+      <div className='w-full lg:w-3/4 home-filter-section rounded-xl p-3 md:px-8 grid grid-cols-1 md:grid-cols-5 justify-center items-center gap-4 home-filter-section'>
         <div className='flex justify-center'>
           <CustomSelectInput
             handleOnChange={handleChangeFilterData}

@@ -6,7 +6,7 @@ import { ReviewTypes } from "../../../types";
 
 function ReviewCard({ review }: { review: ReviewTypes }) {
   return (
-    <Card className='bg-white p-3 md:p-8 h-[300px] shadow-[0px_2px_10px_rgba(0,0,0,0.1)] rounded-3xl'>
+    <Card className='bg-white p-3 md:p-8 h-[300px] regular-shadow rounded-3xl'>
       <div className='md:flex items-center gap-3 md:gap-5 md:mb-5'>
         <Image
           src={review.imageSrc}

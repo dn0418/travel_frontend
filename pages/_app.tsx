@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import ChatIcon from "../src/components/shared/chat";
 import QueryProvider from "../src/rest/client/query-provider";
+import "../src/styles/custom-styles.css";
 import "../src/styles/globals.css";
 import defaultTheme from "../src/themes/defaultTheme";
 import { NextPageWithLayout } from "../src/types";

@@ -8,7 +8,7 @@ import { testimonials } from "../../../utils/data/testimonial-data";
 import ReviewCard from "../../shared/cards/review-card";
 import SectionTitle from "../../shared/section-title";
 
-function SampleNextArrow(props: { onClick: any }) {
+function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
   return (
     <div className='flex items-center  m-0 p-0'>
@@ -21,7 +21,7 @@ function SampleNextArrow(props: { onClick: any }) {
   );
 }
 
-function SamplePrevArrow(props: { onClick: any; currentSlide: number }) {
+function PrevArrow(props: { onClick: any; currentSlide: number }) {
   const { onClick, currentSlide } = props;
 
   return (
@@ -52,8 +52,8 @@ function Testimonial() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow currentSlide={currentSlide} />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow currentSlide={currentSlide} />,
     responsive: [
       {
         breakpoint: 1024,
