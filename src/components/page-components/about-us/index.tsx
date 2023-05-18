@@ -1,18 +1,13 @@
 // @flow strict
 
 import { Container, Tab, Tabs } from "@mui/material";
+import { AboutUsUIProps } from "../../../types/page-props";
 import ReviewsSection from "./reviews-section";
-
-export interface AboutUsUIProps {
-  handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
-  tabIndex: any;
-}
 
 function AboutUsUI({
   handleTabChange,
   tabIndex,
 }: AboutUsUIProps) {
-
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -20,7 +15,7 @@ function AboutUsUI({
         <Tabs
           value={tabIndex}
           onChange={handleTabChange}
-          className='about-us-tabs'
+          className='pages-tabs'
           TabIndicatorProps={{
             style: { display: "none" },
           }}>

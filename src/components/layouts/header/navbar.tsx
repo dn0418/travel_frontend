@@ -79,10 +79,10 @@ export default function Navbar({ handleDrawerToggle }: any) {
                   key={item.id}
                   onClick={(e) => handleClick(e, item.id)}
                   className={classNames(
-                    "text-black rounded-none hover:pb-[3px] px-0  transition-all  duration-300  hover:bg-transparent bg-transparent min-w-fit hover:border-b-[3px] hover:text-[#EDA592] hover:border-solid border-[#EDA592]",
+                    " rounded-none hover:pb-[3px] px-0  transition-all  duration-300  hover:bg-transparent bg-transparent min-w-fit hover:border-b-[3px] hover:text-[#EDA592] hover:border-solid border-[#EDA592]",
                     anchorEl?.id === item.id
                       ? "border-b-[3px] text-[#EDA592] border-solid border-[#EDA592]"
-                      : "",
+                      : "text-black",
                   )}>
                   {item.title}
                 </Button>

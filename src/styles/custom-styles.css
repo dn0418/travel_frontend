@@ -24,6 +24,7 @@
   min-width: 136px;
   width: fit-content;
 }
+
 .home-filter-section .MuiOutlinedInput-notchedOutline {
   border: none;
 }
@@ -60,11 +61,15 @@
 }
 
 /* <-----> About Page Styles <-----> */
-.about-us-tabs .MuiTabs-flexContainer {
+.pages-tabs .MuiButtonBase-root {
+  color: #000000;
+}
+
+.pages-tabs .MuiTabs-flexContainer {
   justify-content: space-between;
 }
 
-.about-us-tabs .Mui-selected {
+.pages-tabs .Mui-selected {
   background-color: #6f7531;
   border-radius: 8px;
   color: #ffffff;
@@ -121,4 +126,13 @@
 
 .MuiPopper-root {
   z-index: 9999;
+}
+
+.css-1encbx2-MuiButtonBase-root-MuiMenuItem-root {
+  text-align: center;
+  padding: 8px 32px !important;
+}
+
+.css-1encbx2-MuiButtonBase-root-MuiMenuItem-root:hover {
+  background-color: rgba(237, 165, 146, 0.2) !important;
 }
