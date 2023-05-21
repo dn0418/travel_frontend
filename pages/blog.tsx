@@ -2,7 +2,7 @@ import { InferGetStaticPropsType } from "next";
 import GeneralLayout from "../src/components/layouts/_general";
 import { getStaticProps } from "../src/rest/blog.ssr";
 import { API_ENDPOINTS } from "../src/rest/client/api-endpoints";
-import { NextPageWithLayout } from "../src/types";
+import { NextPageWithLayout } from "../src/types/page-props";
 
 export { getStaticProps };
 

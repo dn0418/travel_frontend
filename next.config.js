@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const { i18n } = require('./next-i18next.config')
+const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -10,6 +11,9 @@ const nextConfig = {
   },
   images: {
     domains: ['i.ibb.co'],
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
 }
 

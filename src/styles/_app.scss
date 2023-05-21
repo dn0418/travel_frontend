@@ -4,6 +4,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
+// Import another scss file here
+@import "./homepage.scss";
+@import "./aboutpage.scss";
+@import "./global.scss";
+
 /* Hide scrollbar for webkit browsers */
 ::-webkit-scrollbar {
   display: none;
@@ -11,13 +16,10 @@
 
 body {
   width: 100vw;
+  height: 100vh;
   font-family: "Poppins", sans-serif;
 }
 
 a {
   text-decoration: none;
-}
-
-.regular-shadow {
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
