@@ -1,8 +1,5 @@
-$color_1: #000000;
 $color_2: #eda592;
-$color_3: #ffffff;
 $font-family_1: "Poppins", sans-serif;
-$background-color_1: #ffffff;
 $background-color_2: #ffeae4;
 $background-color_3: #000000;
 $background-color_4: rgba(237, 165, 146, 0.2);
@@ -15,7 +12,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
 
 .react-datepicker {
   &::placeholder {
-    color: $color_1;
+    color: $text_black;
     font-weight: 500;
     font-size: 16px;
   }
@@ -25,7 +22,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
 }
 
 .react-datepicker__header {
-  background-color: $background-color_1;
+  background-color: $bg_white;
   border: none;
 }
 
@@ -73,7 +70,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
 .MuiPagination-ul {
   .Mui-selected {
     background-color: $background-color_3;
-    color: $color_3;
+    color: $text_white;
   }
 }
 

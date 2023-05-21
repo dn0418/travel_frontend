@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 // Import another scss file here
+@import "./base/colors.scss";
 @import "./homepage.scss";
 @import "./aboutpage.scss";
 @import "./global.scss";
