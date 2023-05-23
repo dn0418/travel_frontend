@@ -1,14 +1,15 @@
 // @flow strict
 
 import GeneralLayout from "../../src/components/layouts/_general";
+import RidePlanUI from "../../src/components/page-components/ride-plan";
 import { NextPageWithLayout } from "../../src/types/page-props";
 
 
 const RidePlan: NextPageWithLayout = () => {
   return (
-    <div>
-
-    </div>
+    <>
+      <RidePlanUI />
+    </>
   );
 };
 

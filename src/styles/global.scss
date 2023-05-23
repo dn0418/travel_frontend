@@ -10,62 +10,6 @@ $background-color_4: rgba(237, 165, 146, 0.2);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.react-datepicker {
-  &::placeholder {
-    color: $text_black;
-    font-weight: 500;
-    font-size: 16px;
-  }
-  border: none;
-  background: #ffffff;
-  border-radius: 12px;
-}
-
-.react-datepicker__header {
-  background-color: $bg_white;
-  border: none;
-}
-
-.react-datepicker-year-header {
-  color: $color_2 !important;
-}
-
-.react-datepicker__month-container {
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.react-datepicker__month {
-  .react-datepicker__month-text {
-    width: 96px !important;
-  }
-  .react-datepicker__quarter-text {
-    width: 96px !important;
-  }
-}
-
-.react-datepicker__month-text {
-  font-family: $font-family_1;
-  padding: 8px 16px;
-  font-size: 14px;
-  text-align: center;
-}
-
-.react-datepicker__day--keyboard-selected {
-  background-color: $background-color_2 !important;
-}
-
-.react-datepicker__month-text--keyboard-selected {
-  background-color: $background-color_2 !important;
-}
-
-.react-datepicker__quarter-text--keyboard-selected {
-  background-color: $background-color_2 !important;
-}
-
-.react-datepicker__year-text--keyboard-selected {
-  background-color: $background-color_2 !important;
-}
-
 /* <-----> MUI Styles <-----> */
 .MuiPagination-ul {
   .Mui-selected {
