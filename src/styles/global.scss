@@ -29,3 +29,42 @@ $background-color_4: rgba(237, 165, 146, 0.2);
     background-color: $background-color_4 !important;
   }
 }
+
+.text-rea {
+  & .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    height: 100px;
+  }
+}
+
+.Mui-expanded,
+.MuiAccordionSummary-content {
+  margin: 0 !important;
+  border-radius: 4px;
+}
+
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
+  padding: 14px;
+}
+
+.MuiAccordionSummary-expandIconWrapper {
+  & svg {
+    font-size: 24px;
+  }
+}
+
+.MuiButton-containedPrimary {
+  background-color: #000000;
+
+  &:hover {
+    background-color: #000000ce;
+  }
+}
+
+.MuiButton-outlinedPrimary {
+  color: #000000;
+  border-color: #000000;
+
+  &:hover {
+    border-color: #000000;
+  }
+}
