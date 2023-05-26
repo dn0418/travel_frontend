@@ -1,12 +1,13 @@
 // @flow strict
 
-import { Button, Container } from "@mui/material";
+import { Button, Card, Container } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { testimonials } from "../../../utils/data/testimonial-data";
-import ReviewCard from "../../shared/cards/review-card";
+import TourCard from "../../shared/cards/tour-card";
 import SectionTitle from "../../shared/section-title";
+
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
@@ -43,7 +44,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function Testimonial() {
+function RelatedProductsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -73,20 +74,22 @@ function Testimonial() {
   };
 
   return (
-    <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen home-testimonial-section'>
+    <div className="my-3 related-section">
       <Container>
-        <SectionTitle title='What Travelers Think About Us' />
+        <SectionTitle title='Related tours' />
         <Slider
           afterChange={(e) => setCurrentSlide(e)}
           className='flex gap-4'
           {...settings}>
           {testimonials.map((item, i) => (
-            <ReviewCard review={item} key={i} />
+            <Card key={i}>
+              <TourCard />
+            </Card>
           ))}
         </Slider>
       </Container>
     </div>
   );
-}
+};
 
-export default Testimonial;
+export default RelatedProductsSection;

@@ -1,0 +1,13 @@
+.tour-details-page {
+  & .thumbnails-section {
+    & .slick-slide {
+      padding: 4px;
+    }
+  }
+
+  & .related-section {
+    & .slick-slide {
+      padding: 12px;
+    }
+  }
+}
