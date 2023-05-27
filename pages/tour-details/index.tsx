@@ -1,7 +1,7 @@
 // @flow strict
 
 import GeneralLayout from "../../src/components/layouts/_general";
-import TourDetailsUI from "../../src/components/page-components/tour-details";
+import TourDetailsUI from "../../src/components/page-components/tour-details-page";
 import { NextPageWithLayout } from "../../src/types/page-props";
 
 

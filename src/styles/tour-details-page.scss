@@ -10,4 +10,10 @@
       padding: 12px;
     }
   }
+
+  & .tour-details-maps {
+    & li::marker {
+      font-size: 28px;
+    }
+  }
 }

@@ -58,7 +58,7 @@ function ThumbnailSection() {
   return (
     <div className="thumbnails-section">
       <Image
-        src="https://i.ibb.co/HhLQtsx/1.png"
+        src="https://i.ibb.co/k62N0GN/jad-limcaco-NT1m-JPgni6-A-unsplash.png"
         height={340}
         width={1000}
         layout="responsive"
@@ -71,7 +71,7 @@ function ThumbnailSection() {
         {testimonials.map((item, i) => (
           <Image
             key={i}
-            src="https://i.ibb.co/HhLQtsx/1.png"
+            src="https://i.ibb.co/k62N0GN/jad-limcaco-NT1m-JPgni6-A-unsplash.png"
             height={80}
             width={1000}
             layout="responsive"

@@ -4,6 +4,8 @@ import PackageDetails from "./package-details";
 import RelatedProductsSection from "./related-products-section";
 import ReviewSection from "./review-section";
 import ThumbnailSection from "./thumbnail-section";
+import TourDetailsMaps from "./tour-details-maps";
+import TourRoute from "./tour-route";
 import TourSpecification from "./tour-specification";
 
 function TourDetailsUI() {
@@ -15,7 +17,9 @@ function TourDetailsUI() {
           <ThumbnailSection />
           <TourSpecification />
         </div>
+        <TourDetailsMaps />
       </Container>
+      <TourRoute />
       <PackageDetails />
       <RelatedProductsSection />
       <ReviewSection />

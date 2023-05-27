@@ -82,7 +82,7 @@ function RelatedProductsSection() {
           className='flex gap-4'
           {...settings}>
           {testimonials.map((item, i) => (
-            <Card key={i}>
+            <Card className='regular-shadow' key={i}>
               <TourCard />
             </Card>
           ))}
