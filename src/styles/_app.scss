@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+// Import fonts here
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 
 // Import another scss file here
 @import "./base/colors.scss";
@@ -19,9 +21,22 @@
 body {
   width: 100vw;
   height: 100vh;
-  font-family: "Poppins", sans-serif;
+}
+
+p {
+  font-family: "Rubik", sans-serif;
 }
 
 a {
   text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
 }

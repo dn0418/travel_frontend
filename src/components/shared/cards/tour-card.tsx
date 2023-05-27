@@ -2,6 +2,7 @@
 
 import { Button, Rating } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiCalendar } from 'react-icons/bi';
 import { BsCarFrontFill } from 'react-icons/bs';
@@ -51,7 +52,9 @@ function TourCard() {
       />
       <div className="p-3">
         <div className="flex items-center justify-between">
-          <p className="text-xl font-medium my-2">{title}</p>
+          <Link href="/tour-details">
+            <p className="text-xl font-medium my-2 text-black">{title}</p>
+          </Link>
           <div className="flex items-center gap-1">
             <Rating
               max={1}

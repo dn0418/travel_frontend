@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Accordion, AccordionSummary, Container, Typography } from "@mui/material";
+import { Accordion, AccordionSummary, Container } from "@mui/material";
 import { SyntheticEvent } from "react";
 import { MdExpandMore } from "react-icons/md";
 
@@ -19,7 +19,7 @@ function ExpandedSectionTitle({ onchange, title }: Props) {
             expandIcon={<MdExpandMore />}
             aria-controls="tour-reviews"
           >
-            <Typography className="text-[#004C99] text-xl">{title}</Typography>
+            <h3 className="text-[#004C99] text-xl font-normal my-0">{title}</h3>
           </AccordionSummary>
         </Accordion>
       </Container>
