@@ -8,7 +8,7 @@ const Home: NextPageWithLayout = () => {
   const { locales } = router;
 
   return (
-    <div className='container'>
+    <div className='container' aria-label="homepage">
       <Homepage />
     </div>
   );
