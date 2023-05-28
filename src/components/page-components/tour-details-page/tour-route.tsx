@@ -50,7 +50,7 @@ function TourRoute() {
                 <TimelineItem key={index}>
                   <TimelineSeparator>
                     <TimelineDot
-                      className='text-[#EDA592] text-3xl bg-transparent p-0 shadow-none' >
+                      className='text-[#EDA592] my-1  text-[26px] bg-transparent p-0 shadow-none' >
                       <FaRegDotCircle />
                     </TimelineDot>
                     {

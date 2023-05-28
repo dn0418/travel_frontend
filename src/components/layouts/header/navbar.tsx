@@ -65,8 +65,6 @@ export default function Navbar({ handleDrawerToggle }: any) {
                   <Image
                     className='cursor-pointer hidden sm:block flex-grow w-32 '
                     src={logo}
-                    width={64}
-                    height={32}
                     alt=''
                   />
                 </Link>

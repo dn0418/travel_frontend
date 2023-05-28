@@ -139,7 +139,7 @@ function ChatIcon() {
             </FormControl>
             <TextField
               sx={formStyles.noteArea}
-              className="text-rea"
+              className="text-area"
               label='Add your notes'
             />
             <div></div>

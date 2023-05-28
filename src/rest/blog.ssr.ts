@@ -1,7 +1,7 @@
 import type { GetStaticProps } from "next";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
-import type { BlogPageProps } from "../types";
+import { BlogPageProps } from "../types/page-props";
 import client from "./client";
 import { API_ENDPOINTS } from "./client/api-endpoints";
 
