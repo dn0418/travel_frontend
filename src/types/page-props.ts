@@ -19,6 +19,18 @@ export interface ToursPageProps {
   title: string;
 }
 
+export interface TransportPageProps {
+  handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
+  currentTab: {
+    title: string;
+    value: string;
+  };
+  tabs: {
+    title: string;
+    value: string;
+  }[];
+}
+
 export interface AboutUsUIProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   tabIndex: any;

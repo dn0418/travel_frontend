@@ -21,7 +21,8 @@ const tourCardData = {
   carCount: 1,
   activityCount: 2,
   description: "The second largest city in Armenia, Gyumri is well worth a visit for anyone heading to the country for the first time",
-  price: 950
+  basePrice: 1000,
+  discountPrice: 950,
 };
 
 function TourCard() {
@@ -37,7 +38,8 @@ function TourCard() {
     carCount,
     activityCount,
     description,
-    price,
+    basePrice,
+    discountPrice
   } = tourCardData;
 
   return (
@@ -81,7 +83,7 @@ function TourCard() {
           <BiCalendar className="text-[#5a5a5a] text-sm" />
           <span className="text-[#5e5e5e] text-sm">{endDate}</span>
         </p>
-        <div className="mt-6 grid grid-cols-3">
+        <div className="mt-5 md:mt-8 flex items-center justify-between">
           <div className="flex flex-col items-center justify-start">
             <RiHotelLine />
             <p className="text-sm text-[#5e5e5e] my-2">{hotelCount} Hotel</p>
@@ -95,11 +97,14 @@ function TourCard() {
             <p className="text-sm text-[#5e5e5e] my-2">{activityCount} Activities</p>
           </div>
         </div>
-        <p className="text-sm  text-[#5e5e5e] my-2">{description}</p>
-        <p className="text-sm  text-[#5e5e5e] my-2">
-          <span>Start from</span>
-          <strong className="text-base ms-5 text-black">${price}</strong>
-        </p>
+        <p className="text-sm  text-[#5e5e5e] my-3">{description}</p>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <p className="text-sm text-[#5e5e5e] my-2 line-through">${basePrice}</p>
+            <p className="text-base font-semibold my-2">${discountPrice}</p>
+          </div>
+          <Button className="rounded-lg" variant='contained'>Submit</Button>
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ $background-color_1: #6f7531;
   }
   .MuiTabs-flexContainer {
     justify-content: space-between;
+    gap: 20px;
   }
   .Mui-selected {
     background-color: $background-color_1;

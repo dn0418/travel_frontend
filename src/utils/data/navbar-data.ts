@@ -46,7 +46,7 @@ export const navData: NavDataTypes[] = [
       {
         id: 1,
         title: "Rent A Transport",
-        route: "/services/rent-a-transport",
+        route: "/services/transport",
       },
       {
         id: 2,
