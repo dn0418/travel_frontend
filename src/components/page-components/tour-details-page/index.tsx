@@ -2,7 +2,7 @@
 import { Container } from "@mui/material";
 import PackageDetails from "./package-details";
 import RelatedTourSection from "./related-tour-section";
-import ReviewSection from "./review-section";
+import ReviewSection from "./review-section/review-section";
 import ThumbnailSection from "./thumbnail-section";
 import TourDetailsMaps from "./tour-details-maps";
 import TourRoute from "./tour-route";
