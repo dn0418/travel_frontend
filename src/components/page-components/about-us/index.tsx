@@ -19,9 +19,9 @@ function AboutUsUI({
           TabIndicatorProps={{
             style: { display: "none" },
           }}>
-          <Tab value='two' label='Who are you' />
-          <Tab value='book' label='How to book a tour' />
-          <Tab value='vecancy' label='Vecancy' />
+          <Tab value='who-are-you' label='Who are you' />
+          <Tab value='how-to-book-a-tour' label='How to book a tour' />
+          <Tab value='vacancy' label='Vecancy' />
           <Tab value='review' label='Review' />
         </Tabs>
       </div>

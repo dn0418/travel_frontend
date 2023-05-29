@@ -5,6 +5,7 @@ import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import HotelCard from "../../shared/cards/hotel-card";
 import SectionTitle from "../../shared/section-title";
+import HotelsFilterSection from "./hotels-filter-section";
 
 const toursData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
@@ -12,7 +13,8 @@ function HotelsUI() {
   const [page, setPage] = useState(1);
 
   return (
-    <Container className='my-8 flex flex-col items-center'>
+    <Container className='my-8 flex flex-col items-center hotels-page'>
+      <HotelsFilterSection />
       <div className='my-4 md:my-8'>
         <div className="flex items-center justify-between">
           <SectionTitle title='Special Hotel' />

@@ -44,7 +44,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function RelatedProductsSection() {
+function RelatedTourSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -82,7 +82,7 @@ function RelatedProductsSection() {
           className='flex gap-4'
           {...settings}>
           {testimonials.map((item, i) => (
-            <Card className='regular-shadow' key={i}>
+            <Card className='regular-shadow rounded-lg' key={i}>
               <TourCard />
             </Card>
           ))}
@@ -92,4 +92,4 @@ function RelatedProductsSection() {
   );
 };
 
-export default RelatedProductsSection;
+export default RelatedTourSection;

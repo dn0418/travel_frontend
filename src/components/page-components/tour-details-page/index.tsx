@@ -1,7 +1,7 @@
 // @flow strict
 import { Container } from "@mui/material";
 import PackageDetails from "./package-details";
-import RelatedProductsSection from "./related-products-section";
+import RelatedTourSection from "./related-tour-section";
 import ReviewSection from "./review-section";
 import ThumbnailSection from "./thumbnail-section";
 import TourDetailsMaps from "./tour-details-maps";
@@ -21,7 +21,7 @@ function TourDetailsUI() {
       </Container>
       <TourRoute />
       <PackageDetails />
-      <RelatedProductsSection />
+      <RelatedTourSection />
       <ReviewSection />
     </div>
   );

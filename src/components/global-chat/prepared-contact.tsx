@@ -11,8 +11,9 @@ function PreparedContact() {
   const [isOpenContact, setIsOpenContact] = useState(true);
 
   return (
-    <div className="">
+    <div>
       <Accordion
+        sx={{ height: '56px' }}
         onChange={(e, expanded) => setIsOpenContact(expanded)}
         expanded={isOpenContact}
       >
