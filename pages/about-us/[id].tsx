@@ -1,11 +1,11 @@
 // @flow strict
 
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import GeneralLayout from "../../src/components/layouts/_general";
+import AboutUsUI from "../../src/components/page-components/about-us";
 import { NextPageWithLayout } from "../../src/types/page-props";
-const AboutUsUI = dynamic(() => import("../../src/components/page-components/about-us"));
+
 
 const AboutUs: NextPageWithLayout = () => {
   const routes = useRouter()

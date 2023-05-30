@@ -1,10 +1,9 @@
 // @flow strict
 
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
+import TransportUI from "../../../src/components/page-components/transport";
 import { NextPageWithLayout } from "../../../src/types/page-props";
-const TransportUI = dynamic(() => import("../../../src/components/page-components/transport"));
 
 const tabs = [
   { title: 'Transfer to and from', value: 'transfer-to-and-from' },
