@@ -1,12 +1,14 @@
 // @flow strict
 
-import FilterSection from "./filter-section";
-import HeroSection from "./hero-section";
-import PaymentMethod from "./payment-method";
-import Qualities from "./qualities";
-import RidePlanContact from "./ride-plan-contact";
-import Testimonial from "./testimonial";
-import TourSection from "./tours-section";
+import dynamic from "next/dynamic";
+
+const FilterSection = dynamic(() => import('./filter-section'));
+const HeroSection = dynamic(() => import('./hero-section'));
+const PaymentMethod = dynamic(() => import('./payment-method'));
+const Qualities = dynamic(() => import('./qualities'));
+const RidePlanContact = dynamic(() => import('./ride-plan-contact'));
+const Testimonial = dynamic(() => import('./testimonial'));
+const TourSection = dynamic(() => import('./tours-section'));
 
 function Homepage() {
   return (

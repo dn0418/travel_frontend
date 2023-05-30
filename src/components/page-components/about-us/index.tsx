@@ -1,8 +1,9 @@
 // @flow strict
 
 import { Container, Tab, Tabs } from "@mui/material";
+import dynamic from "next/dynamic";
 import { AboutUsUIProps } from "../../../types/page-props";
-import ReviewsSection from "./reviews-section";
+const ReviewsSection = dynamic(() => import("./reviews-section"))
 
 function AboutUsUI({
   handleTabChange,

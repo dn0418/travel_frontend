@@ -1,11 +1,12 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import HotelCard from "../../shared/cards/hotel-card";
 import SectionTitle from "../../shared/section-title";
-import HotelsFilterSection from "./hotels-filter-section";
+const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
 
 const toursData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
