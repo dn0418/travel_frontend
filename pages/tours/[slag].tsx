@@ -1,10 +1,11 @@
 // @flow strict
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import GeneralLayout from "../../src/components/layouts/_general";
-import ToursPage from "../../src/components/page-components/tours";
 import { NextPageWithLayout } from "../../src/types/page-props";
+const ToursPage = dynamic(() => import("../../src/components/page-components/tours"));
 
 const tabs = [
   { title: 'Active Tours', value: 'active-tours' },

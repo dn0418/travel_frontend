@@ -1,8 +1,9 @@
 // @flow strict
 
+import dynamic from "next/dynamic";
 import GeneralLayout from "../../src/components/layouts/_general";
-import RidePlanUI from "../../src/components/page-components/ride-plan";
 import { NextPageWithLayout } from "../../src/types/page-props";
+const RidePlanUI = dynamic(() => import("../../src/components/page-components/ride-plan"));
 
 
 const RidePlan: NextPageWithLayout = () => {

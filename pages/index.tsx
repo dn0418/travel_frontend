@@ -1,7 +1,8 @@
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import GeneralLayout from "../src/components/layouts/_general";
-import Homepage from "../src/components/page-components/homepage";
 import { NextPageWithLayout } from "../src/types/page-props";
+const Homepage = dynamic(() => import('../src/components/page-components/homepage'));
 
 const Home: NextPageWithLayout = () => {
   const router = useRouter();
