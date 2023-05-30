@@ -112,13 +112,12 @@ function AddReview() {
           />
           <p>{" "}{ratingValue} Star</p>
         </Box>
-        <div className=""></div>
         <TextField
           sx={formStyles.noteArea}
           className="text-area"
           label='Write your review'
         />
-
+        <div className=""></div>
         <div style={formStyles.buttonContainer} className="">
           <Button variant="outlined">Cancle</Button>
           <Button variant="contained">Submit</Button>

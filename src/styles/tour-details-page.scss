@@ -16,4 +16,14 @@
       font-size: 28px;
     }
   }
+
+  & .tour-price-table {
+    & td,
+    & th {
+      border: 1px solid gray;
+    }
+    & th {
+      background-color: #fff1ea;
+    }
+  }
 }

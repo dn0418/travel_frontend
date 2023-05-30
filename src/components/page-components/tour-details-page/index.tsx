@@ -1,10 +1,11 @@
 // @flow strict
 import { Container } from "@mui/material";
-import PackageDetails from "./package-details";
+import PackageDetails from "./package-details/package-details";
+import TourPriceTable from "./package-details/tour-price-table";
 import RelatedTourSection from "./related-tour-section";
 import ReviewSection from "./review-section/review-section";
 import ThumbnailSection from "./thumbnail-section";
-import TourDetailsMaps from "./tour-details-maps";
+import TourDetailsMaps from "./tour-details";
 import TourRoute from "./tour-route";
 import TourSpecification from "./tour-specification";
 
@@ -21,6 +22,9 @@ function TourDetailsUI() {
       </Container>
       <TourRoute />
       <PackageDetails />
+      <Container>
+        <TourPriceTable />
+      </Container>
       <RelatedTourSection />
       <ReviewSection />
     </div>

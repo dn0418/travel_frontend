@@ -54,9 +54,8 @@ function TourSpecification() {
         <BsPerson className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">2 Activities</span>
       </p>
-      <div className="flex items-center gap-5 md:mt-8">
-        <Button className="px-8 md:px-12" variant="outlined">Favorite</Button>
-        <Button className="px-8 md:px-12" variant="contained">Subscribe</Button>
+      <div className="md:mt-8">
+        <Button className="px-8 md:px-12 rounded-lg" variant="contained">Submit</Button>
       </div>
     </div>
   );
