@@ -9,7 +9,9 @@ class Client {
 
   tours = {
     all: () => HttpClient.get(API_ENDPOINTS.TOURS),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),
   }
+
 
   // blogData = {
   //   all: () => HttpClient.get(`${API_ENDPOINTS.BLOGS}?populate=%2A`),

@@ -120,22 +120,22 @@ export const navData: NavDataTypes[] = [
       {
         id: 1,
         title: "Who are  you",
-        route: "/about-us/who-are-you",
+        route: "/about-us?tab=who-are-you",
       },
       {
         id: 2,
         title: "How to book a tour",
-        route: "/about-us/how-to-book-a-tour",
+        route: "/about-us?tab=how-to-book-a-tour",
       },
       {
         id: 3,
         title: "Vacancy",
-        route: "/about-us/vacancy",
+        route: "/about-us?tab=vacancy",
       },
       {
         id: 4,
         title: "Review",
-        route: "/about-us/review",
+        route: "/about-us?tab=review",
       },
     ],
   },

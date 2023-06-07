@@ -41,4 +41,5 @@ export interface TransportPageProps {
 export interface AboutUsUIProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   tabIndex: any;
+  reviews: ReviewTypes[];
 }

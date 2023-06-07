@@ -6,6 +6,7 @@ import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+
 import ChatIcon from "../src/components/global-chat/chat";
 import QueryProvider from "../src/rest/client/query-provider";
 import "../src/styles/_app.scss";

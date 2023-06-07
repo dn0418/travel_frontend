@@ -40,7 +40,7 @@ function TourCard({ tour }: { tour: TourType }) {
       />
       <div className="p-3">
         <div className="flex items-center justify-between">
-          <Link href="/tour-details">
+          <Link href={`/tour-details/${tour.id}`}>
             <p className="text-xl font-medium my-2 text-black">{title}</p>
           </Link>
           <div className="flex items-center gap-1">

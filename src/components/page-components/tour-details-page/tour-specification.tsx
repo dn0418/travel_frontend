@@ -5,15 +5,17 @@ import { BiCalendar, BiCar, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 import { RiHotelLine } from "react-icons/ri";
+import { TourType } from "../../../types";
 
 
-function TourSpecification() {
+function TourSpecification({ tour }: { tour: TourType }) {
+
   return (
     <div className="px-4 md:px-12">
-      <h3 className="text-[#000000] text-xl font-semibold mt-0">Lake Sevan</h3>
+      <h3 className="text-[#000000] text-xl font-semibold mt-0">{tour.title}</h3>
       <p className="flex items-center gap-2">
         <IoLocationOutline className="text-sm text-[#EDA592]  font-bold" />
-        <span className="text-sm text-[#5e5e5e]">center city of Armenia</span>
+        <span className="text-sm text-[#5e5e5e]">{tour.destination}</span>
       </p>
       <p className="flex items-center gap-2">
         <Rating
@@ -27,35 +29,48 @@ function TourSpecification() {
         <span className="text-sm text-[#5e5e5e]">5 Star | 100 People</span>
       </p>
       <p className="flex items-center gap-3">
-        <span className="text-sm text-[#5e5e5e] line-through">$ 1000</span>
-        <span className="text-base text-[#000000] font-bold">$ 950</span>
+        <span className="text-sm text-[#5e5e5e] line-through">$ {tour.price}</span>
+        <span className="text-base text-[#000000] font-bold">
+          $ {tour.discountedPrice | tour.price}
+        </span>
       </p>
       <p className="flex items-center gap-4">
         <BiHash className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">3 Days, 4 Night</span>
+        <span className="text-base text-[#5e5e5e]">
+          {tour.dayLength + ' days' + ' ' + tour.nightLength + ' night'}
+        </span>
       </p>
       <p className="flex items-center gap-4">
         <BiCalendar className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">15 - Feb - 2023</span>
+        <span className="text-base text-[#5e5e5e]">
+          {new Date(tour.startedDate).toDateString()}
+        </span>
       </p>
       <p className="flex items-center gap-4">
         <BiCalendar className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">18 - Feb - 2023</span>
+        <span className="text-base text-[#5e5e5e]">
+          {new Date(tour.endDate).toDateString()}
+        </span>
       </p>
       <p className="flex items-center gap-4">
         <RiHotelLine className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">1 Room ( 2 bed, 1 bath )</span>
+        <span className="text-base text-[#5e5e5e]">{tour.hotelDetails}</span>
       </p>
-      <p className="flex items-center gap-4">
-        <BiCar className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">Car</span>
-      </p>
+      {
+        tour.car &&
+        <p className="flex items-center gap-4">
+          <BiCar className="text-base text-[#EDA592]  font-bold" />
+          <span className="text-base text-[#5e5e5e]">Car</span>
+        </p>
+      }
       <p className="flex items-center gap-4">
         <BsPerson className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">2 Activities</span>
+        <span className="text-base text-[#5e5e5e]">{tour.activities} Activities</span>
       </p>
       <div className="md:mt-8">
-        <Button className="px-8 md:px-12 rounded-lg" variant="contained">Submit</Button>
+        <Button
+          className="px-8 md:px-12 rounded-lg"
+          variant="contained">Submit</Button>
       </div>
     </div>
   );

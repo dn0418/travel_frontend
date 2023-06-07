@@ -2,16 +2,17 @@
 
 import { Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
+import { ReviewTypes } from "../../../types";
 import { testimonials } from "../../../utils/data/testimonial-data";
 import ReviewCard from "../../shared/cards/review-card";
 
-function ReviewsSection() {
+function ReviewsSection({ reviews }: { reviews: ReviewTypes[] }) {
   const [page, setPage] = useState(1);
 
   return (
     <div className=''>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-        {testimonials.slice((page - 1) * 12, page * 12).map((item, i) => (
+        {reviews.slice((page - 1) * 12, page * 12).map((item, i) => (
           <ReviewCard review={item} key={i} />
         ))}
       </div>

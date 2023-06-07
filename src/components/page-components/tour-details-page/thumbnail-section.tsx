@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { testimonials } from "../../../utils/data/testimonial-data";
+import { TourType } from "../../../types";
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
@@ -42,14 +42,15 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function ThumbnailSection() {
+function ThumbnailSection({ tour }: { tour: TourType }) {
+  const { thumbnail, images } = tour;
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: images.length > 3 ? 4 : images.length,
     slidesToScroll: 1,
     nextArrow: <NextArrow onClick={undefined} />,
     prevArrow: <PrevArrow currentSlide={currentSlide} onClick={undefined} />,
@@ -58,7 +59,7 @@ function ThumbnailSection() {
   return (
     <div className="thumbnails-section">
       <Image
-        src="https://i.ibb.co/k62N0GN/jad-limcaco-NT1m-JPgni6-A-unsplash.png"
+        src={thumbnail}
         height={340}
         width={1000}
         layout="responsive"
@@ -68,12 +69,12 @@ function ThumbnailSection() {
         className='flex'
         afterChange={(e) => setCurrentSlide(e)}
         {...settings}>
-        {testimonials.map((item, i) => (
+        {images.map((img, i) => (
           <Image
             key={i}
-            src="https://i.ibb.co/k62N0GN/jad-limcaco-NT1m-JPgni6-A-unsplash.png"
+            src={img}
             height={80}
-            width={1000}
+            width={200}
             layout="responsive"
             className="rounded-lg"
             alt="tour-details" />
