@@ -3,6 +3,7 @@
 import { Button, Card, Container } from "@mui/material";
 import { AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
+import { TourType } from "../../../types";
 import TourCard from "../../shared/cards/tour-card";
 import SectionTitle from "../../shared/section-title";
 
@@ -20,7 +21,7 @@ function NextArrow(props: { onClick: any }) {
 }
 
 
-function TourSection() {
+function TourSection({ tours }: { tours: TourType[] }) {
   const settings = {
     dots: false,
     infinite: true,
@@ -40,8 +41,8 @@ function TourSection() {
             <Slider
               {...settings}>
               {
-                [1, 2, 3, 4, 5].map((item, index) => (
-                  <TourCard key={index} />
+                tours.map((tour, index) => (
+                  <TourCard tour={tour} key={index} />
                 ))
               }
             </Slider>
@@ -55,8 +56,8 @@ function TourSection() {
             <Slider
               {...settings}>
               {
-                [1, 2, 3, 4, 5].map((item, index) => (
-                  <TourCard key={index} />
+                tours.map((tour, index) => (
+                  <TourCard tour={tour} key={index} />
                 ))
               }
             </Slider>
@@ -70,8 +71,8 @@ function TourSection() {
             <Slider
               {...settings}>
               {
-                [1, 2, 3, 4, 5].map((item, index) => (
-                  <TourCard key={index} />
+                tours.map((tour, index) => (
+                  <TourCard tour={tour} key={index} />
                 ))
               }
             </Slider>

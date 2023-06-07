@@ -18,10 +18,45 @@ export interface FooterDataTypes {
   }[];
 }
 
+
 export interface ReviewTypes {
-  name: string;
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   location: string;
+  profilePhoto: string;
+  rating: number;
   message: string;
-  imageSrc: string;
-  imageAlt: string;
+}
+
+
+export interface TourType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  destination: string;
+  price: number;
+  discountedPrice: number;
+  dayLength: number;
+  nightLength: number;
+  tourType: string;
+  startedDate: string;
+  endDate: string;
+  activities: number;
+  car: boolean;
+  hiking: boolean;
+  motorCycle: boolean;
+  hotel: number;
+  hotelDetails: string;
+  locationImg: string;
+  tourDetails: string;
+  thumbnail: string;
+  images: string[];
+  includesServices: string[];
+  excludeServices: string[];
+  reviews: ReviewTypes[];
 }

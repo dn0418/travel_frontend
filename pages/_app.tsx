@@ -34,7 +34,6 @@ function MyApp(props: MyAppProps) {
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ThemeProvider theme={defaultTheme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <ChatIcon />
         {getLayout(<Component {...pageProps} />)}

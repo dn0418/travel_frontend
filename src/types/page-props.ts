@@ -1,12 +1,19 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
+import { ReviewTypes, TourType } from "./index";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
+export interface HomePageProps {
+  reviews: ReviewTypes[];
+  tours: TourType[];
+}
+
 export interface BlogPageProps {
-  dehydratedState: any;
+  dataState: any;
+  tours: any;
 }
 
 export interface ToursPageProps {

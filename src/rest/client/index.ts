@@ -2,10 +2,14 @@ import { API_ENDPOINTS } from "./api-endpoints";
 import { HttpClient } from "./http-client";
 
 class Client {
-  posts = {
-    all: () => HttpClient.get(API_ENDPOINTS.POST),
+  reviews = {
+    all: () => HttpClient.get(API_ENDPOINTS.REVIEWS),
     // single: () => HttpClient.get(`${API_ENDPOINTS.BASIC_DATA}/1`),
   };
+
+  tours = {
+    all: () => HttpClient.get(API_ENDPOINTS.TOURS),
+  }
 
   // blogData = {
   //   all: () => HttpClient.get(`${API_ENDPOINTS.BLOGS}?populate=%2A`),

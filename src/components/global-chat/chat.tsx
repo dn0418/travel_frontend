@@ -44,7 +44,7 @@ function ChatIcon() {
       bgcolor: "background.paper",
       boxShadow: 24,
       px: '12%',
-      py: 8,
+      py: 5,
       borderRadius: "12px",
       overflowY: "scroll",
       maxHeight: "90vh",

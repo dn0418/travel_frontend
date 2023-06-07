@@ -15,7 +15,7 @@ export default function QueryProvider({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>{children}</Hydrate>
+      <Hydrate>{children}</Hydrate>
       {/* <ReactQueryDevtools /> */}
     </QueryClientProvider>
   );

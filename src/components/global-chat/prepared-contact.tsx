@@ -28,10 +28,12 @@ function PreparedContact() {
       >
         <TextField
           sx={{ width: '100%', mt: 2 }}
+          placeholder="+001234567899"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <IoCallOutline style={{ color: '#EDA592', fontSize: '20px' }} />
+                <IoCallOutline
+                  style={{ color: '#EDA592', fontSize: '20px', marginRight: '30px' }} />
               </InputAdornment>
             ),
           }}
@@ -39,10 +41,12 @@ function PreparedContact() {
         />
         <TextField
           sx={{ width: '100%', mt: 2 }}
+          placeholder="+001234567899"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <IoLogoWhatsapp style={{ color: '#60D669', fontSize: '20px' }} />
+                <IoLogoWhatsapp
+                  style={{ color: '#60D669', fontSize: '20px', marginRight: '30px' }} />
               </InputAdornment>
             ),
           }}
@@ -50,10 +54,12 @@ function PreparedContact() {
         />
         <TextField
           sx={{ width: '100%', mt: 2 }}
+          placeholder="+001234567899"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <BsTelegram style={{ color: '#229ED9', fontSize: '20px' }} />
+                <BsTelegram
+                  style={{ color: '#229ED9', fontSize: '20px', marginRight: '30px' }} />
               </InputAdornment>
             ),
           }}
@@ -61,10 +67,12 @@ function PreparedContact() {
         />
         <TextField
           sx={{ width: '100%', mt: 2 }}
+          placeholder="+001234567899"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <MdAddIcCall style={{ color: '#ED7220', fontSize: '20px' }} />
+                <MdAddIcCall
+                  style={{ color: '#ED7220', fontSize: '20px', marginRight: '30px' }} />
               </InputAdornment>
             ),
           }}

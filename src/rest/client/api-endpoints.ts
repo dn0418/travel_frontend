@@ -1,4 +1,5 @@
 // all api endpoint goes here
 export const API_ENDPOINTS = {
-  POST: "/posts",
+  TOURS: "/tours",
+  REVIEWS: "reviews"
 };

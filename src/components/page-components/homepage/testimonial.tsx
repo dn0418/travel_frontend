@@ -1,14 +1,14 @@
 // @flow strict
 
 import { Button, Container } from "@mui/material";
-import { useState } from "react";
+import { Key, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { testimonials } from "../../../utils/data/testimonial-data";
+import { ReviewTypes } from "../../../types";
 import ReviewCard from "../../shared/cards/review-card";
 import SectionTitle from "../../shared/section-title";
 
-export function NextArrow(props: { onClick: any }) {
+export function NextArrow(props: { onClick: any, }) {
   const { onClick } = props;
   return (
     <div className='flex items-center  m-0 p-0'>
@@ -43,7 +43,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function Testimonial() {
+function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -80,7 +80,7 @@ function Testimonial() {
           afterChange={(e) => setCurrentSlide(e)}
           className='flex gap-4'
           {...settings}>
-          {testimonials.map((item, i) => (
+          {reviews.map((item: ReviewTypes, i: Key) => (
             <ReviewCard review={item} key={i} />
           ))}
         </Slider>

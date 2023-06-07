@@ -41,7 +41,7 @@ function ReviewSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {
                 testimonials.slice((page - 1) * 4, page * 4).map((review, i) => (
-                  <ReviewCard review={review} key={i} />
+                  <ReviewCard isRating={true} review={review} key={i} />
                 ))
               }
             </div>
