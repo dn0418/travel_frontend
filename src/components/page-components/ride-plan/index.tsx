@@ -7,6 +7,7 @@ import RidePlanMap from "./ride-plan-map";
 
 
 function RidePlanUI() {
+
   return (
     <Container className=' flex flex-col'>
       <SectionTitle title='Make your own ride plan with us' />

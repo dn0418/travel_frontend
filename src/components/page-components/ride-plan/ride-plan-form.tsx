@@ -4,19 +4,42 @@ import { Button, Divider, FormControl, IconButton, InputAdornment, InputLabel, O
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaBicycle, FaCarSide, FaHiking } from 'react-icons/fa';
 import { FiMinus } from 'react-icons/fi';
 import { RiMotorbikeFill } from 'react-icons/ri';
 
 function RidePlanForm() {
+  const [inputData, setInputData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    address: '',
+  })
   const [startDate, setStartDate] = useState<null | Date>(null);
   const [selectedValue, setSelectedValue] = useState('a');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+
+  const handleOnChangeInputData = (name: string, value: string) => {
+    setInputData((prevState: any) => {
+      const temp = JSON.parse(JSON.stringify(prevState))
+      temp[name] = value;
+      return temp;
+    })
+  }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedData = window.localStorage.getItem('ridePlanContact') || false;
+      const savedDataObj = JSON.parse(savedData || '{}');
+      setInputData(savedDataObj)
+    }
+  }, [])
+
 
   return (
     <div className="make-ride-plan">
@@ -25,24 +48,37 @@ function RidePlanForm() {
           <InputLabel>Name</InputLabel>
           <OutlinedInput
             label='Name'
+            name='name'
+            value={inputData?.name}
+            onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
           />
         </FormControl>
         <FormControl variant='outlined'>
           <InputLabel>Email</InputLabel>
           <OutlinedInput
             label='Email'
+            name='email'
+            value={inputData?.email}
+            type='email'
+            onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
           />
         </FormControl>
         <FormControl variant='outlined'>
           <InputLabel>Phone Number</InputLabel>
           <OutlinedInput
             label='Phone Number'
+            name='phoneNumber'
+            value={inputData?.phoneNumber}
+            onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
           />
         </FormControl>
         <FormControl variant='outlined'>
           <InputLabel>Address</InputLabel>
           <OutlinedInput
             label='Address'
+            name='address'
+            value={inputData?.address}
+            onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
           />
         </FormControl>
         <div className="w-full">

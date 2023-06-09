@@ -39,27 +39,27 @@ export const footerData: FooterDataTypes[] = [
       {
         id: 1,
         title: "Kitchan",
-        route: "kitchan",
+        route: "",
       },
       {
         id: 2,
         title: "Living Area",
-        route: "living-area",
+        route: "",
       },
       {
         id: 3,
         title: "Bathroom",
-        route: "bathroom",
+        route: "",
       },
       {
         id: 4,
         title: "Dinning Hall",
-        route: "dinning-hall",
+        route: "",
       },
       {
         id: 5,
         title: "Bedroom",
-        route: "bedroom",
+        route: "",
       },
     ],
   },
