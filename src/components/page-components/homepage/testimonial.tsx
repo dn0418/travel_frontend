@@ -50,7 +50,7 @@ function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: reviews.length > 2 ? 3 : reviews.length,
     slidesToScroll: 1,
     nextArrow: <NextArrow onClick={undefined} />,
     prevArrow: <PrevArrow currentSlide={currentSlide} onClick={undefined} />,

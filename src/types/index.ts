@@ -59,4 +59,12 @@ export interface TourType {
   includesServices: string[];
   excludeServices: string[];
   reviews: ReviewTypes[];
+  reviewsRating?: number;
+}
+
+export interface PaginationType {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
 }

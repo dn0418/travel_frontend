@@ -25,7 +25,8 @@ function TourCard({ tour }: { tour: TourType }) {
     car,
     tourDetails,
     price,
-    discountedPrice
+    discountedPrice,
+    reviewsRating
   } = tour;
 
   return (
@@ -43,17 +44,19 @@ function TourCard({ tour }: { tour: TourType }) {
           <Link href={`/tour-details/${tour.id}`}>
             <p className="text-xl font-medium my-2 text-black">{title}</p>
           </Link>
-          <div className="flex items-center gap-1">
-            <Rating
-              max={1}
-              size="small"
-              name="half-rating"
-              readOnly
-              defaultValue={5}
-              precision={0.1}
-            />
-            <span className="text-[#5E5E5E] text-sm">{5}</span>
-          </div>
+          {reviewsRating &&
+            <div className="flex items-center gap-1">
+              <Rating
+                max={1}
+                size="small"
+                name="half-rating"
+                readOnly
+                defaultValue={reviewsRating}
+                precision={0.1}
+              />
+              <span className="text-[#5E5E5E] text-sm">{reviewsRating}</span>
+            </div>
+          }
         </div>
         <div className="flex items-center justify-between">
           <p className="my-2 text-[#5E5E5E] text-sm">

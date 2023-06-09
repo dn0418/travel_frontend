@@ -1,18 +1,31 @@
 // @flow strict
 
 import { Pagination, PaginationItem } from "@mui/material";
-import { useState } from "react";
-import { ReviewTypes } from "../../../types";
+import { useRouter } from "next/router";
+import { PaginationType, ReviewTypes } from "../../../types";
 import { testimonials } from "../../../utils/data/testimonial-data";
 import ReviewCard from "../../shared/cards/review-card";
 
-function ReviewsSection({ reviews }: { reviews: ReviewTypes[] }) {
-  const [page, setPage] = useState(1);
+interface Props {
+  reviews: ReviewTypes[];
+  reviewsPagination: PaginationType;
+}
+
+function ReviewsSection({ reviews, reviewsPagination }: Props) {
+  const router = useRouter();
+  const { totalPages } = reviewsPagination;
+
+  const handleUpdatePage = (queryParams: { page: number }) => {
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, ...queryParams },
+    });
+  };
 
   return (
     <div className=''>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-        {reviews.slice((page - 1) * 12, page * 12).map((item, i) => (
+        {reviews.map((item, i) => (
           <ReviewCard review={item} key={i} />
         ))}
       </div>
@@ -20,8 +33,8 @@ function ReviewsSection({ reviews }: { reviews: ReviewTypes[] }) {
         {testimonials.length > 0 && (
           <Pagination
             size='large'
-            onChange={(_, p) => setPage(p)}
-            count={Math.ceil(testimonials.length / 12)}
+            onChange={(_, p) => handleUpdatePage({ page: p })}
+            count={totalPages}
             shape='rounded'
             renderItem={(item) => (
               <PaginationItem

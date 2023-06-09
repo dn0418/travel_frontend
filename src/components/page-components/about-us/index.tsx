@@ -8,8 +8,10 @@ const ReviewsSection = dynamic(() => import("./reviews-section"))
 function AboutUsUI({
   handleTabChange,
   tabIndex,
-  reviews
+  reviews,
+  reviewsPagination
 }: AboutUsUIProps) {
+
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -28,7 +30,7 @@ function AboutUsUI({
         </Tabs>
       </div>
       <div hidden={tabIndex !== "review"} className='my-4 md:my-8'>
-        <ReviewsSection reviews={reviews} />
+        <ReviewsSection reviewsPagination={reviewsPagination} reviews={reviews} />
       </div>
     </Container>
   );

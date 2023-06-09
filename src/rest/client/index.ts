@@ -3,7 +3,7 @@ import { HttpClient } from "./http-client";
 
 class Client {
   reviews = {
-    all: () => HttpClient.get(API_ENDPOINTS.REVIEWS),
+    all: (page: any, limit: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}?page=${page}&limit=${limit}`),
     // single: () => HttpClient.get(`${API_ENDPOINTS.BASIC_DATA}/1`),
   };
 

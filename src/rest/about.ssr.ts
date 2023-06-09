@@ -1,28 +1,18 @@
-import type { GetStaticProps, GetStaticPropsContext } from "next";
-import { QueryClient } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import type { GetServerSideProps, GetServerSidePropsContext } from "next";
 import client from "./client";
-import { API_ENDPOINTS } from "./client/api-endpoints";
 
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { query } = context;
+  const page = query["page"] || 1;
+  const limit = query["limit"] || 12;
 
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery([API_ENDPOINTS.REVIEWS], client.reviews?.all);
-
-  const { queries } = JSON.parse(JSON.stringify(dehydrate(queryClient)));
-
-
-  const reviewState = queries.find(
-    (item: any) => item.queryKey[0] === API_ENDPOINTS.REVIEWS,
-  );
-
-  const reviews = reviewState?.state?.data?.data ?? null;
+  const reviews = await client.reviews?.all(page, limit);
 
   return {
     props: {
-      reviews: reviews
+      reviewsData: reviews
     },
-    revalidate: 120,
   };
 };

@@ -1,22 +1,32 @@
 // @flow strict
 
-import { InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import GeneralLayout from "../../src/components/layouts/_general";
 import AboutUsUI from "../../src/components/page-components/about-us";
-import { getStaticProps } from "../../src/rest/about.ssr";
+import { getServerSideProps } from "../../src/rest/about.ssr";
 import { NextPageWithLayout } from "../../src/types/page-props";
-export { getStaticProps };
+export { getServerSideProps };
 
-const AboutUs: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { reviews } = props;
-  const routes = useRouter()
-  const tab = routes.query["tab"];
+const AboutUs: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const { reviewsData } = props;
+  const reviews = reviewsData.data;
+  const reviewsPagination = reviewsData.pagination;
+  const router = useRouter()
+  const tab = router.query["tab"];
   const [tabIndex, setTabIndex] = useState("who-are-you");
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    const { pathname, query } = router;
+    query['tab'] = newValue;
+    delete query['page'];
     setTabIndex(newValue);
+
+    router.push({
+      pathname,
+      query,
+    });
   };
 
   useEffect(() => {
@@ -32,6 +42,7 @@ const AboutUs: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>
         tabIndex={tabIndex}
         handleTabChange={handleTabChange}
         reviews={reviews}
+        reviewsPagination={reviewsPagination}
       />
     </div>
   );

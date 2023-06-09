@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
-import { ReviewTypes, TourType } from "./index";
+import { PaginationType, ReviewTypes, TourType } from "./index";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -42,4 +42,7 @@ export interface AboutUsUIProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   tabIndex: any;
   reviews: ReviewTypes[];
+  reviewsPagination: PaginationType;
 }
+
+
