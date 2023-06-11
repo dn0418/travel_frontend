@@ -1,15 +1,20 @@
-import { API_ENDPOINTS } from "./api-endpoints";
-import { HttpClient } from "./http-client";
+import { API_ENDPOINTS } from "../api-endpoints";
+import { HttpClient } from "../http-client";
 
 class Client {
   reviews = {
-    all: (page: any, limit: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}?page=${page}&limit=${limit}`),
-    // single: () => HttpClient.get(`${API_ENDPOINTS.BASIC_DATA}/1`),
+    all: (page: any, limit: any) =>
+      HttpClient.get(`${API_ENDPOINTS.REVIEWS}?page=${page}&limit=${limit}`),
   };
 
   tours = {
     all: () => HttpClient.get(API_ENDPOINTS.TOURS),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),
+    sortedTour: (page: number, limit: number, type: any) => HttpClient.get(API_ENDPOINTS.TOURS),
+  }
+
+  tourType = {
+    all: () => HttpClient.get(API_ENDPOINTS.TOURTYPE)
   }
 
 

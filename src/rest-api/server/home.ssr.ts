@@ -1,15 +1,16 @@
 import type { GetStaticProps, GetStaticPropsContext } from "next";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
-import client from "./client";
-import { API_ENDPOINTS } from "./client/api-endpoints";
+import { API_ENDPOINTS } from "../api-endpoints";
+import client from "../client";
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
 
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery([API_ENDPOINTS.TOURS], client.tours?.all);
-  await queryClient.prefetchQuery([API_ENDPOINTS.REVIEWS], client.reviews?.all);
+
+  const reviews = await client.reviews?.all(1, 20);
 
   const { queries } = JSON.parse(JSON.stringify(dehydrate(queryClient)));
 
@@ -19,16 +20,10 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 
   const tours = toursState?.state?.data?.data ?? null;
 
-  const reviewState = queries.find(
-    (item: any) => item.queryKey[0] === API_ENDPOINTS.REVIEWS,
-  );
-
-  const reviews = reviewState?.state?.data?.data ?? null;
-
   return {
     props: {
-      tours: tours,
-      reviews: reviews
+      toursData: tours,
+      reviewsData: reviews
     },
     revalidate: 120,
   };

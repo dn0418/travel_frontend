@@ -20,10 +20,11 @@ export interface ToursPageProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   tabIndex: any;
   tabs: {
-    title: string;
-    value: string;
+    id: any;
+    name: string;
   }[];
   title: string;
+  tours: any;
 }
 
 export interface TransportPageProps {

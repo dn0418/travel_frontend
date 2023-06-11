@@ -1,42 +1,50 @@
 // @flow strict
 
+import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import GeneralLayout from "../../src/components/layouts/_general";
 import ToursPage from "../../src/components/page-components/tours";
+import { getServerSideProps } from "../../src/rest-api/server/tours.ssr";
 import { NextPageWithLayout } from "../../src/types/page-props";
+export { getServerSideProps };
 
-const tabs = [
-  { title: 'Active Tours', value: 'active-tours' },
-  { title: 'Gastro Tours', value: 'gastro-tours' },
-  { title: 'Oneday Tours', value: 'oneday-tours' },
-  { title: 'Classic Tours', value: 'classic-tours' },
-  { title: 'Fixed date Tour', value: 'fixed-date-tour' },
-  { title: 'Themed Tours', value: 'themed-tours' },
-];
-
-const Tours: NextPageWithLayout = () => {
-  const routes = useRouter()
-  const route = routes.query["slag"];
+const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  { toursData, tourType }
+) => {
+  const tours = toursData?.data;
+  const router = useRouter()
+  const type = router.query["type"];
   const [title, setTitle] = useState('Tours')
   const [tabIndex, setTabIndex] = useState('');
+  const tabs = tourType?.data;
+  // console.log(tabs)
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    const { pathname, query } = router;
+    query['type'] = newValue;
+    delete query['page'];
     setTabIndex(newValue);
+
+    router.push({
+      pathname,
+      query,
+    });
   };
 
   useEffect(() => {
-    if (route) {
-      setTabIndex(route as string)
+    if (type) {
+      setTabIndex(type as string)
     }
-  }, [route])
+  }, [type])
 
   useEffect(() => {
-    const findCurrentTab = tabs.find(tab => tab.value === tabIndex)
+    const findCurrentTab = tabs.find(tab => tab.id === parseInt(tabIndex));
+
     if (findCurrentTab) {
-      setTitle(findCurrentTab.title)
+      setTitle(findCurrentTab.name)
     }
-  }, [tabIndex])
+  }, [tabIndex, tabs])
 
   return (
     <div>
@@ -45,6 +53,7 @@ const Tours: NextPageWithLayout = () => {
         handleTabChange={handleTabChange}
         tabs={tabs}
         title={title}
+        tours={tours}
       />
     </div>
   );

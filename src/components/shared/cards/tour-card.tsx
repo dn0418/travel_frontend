@@ -10,8 +10,6 @@ import { IoMdMan } from 'react-icons/io';
 import { RiHotelLine } from 'react-icons/ri';
 import { TourType } from '../../../types';
 
-
-
 function TourCard({ tour }: { tour: TourType }) {
   const {
     thumbnail,

@@ -13,7 +13,8 @@ function ToursPage({
   handleTabChange,
   tabIndex,
   tabs,
-  title
+  title,
+  tours
 }: ToursPageProps) {
   const [page, setPage] = useState(1);
 
@@ -21,21 +22,25 @@ function ToursPage({
     <Container className='my-8 flex flex-col items-center'>
       <div className='w-full  text-center py-3 px-6 regular-shadow rounded-lg'>
         <Tabs
-          value={tabIndex}
+          value={parseInt(tabIndex)}
           onChange={handleTabChange}
           className='pages-tabs'
           TabIndicatorProps={{
             style: { display: "none" },
           }}>
           {
-            tabs.map((tab, i) => (
-              <Tab key={i} value={tab.value} className="" label={tab.title} />
+            tabs.map((tab) => (
+              <Tab
+                key={tab.id}
+                value={tab.id}
+                className=""
+                label={tab.name} />
             ))
           }
         </Tabs>
       </div>
-      <div className='my-4 md:my-8'>
-        <div className="flex items-center justify-between">
+      <div className='w-full my-4 md:my-8'>
+        <div className="w-full flex items-center justify-between">
           <SectionTitle title={title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">
             <InputLabel>Search your  Need</InputLabel>
@@ -48,13 +53,12 @@ function ToursPage({
               label="Search your Tours"
             />
           </FormControl>
-
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {toursData.slice((page - 1) * 6, page * 6).map((item, i) => (
+            {tours?.tours.map((item, i) => (
               <Card key={i} className="regular-shadow rounded-lg">
-                <TourCard />
+                <TourCard tour={item} />
               </Card>
             ))}
           </div>
