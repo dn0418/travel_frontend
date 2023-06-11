@@ -17,6 +17,10 @@ class Client {
     all: () => HttpClient.get(API_ENDPOINTS.TOURTYPE)
   }
 
+  cars = {
+    all: () => HttpClient.get(API_ENDPOINTS.CARS)
+  }
+
 
   // blogData = {
   //   all: () => HttpClient.get(`${API_ENDPOINTS.BLOGS}?populate=%2A`),
@@ -25,9 +29,6 @@ class Client {
   //   deleteBlog: (id: any) => HttpClient.delete(`${API_ENDPOINTS.BLOGS}/${id}`),
   // };
 
-  // categoryData = {
-  //   all: () => HttpClient.get(`${API_ENDPOINTS.CATEGORY}?populate=%2A`),
-  // };
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

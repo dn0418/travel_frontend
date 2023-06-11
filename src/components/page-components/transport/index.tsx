@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../types/page-props";
 import TransportCard from "../../shared/cards/transport-card";
@@ -13,8 +12,13 @@ function TransportUI({
   handleTabChange,
   currentTab,
   tabs,
+  cars,
+  page,
+  setPage,
+  handleSearch
 }: TransportPageProps) {
-  const [page, setPage] = useState(1);
+
+  // console.log(cars)
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -45,14 +49,15 @@ function TransportUI({
                 </InputAdornment>
               }
               label="Search your Tours"
+              onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>
 
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {toursData.slice((page - 1) * 6, page * 6).map((item, i) => (
-              <TransportCard key={i} />
+            {cars.slice((page - 1) * 6, page * 6).map((car, i) => (
+              <TransportCard car={car} key={i} />
             ))}
           </div>
           <div className='flex justify-center my-3 md:my-6'>
@@ -60,7 +65,7 @@ function TransportUI({
               <Pagination
                 size='large'
                 onChange={(_, p) => setPage(p)}
-                count={Math.ceil(toursData.length / 6)}
+                count={Math.ceil(cars.length / 6)}
                 shape='rounded'
                 renderItem={(item) => (
                   <PaginationItem

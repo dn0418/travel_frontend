@@ -68,3 +68,34 @@ export interface PaginationType {
   total: number;
   totalPages: number;
 }
+
+export interface CarDriverType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  location: string;
+  profilePhoto: string;
+  licenseNo: string;
+  licenseExpireDate: string;
+}
+
+export interface CarType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  thumbnail: string;
+  model: string;
+  carNo: string;
+  startedDate: string;
+  endDate: string;
+  seatNo: number;
+  isDriver: boolean;
+  description: string;
+  price: number;
+  discountedPrice: number;
+  carDriver: CarDriverType;
+}

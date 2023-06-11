@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
-import { PaginationType, ReviewTypes, TourType } from "./index";
+import { CarType, PaginationType, ReviewTypes, TourType } from "./index";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -37,6 +37,10 @@ export interface TransportPageProps {
     title: string;
     value: string;
   }[];
+  cars: CarType[];
+  page: any;
+  setPage: any;
+  handleSearch: any;
 }
 
 export interface AboutUsUIProps {
