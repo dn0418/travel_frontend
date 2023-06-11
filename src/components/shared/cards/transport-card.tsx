@@ -18,18 +18,7 @@ const tourCardData = {
 };
 
 function TransportCard({ car }: { car: CarType }) {
-  console.log(car)
-  const {
-    imageSrc,
-    imageAlt,
-    title,
-    rating,
-    seatNo,
-    driver,
-    description,
-    basePrice,
-    discountPrice
-  } = tourCardData;
+  // console.log(Boolean(car.isDriver))
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -47,17 +36,20 @@ function TransportCard({ car }: { car: CarType }) {
             <Link href="/tour-details">
               <p className="text-xl font-medium my-2 text-black">{car.name + " " + car.model}</p>
             </Link>
-            <div className="flex items-center gap-1">
-              <Rating
-                max={1}
-                size="small"
-                name="half-rating"
-                readOnly
-                defaultValue={rating}
-                precision={0.1}
-              />
-              <span className="text-[#5E5E5E] text-sm">{rating}</span>
-            </div>
+            {
+              car.rating &&
+              <div className="flex items-center gap-1">
+                <Rating
+                  max={1}
+                  size="small"
+                  name="half-rating"
+                  readOnly
+                  defaultValue={car.rating}
+                  precision={0.1}
+                />
+                <span className="text-[#5E5E5E] text-sm">{car.rating}</span>
+              </div>
+            }
           </div>
           <p className="mt-0 text-[#5E5E5E] text-sm">
             {car.seatNo} seat {car.isDriver ? "with" : "without"} driver

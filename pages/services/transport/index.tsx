@@ -17,19 +17,22 @@ const tabs = [
 
 
 const Transport: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const carsData = props.carsData;
+  const carsData = props.carsData || [];
 
   const [currentTab, setCurrentTab] = useState(tabs[0]);
-  const [cars, setCars] = useState(carsData);
+  const [cars, setCars] = useState(carsData || []);
   const [page, setPage] = useState(1);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
+
     if (findTab) {
       setCurrentTab(findTab);
       setPage(1);
       if (newValue !== 'all') {
-        const newCars = carsData.filter((car: CarType) => car.isDriver.toString() === newValue);
+        const newCars = carsData.filter(
+          (car: CarType) => Boolean(car.isDriver).toString() === newValue);
+
         setCars(newCars);
       } else {
         setCars(carsData);

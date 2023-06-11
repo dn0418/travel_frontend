@@ -97,5 +97,10 @@ export interface CarType {
   description: string;
   price: number;
   discountedPrice: number;
-  carDriver: CarDriverType;
+  carDriverId: number | null;
+  carId: number | null;
+  driverFirstName: string | null;
+  driverLicenseNo: string | null;
+  rating: number | null;
+  reviewCount: string;
 }
