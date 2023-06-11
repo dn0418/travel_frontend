@@ -18,7 +18,8 @@ class Client {
   }
 
   cars = {
-    all: () => HttpClient.get(API_ENDPOINTS.CARS)
+    all: () => HttpClient.get(API_ENDPOINTS.CARS),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
   }
 
 
