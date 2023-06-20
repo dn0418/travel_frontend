@@ -5,20 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CarType } from '../../types';
 
-const tourCardData = {
-  imageSrc: "https://i.ibb.co/k0qB6f3/jad-limcaco-NT1m-JPgni6-A-unsplash.png",
-  imageAlt: "BMW - CX7",
-  title: "BMW - CX7",
-  rating: 4.9,
-  driver: true,
-  seatNo: 4,
-  description: "The second largest city in Armenia, Gyumri is well worth a visit for anyone heading to the country for the first time",
-  basePrice: 1000,
-  discountPrice: 950,
-};
+interface TransportCardProps {
+  car: CarType;
+  isDetails?: boolean;
+}
 
-function TransportCard({ car }: { car: CarType }) {
-  // console.log(Boolean(car.isDriver))
+function TransportCard({ car, isDetails = false }: TransportCardProps) {
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -51,9 +43,24 @@ function TransportCard({ car }: { car: CarType }) {
               </div>
             }
           </div>
+          {
+            isDetails && <p className="mt-0 text-[#5E5E5E] text-sm">
+              Car No: {car.carNo}
+            </p>
+          }
           <p className="mt-0 text-[#5E5E5E] text-sm">
             {car.seatNo} seat {car.isDriver ? "with" : "without"} driver
           </p>
+          {
+            isDetails && <div className="bg-[#F2F2F2] w-full p-2 rounded-md">
+              <p className="my-1 text-[#5E5E5E] text-base font-medium">
+                {car?.driverFirstName + " " + car?.driverLastName}
+              </p>
+              <p className="my-1 text-[#5E5E5E] text-sm">
+                Licenses No: {car.driverLicenseNo}
+              </p>
+            </div>
+          }
 
           <p className="text-sm  text-[#5e5e5e] mt-6">{car.description}</p>
           <div className="flex justify-between items-center">

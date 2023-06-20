@@ -10,7 +10,7 @@ import { MdPhotoCamera } from "react-icons/md";
 import { countries } from "../../../../utils/data/countries";
 
 
-function AddReview() {
+function AddReview({ handleChangeModal }: any) {
   const [ratingValue, setRatingValue] = useState<number | null>(0);
   const [country, setCountry] = useState("");
   const theme = useTheme();
@@ -119,7 +119,7 @@ function AddReview() {
         />
         <div className=""></div>
         <div style={formStyles.buttonContainer} className="">
-          <Button variant="outlined">Cancle</Button>
+          <Button onClick={handleChangeModal} variant="outlined">Cancle</Button>
           <Button variant="contained">Submit</Button>
         </div>
       </Box>

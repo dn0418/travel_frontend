@@ -83,7 +83,7 @@ function CarReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
         onClose={handleChangeModal}
         aria-labelledby='Add review modal'
         aria-describedby='Add a tour review'>
-        <AddReview />
+        <AddReview handleChangeModal={handleChangeModal} />
       </Modal>
     </>
   );
