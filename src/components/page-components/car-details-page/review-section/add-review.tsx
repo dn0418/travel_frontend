@@ -5,21 +5,28 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { useTheme } from "@mui/material/styles";
 import { makeStyles } from '@mui/styles';
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { MdPhotoCamera } from "react-icons/md";
 import { countries } from "../../../../utils/data/countries";
 
 
 function AddReview({ handleChangeModal }: any) {
-  const [ratingValue, setRatingValue] = useState<number | null>(0);
-  const [country, setCountry] = useState("");
+  const [reviewInput, setReviewInput] = useState({
+    firstName: "",
+    lastName: "",
+    country: "",
+    email: "",
+    rating: "0",
+  })
   const theme = useTheme();
 
-  const handleChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setCountry(event.target.value);
-  };
+  const handleChangeInput = (name: string, value: string) => {
+    setReviewInput((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      temp[name] = value;
+      return temp;
+    })
+  }
 
   const [selectedImage, setSelectedImage] = useState<null | string>(null);
 
@@ -80,20 +87,41 @@ function AddReview({ handleChangeModal }: any) {
         sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
         Add review
       </Typography>
-      <UploadAvatar selectedImage={selectedImage} handleImageChange={handleImageChange} />
+      <UploadAvatar
+        selectedImage={selectedImage}
+        handleImageChange={handleImageChange}
+      />
       <Box
         sx={formStyles.gridContainer}>
-        <TextField label='First Name' variant='outlined' />
-        <TextField label='Last Name' variant='outlined' />
-        <TextField label='Email' type='email' variant='outlined' />
+        <TextField
+          label='First Name'
+          name="firstName"
+          onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+          variant='outlined'
+        />
+        <TextField
+          label='Last Name'
+          name="lastName"
+          onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+          variant='outlined'
+        />
+        <TextField
+          label='Email'
+          name="email"
+          onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+          type='email'
+          variant='outlined'
+        />
 
         <FormControl fullWidth>
           <InputLabel id='demo-simple-select-label'>Country</InputLabel>
           <Select
             labelId='demo-simple-select-label'
-            value={country}
+            value={reviewInput?.country}
             label='Country'
-            onChange={handleChange}>
+            name="country"
+            onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+          >
             {countries.map((country) => (
               <MenuItem key={country.code} value={country.code}>
                 {country.name}
@@ -103,17 +131,19 @@ function AddReview({ handleChangeModal }: any) {
         </FormControl>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Rating
-            name="simple-controlled"
+            name="rating"
             precision={0.5}
-            value={ratingValue}
-            onChange={(event, newValue) => {
-              setRatingValue(newValue);
-            }}
+            value={parseInt(reviewInput?.rating)}
+            onChange={(event, newValue) =>
+              handleChangeInput("rating", newValue?.toString() ?? "0")
+            }
           />
-          <p>{" "}{ratingValue} Star</p>
+          <p>{" "}{reviewInput?.rating} Star</p>
         </Box>
         <TextField
           sx={formStyles.noteArea}
+          name="note"
+          onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
           className="text-area"
           label='Write your review'
         />

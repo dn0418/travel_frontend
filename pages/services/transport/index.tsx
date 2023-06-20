@@ -15,7 +15,6 @@ const tabs = [
   { title: 'With driver', value: 'true' },
 ];
 
-
 const Transport: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const carsData = props.carsData || [];
 
@@ -41,7 +40,7 @@ const Transport: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   };
 
   const handleSearch = (searchText: string) => {
-    const filteredCars = cars.filter((car: CarType) => {
+    const filteredCars = carsData.filter((car: CarType) => {
       const nameMatch = car.name.toLowerCase().includes(searchText.toLowerCase());
       const modelMatch = car.model.toLowerCase().includes(searchText.toLowerCase());
       return nameMatch || modelMatch;
