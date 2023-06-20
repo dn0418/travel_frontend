@@ -101,6 +101,7 @@ export interface CarType {
   carId: number | null;
   driverFirstName: string | null;
   driverLicenseNo: string | null;
-  rating: number | null;
-  reviewCount: string;
+  rating: number;
+  totalReview: number;
+  reviews: ReviewTypes[];
 }

@@ -9,11 +9,12 @@ export { getStaticPaths, getStaticProps };
 
 const TransportDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const caraDetails = props.carsDetails?.data;
-  console.log(caraDetails)
+  const cars = props?.carsData?.data;
+  // console.log(cars)
 
   return (
     <>
-      <CarDetailsUI car={caraDetails} />
+      <CarDetailsUI cars={cars} car={caraDetails} />
     </>
   );
 };

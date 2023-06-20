@@ -27,12 +27,15 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!; //* we know it's required because of getStaticPaths
+  const allCar = await client.cars.all();
 
   try {
+    await client.cars.all();
     const carsDetails = await client.cars.getByID(id);
     return {
       props: {
         carsDetails: carsDetails,
+        carsData: allCar
       },
       revalidate: 30,
     };

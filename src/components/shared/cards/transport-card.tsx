@@ -33,7 +33,7 @@ function TransportCard({ car }: { car: CarType }) {
         />
         <div className="p-3">
           <div className="flex items-center justify-between">
-            <Link href="/tour-details">
+            <Link href={`/services/transport/${car.id}`}>
               <p className="text-xl font-medium my-2 text-black">{car.name + " " + car.model}</p>
             </Link>
             {

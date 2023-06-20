@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Button } from '@mui/material';
+import { Button, Rating } from '@mui/material';
 import Image from 'next/image';
 import { BiCalendar, BiHash } from 'react-icons/bi';
 import { CarType } from '../../../types';
@@ -24,17 +24,19 @@ function CarSpecification({ car }: { car: CarType }) {
           <p className="flex items-center gap-2">
             <span className="text-sm text-[#5e5e5e]">Car No: {car.carNo}</span>
           </p>
-          {/* <p className="flex items-center gap-2">
-        <Rating
-          max={1}
-          size="small"
-          name="half-rating"
-          readOnly
-          defaultValue={1}
-          precision={0.1}
-        />
-        <span className="text-sm text-[#5e5e5e]">5 Star | 100 People</span>
-      </p> */}
+          {car.totalReview > 0 && <p className="flex items-center gap-2">
+            <Rating
+              max={1}
+              size="small"
+              name="half-rating"
+              readOnly
+              defaultValue={car.rating}
+              precision={0.1}
+            />
+            <span className="text-sm text-[#5e5e5e]">
+              {car.rating} Star | {car.totalReview} People
+            </span>
+          </p>}
           <p className="flex items-center gap-3">
             <span className="text-sm text-[#5e5e5e] line-through">$ {car.price}</span>
             <span className="text-base text-[#000000] font-bold">
