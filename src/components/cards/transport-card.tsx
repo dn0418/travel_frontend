@@ -3,7 +3,7 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CarType } from '../../../types';
+import { CarType } from '../../types';
 
 const tourCardData = {
   imageSrc: "https://i.ibb.co/k0qB6f3/jad-limcaco-NT1m-JPgni6-A-unsplash.png",

@@ -3,7 +3,7 @@
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
 import { ReviewTypes } from "../../../../types";
-import ReviewCard from "../../../shared/cards/review-card";
+import ReviewCard from "../../../cards/review-card";
 import ExpandedSectionTitle from "../../../shared/expanded-section-title";
 import AddReview from "./add-review";
 

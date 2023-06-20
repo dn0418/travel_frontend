@@ -8,7 +8,7 @@ import { BiCalendar } from 'react-icons/bi';
 import { BsCarFrontFill } from 'react-icons/bs';
 import { IoMdMan } from 'react-icons/io';
 import { RiHotelLine } from 'react-icons/ri';
-import { TourType } from '../../../types';
+import { TourType } from '../../types';
 
 function TourCard({ tour }: { tour: TourType }) {
   const {

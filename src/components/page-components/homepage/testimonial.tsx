@@ -5,7 +5,7 @@ import { Key, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { ReviewTypes } from "../../../types";
-import ReviewCard from "../../shared/cards/review-card";
+import ReviewCard from "../../cards/review-card";
 import SectionTitle from "../../shared/section-title";
 
 export function NextArrow(props: { onClick: any, }) {

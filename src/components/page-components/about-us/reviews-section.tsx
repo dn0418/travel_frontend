@@ -4,7 +4,7 @@ import { Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { PaginationType, ReviewTypes } from "../../../types";
 import { testimonials } from "../../../utils/data/testimonial-data";
-import ReviewCard from "../../shared/cards/review-card";
+import ReviewCard from "../../cards/review-card";
 
 interface Props {
   reviews: ReviewTypes[];

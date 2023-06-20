@@ -5,7 +5,7 @@ import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { testimonials } from "../../../utils/data/testimonial-data";
-import TourCard from "../../shared/cards/tour-card";
+import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../shared/section-title";
 
 

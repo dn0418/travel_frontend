@@ -4,7 +4,7 @@ import { Button, Card, Container } from "@mui/material";
 import { AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { TourType } from "../../../types";
-import TourCard from "../../shared/cards/tour-card";
+import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../shared/section-title";
 
 function NextArrow(props: { onClick: any }) {

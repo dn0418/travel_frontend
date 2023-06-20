@@ -4,7 +4,7 @@ import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagi
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import HotelCard from "../../shared/cards/hotel-card";
+import HotelCard from "../../cards/hotel-card";
 import SectionTitle from "../../shared/section-title";
 const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
 

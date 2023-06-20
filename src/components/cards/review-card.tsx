@@ -2,7 +2,7 @@
 
 import { Card, Rating } from "@mui/material";
 import Image from "next/image";
-import { ReviewTypes } from "../../../types";
+import { ReviewTypes } from "../../types";
 
 type ReviewCardProps = {
   review: ReviewTypes,
