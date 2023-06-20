@@ -22,6 +22,11 @@ class Client {
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
   }
 
+  hotels = {
+    all: () => HttpClient.get(API_ENDPOINTS.HOTELS),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
+  }
+
 
   // blogData = {
   //   all: () => HttpClient.get(`${API_ENDPOINTS.BLOGS}?populate=%2A`),

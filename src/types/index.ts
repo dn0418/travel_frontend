@@ -106,3 +106,24 @@ export interface CarType {
   totalReview: number;
   reviews: ReviewTypes[];
 }
+
+export interface HotelType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  quality: string;
+  roomsDetails: string;
+  date: string;
+  hotelDetails: string;
+  locationImg: string;
+  type: string;
+  price: number;
+  discountedPrice: number;
+  thumbnail: string;
+  activities: number;
+  country: string;
+  city: string;
+  rating: number | null;
+  reviewCount: string;
+}

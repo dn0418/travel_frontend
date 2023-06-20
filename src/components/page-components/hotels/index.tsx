@@ -4,13 +4,13 @@ import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagi
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import { HotelType } from "../../../types";
 import HotelCard from "../../cards/hotel-card";
 import SectionTitle from "../../shared/section-title";
 const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
 
-const toursData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-function HotelsUI() {
+function HotelsUI({ hotels }: { hotels: HotelType[] }) {
   const [page, setPage] = useState(1);
 
   return (
@@ -34,16 +34,16 @@ function HotelsUI() {
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {toursData.slice((page - 1) * 6, page * 6).map((item, i) => (
-              <HotelCard key={i} />
+            {hotels.slice((page - 1) * 6, page * 6).map((hotel: HotelType, i) => (
+              <HotelCard hotel={hotel} key={i} />
             ))}
           </div>
           <div className='flex justify-center my-3 md:my-6'>
-            {toursData.length > 0 && (
+            {hotels.length > 0 && (
               <Pagination
                 size='large'
                 onChange={(_, p) => setPage(p)}
-                count={Math.ceil(toursData.length / 6)}
+                count={Math.ceil(hotels.length / 6)}
                 shape='rounded'
                 renderItem={(item) => (
                   <PaginationItem
