@@ -3,7 +3,7 @@
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
 import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../types/page-props";
-import TransportCard from "../../cards/transport-card";
+import TransportCard from "../../cards/car-card";
 import SectionTitle from "../../shared/section-title";
 
 const toursData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]

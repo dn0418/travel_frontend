@@ -5,7 +5,7 @@ import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { CarType } from "../../../types";
-import TransportCard from "../../cards/transport-card";
+import TransportCard from "../../cards/car-card";
 import SectionTitle from "../../shared/section-title";
 
 
