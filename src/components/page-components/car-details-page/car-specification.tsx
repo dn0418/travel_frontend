@@ -61,21 +61,6 @@ function CarSpecification({ car }: { car: CarType }) {
               {new Date(car.endDate).toDateString()}
             </span>
           </p>
-          {/* <p className="flex items-center gap-4">
-        <RiHotelLine className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">{tour.hotelDetails}</span>
-      </p>
-      {
-        tour.car &&
-        <p className="flex items-center gap-4">
-          <BiCar className="text-base text-[#EDA592]  font-bold" />
-          <span className="text-base text-[#5e5e5e]">Car</span>
-        </p>
-      }
-      <p className="flex items-center gap-4">
-        <BsPerson className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">{tour.activities} Activities</span>
-      </p> */}
           <div className="md:mt-8">
             <Button
               className="px-8 md:px-12 rounded-lg"

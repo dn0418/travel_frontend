@@ -5,7 +5,12 @@ import CarSpecification from "./car-specification";
 import CarReviewSection from "./review-section/car-review-section";
 import TopSuggestedCars from "./top-suggested";
 
-function CarDetailsUI({ car, cars }: { car: CarType, cars: CarType[] }) {
+interface PropsType {
+  car: CarType,
+  cars: CarType[]
+}
+
+function CarDetailsUI({ car, cars }: PropsType) {
   // console.log(car)
 
   return (
