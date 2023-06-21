@@ -29,11 +29,26 @@ function AddReview({ handleChangeModal }: any) {
 
   const [selectedImage, setSelectedImage] = useState<null | string>(null);
 
-  const handleImageChange = (event: any) => {
+  const handleImageChange = async (event: any) => {
+    const formData = new FormData();
+
     const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
+    formData.append("file", file);
+
+    try {
+      const response = await fetch('http://localhost:5000/file/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      if (data?.Location) {
+        setSelectedImage(data?.Location)
+      }
+    } catch (error) {
+      console.log(error)
     }
+
   };
 
   const formStyles = {

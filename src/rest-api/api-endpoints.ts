@@ -4,5 +4,6 @@ export const API_ENDPOINTS = {
   REVIEWS: "reviews",
   TOURTYPE: "/tour-type",
   CARS: "cars",
-  HOTELS: "hotels"
+  HOTELS: "hotels",
+  FILEUPLOADS: "file/upload"
 };

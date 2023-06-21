@@ -16,7 +16,8 @@ function AddReview({ handleChangeModal }: any) {
     country: "",
     email: "",
     rating: "0",
-  })
+  });
+
   const theme = useTheme();
 
   const handleChangeInput = (name: string, value: string) => {

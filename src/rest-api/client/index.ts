@@ -27,6 +27,10 @@ class Client {
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
   }
 
+  fileUploads = {
+    upload: (data: any) => HttpClient.post(API_ENDPOINTS.FILEUPLOADS, data),
+  }
+
 
   // blogData = {
   //   all: () => HttpClient.get(`${API_ENDPOINTS.BLOGS}?populate=%2A`),
