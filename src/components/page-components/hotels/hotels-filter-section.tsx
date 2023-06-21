@@ -1,33 +1,31 @@
 // @flow strict
 
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { FiSearch } from "react-icons/fi";
-import { countries } from "../../../utils/data/countries";
-import { tourFilterData } from "../../../utils/data/homepage-data";
+import { countriesAndCities, hotelsTypes } from "../../../utils/data/hotel-filter-data";
 
-function HotelsFilterSection() {
-  const [filterData, setFilterData] = useState({
-    type: '',
-    destination: '',
-    country: '',
-  });
+interface PropsType {
+  filterInput: {
+    country: string;
+    city: string;
+    type: string;
+  },
+  handleChangeFilterData: any;
+  cities: {
+    name: string;
+    value: string;
+  }[];
+  handleClickSearch: () => void;
+}
 
-  const [isOpen, setIsOpen] = useState(false);
+function HotelsFilterSection({
+  filterInput,
+  handleChangeFilterData,
+  cities,
+  handleClickSearch
+}: PropsType) {
 
-  const handleChangeFilterData = (e: any) => {
-    console.log(e)
-    setFilterData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
-
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <div
@@ -40,15 +38,15 @@ function HotelsFilterSection() {
         <div className='flex justify-center'>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>
-              {filterData.country ? "" : 'Country'}
+              {filterInput.country ? "" : 'Country'}
             </InputLabel>
             <Select
               labelId='demo-simple-select-label'
               name="country"
-              value={filterData.country}
+              value={filterInput.country}
               onChange={handleChangeFilterData}>
-              {countries.map((country) => (
-                <MenuItem key={country.code} value={country.code}>
+              {countriesAndCities.map((country) => (
+                <MenuItem key={country.value} value={country.value}>
                   {country.name}
                 </MenuItem>
               ))}
@@ -59,15 +57,15 @@ function HotelsFilterSection() {
         <div className='flex justify-center'>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>
-              {filterData.destination ? "" : 'Destination'}
+              {filterInput.city ? "" : 'Destination'}
             </InputLabel>
             <Select
               labelId='demo-simple-select-label'
-              name="destination"
-              value={filterData.destination}
+              name="city"
+              value={filterInput.city}
               onChange={handleChangeFilterData}>
-              {countries.map((destination) => (
-                <MenuItem key={destination.code} value={destination.code}>
+              {cities.map((destination) => (
+                <MenuItem key={destination.value} value={destination.value}>
                   {destination.name}
                 </MenuItem>
               ))}
@@ -78,16 +76,16 @@ function HotelsFilterSection() {
         <div className='flex justify-center'>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>
-              {filterData.type ? "" : 'Type'}
+              {filterInput.type ? "" : 'Type'}
             </InputLabel>
             <Select
               labelId='demo-simple-select-label'
               name="type"
-              value={filterData.type}
+              value={filterInput.type}
               onChange={handleChangeFilterData}>
-              {tourFilterData.map((destination) => (
-                <MenuItem key={destination.value} value={destination.value}>
-                  {destination.title}
+              {hotelsTypes.map((type) => (
+                <MenuItem key={type.id} value={type.value}>
+                  {type.name}
                 </MenuItem>
               ))}
             </Select>
@@ -97,7 +95,9 @@ function HotelsFilterSection() {
 
 
         <div className='flex justify-center'>
-          <Button onClick={handleClick} className='text-white bg-black rounded-lg px-4 w-fit'>
+          <Button
+            onClick={handleClickSearch}
+            className='text-white bg-black rounded-lg px-4 w-fit'>
             <FiSearch className='text-xl' />{" "}
             <span className='capitalize pl-1'>Search</span>
           </Button>

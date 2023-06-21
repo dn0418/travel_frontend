@@ -9,15 +9,43 @@ import HotelCard from "../../cards/hotel-card";
 import SectionTitle from "../../shared/section-title";
 const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
 
+interface PropsType {
+  hotels: HotelType[];
+  filterInput: {
+    country: string;
+    city: string;
+    type: string;
+  },
+  handleChangeFilterData: any;
+  cities: {
+    name: string;
+    value: string;
+  }[];
+  handleClickSearch: () => void;
+  handleSerachHotels: (name: string) => void;
+}
 
-function HotelsUI({ hotels }: { hotels: HotelType[] }) {
+function HotelsUI({
+  hotels,
+  filterInput,
+  handleChangeFilterData,
+  cities,
+  handleClickSearch,
+  handleSerachHotels
+}: PropsType) {
+
   const [page, setPage] = useState(1);
 
   return (
     <Container className='my-8 flex flex-col items-center hotels-page'>
-      <HotelsFilterSection />
-      <div className='my-4 md:my-8'>
-        <div className="flex items-center justify-between">
+      <HotelsFilterSection
+        filterInput={filterInput}
+        cities={cities}
+        handleChangeFilterData={handleChangeFilterData}
+        handleClickSearch={handleClickSearch}
+      />
+      <div className='my-4 w-full md:my-8'>
+        <div className="flex w-full items-center justify-between">
           <SectionTitle title='Special Hotel' />
           <FormControl size="small" className="shadow-sm" variant="outlined">
             <InputLabel>Search your  Need</InputLabel>
@@ -28,6 +56,7 @@ function HotelsUI({ hotels }: { hotels: HotelType[] }) {
                 </InputAdornment>
               }
               label="Search your Tours"
+              onChange={(e) => handleSerachHotels(e.target.value)}
             />
           </FormControl>
 
