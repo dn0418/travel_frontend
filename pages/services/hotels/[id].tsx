@@ -8,14 +8,15 @@ import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
 const HotelDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const caraDetails = props.carsDetails?.data;
   const hotelDetails = props.hotelDetails?.data;
-  const cars = props?.carsData?.data;
-  console.log(hotelDetails)
+  const allHotel = props?.allHotel?.data;
 
   return (
     <>
-      <HotelDetailsPage hotel={hotelDetails} />
+      <HotelDetailsPage
+        hotel={hotelDetails}
+        allHotel={allHotel}
+      />
     </>
   );
 };

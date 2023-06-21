@@ -126,5 +126,6 @@ export interface HotelType {
   city: string;
   rating: number | null;
   reviewCount: string;
-  images: { url: string }[]
+  images: { url: string }[];
+  reviews: ReviewTypes[];
 }
