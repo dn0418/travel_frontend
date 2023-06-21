@@ -25,7 +25,7 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
         />
         <div className="p-3">
           <div className="flex items-center justify-between">
-            <Link href="/tour-details">
+            <Link href={`/services/hotels/${hotel.id}`}>
               <p className="text-xl font-medium my-2 text-black">{hotel.name}</p>
             </Link>
             {
