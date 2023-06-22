@@ -24,7 +24,7 @@ function HotelDetailsPage({ hotel, allHotel }: PropsType) {
         <HotelDetailsMaps hotel={hotel} />
       </Container>
       <RelatedHotels hotels={allHotel} />
-      <ReviewSection reviews={hotel.reviews} />
+      <ReviewSection hotel={hotel} reviews={hotel.reviews} />
     </div>
   );
 };

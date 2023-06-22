@@ -2,12 +2,17 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { ReviewTypes } from "../../../../types";
+import { HotelType, ReviewTypes } from "../../../../types";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
-function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
+interface PropsType {
+  reviews: ReviewTypes[];
+  hotel: HotelType;
+}
+
+function ReviewSection({ reviews, hotel }: PropsType) {
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -84,6 +89,8 @@ function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
         aria-labelledby='Add review modal'
         aria-describedby='Add a review'>
         <CreateNewReview
+          type="hotel"
+          id={hotel.id}
           handleChangeModal={handleChangeModal}
         />
       </Modal>

@@ -3,10 +3,17 @@
 import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { countries } from "../../../utils/data/countries";
 import UploadAvatar from "./upload-avatar";
 
-function CreateNewReview({ handleChangeModal }: any) {
+interface PropsType {
+  handleChangeModal: any;
+  type: string;
+  id: number;
+}
+
+const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
   const [selectedImage, setSelectedImage] = useState<null | string>(null);
   const [reviewInput, setReviewInput] = useState({
     firstName: "",
@@ -14,7 +21,8 @@ function CreateNewReview({ handleChangeModal }: any) {
     country: "",
     email: "",
     rating: "0",
-  })
+    note: ""
+  });
   const theme = useTheme();
 
   const handleChangeInput = (name: string, value: string) => {
@@ -25,8 +33,46 @@ function CreateNewReview({ handleChangeModal }: any) {
     })
   }
 
+  const checkValidation = () => {
+    // Check which fields in reviewInput are empty
+    const emptyFields = [];
+    if (reviewInput.firstName === "") {
+      emptyFields.push("firstName");
+    }
+    if (reviewInput.lastName === "") {
+      emptyFields.push("lastName");
+    }
+    if (reviewInput.email === "") {
+      emptyFields.push("email");
+    }
+    if (reviewInput.country === "") {
+      emptyFields.push("country");
+    }
+    if (reviewInput.rating === "0") {
+      emptyFields.push("rating");
+    }
+    if (!selectedImage) {
+      emptyFields.push("thumbnail");
+    }
+    if (reviewInput.note === "") {
+      emptyFields.push("note");
+    }
+
+    let errorMessage = "";
+    // Generate error message for empty fields
+    if (emptyFields.length > 0) {
+      errorMessage = `${emptyFields.join(", ")} ${emptyFields.length > 1 ? "are" : "is"
+        } required`;
+    }
+    return errorMessage;
+  }
+
   const handleSubmit = () => {
-    console.log(reviewInput)
+    const err = checkValidation();
+    if (err) {
+      toast.error(err);
+      return;
+    }
   }
 
   const handleImageChange = async (event: any) => {
@@ -102,10 +148,12 @@ function CreateNewReview({ handleChangeModal }: any) {
           sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
           Add review
         </Typography>
-        <UploadAvatar
-          selectedImage={selectedImage}
-          handleImageChange={handleImageChange}
-        />
+        <div className="">
+          <UploadAvatar
+            selectedImage={selectedImage}
+            handleImageChange={handleImageChange}
+          />
+        </div>
         <Box
           sx={formStyles.gridContainer}>
           <TextField

@@ -4,6 +4,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
@@ -39,6 +41,7 @@ function MyApp(props: MyAppProps) {
         <ChatIcon />
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
+      <ToastContainer />
     </QueryProvider>
   );
 }
