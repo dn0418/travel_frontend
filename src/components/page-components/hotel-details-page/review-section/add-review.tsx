@@ -10,6 +10,7 @@ import { MdPhotoCamera } from "react-icons/md";
 import { countries } from "../../../../utils/data/countries";
 
 function AddReview({ handleChangeModal }: any) {
+  const [selectedImage, setSelectedImage] = useState<null | string>(null);
   const [reviewInput, setReviewInput] = useState({
     firstName: "",
     lastName: "",
@@ -27,7 +28,9 @@ function AddReview({ handleChangeModal }: any) {
     })
   }
 
-  const [selectedImage, setSelectedImage] = useState<null | string>(null);
+  const handleSubmit = () => {
+    console.log(reviewInput)
+  }
 
   const handleImageChange = async (event: any) => {
     const formData = new FormData();
@@ -164,7 +167,7 @@ function AddReview({ handleChangeModal }: any) {
         <div className=""></div>
         <div style={formStyles.buttonContainer} className="">
           <Button onClick={handleChangeModal} variant="outlined">Cancle</Button>
-          <Button variant="contained">Submit</Button>
+          <Button onClick={handleSubmit} variant="contained">Submit</Button>
         </div>
       </Box>
     </Box>

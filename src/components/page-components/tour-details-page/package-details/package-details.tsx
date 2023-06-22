@@ -4,7 +4,7 @@ import { Container } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
-import ExpandedSectionTitle from "../../../shared/expanded-section-title";
+import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
 const includes = [
   "The sun set over the mountains in a fiery display.",

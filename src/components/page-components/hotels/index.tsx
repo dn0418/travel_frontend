@@ -6,7 +6,7 @@ import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { HotelType } from "../../../types";
 import HotelCard from "../../cards/hotel-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
 
 interface PropsType {

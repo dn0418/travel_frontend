@@ -14,7 +14,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { FaRegAddressCard } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import { SiGmail } from "react-icons/si";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 function RidePlanContact() {
   const [inputData, setInputData] = useState({})

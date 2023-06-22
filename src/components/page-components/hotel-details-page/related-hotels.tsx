@@ -6,7 +6,7 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { HotelType } from "../../../types";
 import HotelCard from "../../cards/hotel-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 
 export function NextArrow(props: { onClick: any }) {

@@ -6,7 +6,7 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { ReviewTypes } from "../../../types";
 import ReviewCard from "../../cards/review-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 export function NextArrow(props: { onClick: any, }) {
   const { onClick } = props;

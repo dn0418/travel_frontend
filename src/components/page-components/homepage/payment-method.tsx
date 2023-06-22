@@ -3,7 +3,7 @@
 import { Container } from "@mui/material";
 import Image from "next/image";
 import { paymentMethod } from "../../../utils/data/payment-method-data";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 function PaymentMethod() {
   return (

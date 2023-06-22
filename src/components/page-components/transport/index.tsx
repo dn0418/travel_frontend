@@ -4,7 +4,7 @@ import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagi
 import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../types/page-props";
 import TransportCard from "../../cards/car-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 
 function TransportUI({

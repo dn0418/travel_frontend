@@ -4,7 +4,7 @@ import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/mater
 import { useState } from "react";
 import { ReviewTypes } from "../../../../types";
 import ReviewCard from "../../../cards/review-card";
-import ExpandedSectionTitle from "../../../shared/expanded-section-title";
+import ExpandedSectionTitle from "../../../common/expanded-section-title";
 import AddReview from "./add-review";
 
 function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {

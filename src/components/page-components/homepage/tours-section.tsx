@@ -5,7 +5,7 @@ import { AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { TourType } from "../../../types";
 import TourCard from "../../cards/tour-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 function NextArrow(props: { onClick: any }) {
   const { onClick } = props;

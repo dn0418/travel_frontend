@@ -6,7 +6,7 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { testimonials } from "../../../utils/data/testimonial-data";
 import TourCard from "../../cards/tour-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 
 export function NextArrow(props: { onClick: any }) {

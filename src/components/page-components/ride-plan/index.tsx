@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Container } from "@mui/material";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 import RidePlanForm from "./ride-plan-form";
 import RidePlanMap from "./ride-plan-map";
 

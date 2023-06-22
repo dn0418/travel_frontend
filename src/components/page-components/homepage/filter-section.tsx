@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
 import { destinationFilterData, tourFilterData } from "../../../utils/data/homepage-data";
-import CustomSelectInput from "../../shared/select";
+import CustomSelectInput from "../../common/select";
 
 function FilterSection() {
   const [filterData, setFilterData] = useState({

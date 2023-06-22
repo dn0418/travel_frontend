@@ -5,7 +5,7 @@ import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { ToursPageProps } from "../../../types/page-props";
 import TourCard from "../../cards/tour-card";
-import SectionTitle from "../../shared/section-title";
+import SectionTitle from "../../common/section-title";
 
 const toursData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 

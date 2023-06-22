@@ -19,7 +19,7 @@ import { GiCoffeeCup } from 'react-icons/gi';
 import { IoLocationOutline } from 'react-icons/io5';
 import { MdExpandMore } from 'react-icons/md';
 import { RiHotelLine } from 'react-icons/ri';
-import ExpandedSectionTitle from "../../shared/expanded-section-title";
+import ExpandedSectionTitle from "../../common/expanded-section-title";
 
 function TourRoute() {
   const [isReviewShow, setIsReviewShow] = useState(false)

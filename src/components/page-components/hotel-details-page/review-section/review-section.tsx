@@ -4,8 +4,8 @@ import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/mater
 import { useState } from "react";
 import { ReviewTypes } from "../../../../types";
 import ReviewCard from "../../../cards/review-card";
-import ExpandedSectionTitle from "../../../shared/expanded-section-title";
-import AddReview from "./add-review";
+import CreateNewReview from "../../../common/create-review/create-review";
+import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
 function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
   const [isReviewShow, setIsReviewShow] = useState(false);
@@ -83,7 +83,9 @@ function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
         onClose={handleChangeModal}
         aria-labelledby='Add review modal'
         aria-describedby='Add a review'>
-        <AddReview handleChangeModal={handleChangeModal} />
+        <CreateNewReview
+          handleChangeModal={handleChangeModal}
+        />
       </Modal>
     </>
   );
