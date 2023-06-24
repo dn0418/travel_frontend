@@ -10,7 +10,7 @@ const nextConfig = {
     defaultLocale: 'en-US',
   },
   images: {
-    domains: ['i.ibb.co'],
+    domains: ['i.ibb.co', 's3.ap-southeast-1.amazonaws.com'],
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],

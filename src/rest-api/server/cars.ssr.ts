@@ -1,26 +1,19 @@
-import type { GetStaticProps } from "next";
-import { QueryClient, dehydrate } from "react-query";
-import { API_ENDPOINTS } from "../api-endpoints";
+import type { GetServerSideProps, GetServerSidePropsContext } from "next";
 import client from "../client";
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { query } = context;
+  const page = query["page"] || 1;
+  const driver = query["driver"] || '';
+  const search = query["search"] || "";
 
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery([API_ENDPOINTS.CARS], client.cars?.all);
-
-  const { queries } = JSON.parse(JSON.stringify(dehydrate(queryClient)));
-
-  const carsState = queries.find(
-    (item: any) => item.queryKey[0] === API_ENDPOINTS.CARS,
-  );
-
-  const cars = carsState?.state?.data?.data ?? null;
+  const cars = await client.cars.all(page, driver, search);
 
   return {
     props: {
       carsData: cars
     },
-    revalidate: 120,
   };
 };

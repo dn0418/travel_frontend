@@ -38,9 +38,9 @@ export interface TransportPageProps {
     value: string;
   }[];
   cars: CarType[];
-  page: any;
-  setPage: any;
   handleSearch: any;
+  handlePageChange: any;
+  metaData: any;
 }
 
 export interface AboutUsUIProps {

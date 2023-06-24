@@ -1,13 +1,13 @@
 // @flow strict
 
-import { InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import TransportUI from "../../../src/components/page-components/transport";
-import { getStaticProps } from "../../../src/rest-api/server/cars.ssr";
-import { CarType } from "../../../src/types";
+import { getServerSideProps } from "../../../src/rest-api/server/cars.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
-export { getStaticProps };
+export { getServerSideProps };
 
 const tabs = [
   { title: 'Transfer to and from', value: 'all' },
@@ -15,38 +15,55 @@ const tabs = [
   { title: 'With driver', value: 'true' },
 ];
 
-const Transport: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const carsData = props.carsData || [];
-
+const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const cars = props.carsData?.data || [];
+  const metaData = props.carsData?.meta || {};
+  const router = useRouter();
   const [currentTab, setCurrentTab] = useState(tabs[0]);
-  const [cars, setCars] = useState(carsData || []);
-  const [page, setPage] = useState(1);
+  const params = router.query;
+
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
+    params['page'] = '1';
+
+    if (newValue === "all") {
+      delete params['driver'];
+    } else {
+      params['driver'] = newValue;
+    }
+
+    router.push({
+      pathname: '/services/transport',
+      query: params,
+    });
 
     if (findTab) {
       setCurrentTab(findTab);
-      setPage(1);
-      if (newValue !== 'all') {
-        const newCars = carsData.filter(
-          (car: CarType) => Boolean(car.isDriver).toString() === newValue);
-
-        setCars(newCars);
-      } else {
-        setCars(carsData);
-      }
     }
   };
 
-  const handleSearch = (searchText: string) => {
-    const filteredCars = carsData.filter((car: CarType) => {
-      const nameMatch = car.name.toLowerCase().includes(searchText.toLowerCase());
-      const modelMatch = car.model.toLowerCase().includes(searchText.toLowerCase());
-      return nameMatch || modelMatch;
-    });
+  const handlePageChange = (event: React.SyntheticEvent, value: number) => {
+    params['page'] = value.toString();
 
-    setCars(filteredCars)
+    router.push({
+      pathname: '/services/transport',
+      query: params,
+    });
+  }
+
+  const handleSearch = (searchText: string) => {
+    if (searchText) {
+      params['search'] = searchText;
+    } else {
+      delete params['search'];
+    }
+    params['page'] = '1';
+
+    router.push({
+      pathname: '/services/transport',
+      query: params,
+    });
   }
 
   return (
@@ -56,9 +73,9 @@ const Transport: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
         handleTabChange={handleTabChange}
         tabs={tabs}
         cars={cars}
-        page={page}
-        setPage={setPage}
         handleSearch={handleSearch}
+        handlePageChange={handlePageChange}
+        metaData={metaData}
       />
     </>
   );

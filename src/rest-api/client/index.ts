@@ -5,6 +5,8 @@ class Client {
   reviews = {
     all: (page: any, limit: any) =>
       HttpClient.get(`${API_ENDPOINTS.REVIEWS}?page=${page}&limit=${limit}`),
+    newReview: (review: any) => HttpClient.post(API_ENDPOINTS.NEW_REVIEWS, review),
+
   };
 
   tours = {
@@ -18,7 +20,9 @@ class Client {
   }
 
   cars = {
-    all: () => HttpClient.get(API_ENDPOINTS.CARS),
+    all: (page?: any, driver?: any, search?: any) => HttpClient.get(
+      `${API_ENDPOINTS.CARS}?page=${page}&driver=${driver}&search=${search}`
+    ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
   }
 

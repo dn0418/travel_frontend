@@ -18,7 +18,7 @@ function CarDetailsUI({ car, cars }: PropsType) {
       <Container>
         <CarSpecification car={car} />
       </Container>
-      <CarReviewSection reviews={car.reviews} />
+      <CarReviewSection car={car} reviews={car.reviews} />
       <TopSuggestedCars cars={cars} />
     </div>
   );

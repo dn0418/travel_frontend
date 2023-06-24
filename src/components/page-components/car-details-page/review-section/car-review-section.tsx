@@ -2,13 +2,17 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { ReviewTypes } from "../../../../types";
+import { CarType, ReviewTypes } from "../../../../types";
 import ReviewCard from "../../../cards/review-card";
+import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
-import AddReview from "./add-review";
 
+interface PropsType {
+  reviews: ReviewTypes[];
+  car: CarType;
+}
 
-function CarReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
+function CarReviewSection({ reviews, car }: PropsType) {
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -83,7 +87,11 @@ function CarReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
         onClose={handleChangeModal}
         aria-labelledby='Add review modal'
         aria-describedby='Add a tour review'>
-        <AddReview handleChangeModal={handleChangeModal} />
+        <CreateNewReview
+          type="car"
+          id={car.id}
+          handleChangeModal={handleChangeModal}
+        />
       </Modal>
     </>
   );

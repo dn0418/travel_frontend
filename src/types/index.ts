@@ -105,6 +105,7 @@ export interface CarType {
   rating: number;
   totalReview: number;
   reviews: ReviewTypes[];
+  year: number;
 }
 
 export interface HotelType {
@@ -128,4 +129,17 @@ export interface HotelType {
   reviewCount: string;
   images: { url: string }[];
   reviews: ReviewTypes[];
+}
+
+export interface AddReviewPyloadType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  location: string;
+  profilePhoto: string | null;
+  rating: string;
+  message: string;
+  hotelId?: number;
+  carId?: number;
+  tourId?: number;
 }

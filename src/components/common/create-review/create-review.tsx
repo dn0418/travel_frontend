@@ -4,6 +4,8 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, TextFie
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useNewReview } from "../../../rest-api/review";
+import { AddReviewPyloadType } from "../../../types";
 import { countries } from "../../../utils/data/countries";
 import UploadAvatar from "./upload-avatar";
 
@@ -14,6 +16,7 @@ interface PropsType {
 }
 
 const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
+  const { addNewReview, isLoading, data } = useNewReview()
   const [selectedImage, setSelectedImage] = useState<null | string>(null);
   const [reviewInput, setReviewInput] = useState({
     firstName: "",
@@ -67,12 +70,32 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
     return errorMessage;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const err = checkValidation();
     if (err) {
       toast.error(err);
       return;
     }
+
+    const payload: AddReviewPyloadType = {
+      firstName: reviewInput.firstName,
+      lastName: reviewInput.lastName,
+      email: reviewInput.email,
+      location: reviewInput.country,
+      profilePhoto: selectedImage,
+      rating: reviewInput.rating,
+      message: reviewInput.note,
+    }
+
+    if (type === 'hotel') {
+      payload['hotelId'] = id
+    } else if (type === 'car') {
+      payload['carId'] = id
+    } else if (type === 'tour') {
+      payload['tourId'] = id
+    }
+
+    addNewReview(payload);
   }
 
   const handleImageChange = async (event: any) => {
@@ -186,7 +209,7 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             >
               {countries.map((country) => (
-                <MenuItem key={country.code} value={country.code}>
+                <MenuItem key={country.code} value={country.name}>
                   {country.name}
                 </MenuItem>
               ))}
