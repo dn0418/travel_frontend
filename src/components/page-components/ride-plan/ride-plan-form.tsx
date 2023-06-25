@@ -1,6 +1,8 @@
 // @flow strict
 
 import { Button, Divider, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Radio, TextField } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -9,6 +11,8 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { FaBicycle, FaCarSide, FaHiking } from 'react-icons/fa';
 import { FiMinus } from 'react-icons/fi';
 import { RiMotorbikeFill } from 'react-icons/ri';
+import { TiLocation } from 'react-icons/ti';
+import { destinationFilterData } from '../../../utils/data/homepage-data';
 
 function RidePlanForm() {
   const [inputData, setInputData] = useState({
@@ -138,6 +142,33 @@ function RidePlanForm() {
               }
               label="Child"
             />
+          </FormControl>
+        </div>
+        <div className="">
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">starting city</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // value={10}
+              label="starting city"
+              endAdornment={
+                <InputAdornment position="end">
+                  <div
+                    className="flex flex-col bg-white rounded-[4px] px-1">
+                    <TiLocation className="text-2xl text-[#EDA592]" />
+                  </div>
+                </InputAdornment>
+              }
+            >
+              {
+                destinationFilterData.map((item, index) => (
+                  <MenuItem key={index} value={item.value}>
+                    {item.title}
+                  </MenuItem>
+                ))
+              }
+            </Select>
           </FormControl>
         </div>
         <div className="md:col-span-2 flex items-center gap-5 border border-[#8c8c8ca2] border-solid rounded-lg p-2 w-fit px-4">

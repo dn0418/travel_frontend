@@ -3,7 +3,7 @@
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import "react-datepicker/dist/react-datepicker.css";
 import { FiSearch } from "react-icons/fi";
-import { countriesAndCities, hotelsTypes } from "../../../utils/data/hotel-filter-data";
+import { countriesAndCities } from "../../../utils/data/hotel-filter-data";
 
 interface PropsType {
   filterInput: {
@@ -17,15 +17,19 @@ interface PropsType {
     value: string;
   }[];
   handleClickSearch: () => void;
+  hotelTypes: {
+    id: number;
+    name: string;
+  }[]
 }
 
 function HotelsFilterSection({
   filterInput,
   handleChangeFilterData,
   cities,
-  handleClickSearch
+  handleClickSearch,
+  hotelTypes
 }: PropsType) {
-
 
   return (
     <div
@@ -83,8 +87,8 @@ function HotelsFilterSection({
               name="type"
               value={filterInput.type}
               onChange={handleChangeFilterData}>
-              {hotelsTypes.map((type) => (
-                <MenuItem key={type.id} value={type.value}>
+              {hotelTypes.map((type) => (
+                <MenuItem key={type.id} value={type.id}>
                   {type.name}
                 </MenuItem>
               ))}

@@ -36,10 +36,12 @@ export const getServerSideProps: GetServerSideProps = async (
   const city = query["city"] || "";
 
   const hotels = await client.hotels.filtered(page, type, search, country, city);
+  const hotelTypes = await client.hotelType.all();
 
   return {
     props: {
-      hotelData: hotels
+      hotelData: hotels,
+      hotelTypes: hotelTypes
     },
   };
 };

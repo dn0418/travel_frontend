@@ -25,7 +25,11 @@ interface PropsType {
   handleSerachHotels: (name: string) => void;
   metadata: {
     totalPages: number;
-  }
+  };
+  hotelTypes: {
+    id: number;
+    name: string;
+  }[]
 }
 
 function HotelsUI({
@@ -36,7 +40,8 @@ function HotelsUI({
   handleClickSearch,
   handleSerachHotels,
   metadata,
-  handlePageChange
+  handlePageChange,
+  hotelTypes
 }: PropsType) {
 
   return (
@@ -46,6 +51,7 @@ function HotelsUI({
         cities={cities}
         handleChangeFilterData={handleChangeFilterData}
         handleClickSearch={handleClickSearch}
+        hotelTypes={hotelTypes}
       />
       <div className='my-4 w-full md:my-8'>
         <div className="flex w-full items-center justify-between">

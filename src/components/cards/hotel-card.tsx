@@ -11,6 +11,7 @@ import { formatDate } from '../../utils/formate-date';
 
 
 function HotelCard({ hotel }: { hotel: HotelType }) {
+  console.log(hotel)
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -50,9 +51,14 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
                 {hotel.city + " - " + hotel.country}
               </span>
             </div>
-            <p className="my-0 text-[#5e5e5e] text-sm">
-              Type: {hotel.type}
-            </p>
+            {
+              hotel.type &&
+              <p className="my-0 text-[#5e5e5e] text-sm">
+
+                Type: {hotel.type?.name}
+              </p>
+            }
+
           </div>
 
           <p className="my-2  mb-6 text-[#5e5e5e] text-sm">

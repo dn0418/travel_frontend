@@ -6,5 +6,6 @@ export const API_ENDPOINTS = {
   TOURTYPE: "/tour-type",
   CARS: "cars",
   HOTELS: "hotels",
+  HOTELTYPE: "hotel-type",
   FILEUPLOADS: "file/upload"
 };

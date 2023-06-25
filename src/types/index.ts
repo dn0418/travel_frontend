@@ -118,7 +118,10 @@ export interface HotelType {
   date: string;
   hotelDetails: string;
   locationImg: string;
-  type: string;
+  type: {
+    id: number;
+    name: string;
+  };
   price: number;
   discountedPrice: number;
   thumbnail: string;

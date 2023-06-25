@@ -2,4 +2,8 @@
   & .MuiRadio-root:hover {
     background-color: transparent;
   }
+
+  & .MuiSelect-icon {
+    display: none;
+  }
 }

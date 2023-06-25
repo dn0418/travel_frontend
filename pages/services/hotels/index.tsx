@@ -15,9 +15,10 @@ interface CityType {
   value: string;
 }
 
-const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ hotelData }) => {
-  const hotels = hotelData.data;
-  const metadata = hotelData.meta;
+const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const hotels = props.hotelData.data;
+  const metadata = props.hotelData.meta;
+  const hotelTypes = props.hotelTypes.data;
   const [cities, setCities] = useState<CityType[]>([]);
   const router = useRouter();
   const params = router.query;
@@ -26,7 +27,6 @@ const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
     city: '',
     country: '',
   });
-
 
   const handleChangeFilterData = (e: any) => {
     if (e.target.name === 'country') {
@@ -104,6 +104,7 @@ const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
         handleSerachHotels={handleSearchHotels}
         metadata={metadata}
         handlePageChange={handlePageChange}
+        hotelTypes={hotelTypes}
       />
     </>
   );

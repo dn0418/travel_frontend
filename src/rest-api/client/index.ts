@@ -41,6 +41,10 @@ class Client {
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
   }
 
+  hotelType = {
+    all: () => HttpClient.get(API_ENDPOINTS.HOTELTYPE)
+  }
+
   fileUploads = {
     upload: (data: any) => HttpClient.post(API_ENDPOINTS.FILEUPLOADS, data),
   }
