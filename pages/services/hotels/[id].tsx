@@ -11,6 +11,7 @@ const HotelDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticP
   const hotelDetails = props.hotelDetails?.data;
   const allHotel = props?.allHotel?.data;
   const reviews = props?.hotelReviews?.data;
+  const metadata = props?.hotelReviews?.meta;
 
   return (
     <>
@@ -18,6 +19,7 @@ const HotelDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticP
         hotel={hotelDetails}
         allHotel={allHotel}
         reviews={reviews}
+        metadata={metadata}
       />
     </>
   );

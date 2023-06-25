@@ -43,6 +43,13 @@ export interface TransportPageProps {
   metaData: any;
 }
 
+export interface AccessoriesPageProps {
+  cars: CarType[];
+  handleSearch: any;
+  handlePageChange: any;
+  metaData: any;
+}
+
 export interface AboutUsUIProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   tabIndex: any;

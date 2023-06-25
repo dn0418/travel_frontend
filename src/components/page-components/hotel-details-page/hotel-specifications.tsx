@@ -9,8 +9,15 @@ import { RiHotelLine } from "react-icons/ri";
 import { HotelType } from "../../../types";
 import { formatDate } from "../../../utils/formate-date";
 
+interface Props {
+  hotel: HotelType,
+  metadata: {
+    total: number;
+    avarage: number;
+  }
+}
 
-function HotelSpecification({ hotel }: { hotel: HotelType }) {
+function HotelSpecification({ hotel, metadata }: Props) {
 
   return (
     <div className="px-4 md:px-12">
@@ -21,17 +28,23 @@ function HotelSpecification({ hotel }: { hotel: HotelType }) {
           {hotel.country + '-' + hotel.city}
         </span>
       </p>
-      <p className="flex items-center gap-2">
-        <Rating
-          max={1}
-          size="small"
-          name="half-rating"
-          readOnly
-          defaultValue={1}
-          precision={0.1}
-        />
-        <span className="text-sm text-[#5e5e5e]">5 Star | 100 People</span>
-      </p>
+      {
+        metadata.total > 0 &&
+        <p className="flex items-center gap-2">
+          <Rating
+            max={1}
+            size="small"
+            name="half-rating"
+            readOnly
+            defaultValue={metadata.avarage / 5}
+            precision={0.1}
+          />
+          <span className="text-sm text-[#5e5e5e]">
+            {metadata.avarage} Star | {metadata.total} People
+          </span>
+        </p>
+      }
+
       <p className="flex items-center gap-3">
         <span className="text-sm text-[#5e5e5e] line-through">$ {hotel.price}</span>
         <span className="text-base text-[#000000] font-bold">

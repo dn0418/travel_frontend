@@ -12,15 +12,19 @@ interface PropsType {
   allHotel: HotelType[];
   hotel: HotelType;
   reviews: ReviewTypes[];
+  metadata: {
+    total: number;
+    avarage: number;
+  }
 }
 
-function HotelDetailsPage({ hotel, allHotel, reviews }: PropsType) {
+function HotelDetailsPage({ hotel, allHotel, reviews, metadata }: PropsType) {
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
           <HotelThumbnailSection hotel={hotel} />
-          <HotelSpecification hotel={hotel} />
+          <HotelSpecification metadata={metadata} hotel={hotel} />
         </div>
         <HotelDetailsMaps hotel={hotel} />
       </Container>
