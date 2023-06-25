@@ -2,10 +2,10 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { HotelType, ReviewTypes } from "../../../../types";
-import ReviewCard from "../../../cards/review-card";
-import CreateNewReview from "../../../common/create-review/create-review";
-import ExpandedSectionTitle from "../../../common/expanded-section-title";
+import { HotelType, ReviewTypes } from "../../../types";
+import ReviewCard from "../../cards/review-card";
+import CreateNewReview from "../../common/create-review/create-review";
+import ExpandedSectionTitle from "../../common/expanded-section-title";
 
 interface PropsType {
   reviews: ReviewTypes[];
@@ -13,6 +13,7 @@ interface PropsType {
 }
 
 function ReviewSection({ reviews, hotel }: PropsType) {
+  const [hotelReviews, setHotelReviews] = useState(reviews);
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -45,17 +46,17 @@ function ReviewSection({ reviews, hotel }: PropsType) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {
-                reviews.slice((page - 1) * 4, page * 4).map((review, i) => (
+                hotelReviews.slice((page - 1) * 4, page * 4).map((review, i) => (
                   <ReviewCard isRating={true} review={review} key={i} />
                 ))
               }
             </div>
             <div className='flex justify-center my-3 md:my-6'>
-              {reviews.length > 4 && (
+              {hotelReviews.length > 4 && (
                 <Pagination
                   size='large'
                   onChange={(_, p) => setPage(p)}
-                  count={Math.ceil(reviews.length / 4)}
+                  count={Math.ceil(hotelReviews.length / 4)}
                   shape='rounded'
                   renderItem={(item) => (
                     <PaginationItem
@@ -92,6 +93,7 @@ function ReviewSection({ reviews, hotel }: PropsType) {
           type="hotel"
           id={hotel.id}
           handleChangeModal={handleChangeModal}
+          setState={setHotelReviews}
         />
       </Modal>
     </>

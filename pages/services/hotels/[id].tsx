@@ -10,12 +10,14 @@ export { getStaticPaths, getStaticProps };
 const HotelDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const hotelDetails = props.hotelDetails?.data;
   const allHotel = props?.allHotel?.data;
+  const reviews = props?.hotelReviews?.data;
 
   return (
     <>
       <HotelDetailsPage
         hotel={hotelDetails}
         allHotel={allHotel}
+        reviews={reviews}
       />
     </>
   );
