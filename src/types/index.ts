@@ -164,4 +164,5 @@ export interface AddReviewPyloadType {
   hotelId?: number;
   carId?: number;
   tourId?: number;
+  accessoryId?: number;
 }

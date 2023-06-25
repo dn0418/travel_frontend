@@ -97,6 +97,8 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
         payload['carId'] = id
       } else if (type === 'tour') {
         payload['tourId'] = id
+      } else if (type === 'accessory') {
+        payload['accessoryId'] = id
       }
 
       try {

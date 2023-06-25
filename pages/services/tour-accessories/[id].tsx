@@ -2,25 +2,29 @@
 
 import { InferGetStaticPropsType } from "next";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import CarDetailsUI from "../../../src/components/page-components/car-details-page";
+import AccessoryDetailsUI from "../../../src/components/page-components/accessory-details";
 import {
   getStaticPaths,
   getStaticProps
-} from "../../../src/rest-api/cars/car-details.ssr";
+} from "../../../src/rest-api/accessories/accessory-details";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
 const AccessoryDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const carDetails = props.carsDetails?.data;
-  const cars = props?.carsData?.data;
+  const accessoryDetails = props.accessoryDetails?.data;
+  const accessories = props?.accessoriesData?.data;
   const reviews = props?.reviews?.data;
+  const metadata = props?.reviews?.meta;
 
   return (
     <>
-      <CarDetailsUI
-        cars={cars}
+      <AccessoryDetailsUI
+        accessories={accessories}
         car={carDetails}
         reviews={reviews}
+        accessoryDetails={accessoryDetails}
+        metadata={metadata}
       />
     </>
   );
