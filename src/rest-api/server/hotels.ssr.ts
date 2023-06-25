@@ -1,4 +1,4 @@
-import type { GetStaticProps } from "next";
+import type { GetServerSideProps, GetServerSidePropsContext, GetStaticProps } from "next";
 import { QueryClient, dehydrate } from "react-query";
 import { API_ENDPOINTS } from "../api-endpoints";
 import client from "../client";
@@ -22,5 +22,24 @@ export const getStaticProps: GetStaticProps = async () => {
       hotels: hotels
     },
     revalidate: 120,
+  };
+};
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { query } = context;
+  const page = query["page"] || 1;
+  const type = query["type"] || '';
+  const search = query["search"] || "";
+  const country = query["country"] || "";
+  const city = query["city"] || "";
+
+  const hotels = await client.hotels.filtered(page, type, search, country, city);
+
+  return {
+    props: {
+      hotelData: hotels
+    },
   };
 };

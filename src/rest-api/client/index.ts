@@ -31,6 +31,13 @@ class Client {
 
   hotels = {
     all: () => HttpClient.get(API_ENDPOINTS.HOTELS),
+    filtered: (
+      page: any,
+      type: any,
+      search: any,
+      country: any,
+      city: any
+    ) => HttpClient.get(`${API_ENDPOINTS.HOTELS}?page=${page}&type=${type}&search=${search}&country=${country}&city=${city}`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
   }
 

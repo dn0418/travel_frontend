@@ -2,7 +2,6 @@
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import dynamic from "next/dynamic";
-import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { HotelType } from "../../../types";
 import HotelCard from "../../cards/hotel-card";
@@ -17,12 +16,16 @@ interface PropsType {
     type: string;
   },
   handleChangeFilterData: any;
+  handlePageChange: any;
   cities: {
     name: string;
     value: string;
   }[];
   handleClickSearch: () => void;
   handleSerachHotels: (name: string) => void;
+  metadata: {
+    totalPages: number;
+  }
 }
 
 function HotelsUI({
@@ -31,10 +34,10 @@ function HotelsUI({
   handleChangeFilterData,
   cities,
   handleClickSearch,
-  handleSerachHotels
+  handleSerachHotels,
+  metadata,
+  handlePageChange
 }: PropsType) {
-
-  const [page, setPage] = useState(1);
 
   return (
     <Container className='my-8 flex flex-col items-center hotels-page'>
@@ -63,7 +66,7 @@ function HotelsUI({
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {hotels.slice((page - 1) * 6, page * 6).map((hotel: HotelType, i) => (
+            {hotels.map((hotel: HotelType, i) => (
               <HotelCard hotel={hotel} key={i} />
             ))}
           </div>
@@ -71,8 +74,8 @@ function HotelsUI({
             {hotels.length > 0 && (
               <Pagination
                 size='large'
-                onChange={(_, p) => setPage(p)}
-                count={Math.ceil(hotels.length / 6)}
+                onChange={handlePageChange}
+                count={metadata.totalPages}
                 shape='rounded'
                 renderItem={(item) => (
                   <PaginationItem

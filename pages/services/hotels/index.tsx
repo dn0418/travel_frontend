@@ -1,24 +1,26 @@
 // @flow strict
 
-import { InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import HotelsUI from "../../../src/components/page-components/hotels";
-import { getStaticProps } from "../../../src/rest-api/server/hotels.ssr";
-import { HotelType } from "../../../src/types";
+import { getServerSideProps } from "../../../src/rest-api/server/hotels.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 import { countriesAndCities } from "../../../src/utils/data/hotel-filter-data";
-export { getStaticProps };
+export { getServerSideProps };
 
 interface CityType {
   name: string;
   value: string;
 }
 
-const Hotels: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ hotels }) => {
+const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ hotelData }) => {
+  const hotels = hotelData.data;
+  const metadata = hotelData.meta;
   const [cities, setCities] = useState<CityType[]>([]);
-  const [filteredHotels, setFilteredHotels] = useState<HotelType[]>(hotels);
-
+  const router = useRouter();
+  const params = router.query;
   const [filterInput, setFilterInput] = useState({
     type: '',
     city: '',
@@ -44,47 +46,64 @@ const Hotels: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>>
     }))
   }
 
-  const filterHotels = (hotel: HotelType) => {
-    const { type, city, country } = filterInput;
-
-    if (type && hotel.type !== type) {
-      return false;
-    }
-
-    if (city && hotel.city.toLowerCase() !== city.toLowerCase()) {
-      return false;
-    }
-
-    if (country && hotel.country.toLowerCase() !== country.toLowerCase()) {
-      return false;
-    }
-
-    return true;
-  };
-
   const handleClickSearch = () => {
-    const filteredHotels = hotels.filter(filterHotels);
-    setFilteredHotels(filteredHotels);
+    const { type, city, country } = filterInput;
+    delete params['type'];
+    delete params['city'];
+    delete params['country'];
+
+    if (type) {
+      params['type'] = type;
+    }
+    if (city) {
+      params['city'] = city;
+    }
+    if (country) {
+      params['country'] = country;
+    }
+
+    params['page'] = '1';
+
+    router.push({
+      pathname: '/services/hotels',
+      query: params,
+    });
   };
 
-  const handleSearchHotels = (name: string) => {
-    const filteredHotels = hotels.filter(filterHotels);
-    const filteredSearchHotels = filteredHotels.filter((hotel: HotelType) =>
-      hotel.name.toLowerCase().includes(name.toLowerCase())
-    );
-    setFilteredHotels(filteredSearchHotels);
+  const handleSearchHotels = (searchText: string) => {
+    if (searchText) {
+      params['search'] = searchText;
+    } else {
+      delete params['search'];
+    }
+    params['page'] = '1';
+
+    router.push({
+      pathname: '/services/hotels',
+      query: params,
+    });
   };
 
+  const handlePageChange = (event: React.SyntheticEvent, value: number) => {
+    params['page'] = value.toString();
+
+    router.push({
+      pathname: '/services/hotels',
+      query: params,
+    });
+  }
 
   return (
     <>
       <HotelsUI
-        hotels={filteredHotels}
+        hotels={hotels}
         filterInput={filterInput}
         cities={cities}
         handleChangeFilterData={handleChangeFilterData}
         handleClickSearch={handleClickSearch}
         handleSerachHotels={handleSearchHotels}
+        metadata={metadata}
+        handlePageChange={handlePageChange}
       />
     </>
   );

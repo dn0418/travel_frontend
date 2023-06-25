@@ -1,9 +1,9 @@
 // @flow strict
 
-import { Button, Card, Rating } from '@mui/material';
+import { Button, Card } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
 import { BiCalendar } from 'react-icons/bi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { HotelType } from '../../types';
@@ -28,7 +28,7 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
             <Link href={`/services/hotels/${hotel.id}`}>
               <p className="text-xl font-medium my-2 text-black">{hotel.name}</p>
             </Link>
-            {
+            {/* {
               parseInt(hotel.reviewCount) > 0 &&
               <div className="flex items-center gap-1">
                 <Rating
@@ -41,7 +41,7 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
                 />
                 <span className="text-[#5E5E5E] text-sm">{hotel.rating}</span>
               </div>
-            }
+            } */}
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -50,14 +50,16 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
                 {hotel.city + " - " + hotel.country}
               </span>
             </div>
-            <Button className="min-w-fit p-0">
-              <AiOutlineHeart className="text-xl font-semibold text-[#EDA592]" />
-            </Button>
+            <p className="my-0 text-[#5e5e5e] text-sm">
+              Type: {hotel.type}
+            </p>
           </div>
+
           <p className="my-2  mb-6 text-[#5e5e5e] text-sm">
             {hotel.roomsDetails}
           </p>
-          <p className="mb-1 flex items-center gap-1">
+
+          <p className="my-2 flex items-center gap-1">
             <AiOutlineStar className="text-[#5a5a5a] text-sm" />
             <span className="text-[#5e5e5e] text-sm">{hotel.quality}</span>
           </p>

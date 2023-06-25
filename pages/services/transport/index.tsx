@@ -18,8 +18,8 @@ const tabs = [
 const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const cars = props.carsData?.data || [];
   const metaData = props.carsData?.meta || {};
-  const router = useRouter();
   const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const router = useRouter();
   const params = router.query;
 
 
