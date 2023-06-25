@@ -10,7 +10,7 @@ import {
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
-const TransportDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+const AccessoryDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const carDetails = props.carsDetails?.data;
   const cars = props?.carsData?.data;
   const reviews = props?.reviews?.data;
@@ -26,8 +26,8 @@ const TransportDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getSta
   );
 };
 
-TransportDetails.getLayout = function getLayout(page) {
+AccessoryDetails.getLayout = function getLayout(page) {
   return <GeneralLayout>{page}</GeneralLayout>;
 };
 
-export default TransportDetails;
+export default AccessoryDetails;

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import TransportUI from "../../../src/components/page-components/transport";
-import { getServerSideProps } from "../../../src/rest-api/server/cars.ssr";
+import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import HotelsUI from "../../../src/components/page-components/hotels";
-import { getServerSideProps } from "../../../src/rest-api/server/hotels.ssr";
+import { getServerSideProps } from "../../../src/rest-api/hotels/hotels.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 import { countriesAndCities } from "../../../src/utils/data/hotel-filter-data";
 export { getServerSideProps };
