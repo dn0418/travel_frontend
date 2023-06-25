@@ -1,8 +1,8 @@
 // @flow strict
 import { Container } from "@mui/material";
 import { CarType, ReviewTypes } from "../../../types";
+import CarReviewSection from "./car-review-section";
 import CarSpecification from "./car-specification";
-import CarReviewSection from "./review-section/car-review-section";
 import TopSuggestedCars from "./top-suggested";
 
 interface PropsType {

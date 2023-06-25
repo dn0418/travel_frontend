@@ -2,10 +2,10 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { CarType, ReviewTypes } from "../../../../types";
-import ReviewCard from "../../../cards/review-card";
-import CreateNewReview from "../../../common/create-review/create-review";
-import ExpandedSectionTitle from "../../../common/expanded-section-title";
+import { CarType, ReviewTypes } from "../../../types";
+import ReviewCard from "../../cards/review-card";
+import CreateNewReview from "../../common/create-review/create-review";
+import ExpandedSectionTitle from "../../common/expanded-section-title";
 
 interface PropsType {
   reviews: ReviewTypes[];
