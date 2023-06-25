@@ -86,7 +86,7 @@ function TopSuggestedCars({ cars }: { cars: CarType[] }) {
               {...settings}>
               {cars.map((car, i) => (
                 <Card className='regular-shadow rounded-lg' key={i}>
-                  <TransportCard isDetails={true} car={car} />
+                  <TransportCard car={car} />
                 </Card>
               ))}
             </Slider>
@@ -94,7 +94,7 @@ function TopSuggestedCars({ cars }: { cars: CarType[] }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {cars.map((car, i) => (
                 <Card className='regular-shadow rounded-lg' key={i}>
-                  <TransportCard isDetails={true} car={car} />
+                  <TransportCard car={car} />
                 </Card>
               ))}
             </div>

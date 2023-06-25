@@ -4,7 +4,7 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, TextFie
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useNewReview } from "../../../rest-api/review";
+import client from "../../../rest-api/client";
 import { AddReviewPyloadType } from "../../../types";
 import { countries } from "../../../utils/data/countries";
 import UploadAvatar from "./upload-avatar";
@@ -13,10 +13,12 @@ interface PropsType {
   handleChangeModal: any;
   type: string;
   id: number;
+  setState: any;
 }
 
-const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
-  const { addNewReview, isLoading, data } = useNewReview()
+const CreateNewReview = ({ handleChangeModal, type, id, setState }: PropsType) => {
+  const [uploading, setUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<null | string>(null);
   const [reviewInput, setReviewInput] = useState({
     firstName: "",
@@ -77,6 +79,7 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
       return;
     }
 
+    setIsLoading(true);
     const payload: AddReviewPyloadType = {
       firstName: reviewInput.firstName,
       lastName: reviewInput.lastName,
@@ -95,10 +98,28 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
       payload['tourId'] = id
     }
 
-    addNewReview(payload);
+    try {
+      const res = await client.reviews.newReview(payload);
+      const review = res?.data;
+      if (review) {
+        setState((pre: any[]) => {
+          const temp = JSON.parse(JSON.stringify(pre));
+          temp.unshift(review);
+          return temp;
+        })
+      }
+      toast.success("Review created successfully");
+      handleChangeModal()
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error)
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const handleImageChange = async (event: any) => {
+    setUploading(true);
     const formData = new FormData();
 
     const file = event.target.files[0];
@@ -116,6 +137,8 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setUploading(false);
     }
 
   };
@@ -175,6 +198,7 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
           <UploadAvatar
             selectedImage={selectedImage}
             handleImageChange={handleImageChange}
+            uploading={uploading}
           />
         </div>
         <Box
@@ -235,8 +259,17 @@ const CreateNewReview = ({ handleChangeModal, type, id }: PropsType) => {
           />
           <div className=""></div>
           <div style={formStyles.buttonContainer} className="">
-            <Button onClick={handleChangeModal} variant="outlined">Cancle</Button>
-            <Button onClick={handleSubmit} variant="contained">Submit</Button>
+            <Button
+              onClick={handleChangeModal}
+              variant="outlined">
+              Cancle
+            </Button>
+            <Button
+              onClick={handleSubmit}
+              disabled={isLoading}
+              variant="contained">
+              {isLoading ? "Loading..." : "Submit"}
+            </Button>
           </div>
         </Box>
       </Box>

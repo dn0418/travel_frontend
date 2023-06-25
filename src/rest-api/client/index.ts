@@ -6,7 +6,10 @@ class Client {
     all: (page: any, limit: any) =>
       HttpClient.get(`${API_ENDPOINTS.REVIEWS}?page=${page}&limit=${limit}`),
     newReview: (review: any) => HttpClient.post(API_ENDPOINTS.NEW_REVIEWS, review),
-
+    carReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/car/${id}`),
+    tourReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/tour/${id}`),
+    hotelReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/hotel/${id}`),
+    deleteReview: (id: any) => HttpClient.delete(`${API_ENDPOINTS.REVIEWS}/${id}`),
   };
 
   tours = {

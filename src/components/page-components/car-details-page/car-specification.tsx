@@ -34,7 +34,7 @@ function CarSpecification({ car }: { car: CarType }) {
               precision={0.1}
             />
             <span className="text-sm text-[#5e5e5e]">
-              {car.rating} Star | {car.totalReview} People
+              {car.rating.toFixed(1)} Star | {car.totalReview} People
             </span>
           </p>}
           <p className="flex items-center gap-3">
