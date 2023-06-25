@@ -4,13 +4,13 @@ import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import TourAccessoriesUI from "../../../src/components/page-components/tour-accessories";
-import { getServerSideProps } from "../../../src/rest-api/server/cars.ssr";
+import { getServerSideProps } from "../../../src/rest-api/server/accessories.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
 const TourAccessories: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const cars = props.carsData?.data || [];
-  const metaData = props.carsData?.meta || {};
+  const accessories = props.accessoriesData?.data || [];
+  const metaData = props.accessoriesData?.meta || {};
   const router = useRouter();
   const params = router.query;
 
@@ -40,7 +40,7 @@ const TourAccessories: NextPageWithLayout<InferGetServerSidePropsType<typeof get
   return (
     <>
       <TourAccessoriesUI
-        cars={cars}
+        accessories={accessories}
         handleSearch={handleSearch}
         handlePageChange={handlePageChange}
         metaData={metaData}

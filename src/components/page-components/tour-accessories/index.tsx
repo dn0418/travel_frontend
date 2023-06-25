@@ -3,12 +3,12 @@
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import { BiSearch } from "react-icons/bi";
 import { AccessoriesPageProps } from "../../../types/page-props";
-import TransportCard from "../../cards/car-card";
+import AccessoriesCard from "../../cards/accessories-card";
 import SectionTitle from "../../common/section-title";
 
 
 function TourAccessoriesUI({
-  cars,
+  accessories,
   handleSearch,
   handlePageChange,
   metaData
@@ -36,7 +36,7 @@ function TourAccessoriesUI({
         </div>
         <>
           {
-            cars.length === 0 ?
+            accessories.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
                   Cars data not found!
@@ -46,13 +46,13 @@ function TourAccessoriesUI({
               :
               <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-                {cars?.map((car, i) => (
-                  <TransportCard car={car} key={i} />
+                {accessories?.map((accessory, i) => (
+                  <AccessoriesCard accessory={accessory} key={i} />
                 ))}
               </div>
           }
           <div className='flex justify-center my-3 md:my-6'>
-            {cars.length > 0 && (
+            {accessories.length > 0 && (
               <Pagination
                 size='large'
                 onChange={handlePageChange}

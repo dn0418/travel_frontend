@@ -108,6 +108,25 @@ export interface CarType {
   year: number;
 }
 
+export interface TourAccessoryType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  price: number;
+  specification: string;
+  goodsDetails: string;
+  thumbnail: string;
+  isAvailable: boolean;
+  type: {
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    name: string;
+  };
+}
+
+
 export interface HotelType {
   id: number;
   createdAt: string;
