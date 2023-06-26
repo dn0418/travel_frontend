@@ -47,9 +47,11 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
 
 
           <p className="text-sm  text-[#5e5e5e] mt-6">{accessory.goodsDetails}</p>
-          <div className="flex justify-between items-center">
-            <p className="text-base font-semibold">${accessory.price}</p>
-            <Button className="rounded-lg" variant='contained'>Submit</Button>
+          <div className="flex justify-end items-center">
+            <Link href={`/services/tour-accessories/${accessory.id}`}>
+              <Button className="rounded-lg" variant='contained'>See More</Button>
+
+            </Link>
           </div>
         </div>
       </div>
