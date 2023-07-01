@@ -13,6 +13,10 @@ class Client {
     deleteReview: (id: any) => HttpClient.delete(`${API_ENDPOINTS.REVIEWS}/${id}`),
   };
 
+  ridePlan = {
+    newRidePlan: (plan: any) => HttpClient.post(API_ENDPOINTS.NEW_RIDE_PLAN, plan),
+  }
+
   tours = {
     all: () => HttpClient.get(API_ENDPOINTS.TOURS),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),

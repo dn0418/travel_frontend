@@ -8,5 +8,7 @@ export const API_ENDPOINTS = {
   HOTELS: "/hotels",
   HOTELTYPE: "/hotel-type",
   FILEUPLOADS: "/file/upload",
-  TOUR_ACCESSORIES: "/tour-accessories"
+  TOUR_ACCESSORIES: "/tour-accessories",
+  RIDE_PLAN: "/ride-plan",
+  NEW_RIDE_PLAN: "/ride-plan/create",
 };

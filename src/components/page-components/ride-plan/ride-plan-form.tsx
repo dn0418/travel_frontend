@@ -27,6 +27,7 @@ function RidePlanForm({
   handleSubmit,
   incrementCount,
   decrementCount,
+  isLoading
 }: any) {
 
   return (
@@ -156,16 +157,16 @@ function RidePlanForm({
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   label="starting city"
-                  value={destinationInput[i].destination}
+                  value={destinationInput[i].name}
                   onChange={(e: any) =>
-                    handleChangeDestination("destination", e.target.value, i)
+                    handleChangeDestination("name", e.target.value, i)
                   }
                   endAdornment={
                     <InputAdornment position="end">
                       <div
                         className="flex flex-col bg-white rounded-[4px] px-1">
                         {
-                          destinationInput[i].destination ?
+                          destinationInput[i].name ?
                             <Button
                               variant='text'
                               onClick={() => handleRemoveDestination(i)}
@@ -255,10 +256,13 @@ function RidePlanForm({
         <TextField
           className="text-area md:col-span-2"
           label='Add your comment'
+          onChange={(e) => handleOnChangeInputData('note', e.target.value)}
         />
         <div className="md:col-span-2 flex justify-end gap-5">
           <Button variant="outlined">Cancle</Button>
-          <Button onClick={handleSubmit} variant="contained">Submit</Button>
+          <Button onClick={handleSubmit} disabled={isLoading} variant="contained">
+            {isLoading ? "Loading..." : "Submit"}
+          </Button>
         </div>
       </div>
     </div>

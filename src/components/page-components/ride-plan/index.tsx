@@ -3,13 +3,17 @@
 import { Container } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import client from "../../../rest-api/client";
 import SectionTitle from "../../common/section-title";
 import RidePlanForm from "./ride-plan-form";
-import RidePlanMap from "./ride-plan-map";
+import RideSuccess from "./success-page";
 
 
 function RidePlanUI() {
   const [date, setDate] = useState<Dayjs | null>(dayjs(new Date()));
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [inputData, setInputData] = useState({
     name: '',
     email: '',
@@ -23,17 +27,17 @@ function RidePlanUI() {
 
   const [destinationCount, setDestinationCount] = useState([1]);
   const [destinationInput, setDestinationInput] = useState([{
-    destination: '',
+    name: '',
     duration: ''
   }]);
 
   const changeDestinationCount = () => {
-    if (destinationInput[destinationInput.length - 1].destination === '') return;
+    if (destinationInput[destinationInput.length - 1].name === '') return;
     setDestinationCount([...destinationCount, 1]);
     setDestinationInput((prev) => {
       const temp = JSON.parse(JSON.stringify(prev));
       temp.push({
-        destination: '',
+        name: '',
         duration: ''
       });
       return temp
@@ -77,12 +81,36 @@ function RidePlanUI() {
     })
   }
 
-  const handleSubmit = () => {
-    const payload = {
-      ...inputData,
-      date: date?.format('YYYY-MM-DD'),
+  const handleSubmit = async () => {
+    if (!inputData.name || !inputData.email) {
+      toast.warning("At Least Name and Email must be provided!")
+      return
     }
-    console.log(payload)
+    setIsLoading(true);
+
+    const payload = JSON.stringify({
+      name: inputData.name,
+      email: inputData.email,
+      phone: inputData.phoneNumber,
+      address: inputData.address,
+      date: date?.format('YYYY-MM-DD'),
+      adult: inputData.adult,
+      child: inputData.child,
+      rideType: inputData.rideType,
+      note: inputData.note,
+      destinations: destinationInput
+    });
+
+    try {
+      const res = await client.ridePlan.newRidePlan(payload);
+      console.log(res)
+      setIsSuccess(true);
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error)
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -94,26 +122,34 @@ function RidePlanUI() {
   }, [])
 
   return (
-    <Container className=' flex flex-col  mb-12 lg:mb-16 py-5'>
-      <SectionTitle title='Make your own ride plan with us' />
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
-        <RidePlanForm
-          inputData={inputData}
-          handleOnChangeInputData={handleOnChangeInputData}
-          date={date}
-          setDate={setDate}
-          destinationCount={destinationCount}
-          destinationInput={destinationInput}
-          handleChangeDestination={handleChangeDestination}
-          changeDestinationCount={changeDestinationCount}
-          handleRemoveDestination={handleRemoveDestination}
-          handleSubmit={handleSubmit}
-          incrementCount={incrementCount}
-          decrementCount={decrementCount}
-        />
-        <RidePlanMap />
-      </div>
-    </Container>
+    <>
+      {
+        !isSuccess ?
+          <Container className=' flex flex-col  mb-12 lg:mb-16 py-5'>
+            <SectionTitle title='Make your own ride plan with us' />
+            <div className="grid grid-cols-1">
+              <RidePlanForm
+                inputData={inputData}
+                handleOnChangeInputData={handleOnChangeInputData}
+                date={date}
+                setDate={setDate}
+                destinationCount={destinationCount}
+                destinationInput={destinationInput}
+                handleChangeDestination={handleChangeDestination}
+                changeDestinationCount={changeDestinationCount}
+                handleRemoveDestination={handleRemoveDestination}
+                handleSubmit={handleSubmit}
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                isLoading={isLoading}
+              />
+              {/* <RidePlanMap /> */}
+            </div>
+          </Container>
+          :
+          <RideSuccess />
+      }
+    </>
   );
 };
 
