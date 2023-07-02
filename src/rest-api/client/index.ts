@@ -17,6 +17,10 @@ class Client {
     newRidePlan: (plan: any) => HttpClient.post(API_ENDPOINTS.NEW_RIDE_PLAN, plan),
   }
 
+  callBack = {
+    newCallBack: (input: any) => HttpClient.post(API_ENDPOINTS.NEW_CALLBACK, input),
+  }
+
   tours = {
     all: () => HttpClient.get(API_ENDPOINTS.TOURS),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),

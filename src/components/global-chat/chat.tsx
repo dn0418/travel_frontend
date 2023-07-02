@@ -10,29 +10,57 @@ import {
   Typography
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { BsChatDots } from "react-icons/bs";
+import { toast } from "react-toastify";
+import client from "../../rest-api/client";
 import { countries } from "../../utils/data/countries";
 import { timezones } from "../../utils/data/timezones";
 import PreparedContact from "./prepared-contact";
 
-
+const initialState = {
+  country: "",
+  timezone: "Asia/Yerevan",
+  firstName: "",
+}
 
 function ChatIcon() {
   const [openContactModal, setOpenContactModal] = useState(false);
-  const [country, setCountry] = useState("");
-  const [timezone, setTimezone] = useState("Asia/Yerevan");
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputData, setInputData] = useState(initialState)
   const theme = useTheme();
 
-  const handleChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setCountry(event.target.value);
-  };
+  const handleChangeInput = (name: string, value: string) => {
+    setInputData((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      temp[name] = value;
+      return temp;
+    })
+  }
 
   const handleChangeModal = () => {
     setOpenContactModal(!openContactModal);
   };
+
+  const handleSubmit = async () => {
+    if (!inputData.firstName) {
+      toast.error("First name is required");
+      return;
+    }
+    setIsLoading(true);
+    // console.log(inputData)
+    try {
+      const res = await client.callBack.newCallBack(inputData);
+      toast.success("Your request has been successfully sent");
+      setInputData(initialState);
+      handleChangeModal()
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error)
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const formStyles = {
     modalContainer: {
@@ -102,19 +130,32 @@ function ChatIcon() {
           </Typography>
           <Box
             sx={formStyles.gridContainer}>
-            <TextField label='First Name' variant='outlined' />
-            <TextField label='Last Name' variant='outlined' />
-            <TextField label='Contact number' variant='outlined' />
-            <TextField label='Email' type='email' variant='outlined' />
-            <PreparedContact />
+            <TextField
+              onChange={(e) => handleChangeInput('firstName', e.target.value)}
+              label='First Name'
+              variant='outlined' />
+            <TextField
+              label='Last Name'
+              onChange={(e) => handleChangeInput('lastName', e.target.value)}
+              variant='outlined' />
+            <TextField
+              label='Contact number'
+              onChange={(e) => handleChangeInput('contact', e.target.value)}
+              variant='outlined' />
+            <TextField
+              label='Email'
+              type='email'
+              onChange={(e) => handleChangeInput('email', e.target.value)}
+              variant='outlined' />
+            <PreparedContact handleChangeInput={handleChangeInput} />
 
             <FormControl fullWidth>
               <InputLabel id='demo-simple-select-label'>Country</InputLabel>
               <Select
                 labelId='demo-simple-select-label'
-                value={country}
+                value={inputData?.country}
                 label='Country'
-                onChange={handleChange}>
+                onChange={(e) => handleChangeInput('country', e.target.value)}>
                 {countries.map((country) => (
                   <MenuItem key={country.code} value={country.code}>
                     {country.name}
@@ -127,9 +168,9 @@ function ChatIcon() {
               <InputLabel id='demo-simple-select-label'>Preferred time</InputLabel>
               <Select
                 labelId='demo-simple-select-label'
-                value={timezone}
+                value={inputData?.timezone}
                 label='Timezone'
-                onChange={(e) => setTimezone(e.target.value)}>
+                onChange={(e) => handleChangeInput('timezone', e.target.value)}>
                 {timezones.map((country, i) => (
                   <MenuItem key={i} value={country.value}>
                     {country.label}
@@ -140,12 +181,15 @@ function ChatIcon() {
             <TextField
               sx={formStyles.noteArea}
               className="text-area"
+              onChange={(e) => handleChangeInput('note', e.target.value)}
               label='Add your notes'
             />
             <div></div>
             <div style={formStyles.buttonContainer} className="">
               <Button variant="outlined">Cancle</Button>
-              <Button variant="contained">Submit</Button>
+              <Button disabled={isLoading} onClick={handleSubmit} variant="contained">
+                {isLoading ? "Loading..." : "Submit"}
+              </Button>
             </div>
           </Box>
         </Box>

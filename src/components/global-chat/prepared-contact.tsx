@@ -7,7 +7,7 @@ import { IoIosArrowDown, IoLogoWhatsapp } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
 import { MdAddIcCall } from "react-icons/md";
 
-function PreparedContact() {
+function PreparedContact({ handleChangeInput }: any) {
   const [isOpenContact, setIsOpenContact] = useState(true);
 
   return (
@@ -38,6 +38,7 @@ function PreparedContact() {
             ),
           }}
           variant="outlined"
+          onChange={(e) => handleChangeInput('phone', e.target.value)}
         />
         <TextField
           sx={{ width: '100%', mt: 2 }}
@@ -51,6 +52,7 @@ function PreparedContact() {
             ),
           }}
           variant="outlined"
+          onChange={(e) => handleChangeInput('whatsapp', e.target.value)}
         />
         <TextField
           sx={{ width: '100%', mt: 2 }}
@@ -64,6 +66,7 @@ function PreparedContact() {
             ),
           }}
           variant="outlined"
+          onChange={(e) => handleChangeInput('telegram', e.target.value)}
         />
         <TextField
           sx={{ width: '100%', mt: 2 }}
@@ -77,6 +80,7 @@ function PreparedContact() {
             ),
           }}
           variant="outlined"
+          onChange={(e) => handleChangeInput('voice', e.target.value)}
         />
       </Box>
     </div>
