@@ -3,7 +3,6 @@ import { Container } from "@mui/material";
 import { CarType, ReviewTypes, TourAccessoryType } from "../../../types";
 import AccessoryReviewSection from "./accessory-review-section";
 import AccessorySpecification from "./accessory-specification";
-import TopSuggestedAccessories from "./top-suggested";
 
 interface PropsType {
   car: CarType;
@@ -18,6 +17,7 @@ interface PropsType {
 
 function AccessoryDetailsUI({ car, accessories, reviews, accessoryDetails, metadata }: PropsType) {
 
+  // console.log(accessoryDetails)
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
@@ -30,7 +30,7 @@ function AccessoryDetailsUI({ car, accessories, reviews, accessoryDetails, metad
         accessoryDetails={accessoryDetails}
         reviews={reviews}
       />
-      <TopSuggestedAccessories accessories={accessories} />
+      {/* <TopSuggestedAccessories accessories={accessories} /> */}
     </div>
   );
 };

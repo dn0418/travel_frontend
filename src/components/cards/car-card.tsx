@@ -37,7 +37,7 @@ function TransportCard({ car }: TransportCardProps) {
             Year: {car.year}
           </p>
 
-          <p className="text-sm  text-[#5e5e5e] mt-6">{car.description}</p>
+          <p className="text-sm  text-[#5e5e5e]  line-clamp-3 mt-6">{car.description}</p>
           <div className="flex justify-between items-center">
             {
               car.discountedPrice ? <div className="flex items-center gap-4">

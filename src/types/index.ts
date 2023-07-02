@@ -113,17 +113,21 @@ export interface TourAccessoryType {
   createdAt: string;
   updatedAt: string;
   title: string;
-  price: number;
-  specification: string;
-  goodsDetails: string;
   thumbnail: string;
-  isAvailable: boolean;
+  price: number;
+  perPax: string;
+  freeCancellation: boolean;
+  rentFrom: string;
+  available: string;
+  shortDescription: string;
+  longDescription: string;
   type: {
     id: number;
-    createdAt: string;
-    updatedAt: string;
     name: string;
   };
+  reviews: ReviewTypes[];
+  rating: number | null;
+  images: { id: number, url: string }[]
 }
 
 
@@ -132,26 +136,26 @@ export interface HotelType {
   createdAt: string;
   updatedAt: string;
   name: string;
-  quality: string;
-  roomsDetails: string;
-  date: string;
-  hotelDetails: string;
-  locationImg: string;
+  thumbnail: string;
+  googleMap: string;
+  price: number;
+  fromAirport: string;
+  country: string;
+  city: string;
+  freeCancellation: boolean;
+  checkInTime: string;
+  checkOutTime: string;
+  shortDescription: string;
+  longDescription: string;
   type: {
     id: number;
     name: string;
   };
-  price: number;
-  discountedPrice: number;
-  thumbnail: string;
-  activities: number;
-  country: string;
-  city: string;
-  rating: number | null;
-  reviewCount: string;
   images: { url: string }[];
   reviews: ReviewTypes[];
+  rating: number;
 }
+
 
 export interface AddReviewPyloadType {
   firstName: string;

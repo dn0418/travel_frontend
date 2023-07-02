@@ -22,6 +22,7 @@ const initialState = {
   country: "",
   timezone: "Asia/Yerevan",
   firstName: "",
+  email: ""
 }
 
 function ChatIcon() {
@@ -43,8 +44,8 @@ function ChatIcon() {
   };
 
   const handleSubmit = async () => {
-    if (!inputData.firstName) {
-      toast.error("First name is required");
+    if (!inputData.firstName || !inputData.email || !inputData.country) {
+      toast.error("First name, email and country are required");
       return;
     }
     setIsLoading(true);

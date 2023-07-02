@@ -1,13 +1,13 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiCalendar } from "react-icons/bi";
-import { BsPerson } from "react-icons/bs";
+import { BiHash } from "react-icons/bi";
+import { BsClock } from "react-icons/bs";
+import { IoMdPricetags } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
-import { RiHotelLine } from "react-icons/ri";
+import { MdLocalAirport } from "react-icons/md";
+import { TiCancelOutline } from "react-icons/ti";
 import { HotelType } from "../../../types";
-import { formatDate } from "../../../utils/formate-date";
 
 interface Props {
   hotel: HotelType,
@@ -23,7 +23,7 @@ function HotelSpecification({ hotel, metadata }: Props) {
     <div className="px-4 md:px-12">
       <h3 className="text-[#000000] text-xl font-semibold mt-0">{hotel.name}</h3>
       <p className="flex items-center gap-2">
-        <IoLocationOutline className="text-sm text-[#EDA592]  font-bold" />
+        <IoLocationOutline className="text-base text-[#EDA592]  font-bold" />
         <span className="text-sm text-[#5e5e5e]">
           {hotel.country + '-' + hotel.city}
         </span>
@@ -45,30 +45,46 @@ function HotelSpecification({ hotel, metadata }: Props) {
         </p>
       }
 
-      <p className="flex items-center gap-3">
-        <span className="text-sm text-[#5e5e5e] line-through">$ {hotel.price}</span>
+      <p className="flex items-center gap-2">
+        <IoMdPricetags className="text-base text-[#EDA592]  font-bold" />
+        <span className="text-sm text-[#5e5e5e]">Starts From</span>
         <span className="text-base text-[#000000] font-bold">
-          $ {hotel.discountedPrice | hotel.price}
+          $ {hotel.price}
         </span>
       </p>
-      <p className="flex items-center gap-4">
-        <RiHotelLine className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">{hotel.roomsDetails}</span>
-      </p>
-      <p className="flex items-center gap-4">
-        <AiOutlineStar className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">{hotel.quality}</span>
-      </p>
-      <p className="flex items-center gap-4">
-        <BiCalendar className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">
-          {formatDate(hotel.date)}
-        </span>
-      </p>
+      {
+        hotel.fromAirport && <p className="flex items-center gap-4">
+          <MdLocalAirport className="text-base text-[#EDA592]  font-bold" />
+          <span className="text-base text-[#5e5e5e]">From Airport</span>
+        </p>
+      }
 
+      {
+        hotel.type &&
+        <p className="flex items-center gap-4">
+          <BiHash className="text-base text-[#EDA592]  font-bold" />
+          <span className="text-base text-[#5e5e5e]">
+            Type: {hotel.type.name}
+          </span>
+        </p>
+      }
       <p className="flex items-center gap-4">
-        <BsPerson className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">{hotel.activities} Activities</span>
+        <TiCancelOutline className="text-xl text-[#EDA592]  font-bold" />
+        <span className="text-base text-[#5e5e5e]">
+          Free Cancelation: {hotel.freeCancellation ? "Yes" : "No"}
+        </span>
+      </p>
+      <p className="flex items-center gap-4">
+        <BsClock className="text-base text-[#EDA592]  font-bold" />
+        <span className="text-base text-[#5e5e5e]">
+          CheckIn: {hotel.checkInTime}
+        </span>
+      </p>
+      <p className="flex items-center gap-4">
+        <BsClock className="text-base text-[#EDA592]  font-bold" />
+        <span className="text-base text-[#5e5e5e]">
+          CheckOut: {hotel.checkOutTime}
+        </span>
       </p>
       <div className="md:mt-8">
         <Button

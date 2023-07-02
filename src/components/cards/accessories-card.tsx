@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Button, Card } from '@mui/material';
+import { Button, Card, Rating } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TourAccessoryType } from '../../types';
@@ -22,35 +22,48 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
           height={220}
           layout="responsive"
         />
-        <div className="p-3">
-          <div className="flex items-center justify-between">
-            <Link href={`/services/tour-accessories/${accessory.id}`}>
-              <p className="text-xl font-medium my-2 text-black">
-                {accessory.title}
+        <div className="p-3 flex flex-col justify-between">
+          <div className="">
+            <div className="flex items-center justify-between">
+              <Link href={`/services/tour-accessories/${accessory.id}`}>
+                <p className="text-xl font-medium my-2 text-black">
+                  {accessory.title}
+                </p>
+              </Link>
+            </div>
+            <div className="flex justify-between items-center">
+
+              <p className="my-2 text-[#5E5E5E] text-sm">
+                Type: {accessory.type.name}
               </p>
-            </Link>
-          </div>
+              {
+                accessory.rating &&
+                <div className="flex items-center gap-1">
+                  <Rating
+                    max={1}
+                    size="small"
+                    name="half-rating"
+                    readOnly
+                    defaultValue={accessory.rating || 0}
+                    precision={0.1}
+                  />
+                  <span className="text-[#5E5E5E] text-sm">
+                    {accessory.rating.toFixed(1)}
+                  </span>
+                </div>
+              }
+            </div>
 
-          <div className="flex items-center justify-between">
             <p className="my-2 text-[#5E5E5E] text-sm">
-              Type: {accessory.type.name}
+              Available: {accessory.available}
             </p>
-            {
-              accessory.isAvailable === true ?
-                <p className="my-2 text-[#1a8a36] text-sm">Available</p> :
-                <p className="my-2 text-[#5E5E5E] text-sm">Not Available</p>
-            }
+            <p className="text-sm  text-[#5e5e5e] mt-6 line-clamp-3">
+              {accessory.shortDescription}
+            </p>
           </div>
-          <p className="my-2 text-[#5E5E5E] text-sm">
-            {accessory.specification}
-          </p>
-
-
-          <p className="text-sm  text-[#5e5e5e] mt-6">{accessory.goodsDetails}</p>
           <div className="flex justify-end items-center">
             <Link href={`/services/tour-accessories/${accessory.id}`}>
               <Button className="rounded-lg" variant='contained'>See More</Button>
-
             </Link>
           </div>
         </div>
