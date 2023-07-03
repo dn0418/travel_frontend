@@ -127,7 +127,8 @@ export interface TourAccessoryType {
   };
   reviews: ReviewTypes[];
   rating: number | null;
-  images: { id: number, url: string }[]
+  images: { id: number, url: string }[];
+  pricing: { id: number, price: number, duration: string }[];
 }
 
 
