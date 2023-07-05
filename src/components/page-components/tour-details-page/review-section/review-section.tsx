@@ -2,12 +2,13 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { ReviewTypes } from "../../../../types";
+import { TourType } from "../../../../types/tour";
 import ReviewCard from "../../../cards/review-card";
+import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
-import AddReview from "./add-review";
 
-function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
+function ReviewSection({ tour }: { tour: TourType }) {
+  const { reviews } = tour;
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -83,7 +84,11 @@ function ReviewSection({ reviews }: { reviews: ReviewTypes[] }) {
         onClose={handleChangeModal}
         aria-labelledby='Add review modal'
         aria-describedby='Add a tour review'>
-        <AddReview />
+        <CreateNewReview
+          type="tour"
+          id={tour.id}
+          handleChangeModal={handleChangeModal}
+        />
       </Modal>
     </>
   );

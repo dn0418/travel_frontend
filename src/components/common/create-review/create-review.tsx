@@ -13,11 +13,10 @@ interface PropsType {
   handleChangeModal: any;
   type: string;
   id: number;
-  setState: any;
 }
 
 const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
-  ({ handleChangeModal, type, id, setState }, ref) => {
+  ({ handleChangeModal, type, id }, ref) => {
     const [uploading, setUploading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState<null | string>(null);

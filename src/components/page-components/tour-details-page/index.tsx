@@ -1,15 +1,21 @@
 // @flow strict
 import { Container } from "@mui/material";
-import { TourType } from "../../../types";
+import { TourType } from "../../../types/tour";
 import PackageDetails from "./package-details/package-details";
 import TourPriceTable from "./package-details/tour-price-table";
+import RelatedTourSection from "./related-tour-section";
 import ReviewSection from "./review-section/review-section";
 import ThumbnailSection from "./thumbnail-section";
 import TourDetailsMaps from "./tour-details-maps";
 import TourRoute from "./tour-route";
 import TourSpecification from "./tour-specification";
 
-function TourDetailsUI({ tour }: { tour: TourType }) {
+interface PropsType {
+  tour: TourType;
+  tours: TourType[];
+}
+
+function TourDetailsUI({ tour, tours }: PropsType) {
 
   return (
     <div className="flex flex-col my-8 tour-details-page">
@@ -20,13 +26,13 @@ function TourDetailsUI({ tour }: { tour: TourType }) {
         </div>
         <TourDetailsMaps tour={tour} />
       </Container>
-      <TourRoute />
-      <PackageDetails />
+      <TourRoute tour={tour} />
+      <PackageDetails tour={tour} />
       <Container>
-        <TourPriceTable />
+        <TourPriceTable tour={tour} />
       </Container>
-      {/* <RelatedTourSection /> */}
-      <ReviewSection reviews={tour.reviews} />
+      <RelatedTourSection tours={tours} />
+      <ReviewSection tour={tour} />
     </div>
   );
 };

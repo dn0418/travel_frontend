@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { TourType } from "../../../types";
+import { TourType } from "../../../types/tour";
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
@@ -65,21 +65,36 @@ function ThumbnailSection({ tour }: { tour: TourType }) {
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />
-      <Slider
-        className='flex'
-        afterChange={(e) => setCurrentSlide(e)}
-        {...settings}>
-        {images.map((img, i) => (
-          <Image
-            key={i}
-            src={img}
-            height={80}
-            width={200}
-            layout="responsive"
-            className="rounded-lg"
-            alt="tour-details" />
-        ))}
-      </Slider>
+      {
+        images.length > 3 ? <Slider
+          className='flex'
+          afterChange={(e) => setCurrentSlide(e)}
+          {...settings}>
+          {images.map((img, i) => (
+            <Image
+              key={i}
+              src={img.url}
+              height={80}
+              width={200}
+              layout="responsive"
+              className="rounded-lg"
+              alt="tour-details" />
+          ))}
+        </Slider>
+          :
+          <div className="grid grid-cols-4 gap-4">
+            {images.map((img, i) => (
+              <Image
+                key={i}
+                src={img.url}
+                height={80}
+                width={300}
+                layout="responsive"
+                className="rounded-lg"
+                alt="tour-details" />
+            ))}
+          </div>
+      }
     </div>
   );
 };

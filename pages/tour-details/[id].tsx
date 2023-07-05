@@ -8,11 +8,12 @@ import { NextPageWithLayout } from "../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
 const TourDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { tourDetails } = props;
+  const { tourDetails, toursData } = props;
+  const tours = toursData.data.tours;
 
   return (
     <>
-      <TourDetailsUI tour={tourDetails.data} />
+      <TourDetailsUI tour={tourDetails.data} tours={tours} />
     </>
   );
 };

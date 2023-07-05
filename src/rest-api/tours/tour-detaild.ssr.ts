@@ -1,6 +1,6 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { TourType } from '../../types';
+import { TourType } from '../../types/tour';
 import client from '../client';
 
 type ParsedQueryParams = {
@@ -11,7 +11,7 @@ type ParsedQueryParams = {
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
   const { data }: any = await client.tours.all();
 
-  const paths = data?.map((item: TourType) => {
+  const paths = data?.tours.map((item: TourType) => {
     return {
       params: { id: item.id.toString() },
     };
@@ -30,9 +30,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const tourDetails = await client.tours.getByID(id);
+    const toursData = await client.tours.all();
     return {
       props: {
         tourDetails: tourDetails,
+        toursData: toursData
       },
       revalidate: 30,
     };

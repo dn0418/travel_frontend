@@ -13,7 +13,6 @@ interface PropsType {
 }
 
 function ReviewSection({ reviews, hotel }: PropsType) {
-  const [hotelReviews, setHotelReviews] = useState(reviews);
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -46,17 +45,17 @@ function ReviewSection({ reviews, hotel }: PropsType) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {
-                hotelReviews.slice((page - 1) * 4, page * 4).map((review, i) => (
+                reviews.slice((page - 1) * 4, page * 4).map((review, i) => (
                   <ReviewCard isRating={true} review={review} key={i} />
                 ))
               }
             </div>
             <div className='flex justify-center my-3 md:my-6'>
-              {hotelReviews.length > 4 && (
+              {reviews.length > 4 && (
                 <Pagination
                   size='large'
                   onChange={(_, p) => setPage(p)}
-                  count={Math.ceil(hotelReviews.length / 4)}
+                  count={Math.ceil(reviews.length / 4)}
                   shape='rounded'
                   renderItem={(item) => (
                     <PaginationItem
@@ -93,7 +92,6 @@ function ReviewSection({ reviews, hotel }: PropsType) {
           type="hotel"
           id={hotel.id}
           handleChangeModal={handleChangeModal}
-          setState={setHotelReviews}
         />
       </Modal>
     </>
