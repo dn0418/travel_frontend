@@ -32,34 +32,11 @@ export interface ReviewTypes {
   message: string;
 }
 
-
-export interface TourType {
+export interface ImageType {
   id: number;
   createdAt: string;
   updatedAt: string;
-  title: string;
-  destination: string;
-  price: number;
-  discountedPrice: number;
-  dayLength: number;
-  nightLength: number;
-  tourType: string;
-  startedDate: string;
-  endDate: string;
-  activities: number;
-  car: boolean;
-  hiking: boolean;
-  motorCycle: boolean;
-  hotel: number;
-  hotelDetails: string;
-  locationImg: string;
-  tourDetails: string;
-  thumbnail: string;
-  images: string[];
-  includesServices: string[];
-  excludeServices: string[];
-  reviews: ReviewTypes[];
-  reviewsRating?: number;
+  url: string;
 }
 
 export interface PaginationType {
@@ -127,7 +104,7 @@ export interface TourAccessoryType {
   };
   reviews: ReviewTypes[];
   rating: number | null;
-  images: { id: number, url: string }[];
+  images: ImageType[];
   pricing: { id: number, price: number, duration: string }[];
 }
 
@@ -152,7 +129,7 @@ export interface HotelType {
     id: number;
     name: string;
   };
-  images: { url: string }[];
+  images: ImageType[];
   reviews: ReviewTypes[];
   rating: number;
   pricingTable: {

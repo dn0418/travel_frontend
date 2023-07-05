@@ -3,27 +3,18 @@
 import { Button, Rating } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AiOutlineHeart } from 'react-icons/ai';
 import { BiCalendar } from 'react-icons/bi';
-import { BsCarFrontFill } from 'react-icons/bs';
-import { IoMdMan } from 'react-icons/io';
-import { RiHotelLine } from 'react-icons/ri';
-import { TourType } from '../../types';
+import { TourType } from '../../types/tour';
 
 function TourCard({ tour }: { tour: TourType }) {
   const {
     thumbnail,
     title,
-    activities,
+    bestTime,
     dayLength,
     nightLength,
-    startedDate,
-    endDate,
-    hotel,
-    car,
-    tourDetails,
+    shortDescription,
     price,
-    discountedPrice,
     reviewsRating
   } = tour;
 
@@ -52,47 +43,29 @@ function TourCard({ tour }: { tour: TourType }) {
                 defaultValue={reviewsRating}
                 precision={0.1}
               />
-              <span className="text-[#5E5E5E] text-sm">{reviewsRating}</span>
+              <span className="text-[#5E5E5E] text-sm">{reviewsRating.toFixed(1)}</span>
             </div>
           }
         </div>
-        <div className="flex items-center justify-between">
-          <p className="my-2 text-[#5E5E5E] text-sm">
-            {dayLength + ' Days' + ' ' + nightLength + ' Nights'}
-          </p>
-          <Button className="min-w-fit p-0">
-            <AiOutlineHeart className="text-xl font-semibold text-[#EDA592]" />
-          </Button>
-        </div>
-        <p className="my-2 flex items-center gap-1">
-          <BiCalendar className="text-[#5a5a5a] text-sm" />
-          <span className="text-[#5e5e5e] text-sm">{new Date(startedDate).toDateString()}</span>
+        <p className="my-2 text-[#5E5E5E] text-sm">
+          {dayLength + ' Days' + ' ' + nightLength + ' Nights'}
         </p>
-        <p className="my-2 flex items-center gap-1">
+
+        <p className="my-2 flex items-center gap-2">
           <BiCalendar className="text-[#5a5a5a] text-sm" />
-          <span className="text-[#5e5e5e] text-sm">{new Date(endDate).toDateString()}</span>
+          <span className="text-[#5e5e5e] text-sm">Best Time:</span>
+          <span className="text-[#5e5e5e] text-sm font-medium">{bestTime}</span>
         </p>
-        <div className="mt-5 md:mt-8 flex items-center justify-between">
-          <div className="flex flex-col items-center justify-start">
-            <RiHotelLine />
-            <p className="text-sm text-[#5e5e5e] my-2">{hotel} Hotel</p>
-          </div>
-          <div className="flex flex-col items-center justify-start">
-            <BsCarFrontFill />
-            <p className="text-sm text-[#5e5e5e] my-2">{car ? "Car" : ""}</p>
-          </div>
-          <div className="flex flex-col items-center justify-start">
-            <IoMdMan />
-            <p className="text-sm text-[#5e5e5e] my-2">{activities} Activities</p>
-          </div>
-        </div>
-        <p className="text-sm line-clamp-3 text-[#5e5e5e] my-3">{tourDetails}</p>
+
+        <p className="text-sm line-clamp-3 text-[#5e5e5e] my-3">{shortDescription}</p>
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <p className="text-sm text-[#5e5e5e] my-2 line-through">${price}</p>
-            <p className="text-base font-semibold my-2">${discountedPrice}</p>
+          <div className="flex items-center gap-3">
+            <p className="text-sm text-[#5e5e5e] my-2">Start From</p>
+            <p className="text-base font-semibold my-2">${price}</p>
           </div>
-          <Button className="rounded-lg" variant='contained'>Submit</Button>
+          <Link href={`/tour-details/${tour.id}`}>
+            <Button className="rounded-lg" variant='contained'>See More</Button>
+          </Link>
         </div>
       </div>
     </div>
