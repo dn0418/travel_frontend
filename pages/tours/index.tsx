@@ -39,7 +39,7 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   }, [type])
 
   useEffect(() => {
-    const findCurrentTab = tabs.find(tab => tab.id === parseInt(tabIndex));
+    const findCurrentTab = tabs.find((tab: { id: number }) => tab.id === parseInt(tabIndex));
 
     if (findCurrentTab) {
       setTitle(findCurrentTab.name)

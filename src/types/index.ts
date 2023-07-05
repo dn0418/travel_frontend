@@ -155,6 +155,12 @@ export interface HotelType {
   images: { url: string }[];
   reviews: ReviewTypes[];
   rating: number;
+  pricingTable: {
+    id: number;
+    name: string;
+    firstPart: number;
+    lastPart: number;
+  }[]
 }
 
 

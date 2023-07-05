@@ -103,14 +103,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
 
       try {
         const res = await client.reviews.newReview(payload);
-        const review = res?.data;
-        if (review) {
-          setState((pre: any[]) => {
-            const temp = JSON.parse(JSON.stringify(pre));
-            temp.unshift(review);
-            return temp;
-          })
-        }
+
         toast.success("Review created successfully");
         handleChangeModal()
       } catch (error) {

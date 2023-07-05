@@ -3,6 +3,7 @@
 import { Container } from "@mui/material";
 import { HotelType, ReviewTypes } from "../../../types";
 import HotelDetailsMaps from "./hotel-details-map";
+import HotelPricingTable from "./hotel-pricing";
 import HotelSpecification from "./hotel-specifications";
 import RelatedHotels from "./related-hotels";
 import ReviewSection from "./review-section";
@@ -20,6 +21,8 @@ interface PropsType {
 
 function HotelDetailsPage({ hotel, allHotel, reviews, metadata }: PropsType) {
 
+  console.log(hotel)
+
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
@@ -29,6 +32,7 @@ function HotelDetailsPage({ hotel, allHotel, reviews, metadata }: PropsType) {
         </div>
         <HotelDetailsMaps hotel={hotel} />
       </Container>
+      <HotelPricingTable hotel={hotel} />
       <RelatedHotels hotels={allHotel} />
       <ReviewSection hotel={hotel} reviews={reviews} />
     </div>
