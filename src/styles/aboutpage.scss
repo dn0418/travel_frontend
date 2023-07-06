@@ -5,13 +5,45 @@ $background-color_1: #6f7531;
   .MuiButtonBase-root {
     color: $text_black;
   }
+
   .MuiTabs-flexContainer {
     justify-content: space-between;
     gap: 20px;
   }
+
   .Mui-selected {
     background-color: $background-color_1;
     border-radius: 8px;
     color: $text_white;
+  }
+}
+
+.armenia-tabs {
+  .MuiButtonBase-root {
+    color: $text_black;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .MuiTabs-flexContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+
+  .Mui-selected {
+    background-color: $background-color_1;
+    border-radius: 8px;
+    color: $text_white;
+
+    & svg {
+      color: $text_white;
+    }
   }
 }

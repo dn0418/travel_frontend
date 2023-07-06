@@ -38,6 +38,13 @@ class Client {
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
   }
 
+  thingToSee = {
+    all: (page?: any, type?: any, search?: any) => HttpClient.get(
+      `${API_ENDPOINTS.THING_TO_SEE}?page=${page}&type=${type}&search=${search}`
+    ),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
+  }
+
   accessories = {
     all: (page?: any, search?: any) => HttpClient.get(
       `${API_ENDPOINTS.TOUR_ACCESSORIES}?page=${page}&search=${search}`

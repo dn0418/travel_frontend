@@ -154,3 +154,23 @@ export interface AddReviewPyloadType {
   tourId?: number;
   accessoryId?: number;
 }
+
+export interface ThingToSeeType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  thumbnail: string;
+  shortDescription: string;
+  description: string;
+  type: string;
+  location: string;
+  fromYerevan: string;
+  date: string;
+  neatestSettlement: string;
+  available: string;
+  entrance: string;
+  reviews: ReviewTypes[]; // You can replace 'any' with a more specific type if possible
+  images: ImageType[];
+  rating: number;
+}

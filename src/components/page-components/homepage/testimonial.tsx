@@ -76,14 +76,24 @@ function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
     <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen home-testimonial-section'>
       <Container>
         <SectionTitle title='What Travelers Think About Us' />
-        <Slider
-          afterChange={(e) => setCurrentSlide(e)}
-          className='flex gap-4'
-          {...settings}>
-          {reviews.map((item: ReviewTypes, i: Key) => (
-            <ReviewCard review={item} key={i} />
-          ))}
-        </Slider>
+        {
+          reviews.length > 2 ?
+
+            <Slider
+              afterChange={(e) => setCurrentSlide(e)}
+              className='flex gap-4'
+              {...settings}>
+              {reviews.map((item: ReviewTypes, i: Key) => (
+                <ReviewCard review={item} key={i} />
+              ))}
+            </Slider>
+            :
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {reviews.map((item: ReviewTypes, i: Key) => (
+                <ReviewCard review={item} key={i} />
+              ))}
+            </div>
+        }
       </Container>
     </div>
   );
