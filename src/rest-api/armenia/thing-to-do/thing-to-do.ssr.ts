@@ -1,5 +1,5 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-import client from "../client";
+import client from "../../client";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async (
   const type = query["type"] || '';
   const search = query["search"] || "";
 
-  const things = await client.thingToSee.all(page, type, search);
+  const things = await client.thingToDo.all(page, type, search);
 
   return {
     props: {

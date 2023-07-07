@@ -3,29 +3,25 @@
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FaRoad } from "react-icons/fa";
-import { GiChurch, GiColombianStatue, GiModernCity } from "react-icons/gi";
-import { MdNaturePeople } from "react-icons/md";
-import { SiInternetarchive } from "react-icons/si";
-import { TbBuildingArch, TbPlaceholder } from "react-icons/tb";
+import { FaShoppingBag } from "react-icons/fa";
+import { ImSpoonKnife } from "react-icons/im";
+import { IoLogoGameControllerB } from "react-icons/io";
+import { IoCameraReverseSharp } from "react-icons/io5";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import ThingToSeeUI from "../../../src/components/page-components/thing-to-see";
-import { getServerSideProps } from "../../../src/rest-api/armenia/thing-to-see/thing-to-see.ssr";
+import ThingToDoUI from "../../../src/components/page-components/thing-to-do";
+import { getServerSideProps } from "../../../src/rest-api/armenia/thing-to-do/thing-to-do.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
 const tabs = [
-  { title: 'OLd Road', value: 'old_road', icon: <FaRoad /> },
-  { title: 'Statues', value: 'statues', icon: <GiColombianStatue /> },
-  { title: 'Museums', value: 'museums', icon: <SiInternetarchive /> },
-  { title: 'Soviet Modernism', value: 'soviet_modernism', icon: <GiModernCity /> },
-  { title: 'Churches & Monasteries', value: 'churches_monasteries', icon: <GiChurch /> },
-  { title: 'Natural Sites', value: 'natural_sites', icon: <MdNaturePeople /> },
-  { title: 'Archeological sites & founding', value: 'archeological_sites', icon: <TbBuildingArch /> },
-  { title: 'Abandoned Place', value: 'abandoned_place', icon: <TbPlaceholder /> },
+  { title: 'Entertainment', value: 'entertainment', icon: <IoCameraReverseSharp /> },
+  { title: 'Festival', value: 'festival', icon: <IoLogoGameControllerB /> },
+  { title: 'Tourists experience', value: 'tourists_experience', icon: <ImSpoonKnife /> },
+  { title: 'Shopping', value: 'shopping', icon: <FaShoppingBag /> },
+
 ];
 
-const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+const ThingToDo: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const things = props.thingsData?.data || [];
   const metaData = props.thingsData?.meta || {};
   const [currentTab, setCurrentTab] = useState(tabs[0]);
@@ -40,7 +36,7 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     params['type'] = newValue;
 
     router.push({
-      pathname: '/armenia/thing-to-see',
+      pathname: '/armenia/thing-to-do',
       query: params,
     });
 
@@ -53,7 +49,7 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     params['page'] = value.toString();
 
     router.push({
-      pathname: '/armenia/thing-to-see',
+      pathname: '/armenia/thing-to-do',
       query: params,
     });
   }
@@ -67,14 +63,14 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     params['page'] = '1';
 
     router.push({
-      pathname: '/armenia/thing-to-see',
+      pathname: '/armenia/thing-to-do',
       query: params,
     });
   }
 
   return (
     <>
-      <ThingToSeeUI
+      <ThingToDoUI
         currentTab={currentTab}
         handleTabChange={handleTabChange}
         tabs={tabs}
@@ -87,8 +83,8 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
   );
 };
 
-ThingToSee.getLayout = function getLayout(page) {
+ThingToDo.getLayout = function getLayout(page) {
   return <GeneralLayout>{page}</GeneralLayout>;
 };
 
-export default ThingToSee;
+export default ThingToDo;

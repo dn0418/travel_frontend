@@ -154,6 +154,7 @@ export interface AddReviewPyloadType {
   tourId?: number;
   accessoryId?: number;
   thingToSeeId?: number;
+  thingToDoId?: number;
 }
 
 export interface ThingToSeeType {

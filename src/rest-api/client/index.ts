@@ -9,6 +9,8 @@ class Client {
     carReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/car/${id}`),
     thingToSeeReview: (id: any) =>
       HttpClient.get(`${API_ENDPOINTS.REVIEWS}/thing-to-see/${id}`),
+    thingToDoReview: (id: any) =>
+      HttpClient.get(`${API_ENDPOINTS.REVIEWS}/thing-to-do/${id}`),
     tourReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/tour/${id}`),
     hotelReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/hotel/${id}`),
     accessoryReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/accessory/${id}`),
@@ -45,6 +47,13 @@ class Client {
       `${API_ENDPOINTS.THING_TO_SEE}?page=${page}&type=${type}&search=${search}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.THING_TO_SEE}/${id}`),
+  }
+
+  thingToDo = {
+    all: (page?: any, type?: any, search?: any) => HttpClient.get(
+      `${API_ENDPOINTS.THING_TO_DO}?page=${page}&type=${type}&search=${search}`
+    ),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.THING_TO_DO}/${id}`),
   }
 
   accessories = {

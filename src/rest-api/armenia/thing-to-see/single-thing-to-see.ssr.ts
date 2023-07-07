@@ -1,7 +1,7 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { ThingToSeeType } from '../../types';
-import client from '../client';
+import { ThingToSeeType } from '../../../types';
+import client from '../../client';
 
 type ParsedQueryParams = {
   id: string;
