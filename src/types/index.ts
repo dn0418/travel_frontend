@@ -153,6 +153,7 @@ export interface AddReviewPyloadType {
   carId?: number;
   tourId?: number;
   accessoryId?: number;
+  thingToSeeId?: number;
 }
 
 export interface ThingToSeeType {

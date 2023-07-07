@@ -24,7 +24,7 @@ function ThingToSeeCard({ thing }: ThingToSeeCardProps) {
         />
         <div className="p-3">
           <div className="flex items-center justify-between">
-            <Link href={`/services/transport/${thing.id}`}>
+            <Link href={`/armenia/thing-to-see/${thing.id}`}>
               <p className="text-xl font-medium my-2 text-black">
                 {thing.name}
               </p>
@@ -56,7 +56,7 @@ function ThingToSeeCard({ thing }: ThingToSeeCardProps) {
           </p>
 
           <div className="flex justify-end items-end">
-            <Link href={`/services/transport/${thing.id}`}>
+            <Link href={`/armenia/thing-to-see/${thing.id}`}>
               <Button className="rounded-lg" variant='contained'>Submit</Button>
             </Link>
           </div>

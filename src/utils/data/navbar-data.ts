@@ -73,12 +73,12 @@ export const navData: NavDataTypes[] = [
       {
         id: 1,
         title: "Things to See",
-        route: "/armenia/things-to-see",
+        route: "/armenia/thing-to-see",
       },
       {
         id: 2,
         title: "Things to Do",
-        route: "/armenia/things-to-do",
+        route: "/armenia/thing-to-do",
       },
       {
         id: 3,
