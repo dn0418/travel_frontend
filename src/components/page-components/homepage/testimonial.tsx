@@ -46,11 +46,13 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  console.log(reviews.length)
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: reviews.length > 2 ? 3 : reviews.length,
+    slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <NextArrow onClick={undefined} />,
     prevArrow: <PrevArrow currentSlide={currentSlide} onClick={undefined} />,
@@ -77,8 +79,7 @@ function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
       <Container>
         <SectionTitle title='What Travelers Think About Us' />
         {
-          reviews.length > 2 ?
-
+          reviews.length > 3 ?
             <Slider
               afterChange={(e) => setCurrentSlide(e)}
               className='flex gap-4'

@@ -57,7 +57,7 @@ export default function Navbar({ handleDrawerToggle }: any) {
                 aria-label='open drawer'
                 edge='start'
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: "none" } }}>
+                sx={{ mr: 2, display: { lg: "none" } }}>
                 <HiMenu className='text-black' />
               </IconButton>
               <div className='flex items-center gap-5'>
@@ -71,7 +71,7 @@ export default function Navbar({ handleDrawerToggle }: any) {
               </div>
             </Box>
 
-            <MenuList className='hidden sm:flex  items-center  gap-8'>
+            <MenuList className='hidden lg:flex  items-center  gap-8'>
               {navData.map((item) => (
                 <Button
                   key={item.id}
@@ -122,7 +122,7 @@ export default function Navbar({ handleDrawerToggle }: any) {
               </Box>
             </Popover>
 
-            <Box className='hidden sm:flex items-center justify-end gap-5'>
+            <Box className='hidden lg:flex items-center justify-end gap-5'>
               <FormControl>
                 <Select
                   value={""}
