@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-import ChatIcon from "../src/components/global-chat/chat";
+import ChatIcon from "../src/components/call-back/chat";
 import QueryProvider from "../src/rest-api/query-provider";
 import "../src/styles/_app.scss";
 import defaultTheme from "../src/themes/defaultTheme";

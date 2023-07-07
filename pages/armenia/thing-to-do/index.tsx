@@ -8,7 +8,7 @@ import { ImSpoonKnife } from "react-icons/im";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { IoCameraReverseSharp } from "react-icons/io5";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import ThingToDoUI from "../../../src/components/page-components/thing-to-do";
+import ThingToDoUI from "../../../src/components/page-components/armenia/thing-to-do";
 import { getServerSideProps } from "../../../src/rest-api/armenia/thing-to-do/thing-to-do.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };

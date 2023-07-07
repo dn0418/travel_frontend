@@ -2,7 +2,7 @@
 
 import { InferGetStaticPropsType } from "next";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import AccessoryDetailsUI from "../../../src/components/page-components/accessory-details";
+import AccessoryDetailsUI from "../../../src/components/page-components/services/accessory-details";
 import {
   getStaticPaths,
   getStaticProps

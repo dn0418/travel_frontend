@@ -2,7 +2,7 @@
 
 import { InferGetStaticPropsType } from "next";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import ThingToSeeDetailsUI from "../../../src/components/page-components/thing-to-see-details";
+import ThingToSeeDetailsUI from "../../../src/components/page-components/armenia/thing-to-see-details";
 import {
   getStaticPaths,
   getStaticProps

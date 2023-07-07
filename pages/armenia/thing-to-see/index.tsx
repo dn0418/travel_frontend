@@ -9,7 +9,7 @@ import { MdNaturePeople } from "react-icons/md";
 import { SiInternetarchive } from "react-icons/si";
 import { TbBuildingArch, TbPlaceholder } from "react-icons/tb";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import ThingToSeeUI from "../../../src/components/page-components/thing-to-see";
+import ThingToSeeUI from "../../../src/components/page-components/armenia/thing-to-see";
 import { getServerSideProps } from "../../../src/rest-api/armenia/thing-to-see/thing-to-see.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };

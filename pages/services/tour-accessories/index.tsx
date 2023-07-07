@@ -3,7 +3,7 @@
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import TourAccessoriesUI from "../../../src/components/page-components/tour-accessories";
+import TourAccessoriesUI from "../../../src/components/page-components/services/tour-accessories";
 import { getServerSideProps } from "../../../src/rest-api/accessories/accessories.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
