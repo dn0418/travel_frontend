@@ -45,10 +45,10 @@ function ThingToSeeCard({ thing }: ThingToSeeCardProps) {
             }
           </div>
           <p className="mt-0 text-[#5E5E5E] text-sm">
-            Location: {thing.location}
+            Date: {thing.date}
           </p>
           <p className="mt-0 text-[#5E5E5E] text-sm">
-            Available: {thing.available}
+            Type: {thing.type}
           </p>
 
           <p className="text-sm  text-[#5e5e5e]  line-clamp-3 mt-6">

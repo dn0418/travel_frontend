@@ -155,6 +155,7 @@ export interface AddReviewPyloadType {
   accessoryId?: number;
   thingToSeeId?: number;
   thingToDoId?: number;
+  foodAndDrinkId?: number;
 }
 
 export interface ThingToSeeType {
@@ -171,6 +172,26 @@ export interface ThingToSeeType {
   date: string;
   neatestSettlement: string;
   available: string;
+  entrance: string;
+  reviews: ReviewTypes[]; // You can replace 'any' with a more specific type if possible
+  images: ImageType[];
+  rating: number;
+}
+
+export interface FoodAndDrinksType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  thumbnail: string;
+  shortDescription: string;
+  description: string;
+  type: string;
+  location: string;
+  fromYerevan: string;
+  address: string;
+  neatestSettlement: string;
+  vegan: string;
   entrance: string;
   reviews: ReviewTypes[]; // You can replace 'any' with a more specific type if possible
   images: ImageType[];

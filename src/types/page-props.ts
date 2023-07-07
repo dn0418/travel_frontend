@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
-import { CarType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
+import { CarType, FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
 import { TourType } from "./tour";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
@@ -56,6 +56,23 @@ export interface ThingToSeePageProps {
     icon: React.ReactNode;
   }[];
   things: ThingToSeeType[];
+  handleSearch: any;
+  handlePageChange: any;
+  metaData: any;
+}
+
+export interface FoodAndDrinkPageProps {
+  handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
+  currentTab: {
+    title: string;
+    value: string;
+  };
+  tabs: {
+    title: string;
+    value: string;
+    icon: React.ReactNode;
+  }[];
+  foodAndDrinks: FoodAndDrinksType[];
   handleSearch: any;
   handlePageChange: any;
   metaData: any;

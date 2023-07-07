@@ -13,5 +13,6 @@ export const API_ENDPOINTS = {
   NEW_RIDE_PLAN: "/ride-plan/create",
   NEW_CALLBACK: "/call-back/create",
   THING_TO_SEE: "/thing-to-see",
-  THING_TO_DO: "/thing-to-do"
+  THING_TO_DO: "/thing-to-do",
+  FOOD_AND_DRINKS: "/food-and-drinks",
 };
