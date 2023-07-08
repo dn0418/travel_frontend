@@ -1,7 +1,8 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
-import { BiCalendar, BiCategory } from "react-icons/bi";
+import { BiCategory } from "react-icons/bi";
+import { FaAddressBook } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdEventAvailable, MdNestCamWiredStand, MdPayment } from "react-icons/md";
 import { FoodAndDrinksType, ReviewTypes } from "../../../../types";
@@ -55,7 +56,7 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
       </p>
 
       <p className="flex items-center gap-3">
-        <BiCalendar className="text-base text-[#EDA592]  font-bold" />
+        <FaAddressBook className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
           Address:
         </span>

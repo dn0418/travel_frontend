@@ -20,7 +20,7 @@ function FoodAndDrinksUI({
     <Container className='my-8 flex flex-col items-center'>
       <div className='py-3 px-6 regular-shadow rounded-lg'>
         <Tabs
-          value={currentTab.value}
+          value={currentTab?.value || ''}
           onChange={handleTabChange}
           className='armenia-tabs gap-5'
           TabIndicatorProps={{
@@ -48,7 +48,7 @@ function FoodAndDrinksUI({
 
       <div className='my-4 w-full md:my-8'>
         <div className="flex flex-col md:flex-row items-center w-full justify-between">
-          <SectionTitle title={currentTab.title} />
+          <SectionTitle title={currentTab?.title || "Food And Drinks"} />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
               <InputLabel>Search your  Need</InputLabel>

@@ -30,7 +30,8 @@ class Client {
   tours = {
     all: () => HttpClient.get(API_ENDPOINTS.TOURS),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),
-    sortedTour: (page: number, limit: number, type: any) => HttpClient.get(API_ENDPOINTS.TOURS),
+    sortedTour: (page: number, type: any, search: any) =>
+      HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}`),
   }
 
   tourType = {

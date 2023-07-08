@@ -11,7 +11,7 @@ type ParsedQueryParams = {
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
   const { data }: any = await client.tours.all();
 
-  const paths = data?.tours.map((item: TourType) => {
+  const paths = data?.map((item: TourType) => {
     return {
       params: { id: item.id.toString() },
     };

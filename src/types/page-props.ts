@@ -23,9 +23,17 @@ export interface ToursPageProps {
   tabs: {
     id: any;
     name: string;
+    value: string;
   }[];
   title: string;
   tours: any;
+  handlePageChange: any;
+  handleSearch: any;
+  meta: {
+    page: number;
+    totalPages: number;
+    limit: number;
+  }
 }
 
 export interface TransportPageProps {
@@ -66,7 +74,8 @@ export interface FoodAndDrinkPageProps {
   currentTab: {
     title: string;
     value: string;
-  };
+    icon: React.ReactNode
+  } | null;
   tabs: {
     title: string;
     value: string;

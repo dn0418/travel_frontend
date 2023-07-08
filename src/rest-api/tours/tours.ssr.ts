@@ -6,10 +6,10 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   const { query } = context;
   const page = query["page"] || 1;
-  const limit = query["limit"] || 6;
   const type = query["type"] || "";
+  const search = query["search"] || "";
 
-  const tours = await client.tours?.sortedTour(+page, +limit, type);
+  const tours = await client.tours?.sortedTour(+page, type, search);
 
   const tourType = await client.tourType.all()
 

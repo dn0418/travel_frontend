@@ -12,7 +12,13 @@ import { getServerSideProps } from "../../../src/rest-api/armenia/food-and-drink
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
-const tabs = [
+interface TabType {
+  title: string;
+  value: string;
+  icon: React.ReactNode;
+}
+
+const tabs: TabType[] = [
   { title: 'Cafes', value: 'cafes', icon: <FaMugHot /> },
   { title: 'Village Yards', value: 'village_yards', icon: <IoHome /> },
   { title: 'Restaurants', value: 'restaurants', icon: <ImSpoonKnife /> },
@@ -22,7 +28,7 @@ const tabs = [
 const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const foodAndDrinks = props.foodAndDrinks?.data || [];
   const metaData = props.foodAndDrinks?.meta || {};
-  const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const [currentTab, setCurrentTab] = useState<TabType | null>(null);
   const router = useRouter();
   const params = router.query;
 

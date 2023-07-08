@@ -1,28 +1,28 @@
 // @flow strict
 
 import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { ToursPageProps } from "../../../types/page-props";
 import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../common/section-title";
-
-const toursData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 function ToursPage({
   handleTabChange,
   tabIndex,
   tabs,
   title,
-  tours
+  tours: toursData,
+  handlePageChange,
+  meta,
+  handleSearch
 }: ToursPageProps) {
-  const [page, setPage] = useState(1);
+  console.log(meta)
 
   return (
     <Container className='my-8 flex flex-col items-center'>
       <div className='w-full  text-center py-3 px-6 regular-shadow rounded-lg'>
         <Tabs
-          value={parseInt(tabIndex)}
+          value={tabIndex}
           onChange={handleTabChange}
           className='pages-tabs'
           TabIndicatorProps={{
@@ -32,7 +32,7 @@ function ToursPage({
             tabs.map((tab) => (
               <Tab
                 key={tab.id}
-                value={tab.id}
+                value={tab.value}
                 className=""
                 label={tab.name} />
             ))
@@ -51,23 +51,24 @@ function ToursPage({
                 </InputAdornment>
               }
               label="Search your Tours"
+              onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {tours?.tours.map((item: any, i: number) => (
+            {toursData?.map((item: any, i: number) => (
               <Card key={i} className="regular-shadow rounded-lg">
                 <TourCard tour={item} />
               </Card>
             ))}
           </div>
           <div className='flex justify-center my-3 md:my-6'>
-            {toursData.length > 0 && (
+            {toursData?.length > 0 && (
               <Pagination
                 size='large'
-                onChange={(_, p) => setPage(p)}
-                count={Math.ceil(toursData.length / 6)}
+                onChange={handlePageChange}
+                count={meta?.totalPages}
                 shape='rounded'
                 renderItem={(item) => (
                   <PaginationItem

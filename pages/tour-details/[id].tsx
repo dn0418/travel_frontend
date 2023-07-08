@@ -9,7 +9,7 @@ export { getStaticPaths, getStaticProps };
 
 const TourDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { tourDetails, toursData } = props;
-  const tours = toursData.data.tours;
+  const tours = toursData.data;
 
   return (
     <>
