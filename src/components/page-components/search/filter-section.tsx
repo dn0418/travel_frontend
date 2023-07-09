@@ -11,7 +11,7 @@ import { DestinationTypes } from "../../../types";
 import { tourTypes } from "../../../utils/data/tours-types";
 import CustomSelectInput from "../../common/select";
 
-function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
+function SearchFilterSection({ destinations }: { destinations: DestinationTypes[] }) {
   const [filterData, setFilterData] = useState({
     tourType: '',
     destination: '',
@@ -43,9 +43,8 @@ function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
       query['days'] = filterData.days;
     }
 
-
     router.push({
-      pathname: '/search',
+      pathname,
       query,
     });
   };
@@ -123,4 +122,4 @@ function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
   );
 }
 
-export default FilterSection;
+export default SearchFilterSection;

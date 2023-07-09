@@ -37,6 +37,19 @@ export interface ToursPageProps {
   }
 }
 
+export interface SearchPageProps {
+  tours: any;
+  handlePageChange: any;
+  handleSearch: any;
+  meta: {
+    page: number;
+    totalPages: number;
+    limit: number;
+  };
+  destinations: DestinationTypes[];
+
+}
+
 export interface TransportPageProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   currentTab: {

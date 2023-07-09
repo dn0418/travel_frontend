@@ -138,3 +138,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
     }
   }
 }
+
+.react-datepicker-popper {
+  z-index: 99;
+}
