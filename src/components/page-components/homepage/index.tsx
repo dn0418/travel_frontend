@@ -11,12 +11,12 @@ const RidePlanContact = dynamic(() => import('./ride-plan-contact'));
 const Testimonial = dynamic(() => import('./testimonial'));
 const TourSection = dynamic(() => import('./tours-section'));
 
-function Homepage({ reviews, tours }: HomePageProps) {
+function Homepage({ reviews, tours, destinations }: HomePageProps) {
 
   return (
     <>
       <HeroSection />
-      <FilterSection />
+      <FilterSection destinations={destinations} />
       <TourSection tours={tours} />
       <RidePlanContact />
       <Qualities />

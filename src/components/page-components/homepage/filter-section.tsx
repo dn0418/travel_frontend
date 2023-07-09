@@ -1,21 +1,25 @@
 // @flow strict
 
-import { Button, TextField } from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
-import { destinationFilterData, tourFilterData } from "../../../utils/data/homepage-data";
+import { DestinationTypes } from "../../../types";
+import { tourTypes } from "../../../utils/data/tours-types";
 import CustomSelectInput from "../../common/select";
 
-function FilterSection() {
+function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
   const [filterData, setFilterData] = useState({
     tourType: '',
     destination: '',
+    days: ''
   });
   const [startDate, setStartDate] = useState<null | Date>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter()
+  const { pathname, query } = router;
 
   const handleChangeFilterData = (e: any) => {
     setFilterData(prev => ({
@@ -24,13 +28,27 @@ function FilterSection() {
     }))
   }
 
-  const handleChange = (e: Date) => {
-    setIsOpen(!isOpen);
-    setStartDate(e);
-  };
-
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    console.log(filterData)
+    if (startDate) {
+      const value = new Date(startDate).toDateString().split(' ')
+      query['month'] = value[1];
+    }
+    if (filterData.tourType) {
+      query['type'] = filterData.tourType;
+    }
+    if (filterData.destination) {
+      query['destination'] = filterData.destination.toString();
+    }
+    if (filterData.days) {
+      query['days'] = filterData.days;
+    }
+
+
+    router.push({
+      pathname,
+      query,
+    });
   };
 
   return (
@@ -45,19 +63,31 @@ function FilterSection() {
             title='Type of tour'
             value={filterData?.tourType}
             isHideTitle={filterData?.tourType ? true : false}
-            options={tourFilterData}
+            options={tourTypes}
           />
         </div>
 
         <div className='flex justify-center'>
-          <CustomSelectInput
-            name="destination"
-            title='Destination'
-            handleOnChange={handleChangeFilterData}
-            value={filterData?.destination}
-            isHideTitle={filterData?.destination ? true : false}
-            options={destinationFilterData}
-          />
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            {
+              !(filterData?.destination ? true : false) &&
+              <InputLabel className='text-black p-0'>Destination</InputLabel>
+            }
+            <Select
+              onChange={(e) => handleChangeFilterData(e)}
+              name="destination"
+              value={filterData?.destination}
+              className='border-0'>
+              {
+                destinations.length > 0 &&
+                destinations.map((item, index) => (
+                  <MenuItem key={index} className='px-6' value={item?.id}>
+                    {item.name}
+                  </MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
         </div>
         <div className='flex justify-center'>
           <TextField

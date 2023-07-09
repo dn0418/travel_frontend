@@ -38,7 +38,9 @@ const CustomSelectInput = ({
         {
           options.length > 0 &&
           options.map((item, index) => (
-            <MenuItem key={index} className='px-6' value={item?.value}>{item?.title}</MenuItem>
+            <MenuItem key={index} className='px-6' value={item?.value}>
+              {item?.title || item.name}
+            </MenuItem>
           ))
         }
       </Select>

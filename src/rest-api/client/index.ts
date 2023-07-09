@@ -89,6 +89,10 @@ class Client {
     all: () => HttpClient.get(API_ENDPOINTS.HOTELTYPE)
   }
 
+  tourDestination = {
+    all: () => HttpClient.get(API_ENDPOINTS.DESTINATION)
+  }
+
   fileUploads = {
     upload: (data: any) => HttpClient.post(API_ENDPOINTS.FILEUPLOADS, data),
   }

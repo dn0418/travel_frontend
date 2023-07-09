@@ -197,3 +197,9 @@ export interface FoodAndDrinksType {
   images: ImageType[];
   rating: number;
 }
+
+export interface DestinationTypes {
+  id: number;
+  name: string;
+  country: string;
+}

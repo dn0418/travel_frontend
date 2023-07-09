@@ -9,32 +9,32 @@ export const navData: NavDataTypes[] = [
       {
         id: 1,
         title: "Active Tours",
-        route: "/tours?type=1",
+        route: "/tours?type=active_tours",
       },
       {
         id: 2,
         title: "Gastro Tours",
-        route: "/tours?type=2",
+        route: "/tours?type=gastro_tours",
       },
       {
         id: 3,
         title: "Oneday Tours",
-        route: "/tours?type=3",
+        route: "/tours?type=oneday_tours",
       },
       {
         id: 4,
         title: "Classic Tours",
-        route: "/tours?type=4",
+        route: "/tours?type=classic_tours",
       },
       {
         id: 5,
         title: "Fixed date Tour",
-        route: "/tours?type=5",
+        route: "/tours?type=fixed_date_tour",
       },
       {
         id: 6,
         title: "Themed Tours",
-        route: "/tours?type=6",
+        route: "/tours?type=themed_tours",
       },
     ],
   },

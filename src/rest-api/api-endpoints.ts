@@ -15,4 +15,5 @@ export const API_ENDPOINTS = {
   THING_TO_SEE: "/thing-to-see",
   THING_TO_DO: "/thing-to-do",
   FOOD_AND_DRINKS: "/food-and-drinks",
+  DESTINATION: "/destinations",
 };

@@ -7,15 +7,22 @@ import { NextPageWithLayout } from "../src/types/page-props";
 export { getStaticProps };
 
 const Home: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { toursData, reviewsData } = props;
-  const { tours } = toursData;
+  const { toursData, reviewsData, destinationData } = props;
+  const tours = toursData.data;
+  const destinations = destinationData.data;
+
+  console.log(destinations)
 
   const router = useRouter();
   const { locales } = router;
 
   return (
     <div className='container' aria-label="homepage">
-      <Homepage tours={tours} reviews={reviewsData.data} />
+      <Homepage
+        tours={tours}
+        reviews={reviewsData.data}
+        destinations={destinations}
+      />
     </div>
   );
 };

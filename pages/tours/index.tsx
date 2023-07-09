@@ -15,9 +15,9 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
 ) => {
   const tours = toursData?.data;
   const meta = toursData?.meta;
-  const router = useRouter()
   const [title, setTitle] = useState('Tours')
   const [tabIndex, setTabIndex] = useState('active_tours');
+  const router = useRouter()
   const { pathname, query } = router;
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {

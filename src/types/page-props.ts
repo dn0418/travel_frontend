@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
-import { CarType, FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
+import { CarType, DestinationTypes, FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
 import { TourType } from "./tour";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
@@ -10,6 +10,7 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 export interface HomePageProps {
   reviews: ReviewTypes[];
   tours: TourType[];
+  destinations: DestinationTypes[];
 }
 
 export interface BlogPageProps {
