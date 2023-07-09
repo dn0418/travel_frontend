@@ -10,9 +10,9 @@ import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
 const tabs = [
-  { title: 'Transfer to and from', value: 'all' },
-  { title: 'Without driver', value: 'false' },
-  { title: 'With driver', value: 'true' },
+  { title: 'Airport Transfers', value: 'all' },
+  { title: 'Without driver', value: 'without_driver' },
+  { title: 'With driver', value: 'with_driver' },
 ];
 
 const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
@@ -25,18 +25,17 @@ const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
-    params['page'] = '1';
+    // params['page'] = '1';
 
     if (newValue === "all") {
-      delete params['driver'];
-    } else {
-      params['driver'] = newValue;
+      router.push({
+        pathname: '/services/transport',
+      });
     }
-
-    router.push({
-      pathname: '/services/transport',
-      query: params,
-    });
+    // router.push({
+    //   pathname: '/services/transport',
+    //   query: params,
+    // });
 
     if (findTab) {
       setCurrentTab(findTab);

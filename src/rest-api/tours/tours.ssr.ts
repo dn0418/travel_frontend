@@ -8,8 +8,11 @@ export const getServerSideProps: GetServerSideProps = async (
   const page = query["page"] || 1;
   const type = query["type"] || "";
   const search = query["search"] || "";
+  const month = query["month"] || "";
+  const destination = query["destination"] || "";
+  const days = query["days"] || "";
 
-  const tours = await client.tours?.sortedTour(+page, type, search);
+  const tours = await client.tours?.sortedTour(+page, type, search, month, destination, days);
 
   const tourType = await client.tourType.all()
 

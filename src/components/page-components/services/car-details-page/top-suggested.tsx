@@ -4,7 +4,7 @@ import { Button, Card, Container } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { CarType } from "../../../../types";
+import { CarWithOutType } from "../../../../types/car-type";
 import TransportCard from "../../../cards/car-card";
 import SectionTitle from "../../../common/section-title";
 
@@ -44,7 +44,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function TopSuggestedCars({ cars }: { cars: CarType[] }) {
+function TopSuggestedCars({ cars }: { cars: CarWithOutType[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {

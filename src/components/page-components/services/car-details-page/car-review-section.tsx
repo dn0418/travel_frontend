@@ -2,18 +2,18 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { CarType, ReviewTypes } from "../../../../types";
+import { ReviewTypes } from "../../../../types";
+import { CarWithOutType } from "../../../../types/car-type";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
 interface PropsType {
   reviews: ReviewTypes[];
-  car: CarType;
+  car: CarWithOutType;
 }
 
 function CarReviewSection({ reviews, car }: PropsType) {
-  const [carReviews, setCarReviews] = useState(reviews || [])
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -45,17 +45,17 @@ function CarReviewSection({ reviews, car }: PropsType) {
             </div>
             <div className="grid grid-cols-1 gap-8">
               {
-                carReviews.slice((page - 1) * 4, page * 4).map((review, i) => (
+                reviews.slice((page - 1) * 4, page * 4).map((review, i) => (
                   <ReviewCard isRating={true} review={review} key={i} />
                 ))
               }
             </div>
             <div className='flex justify-center my-3 md:my-6'>
-              {carReviews.length > 4 && (
+              {reviews.length > 4 && (
                 <Pagination
                   size='large'
                   onChange={(_, p) => setPage(p)}
-                  count={Math.ceil(carReviews.length / 4)}
+                  count={Math.ceil(reviews.length / 4)}
                   shape='rounded'
                   renderItem={(item) => (
                     <PaginationItem
@@ -92,7 +92,6 @@ function CarReviewSection({ reviews, car }: PropsType) {
           type="car"
           id={car.id}
           handleChangeModal={handleChangeModal}
-          setState={setCarReviews}
         />
       </Modal>
     </>

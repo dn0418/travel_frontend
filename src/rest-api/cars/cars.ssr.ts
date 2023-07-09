@@ -6,10 +6,9 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   const { query } = context;
   const page = query["page"] || 1;
-  const driver = query["driver"] || '';
   const search = query["search"] || "";
 
-  const cars = await client.cars.all(page, driver, search);
+  const cars = await client.cars.all(page, search);
 
   return {
     props: {

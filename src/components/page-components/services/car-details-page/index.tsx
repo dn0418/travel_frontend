@@ -1,13 +1,15 @@
 // @flow strict
 import { Container } from "@mui/material";
-import { CarType, ReviewTypes } from "../../../../types";
+import { ReviewTypes } from "../../../../types";
+import { CarWithOutType } from "../../../../types/car-type";
+import CarPricingTable from "./car-pricing";
 import CarReviewSection from "./car-review-section";
 import CarSpecification from "./car-specification";
 import TopSuggestedCars from "./top-suggested";
 
 interface PropsType {
-  car: CarType,
-  cars: CarType[],
+  car: CarWithOutType,
+  cars: CarWithOutType[],
   reviews: ReviewTypes[]
 }
 
@@ -17,6 +19,7 @@ function CarDetailsUI({ car, cars, reviews }: PropsType) {
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
         <CarSpecification car={car} />
+        <CarPricingTable car={car} />
       </Container>
       <CarReviewSection
         car={car}

@@ -5,6 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../../types/page-props";
 import TransportCard from "../../../cards/car-card";
 import SectionTitle from "../../../common/section-title";
+import AirportTransport from "./airport-transport";
 
 
 function TransportUI({
@@ -35,7 +36,11 @@ function TransportUI({
         </Tabs>
       </div>
 
-      <div className='my-4 w-full md:my-8'>
+      <div className='w-full' hidden={currentTab.value !== "all"} >
+        <AirportTransport />
+      </div>
+
+      <div hidden={currentTab.value !== "without_driver"} className='my-4 w-full md:my-8'>
         <div className="flex items-center w-full justify-between">
           <SectionTitle title={currentTab.title} />
           <div className="">

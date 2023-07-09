@@ -44,8 +44,8 @@ class Client {
   }
 
   cars = {
-    all: (page?: any, driver?: any, search?: any) => HttpClient.get(
-      `${API_ENDPOINTS.CARS}?page=${page}&driver=${driver}&search=${search}`
+    all: (page?: any, search?: any) => HttpClient.get(
+      `${API_ENDPOINTS.CARS}?page=${page}&search=${search}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
   }

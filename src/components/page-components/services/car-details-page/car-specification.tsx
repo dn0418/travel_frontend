@@ -1,29 +1,19 @@
 // @flow strict
 
 import { Button, Rating } from '@mui/material';
-import Image from 'next/image';
-import { BiCalendar, BiHash } from 'react-icons/bi';
-import { CarType } from '../../../../types';
+import { BiHash } from 'react-icons/bi';
+import { CarWithOutType } from '../../../../types/car-type';
+import CarThumbnailSection from './thumbnail-section';
 
-function CarSpecification({ car }: { car: CarType }) {
+function CarSpecification({ car }: { car: CarWithOutType }) {
   return (
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
-        <Image
-          src={car.thumbnail}
-          height={340}
-          width={1000}
-          layout="responsive"
-          className="rounded-lg"
-          alt="tour-details"
-        />
+        <CarThumbnailSection car={car} />
         <div className="px-4 md:px-12">
           <h3 className="text-[#000000] text-xl font-semibold mt-0">
-            {car.name + ' - ' + car.model}
+            {car.name}
           </h3>
-          <p className="flex items-center gap-2">
-            <span className="text-sm text-[#5e5e5e]">Car No: {car.carNo}</span>
-          </p>
           {car.totalReview > 0 && <p className="flex items-center gap-2">
             <Rating
               max={1}
@@ -38,28 +28,45 @@ function CarSpecification({ car }: { car: CarType }) {
             </span>
           </p>}
           <p className="flex items-center gap-3">
-            <span className="text-sm text-[#5e5e5e] line-through">$ {car.price}</span>
+            <span className="text-sm text-[#5e5e5e]">Start From</span>
             <span className="text-base text-[#000000] font-bold">
-              $ {car.discountedPrice | car.price}
+              ${car.price}
             </span>
           </p>
-          <p className="flex items-center gap-4">
+          <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
             <BiHash className="text-base text-[#EDA592]  font-bold" />
-            <span className="text-base text-[#5e5e5e]">
-              {car.seatNo} seat {car.isDriver ? "with" : "without"} driver
+            <span className="font-medium">
+              Free Cancelation:
             </span>
+            <span>{car.freeCancellation ? 'Yes' : 'No'}</span>
           </p>
-          <p className="flex items-center gap-4">
-            <BiCalendar className="text-base text-[#EDA592]  font-bold" />
-            <span className="text-base text-[#5e5e5e]">
-              {new Date(car.startedDate).toDateString()}
+          <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+            <BiHash className="text-base text-[#EDA592]  font-bold" />
+            <span className="font-medium">
+              Pick Up:
             </span>
+            <span>{car.pickup}</span>
           </p>
-          <p className="flex items-center gap-4">
-            <BiCalendar className="text-base text-[#EDA592]  font-bold" />
-            <span className="text-base text-[#5e5e5e]">
-              {new Date(car.endDate).toDateString()}
+          <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+            <BiHash className="text-base text-[#EDA592]  font-bold" />
+            <span className="font-medium">
+              Fuel:
             </span>
+            <span>{car.fuel}</span>
+          </p>
+          <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+            <BiHash className="text-base text-[#EDA592]  font-bold" />
+            <span className="font-medium">
+              Year:
+            </span>
+            <span>{car.year}</span>
+          </p>
+          <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+            <BiHash className="text-base text-[#EDA592]  font-bold" />
+            <span className="font-medium">
+              No of Seats:
+            </span>
+            <span>{car.seatNo}</span>
           </p>
           <div className="md:mt-8">
             <Button
@@ -75,7 +82,6 @@ function CarSpecification({ car }: { car: CarType }) {
           </p>
         </div>
         <div>
-
         </div>
       </div>
     </div>
