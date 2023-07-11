@@ -6,17 +6,21 @@ import { TransportPageProps } from "../../../../types/page-props";
 import TransportCard from "../../../cards/car-card";
 import SectionTitle from "../../../common/section-title";
 import AirportTransport from "./airport-transport";
+import TransportWithDriver from "./with-driver";
 
 
 function TransportUI({
   handleTabChange,
   currentTab,
   tabs,
-  cars,
+  carsWithoutDriver,
   handleSearch,
   handlePageChange,
-  metaData
+  metaData,
+  carsWithDriver,
+  airportTransport
 }: TransportPageProps) {
+  // console.log(airportTransport)
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -37,7 +41,11 @@ function TransportUI({
       </div>
 
       <div className='w-full' hidden={currentTab.value !== "all"} >
-        <AirportTransport />
+        <AirportTransport airportTransport={airportTransport} />
+      </div>
+
+      <div className='w-full' hidden={currentTab.value !== "with_driver"} >
+        <TransportWithDriver carsWithDriver={carsWithDriver} />
       </div>
 
       <div hidden={currentTab.value !== "without_driver"} className='my-4 w-full md:my-8'>
@@ -60,7 +68,7 @@ function TransportUI({
         </div>
         <>
           {
-            cars.length === 0 ?
+            carsWithoutDriver.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
                   Cars data not found!
@@ -70,13 +78,13 @@ function TransportUI({
               :
               <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-                {cars?.map((car, i) => (
+                {carsWithoutDriver?.map((car, i) => (
                   <TransportCard car={car} key={i} />
                 ))}
               </div>
           }
           <div className='flex justify-center my-3 md:my-6'>
-            {cars.length > 0 && (
+            {carsWithoutDriver.length > 0 && (
               <Pagination
                 size='large'
                 onChange={handlePageChange}

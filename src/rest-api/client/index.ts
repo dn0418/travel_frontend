@@ -43,11 +43,19 @@ class Client {
     all: () => HttpClient.get(API_ENDPOINTS.TOURTYPE)
   }
 
-  cars = {
+  carWithoutDriver = {
     all: (page?: any, search?: any) => HttpClient.get(
-      `${API_ENDPOINTS.CARS}?page=${page}&search=${search}`
+      `${API_ENDPOINTS.CAR_WITHOUT_DRIVER}?page=${page}&search=${search}`
     ),
-    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CARS}/${id}`),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/${id}`),
+  }
+
+  carWithDriver = {
+    all: () => HttpClient.get(API_ENDPOINTS.CAR_WITH_DRIVER),
+  }
+
+  airportTransport = {
+    all: () => HttpClient.get(API_ENDPOINTS.AIRPORT_TRANSPORT),
   }
 
   thingToSee = {

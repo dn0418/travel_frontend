@@ -16,12 +16,13 @@ const tabs = [
 ];
 
 const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const cars = props.carsData?.data || [];
+  const carsWithoutDriver = props.carsData?.data || [];
+  const carWithDriver = props.carWithDriverData?.data[0] || {};
+  const airportTransport = props.airportTransportData?.data[0] || {};
   const metaData = props.carsData?.meta || {};
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const router = useRouter();
   const params = router.query;
-
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
@@ -32,10 +33,6 @@ const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
         pathname: '/services/transport',
       });
     }
-    // router.push({
-    //   pathname: '/services/transport',
-    //   query: params,
-    // });
 
     if (findTab) {
       setCurrentTab(findTab);
@@ -71,7 +68,9 @@ const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
         currentTab={currentTab}
         handleTabChange={handleTabChange}
         tabs={tabs}
-        cars={cars}
+        carsWithoutDriver={carsWithoutDriver}
+        carsWithDriver={carWithDriver}
+        airportTransport={airportTransport}
         handleSearch={handleSearch}
         handlePageChange={handlePageChange}
         metaData={metaData}

@@ -103,11 +103,11 @@ function RidePlanUI() {
 
     try {
       const res = await client.ridePlan.newRidePlan(payload);
-      console.log(res)
+      // console.log(res)
       setIsSuccess(true);
     } catch (error) {
       toast.error("Something went wrong");
-      console.log(error)
+      // console.log(error)
     } finally {
       setIsLoading(false);
     }

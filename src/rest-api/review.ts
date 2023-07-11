@@ -28,7 +28,7 @@ export const useNewReview = () => {
         progress: undefined,
         theme: 'colored',
       });
-      console.log(error.message);
+      // console.log(error.message);
     },
   });
 

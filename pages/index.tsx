@@ -11,7 +11,7 @@ const Home: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const tours = toursData.data;
   const destinations = destinationData.data;
 
-  console.log(destinations)
+  // console.log(destinations)
 
   const router = useRouter();
   const { locales } = router;

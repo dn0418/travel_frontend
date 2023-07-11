@@ -33,5 +33,24 @@ export interface CarWithOutType {
 }
 
 
+export interface CarWithDriverType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  description: string;
+  pricing: {
+    id: number;
+    duration: string;
+    price: number;
+  }[];
+  images: ImageType[];
+}
 
-
+export interface AirportTransportType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  description: string;
+  images: ImageType[];
+}

@@ -47,7 +47,7 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
   useEffect(() => {
     const findCurrentTab = tourTypes.find((tab: { value: string }) => tab.value === query["type"]);
     if (findCurrentTab) {
-      console.log(findCurrentTab.value);
+      // console.log(findCurrentTab.value);
     }
   }, [query]);
 

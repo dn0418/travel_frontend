@@ -113,7 +113,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
         handleChangeModal()
       } catch (error) {
         toast.error("Something went wrong");
-        console.log(error)
+        // console.log(error)
       } finally {
         setIsLoading(false);
       }
@@ -137,7 +137,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
           setSelectedImage(data?.Location)
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       } finally {
         setUploading(false);
       }

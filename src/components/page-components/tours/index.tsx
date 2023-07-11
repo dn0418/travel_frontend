@@ -16,7 +16,7 @@ function ToursPage({
   meta,
   handleSearch
 }: ToursPageProps) {
-  console.log(meta)
+  // console.log(meta)
 
   return (
     <Container className='my-8 flex flex-col items-center'>

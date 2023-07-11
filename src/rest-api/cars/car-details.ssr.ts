@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await client.cars.all();
+  const { data }: any = await client.carWithoutDriver.all();
 
   const paths = data?.map((item: CarType) => {
     return {
@@ -27,11 +27,11 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!;
-  const allCar = await client.cars.all(1, '', '');
+  const allCar = await client.carWithoutDriver.all(1);
 
   try {
-    await client.cars.all();
-    const carsDetails = await client.cars.getByID(id);
+    await client.carWithoutDriver.all();
+    const carsDetails = await client.carWithoutDriver.getByID(id);
     const reviews = await client.reviews.carReview(id);
 
     return {

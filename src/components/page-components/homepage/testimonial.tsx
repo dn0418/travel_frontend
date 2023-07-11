@@ -46,7 +46,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  console.log(reviews.length)
+  // console.log(reviews.length)
 
   const settings = {
     dots: false,

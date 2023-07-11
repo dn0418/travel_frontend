@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
-import { CarWithOutType } from "./car-type";
+import { AirportTransportType, CarWithDriverType, CarWithOutType } from "./car-type";
 import { DestinationTypes, FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
 import { TourType } from "./tour";
 
@@ -61,7 +61,9 @@ export interface TransportPageProps {
     title: string;
     value: string;
   }[];
-  cars: CarWithOutType[];
+  carsWithoutDriver: CarWithOutType[];
+  carsWithDriver: CarWithDriverType;
+  airportTransport: AirportTransportType;
   handleSearch: any;
   handlePageChange: any;
   metaData: any;
