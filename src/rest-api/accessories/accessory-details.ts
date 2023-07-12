@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     await client.accessories.all();
-    const carsDetails = await client.cars.getByID(id);
+    const carsDetails = await client.carWithoutDriver.getByID(id);
     const accessoryDetails = await client.accessories.getByID(id);
     const reviews = await client.reviews.accessoryReview(id);
 
