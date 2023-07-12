@@ -64,7 +64,9 @@ function TourCard({ tour }: { tour: TourType }) {
             <p className="text-base font-semibold my-2">${price}</p>
           </div>
           <Link href={`/tour-details/${tour.id}`}>
-            <Button className="rounded-lg" variant='contained'>See More</Button>
+            <Button
+              className="rounded-lg bg-black text-white"
+              variant='contained'>See More</Button>
           </Link>
         </div>
       </div>

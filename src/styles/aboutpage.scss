@@ -1,22 +1,6 @@
 @use "sass:map";
 
 /* <-----> About Page Styles <-----> */
-.pages-tabs {
-  .MuiButtonBase-root {
-    color: $text_black;
-  }
-
-  .MuiTabs-flexContainer {
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .Mui-selected {
-    background-color: $color_dark_green;
-    border-radius: 8px;
-    color: $text_white;
-  }
-}
 
 .armenia-tabs {
   .MuiButtonBase-root {
@@ -38,12 +22,12 @@
   }
 
   .Mui-selected {
-    background-color: $color_dark_green;
+    background-color: $color_dark_green !important;
     border-radius: 8px;
-    color: $text_white;
+    color: $text_white !important;
 
     & svg {
-      color: $text_white;
+      color: $text_white !important;
     }
   }
 }

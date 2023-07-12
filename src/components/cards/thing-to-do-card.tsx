@@ -57,7 +57,7 @@ function ThingToDoCard({ thing }: ThingToSeeCardProps) {
 
           <div className="flex justify-end items-end">
             <Link href={`/armenia/thing-to-do/${thing.id}`}>
-              <Button className="rounded-lg" variant='contained'>Submit</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>Submit</Button>
             </Link>
           </div>
         </div>

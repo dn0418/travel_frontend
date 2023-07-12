@@ -56,7 +56,7 @@ function TransportCard({ car }: TransportCardProps) {
           </p>
           <div className="flex justify-end items-center">
             <Link href={`/services/transport/${car.id}`}>
-              <Button className="rounded-lg" variant='contained'>See More</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>See More</Button>
             </Link>
           </div>
         </div>

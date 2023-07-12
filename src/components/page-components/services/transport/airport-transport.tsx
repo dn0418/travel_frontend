@@ -27,7 +27,7 @@ function AirportTransport(
       </div>
       <p className="">{airportTransport?.description}</p>
       <div className="flex mt-5 justify-center">
-        <Button variant="contained">Send Request</Button>
+        <Button className="bg-black text-white" variant="contained">Send Request</Button>
       </div>
     </div>
   );

@@ -39,7 +39,8 @@ function ReviewSection({ reviews, hotel }: PropsType) {
             <div className="my-5 md:my-8 flex justify-center items-center ">
               <Button
                 onClick={handleChangeModal}
-                className="px-24 min-w-[196px] py-3" variant="contained">
+                className="px-24 min-w-[196px] py-3 bg-black text-white"
+                variant="contained">
                 Add reviews
               </Button>
             </div>

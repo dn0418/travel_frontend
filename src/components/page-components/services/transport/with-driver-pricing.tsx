@@ -44,7 +44,7 @@ export default function CarWithDriverPricingTable(
         </TableContainer>
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
-            <Button variant='contained'>
+            <Button className='bg-black text-white' variant='contained'>
               Send Request
             </Button>
           </Link>

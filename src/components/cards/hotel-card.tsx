@@ -59,7 +59,7 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
           <p className="text-sm  text-[#5e5e5e] line-clamp-3">{hotel.shortDescription}</p>
           <div className="flex justify-end items-center">
             <Link href={`/services/hotels/${hotel.id}`}>
-              <Button className="rounded-lg" variant='contained'>Submit</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>Submit</Button>
             </Link>
           </div>
         </div>

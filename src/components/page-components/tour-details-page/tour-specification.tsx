@@ -99,7 +99,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
       </p>
       <div className="md:mt-8">
         <Button
-          className="px-8 md:px-12 rounded-lg"
+          className="px-8 md:px-12 rounded-lg bg-black text-white"
           variant="contained">Submit</Button>
       </div>
     </div>

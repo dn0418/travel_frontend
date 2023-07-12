@@ -63,7 +63,7 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
           </div>
           <div className="flex justify-end items-center">
             <Link href={`/services/tour-accessories/${accessory.id}`}>
-              <Button className="rounded-lg" variant='contained'>See More</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>See More</Button>
             </Link>
           </div>
         </div>
