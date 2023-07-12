@@ -29,7 +29,7 @@ function AboutUsUI({
           <Tab value='review' label='Review' />
         </Tabs>
       </div>
-      <div hidden={tabIndex !== "review"} className='my-4 md:my-8'>
+      <div hidden={tabIndex !== "review"} className='w-full my-4 md:my-8'>
         <ReviewsSection reviewsPagination={reviewsPagination} reviews={reviews} />
       </div>
     </Container>

@@ -1,9 +1,4 @@
-$color_2: #eda592;
-$font-family_1: "Poppins", sans-serif;
-$background-color_2: #ffeae4;
-$background-color_3: #000000;
-$background-color_4: rgba(237, 165, 146, 0.2);
-
+@use "sass:map";
 /* <-----> React Date Picker <-----> */
 
 .regular-shadow {
@@ -13,7 +8,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
 /* <-----> MUI Styles <-----> */
 .MuiPagination-ul {
   .Mui-selected {
-    background-color: $background-color_3;
+    background-color: $bg_black;
     color: $text_white;
   }
 }
@@ -26,7 +21,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
   text-align: center;
   padding: 8px 32px !important;
   &:hover {
-    background-color: $background-color_4 !important;
+    background-color: $bg_gray_237 !important;
   }
 }
 
@@ -53,19 +48,19 @@ $background-color_4: rgba(237, 165, 146, 0.2);
 }
 
 .MuiButton-containedPrimary {
-  background-color: #000000;
+  background-color: $bg_black;
 
   &:hover {
-    background-color: #000000ce;
+    background-color: rgba(0, 0, 0, 0.808);
   }
 }
 
 .MuiButton-outlinedPrimary {
-  color: #000000;
-  border-color: #000000;
+  color: $bg_black;
+  border-color: $bg_black;
 
   &:hover {
-    border-color: #000000;
+    border-color: $bg_black;
   }
 }
 
@@ -83,4 +78,32 @@ $background-color_4: rgba(237, 165, 146, 0.2);
 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
   min-height: fit-content;
   border-radius: 8px;
+}
+
+.btn-regular {
+  color: $text_white;
+  background-color: #3bc177;
+  border-color: #3bc177;
+
+  &:hover,
+  &:focus {
+    color: #3bc177;
+    background-color: $bg_white;
+    border-color: #3bc177;
+    font-weight: 500;
+  }
+
+  &:disabled {
+    color: $text_white;
+    background-color: #3bc177;
+    filter: opacity(90%);
+  }
+
+  &:focus + .btn-regular,
+  &:focus {
+    color: $text_white;
+    background-color: #3bc177;
+    border-color: #3bc177;
+    box-shadow: #3bc177ba;
+  }
 }

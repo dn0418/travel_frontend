@@ -1,4 +1,4 @@
-$background-color_1: #6f7531;
+@use "sass:map";
 
 /* <-----> About Page Styles <-----> */
 .pages-tabs {
@@ -12,7 +12,7 @@ $background-color_1: #6f7531;
   }
 
   .Mui-selected {
-    background-color: $background-color_1;
+    background-color: $color_dark_green;
     border-radius: 8px;
     color: $text_white;
   }
@@ -38,7 +38,7 @@ $background-color_1: #6f7531;
   }
 
   .Mui-selected {
-    background-color: $background-color_1;
+    background-color: $color_dark_green;
     border-radius: 8px;
     color: $text_white;
 

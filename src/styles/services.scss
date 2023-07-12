@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Hotel Service page styles
 .hotels-page {
   & .hotel-filter-section {
@@ -15,7 +17,7 @@
       font-weight: 600;
       font-size: 14px;
       font-family: "Poppins", sans-serif;
-      color: #000000;
+      color: $bg_black;
     }
   }
 }

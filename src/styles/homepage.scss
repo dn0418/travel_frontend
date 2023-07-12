@@ -1,21 +1,17 @@
-$color_2: #eda592;
-$font-family_1: "Poppins", sans-serif;
-$background-color_2: #ffeae4;
-$background-color_3: #000000;
-$background-color_4: rgba(237, 165, 146, 0.2);
+@use "sass:map";
 
 /* <-----> HomePage Styles <----> */
 .home-quality-section {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   div {
     &:nth-child(2) {
-      border-left: 1px solid #eda592;
+      border-left: 1px solid $color_primary_pink;
     }
     &:nth-child(3) {
-      border-left: 1px solid #eda592;
+      border-left: 1px solid $color_primary_pink;
     }
     &:nth-child(4) {
-      border-left: 1px solid #eda592;
+      border-left: 1px solid $color_primary_pink;
     }
   }
 }
@@ -37,7 +33,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
       font-size: 16px;
     }
     border: none;
-    background: #ffffff;
+    background: $bg_white;
     border-radius: 12px;
   }
 
@@ -47,7 +43,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
   }
 
   & .react-datepicker-year-header {
-    color: $color_2 !important;
+    color: $color_primary_pink !important;
   }
 
   & .react-datepicker__month-container {
@@ -64,26 +60,26 @@ $background-color_4: rgba(237, 165, 146, 0.2);
   }
 
   & .react-datepicker__month-text {
-    font-family: $font-family_1;
+    font-family: $font_family_poppins;
     padding: 8px 16px;
     font-size: 14px;
     text-align: center;
   }
 
   & .react-datepicker__day--keyboard-selected {
-    background-color: $background-color_2 !important;
+    background-color: $bg_peach !important;
   }
 
   & .react-datepicker__month-text--keyboard-selected {
-    background-color: $background-color_2 !important;
+    background-color: $bg_peach !important;
   }
 
   & .react-datepicker__quarter-text--keyboard-selected {
-    background-color: $background-color_2 !important;
+    background-color: $bg_peach !important;
   }
 
   & .react-datepicker__year-text--keyboard-selected {
-    background-color: $background-color_2 !important;
+    background-color: $bg_peach !important;
   }
 }
 
@@ -105,7 +101,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
     z-index: 9;
     top: 60%;
     background-color: $bg_black;
-    background: #000000;
+    background: $bg_black;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
     &:before {
@@ -119,7 +115,7 @@ $background-color_4: rgba(237, 165, 146, 0.2);
     z-index: 9;
     top: 60%;
     background-color: $bg_black;
-    background: #000000;
+    background: $bg_black;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
     &:before {
