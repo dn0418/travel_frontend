@@ -11,11 +11,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { BiMenu } from 'react-icons/bi';
-import { BsHash } from 'react-icons/bs';
+import { BsFillCaretRightFill } from 'react-icons/bs';
 import { MdDashboard } from 'react-icons/md';
 
 const dashboardLinks = [
@@ -26,9 +25,24 @@ const dashboardLinks = [
   },
   {
     title: 'Tours',
-    icon: <BsHash />,
+    icon: <BsFillCaretRightFill />,
     path: '/admin/tours'
-  }
+  },
+  {
+    title: 'Hotels',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/hotels'
+  },
+  {
+    title: 'Reviews',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/reviews'
+  },
+  {
+    title: 'Transports',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/transports'
+  },
 ]
 
 const drawerWidth = 240;
@@ -83,6 +97,8 @@ export default function DashboardLayout(props: Props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          backgroundColor: '#fff',
+          boxShadow: '1px 1px 1px #ccc'
         }}
       >
         <Toolbar>
@@ -91,13 +107,14 @@ export default function DashboardLayout(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{
+              mr: 2,
+              display: { sm: 'none' },
+              backgroundColor: '#6f7531',
+            }}
           >
             <BiMenu />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
         </Toolbar>
       </AppBar>
       <Box
@@ -134,7 +151,7 @@ export default function DashboardLayout(props: Props) {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, px: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
         {children}
