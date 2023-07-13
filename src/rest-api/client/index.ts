@@ -5,6 +5,8 @@ class Client {
   reviews = {
     all: (page: any, limit: any) =>
       HttpClient.get(`${API_ENDPOINTS.REVIEWS}?page=${page}&limit=${limit}`),
+    adminReviews: (page: any, limit: any) =>
+      HttpClient.get(`${API_ENDPOINTS.REVIEWS}/admin-reviews?page=${page}&limit=${limit}`),
     newReview: (review: any) => HttpClient.post(API_ENDPOINTS.NEW_REVIEWS, review),
     carReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/car/${id}`),
     thingToSeeReview: (id: any) =>
@@ -16,7 +18,9 @@ class Client {
     tourReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/tour/${id}`),
     hotelReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/hotel/${id}`),
     accessoryReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/accessory/${id}`),
-    deleteReview: (id: any) => HttpClient.delete(`${API_ENDPOINTS.REVIEWS}/${id}`),
+    deleteReview: (id: any) => HttpClient.delete(`${API_ENDPOINTS.REVIEWS}/delete/${id}`),
+    activeReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/active/${id}`),
+    updateReview: (id: any, review: any) => HttpClient.put(`${API_ENDPOINTS.REVIEWS}/update/${id}`, review),
   };
 
   ridePlan = {

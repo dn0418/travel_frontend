@@ -30,6 +30,7 @@ export interface ReviewTypes {
   profilePhoto: string;
   rating: number;
   message: string;
+  isActive: boolean;
 }
 
 export interface ImageType {
