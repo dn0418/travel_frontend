@@ -6,8 +6,8 @@ import { NextPageWithLayout } from "../../src/types/page-props";
 
 const Dashboard: NextPageWithLayout = () => {
   return (
-    <div>
-      <h1>Hello</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1>Welcome to Dashboard</h1>
     </div>
   );
 };

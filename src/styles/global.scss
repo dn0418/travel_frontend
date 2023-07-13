@@ -87,3 +87,9 @@
   min-height: fit-content;
   border-radius: 8px;
 }
+
+.dashboard-layout {
+  .Mui-selected {
+    background-color: $bg_peach !important;
+  }
+}

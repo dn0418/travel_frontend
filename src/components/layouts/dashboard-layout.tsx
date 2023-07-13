@@ -2,50 +2,17 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { BiMenu } from 'react-icons/bi';
-import { BsFillCaretRightFill } from 'react-icons/bs';
-import { MdDashboard } from 'react-icons/md';
+import SidebarItems from './sidebar-items';
 
-const dashboardLinks = [
-  {
-    title: 'Dashboard',
-    icon: <MdDashboard />,
-    path: '/admin/dashboard'
-  },
-  {
-    title: 'Tours',
-    icon: <BsFillCaretRightFill />,
-    path: '/admin/tours'
-  },
-  {
-    title: 'Hotels',
-    icon: <BsFillCaretRightFill />,
-    path: '/admin/hotels'
-  },
-  {
-    title: 'Reviews',
-    icon: <BsFillCaretRightFill />,
-    path: '/admin/reviews'
-  },
-  {
-    title: 'Transports',
-    icon: <BsFillCaretRightFill />,
-    path: '/admin/transports'
-  },
-]
 
-const drawerWidth = 240;
+
+const drawerWidth = 260;
 
 interface Props {
   /**
@@ -64,28 +31,6 @@ export default function DashboardLayout(props: Props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const drawer = (
-    <div>
-      <Toolbar>
-        Logo
-      </Toolbar>
-      <Divider />
-      <List>
-        {dashboardLinks.map((item, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton
-              onClick={() => router.push(item.path)} selected={router.pathname === item.path}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.title} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -136,7 +81,7 @@ export default function DashboardLayout(props: Props) {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          {drawer}
+          <SidebarItems />
         </Drawer>
         <Drawer
           variant="permanent"
@@ -146,7 +91,7 @@ export default function DashboardLayout(props: Props) {
           }}
           open
         >
-          {drawer}
+          <SidebarItems />
         </Drawer>
       </Box>
       <Box
