@@ -256,6 +256,9 @@ function RidePlanForm({
         <TextField
           className="text-area md:col-span-2"
           label='Add your comment'
+          multiline
+          maxRows={8}
+          minRows={4}
           onChange={(e) => handleOnChangeInputData('note', e.target.value)}
         />
         <div className="md:col-span-2 flex justify-end gap-5">
