@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Button } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { AirportTransportType } from "../../../../types/car-type";
 
 

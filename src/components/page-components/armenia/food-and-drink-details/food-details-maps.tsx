@@ -1,6 +1,6 @@
 // @flow strict
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FoodAndDrinksType } from "../../../../types";
 
 function FoodAndSeeDetailsMaps({ thing }: { thing: FoodAndDrinksType }) {

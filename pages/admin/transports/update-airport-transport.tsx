@@ -2,7 +2,7 @@
 
 import { Button, CircularProgress, Container } from "@mui/material";
 import { InferGetServerSidePropsType } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { MdCloudUpload } from "react-icons/md";
@@ -75,7 +75,7 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
             <Image
               key={i}
               width={1000}
-              height={200}
+              height={500}
               src={image?.url}
               className="rounded-lg"
               alt="airport transport"

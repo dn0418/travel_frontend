@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Button, Rating } from '@mui/material';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { BiCalendar } from 'react-icons/bi';
 import { TourType } from '../../types/tour';
@@ -25,7 +25,7 @@ function TourCard({ tour }: { tour: TourType }) {
         alt={title}
         className="rounded-lg"
         width={600}
-        height={220}
+        height={350}
         layout="responsive"
       />
       <div className="p-3">

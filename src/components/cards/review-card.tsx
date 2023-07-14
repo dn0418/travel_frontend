@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Card, Rating } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { ReviewTypes } from "../../types";
 
 type ReviewCardProps = {

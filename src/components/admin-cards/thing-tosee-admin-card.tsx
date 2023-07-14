@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Button, Card, Rating } from '@mui/material';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
@@ -21,7 +21,7 @@ function ThingToSeeAdminCard({ thing }: ThingToSeeCardProps) {
           alt={thing.name}
           className="rounded-lg"
           width={600}
-          height={220}
+          height={350}
           layout="responsive"
         />
         <div className="p-3">

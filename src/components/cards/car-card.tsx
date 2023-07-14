@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Button, Card, Rating } from '@mui/material';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { CarWithOutType } from '../../types/car-type';
 
@@ -12,14 +12,14 @@ interface TransportCardProps {
 function TransportCard({ car }: TransportCardProps) {
 
   return (
-    <Card className="regular-shadow rounded-lg">
-      <div className="bg-white p-3">
+    <Card className="regular-shadow  w-full h-full rounded-lg">
+      <div className="bg-white p-3  w-full h-full">
         <Image
           src={car.thumbnail}
           alt={car.name}
-          className="rounded-lg"
+          className="rounded-lg w-full h-full"
           width={600}
-          height={220}
+          height={350}
           layout="responsive"
         />
         <div className="p-3">

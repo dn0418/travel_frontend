@@ -1,5 +1,9 @@
 @use "sass:map";
 
+.homepage-hero {
+  background-image: url("/public/bus_header.gif");
+}
+
 /* <-----> HomePage Styles <----> */
 .home-quality-section {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);

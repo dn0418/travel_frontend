@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Container } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { paymentMethod } from "../../../utils/data/payment-method-data";
 import SectionTitle from "../../common/section-title";
 

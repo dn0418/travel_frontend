@@ -1,6 +1,6 @@
 // @flow strict
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { TourType } from "../../../types/tour";
 
 function TourDetailsMaps({ tour }: { tour: TourType }) {

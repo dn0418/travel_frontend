@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Button } from "@mui/material";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
@@ -60,21 +60,21 @@ function HotelThumbnailSection({ hotel }: { hotel: HotelType }) {
     <div className="thumbnails-section">
       <Image
         src={thumbnail}
-        height={340}
+        height={600}
         width={1000}
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />
       {
         images.length > 3 ? <Slider
-          className='flex'
+          className='flex mt-5'
           afterChange={(e) => setCurrentSlide(e)}
           {...settings}>
           {images.map((img, i) => (
             <Image
               key={i}
               src={img.url}
-              height={80}
+              height={100}
               width={200}
               layout="responsive"
               className="rounded-lg"
@@ -82,12 +82,12 @@ function HotelThumbnailSection({ hotel }: { hotel: HotelType }) {
           ))}
         </Slider>
           :
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 mt-5">
             {images.map((img, i) => (
               <Image
                 key={i}
                 src={img.url}
-                height={80}
+                height={100}
                 width={200}
                 layout="responsive"
                 className="rounded-lg"

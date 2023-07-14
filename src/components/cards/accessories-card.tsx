@@ -1,7 +1,7 @@
 // @flow strict
 
 import { Button, Card, Rating } from '@mui/material';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { TourAccessoryType } from '../../types';
 
@@ -19,7 +19,7 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
           alt={accessory.title}
           className="rounded-lg"
           width={600}
-          height={220}
+          height={350}
           layout="responsive"
         />
         <div className="p-3 flex flex-col justify-between">

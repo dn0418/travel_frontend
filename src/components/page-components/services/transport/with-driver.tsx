@@ -1,6 +1,6 @@
 // @flow strict
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { CarWithDriverType } from "../../../../types/car-type";
 import CarWithDriverPricingTable from "./with-driver-pricing";
 
