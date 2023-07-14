@@ -89,7 +89,13 @@
 }
 
 .dashboard-layout {
-  .Mui-selected {
+  & .Mui-selected {
+    background-color: $bg_peach !important;
+  }
+}
+
+.header-layout {
+  & .Mui-selected {
     background-color: $bg_peach !important;
   }
 }

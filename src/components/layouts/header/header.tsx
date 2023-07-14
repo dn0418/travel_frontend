@@ -21,7 +21,7 @@ export default function Header(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Container sx={{ display: "flex" }}>
+    <Container sx={{ display: "flex" }} className="header-layout">
       <Navbar handleDrawerToggle={handleDrawerToggle} />
       <SideNavbar
         mobileOpen={mobileOpen}

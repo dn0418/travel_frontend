@@ -43,6 +43,11 @@ class Client {
       days: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}&month=${month}&destination=${destination}&days=${days}`),
   }
 
+  images = {
+    deleteImage: (id: any) => HttpClient.delete(`${API_ENDPOINTS.IMAGES}/delete/${id}`),
+  }
+
+
   tourType = {
     all: () => HttpClient.get(API_ENDPOINTS.TOURTYPE)
   }

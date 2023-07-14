@@ -2,11 +2,11 @@
 
 import { Button, CircularProgress, Container } from "@mui/material";
 import { InferGetServerSidePropsType } from "next";
-import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { MdCloudUpload } from "react-icons/md";
 import { toast } from "react-toastify";
+import AdminImage from "../../../src/components/admin-cards/admin-image";
 import SectionTitle from "../../../src/components/common/section-title";
 import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
 import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";
@@ -72,14 +72,10 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
         {
           images?.length &&
           images.map((image: ImageType, i: number) => (
-            <Image
+            <AdminImage
               key={i}
-              width={1000}
-              height={500}
-              src={image?.url}
-              className="rounded-lg"
-              alt="airport transport"
-              layout="responsive"
+              image={image}
+              setImages={setImages}
             />
           ))
         }
