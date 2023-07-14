@@ -15,8 +15,10 @@ import Toolbar from "@mui/material/Toolbar";
 import classNames from "classnames";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
+import { useGlobalContext } from "../../../context/global-context";
 import { NavLinkTypes } from "../../../types";
 import { navData } from "../../../utils/data/navbar-data";
 import logo from "/public/Logo.png";
@@ -28,9 +30,11 @@ interface StateTypes {
 }
 
 export default function Navbar({ handleDrawerToggle }: any) {
+  const { currencyValue, handleGlobalCurrencyChange } = useGlobalContext();
   const [anchorEl, setAnchorEl] = useState<StateTypes | null>(null);
-  const [currency, setCurrency] = useState('dollar');
-  const [language, setLanguage] = useState('en-US');
+  const router = useRouter();
+  const { locale } = router;
+  const { pathname, query, asPath } = router;
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -50,13 +54,13 @@ export default function Navbar({ handleDrawerToggle }: any) {
   };
 
   const handleChangeCurrency = (event: SelectChangeEvent<string>) => {
-    setCurrency(event.target.value);
+    handleGlobalCurrencyChange(event.target.value);
   }
+
 
   const handleChangeLanguage = (event: SelectChangeEvent<string>) => {
-    setLanguage(event.target.value);
+    router.push({ pathname, query }, asPath, { locale: event.target.value })
   }
-
 
   return (
     <>
@@ -137,7 +141,7 @@ export default function Navbar({ handleDrawerToggle }: any) {
             <Box className='hidden lg:flex items-center justify-end gap-5'>
               <FormControl>
                 <Select
-                  value={language}
+                  value={locale}
                   onChange={handleChangeLanguage}
                   size='small'
                   defaultValue=''
@@ -150,7 +154,7 @@ export default function Navbar({ handleDrawerToggle }: any) {
               </FormControl>
               <FormControl>
                 <Select
-                  value={currency}
+                  value={currencyValue || 'dollar'}
                   className='p-0'
                   size='small'
                   onChange={handleChangeCurrency}

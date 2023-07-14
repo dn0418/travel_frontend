@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 import ChatIcon from "../src/components/call-back/chat";
+import { GlobalContextProvider } from "../src/context/global-context";
 import QueryProvider from "../src/rest-api/query-provider";
 import "../src/styles/_app.scss";
 import defaultTheme from "../src/themes/defaultTheme";
@@ -33,15 +34,17 @@ function MyApp(props: MyAppProps) {
 
   return (
     <QueryProvider pageProps={pageProps}>
-      <Head>
-        <meta name='viewport' content='initial-scale=1, width=device-width' />
-      </Head>
-      <ThemeProvider theme={defaultTheme}>
-        <CssBaseline />
-        <ChatIcon />
-        {getLayout(<Component {...pageProps} />)}
-      </ThemeProvider>
-      <ToastContainer />
+      <GlobalContextProvider>
+        <Head>
+          <meta name='viewport' content='initial-scale=1, width=device-width' />
+        </Head>
+        <ThemeProvider theme={defaultTheme}>
+          <CssBaseline />
+          <ChatIcon />
+          {getLayout(<Component {...pageProps} />)}
+        </ThemeProvider>
+        <ToastContainer />
+      </GlobalContextProvider>
     </QueryProvider>
   );
 }
