@@ -141,7 +141,6 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
       } finally {
         setUploading(false);
       }
-
     };
 
     const formStyles = {

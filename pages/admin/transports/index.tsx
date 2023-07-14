@@ -1,13 +1,13 @@
 // @flow strict
 
-import DashboardLayout from "../../src/components/layouts/dashboard-layout";
-import { NextPageWithLayout } from "../../src/types/page-props";
+import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
+import { NextPageWithLayout } from "../../../src/types/page-props";
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import TransportDashboard from "../../src/components/admin-components/transport";
-import { getServerSideProps } from "../../src/rest-api/cars/cars.ssr";
+import TransportDashboard from "../../../src/components/admin-components/transport";
+import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";
 export { getServerSideProps };
 
 const tabs = [
@@ -27,11 +27,10 @@ const Transports: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
-    // params['page'] = '1';
 
     if (newValue === "all") {
       router.push({
-        pathname: '/services/transport',
+        pathname: '/admin/transports',
       });
     }
 
@@ -44,7 +43,7 @@ const Transports: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     params['page'] = value.toString();
 
     router.push({
-      pathname: '/services/transport',
+      pathname: '/admin/transports',
       query: params,
     });
   }
@@ -58,7 +57,7 @@ const Transports: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     params['page'] = '1';
 
     router.push({
-      pathname: '/services/transport',
+      pathname: '/admin/transports',
       query: params,
     });
   }

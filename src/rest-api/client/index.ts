@@ -60,6 +60,7 @@ class Client {
 
   airportTransport = {
     all: () => HttpClient.get(API_ENDPOINTS.AIRPORT_TRANSPORT),
+    newImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.AIRPORT_TRANSPORT}/create/image`, data),
   }
 
   thingToSee = {

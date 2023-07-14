@@ -6,6 +6,7 @@ import {
   MenuList,
   Popover,
   Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -28,6 +29,8 @@ interface StateTypes {
 
 export default function Navbar({ handleDrawerToggle }: any) {
   const [anchorEl, setAnchorEl] = useState<StateTypes | null>(null);
+  const [currency, setCurrency] = useState('dollar');
+  const [language, setLanguage] = useState('en-US');
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -45,6 +48,15 @@ export default function Navbar({ handleDrawerToggle }: any) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleChangeCurrency = (event: SelectChangeEvent<string>) => {
+    setCurrency(event.target.value);
+  }
+
+  const handleChangeLanguage = (event: SelectChangeEvent<string>) => {
+    setLanguage(event.target.value);
+  }
+
 
   return (
     <>
@@ -125,27 +137,29 @@ export default function Navbar({ handleDrawerToggle }: any) {
             <Box className='hidden lg:flex items-center justify-end gap-5'>
               <FormControl>
                 <Select
-                  value={""}
-                  // onChange={handleChange}
+                  value={language}
+                  onChange={handleChangeLanguage}
                   size='small'
                   defaultValue=''
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}>
-                  <MenuItem value=''>Eng</MenuItem>
-                  <MenuItem value={10}>Bengali</MenuItem>
+                  <MenuItem value='en-US'>English</MenuItem>
+                  <MenuItem value='hy'>Armenian</MenuItem>
+                  <MenuItem value='ru'>Russian</MenuItem>
                 </Select>
               </FormControl>
               <FormControl>
                 <Select
-                  value={""}
+                  value={currency}
                   className='p-0'
                   size='small'
-                  // onChange={handleChange}
+                  onChange={handleChangeCurrency}
                   defaultValue=''
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}>
-                  <MenuItem value=''>$ Dollar</MenuItem>
-                  <MenuItem value={10}>Bengali</MenuItem>
+                  <MenuItem value='dollar'>$ Dollar</MenuItem>
+                  <MenuItem value='ruble'>₽ Ruble</MenuItem>
+                  <MenuItem value='amd'>֏AMD</MenuItem>
                 </Select>
               </FormControl>
             </Box>

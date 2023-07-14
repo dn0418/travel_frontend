@@ -3,11 +3,11 @@
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ToursDashboard from "../../src/components/admin-components/tours";
-import DashboardLayout from "../../src/components/layouts/dashboard-layout";
-import { getServerSideProps } from "../../src/rest-api/tours/tours.ssr";
-import { NextPageWithLayout } from "../../src/types/page-props";
-import { tourTypes } from "../../src/utils/data/tours-types";
+import ToursDashboard from "../../../src/components/admin-components/tours";
+import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
+import { getServerSideProps } from "../../../src/rest-api/tours/tours.ssr";
+import { NextPageWithLayout } from "../../../src/types/page-props";
+import { tourTypes } from "../../../src/utils/data/tours-types";
 export { getServerSideProps };
 
 

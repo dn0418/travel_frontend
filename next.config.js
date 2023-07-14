@@ -6,7 +6,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   i18n: {
-    locales: ['en-US', 'fr', 'nl-NL'],
+    locales: ['en-US', 'hy', 'ru'],
     defaultLocale: 'en-US',
   },
   images: {

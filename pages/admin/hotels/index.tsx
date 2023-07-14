@@ -2,10 +2,10 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import HotelDashboard from "../../src/components/admin-components/hotels";
-import DashboardLayout from "../../src/components/layouts/dashboard-layout";
-import { getServerSideProps } from "../../src/rest-api/hotels/hotels.ssr";
-import { NextPageWithLayout } from "../../src/types/page-props";
+import HotelDashboard from "../../../src/components/admin-components/hotels";
+import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
+import { getServerSideProps } from "../../../src/rest-api/hotels/hotels.ssr";
+import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
 const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
