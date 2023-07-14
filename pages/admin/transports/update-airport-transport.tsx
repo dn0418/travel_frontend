@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Button, CircularProgress, Container } from "@mui/material";
+import { Button, CircularProgress, Container, TextField } from "@mui/material";
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -20,9 +20,13 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
   const airportTransport = props.airportTransportData?.data[0] || {};
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[]>(airportTransport?.images || []);
-
-  console.log(airportTransport)
+  const [inputData, setInputData] = useState({
+    description: airportTransport.description,
+    description_hy: airportTransport.description_hy,
+    description_ru: airportTransport.description_ru,
+  })
 
   const handleImageChange = async (event: any) => {
     setUploading(true);
@@ -58,8 +62,31 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
     }
   };
 
+  const handleChangeInput = (name: string, value: string) => {
+    setInputData({
+      ...inputData,
+      [name]: value,
+    })
+  }
+
+  const handleUpdate = async () => {
+    setIsLoading(true);
+    try {
+      const response = await client.airportTransport.update(
+        airportTransport.id,
+        { ...inputData }
+      );
+      toast.success('Airport transfers updated successfully!');
+      router.back();
+    } catch (error) {
+      toast.error('Something went wrong!');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
-    <Container className='flex my-5 lg:mt-8 flex-col items-center'>
+    <Container className='my-5 lg:my-8 pb-5'>
       <div className="flex items-center w-full justify-between">
         <SectionTitle title="Update Airport Transfers" />
         <Button onClick={() => router.back()} className="shadow">
@@ -67,6 +94,7 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
         </Button>
       </div>
 
+      <h2 className="mb-2">Images</h2>
       <div
         className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-3 lg:grid-cols-4  gap-4">
         {
@@ -85,7 +113,7 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
           {
             uploading ?
               <div className="w-16 h-16"><CircularProgress /></div> :
-              <div className="flex items-center justify-center flex-col">
+              <div className="flex items-center justify-center flex-col py-8">
                 <MdCloudUpload className="text-2xl" />
                 <p className="my-2">
                   Choose an <span className="text-[#6f7531]">Image</span> to upload.
@@ -100,7 +128,50 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
           />
         </div>
       </div>
-
+      <h2 className="mb-2">Description</h2>
+      <div className="w-full">
+        <TextField
+          className="w-full"
+          value={inputData.description}
+          multiline
+          maxRows={8}
+          minRows={6}
+          onChange={(e) => handleChangeInput('description', e.target.value)}
+          placeholder="Description in English"
+        />
+      </div>
+      <h2 className="mb-2">Description (Armenian)</h2>
+      <div className="w-full">
+        <TextField
+          className="w-full"
+          value={inputData.description_hy}
+          multiline
+          maxRows={8}
+          minRows={6}
+          onChange={(e) => handleChangeInput('description_hy', e.target.value)}
+          placeholder="Description in Armenian"
+        />
+      </div>
+      <h2 className="mb-2">Description (Russian)</h2>
+      <div className="w-full">
+        <TextField
+          className="w-full"
+          value={inputData.description_ru}
+          multiline
+          maxRows={8}
+          minRows={6}
+          onChange={(e) => handleChangeInput('description_ru', e.target.value)}
+          placeholder="Description in Russian"
+        />
+      </div>
+      <div className="my-5 md:my-8 flex justify-start">
+        <Button
+          onClick={handleUpdate}
+          className="bg-black text-white shadow px-8"
+          disabled={isLoading}>
+          {isLoading ? <CircularProgress size={16} /> : 'Update Now'}
+        </Button>
+      </div>
     </Container >
   );
 };

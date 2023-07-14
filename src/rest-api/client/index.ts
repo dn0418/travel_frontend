@@ -66,7 +66,9 @@ class Client {
   airportTransport = {
     all: () => HttpClient.get(API_ENDPOINTS.AIRPORT_TRANSPORT),
     newImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.AIRPORT_TRANSPORT}/create/image`, data),
+    update: (id: number, data: any) => HttpClient.put(`${API_ENDPOINTS.AIRPORT_TRANSPORT}/update/${id}`, data),
   }
+
 
   thingToSee = {
     all: (page?: any, type?: any, search?: any) => HttpClient.get(

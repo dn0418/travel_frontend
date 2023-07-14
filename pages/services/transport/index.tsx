@@ -22,6 +22,7 @@ const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
   const metaData = props.carsData?.meta || {};
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const router = useRouter();
+  const locale = router.locale;
   const params = router.query;
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {

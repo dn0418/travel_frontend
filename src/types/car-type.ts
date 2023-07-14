@@ -52,5 +52,7 @@ export interface AirportTransportType {
   createdAt: string;
   updatedAt: string;
   description: string;
+  description_ru: string;
+  description_hy: string;
   images: ImageType[];
 }
