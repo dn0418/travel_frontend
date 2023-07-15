@@ -17,11 +17,13 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   const meta = toursData?.meta;
   const [title, setTitle] = useState('Tours')
   const [tabIndex, setTabIndex] = useState('active_tours');
+  const [typeItems, setTypeItems] = useState(tourTypes.en)
+
   const router = useRouter()
-  const { pathname, query } = router;
+  const { pathname, query, locale } = router;
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    const findCurrentTab = tourTypes.find((tab: { value: string }) => tab.value === newValue);
+    const findCurrentTab = typeItems.find((tab: { value: string }) => tab.value === newValue);
 
     query['type'] = newValue;
     delete query['page'];
@@ -46,7 +48,6 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
     });
   }
 
-
   const handleSearch = (searchText: string) => {
     if (searchText) {
       query['search'] = searchText;
@@ -62,19 +63,30 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   }
 
   useEffect(() => {
-    const findCurrentTab = tourTypes.find((tab: { value: string }) => tab.value === query["type"]);
+    const findCurrentTab = typeItems.find(
+      (tab: { value: string }) => tab.value === query["type"]);
     if (findCurrentTab) {
       setTabIndex(findCurrentTab.value);
       setTitle(findCurrentTab.name);
     }
-  }, [query]);
+  }, [query, typeItems]);
+
+  useEffect(() => {
+    if (locale && locale === 'ru') {
+      setTypeItems(tourTypes.ru);
+    } else if (locale && locale === 'hy') {
+      setTypeItems(tourTypes.hy);
+    } else {
+      setTypeItems(tourTypes.en);
+    }
+  }, [locale])
 
   return (
     <div>
       <ToursPage
         tabIndex={tabIndex}
         handleTabChange={handleTabChange}
-        tabs={tourTypes}
+        tabs={typeItems}
         title={title}
         tours={tours}
         handlePageChange={handlePageChange}

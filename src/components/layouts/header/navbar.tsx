@@ -19,8 +19,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { useGlobalContext } from "../../../context/global-context";
-import { NavLinkTypes } from "../../../types";
-import { navData } from "../../../utils/data/navbar-data";
+import { NavDataTypes, NavLinkTypes } from "../../../types";
 import logo from "/public/Logo.png";
 
 interface StateTypes {
@@ -29,7 +28,12 @@ interface StateTypes {
   id: number;
 }
 
-export default function Navbar({ handleDrawerToggle }: any) {
+interface PropTypes {
+  handleDrawerToggle: () => void;
+  headerItems: NavDataTypes[];
+}
+
+export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
   const { currencyValue, handleGlobalCurrencyChange } = useGlobalContext();
   const [anchorEl, setAnchorEl] = useState<StateTypes | null>(null);
   const router = useRouter();
@@ -40,7 +44,7 @@ export default function Navbar({ handleDrawerToggle }: any) {
     event: React.MouseEvent<HTMLButtonElement>,
     id: number,
   ) => {
-    const findSelected = navData.find((item) => item.id === id);
+    const findSelected = headerItems.find((item: NavLinkTypes) => item.id === id);
 
     setAnchorEl({
       children: findSelected?.children,
@@ -87,8 +91,8 @@ export default function Navbar({ handleDrawerToggle }: any) {
               </div>
             </Box>
 
-            <MenuList className='hidden lg:flex  items-center  gap-8'>
-              {navData.map((item) => (
+            <MenuList className='hidden lg:flex justify-around items-center  gap-8'>
+              {headerItems.map((item: NavLinkTypes) => (
                 <Button
                   key={item.id}
                   onClick={(e) => handleClick(e, item.id)}

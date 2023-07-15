@@ -1,21 +1,59 @@
-export const qualitiesData = [
-  {
-    title: "Years Of Experience",
-    quantity: "2",
-  },
-  {
-    title: "Tourist Place",
-    quantity: "100",
-  },
-  {
-    title: "Active tour",
-    quantity: "50",
-  },
-  {
-    title: "Happy Tourist",
-    quantity: "10k+",
-  },
-];
+export const qualitiesData = {
+  en: [
+    {
+      title: "Years Of Experience",
+      quantity: "2",
+    },
+    {
+      title: "Tourist Place",
+      quantity: "100",
+    },
+    {
+      title: "Active tour",
+      quantity: "50",
+    },
+    {
+      title: "Happy Tourist",
+      quantity: "10k+",
+    },
+  ],
+  ru: [
+    {
+      title: "Опыт работы",
+      quantity: "2",
+    },
+    {
+      title: "Туристические места",
+      quantity: "100",
+    },
+    {
+      title: "Активные туры",
+      quantity: "50",
+    },
+    {
+      title: "Довольные туристы",
+      quantity: "10k+",
+    },
+  ],
+  hy: [
+    {
+      title: "Նախագծի ամսաթիվ",
+      quantity: "2",
+    },
+    {
+      title: "Տուրիստական տեղեկատուներ",
+      quantity: "100",
+    },
+    {
+      title: "Ակտիվ տուր",
+      quantity: "50",
+    },
+    {
+      title: "Ընթացիկ հարուստներ",
+      quantity: "10k+",
+    },
+  ]
+};
 
 export const tourFilterData = [
   {

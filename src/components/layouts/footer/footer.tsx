@@ -3,6 +3,8 @@
 import { Container, List, ListItem, ListItemText } from "@mui/material";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import {
   IoLogoFacebook,
   IoLogoInstagram,
@@ -13,6 +15,19 @@ import { footerData } from "../../../utils/data/footer-data";
 import logo from "/public/Logo.png";
 
 function Footer() {
+  const [footerItems, setFooterItems] = useState(footerData?.en);
+  const { locale } = useRouter();
+
+  useEffect(() => {
+    if (locale && locale === 'hy') {
+      setFooterItems(footerData.hy);
+    } else if (locale && locale === 'ru') {
+      setFooterItems(footerData.ru);
+    } else {
+      setFooterItems(footerData.en);
+    }
+  }, [locale]);
+
   return (
     <footer className=' inset-x-0 bottom-0 bg-black text-white py-6 sm:py-12'>
       <Container className='grid sm:grid-cols-5 gap-x-5'>
@@ -22,8 +37,10 @@ function Footer() {
           </div>
           <div className='ml-5'>
             <p className='mt-5'>
-              It is a long established fact that a reader will be distracted
-              lookings.
+              {
+                locale === 'ru' ? footerData.description.ru :
+                  (locale === 'hy' ? footerData.description.hy : footerData.description.en)
+              }
             </p>
             <div className='flex items-center gap-8 mt-8'>
               <Link href='/'>
@@ -41,7 +58,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        {footerData.map((item) => (
+        {footerItems.map((item) => (
           <div key={item.id} className='m-0 p-0'>
             <p className='text-2xl m-0 p-0'>{item.title}</p>
             <List className='m-0 p-0'>

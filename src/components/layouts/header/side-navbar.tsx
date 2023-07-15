@@ -17,8 +17,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { NavLinkTypes } from "../../../types";
-import { navData } from "../../../utils/data/navbar-data";
+import { NavDataTypes, NavLinkTypes } from "../../../types";
 import logo from "/public/Logo.png";
 
 interface StateTypes {
@@ -31,11 +30,12 @@ function SideNavbar({
   handleDrawerToggle,
   drawerWidth,
   container,
+  headerItems
 }: any) {
   const [anchorEl, setAnchorEl] = useState<StateTypes | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
-    const findSelectedChildren = navData.find((item) => item.id === id);
+    const findSelectedChildren = headerItems.find((item: NavDataTypes) => item.id === id);
 
     setAnchorEl({
       children: findSelectedChildren?.children,
@@ -85,7 +85,7 @@ function SideNavbar({
 
           <nav>
             <List>
-              {navData.map((item) => (
+              {headerItems.map((item: NavDataTypes) => (
                 <ListItem key={item.id} disablePadding>
                   <ListItemButton onClick={(e) => handleClick(e, item.id)}>
                     <ListItemText primary={item.title} />

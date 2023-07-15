@@ -3,7 +3,6 @@
 import { Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { PaginationType, ReviewTypes } from "../../../types";
-import { testimonials } from "../../../utils/data/testimonial-data";
 import ReviewCard from "../../cards/review-card";
 
 interface Props {
@@ -30,7 +29,7 @@ function ReviewsSection({ reviews, reviewsPagination }: Props) {
         ))}
       </div>
       <div className='flex justify-center my-3 md:my-6'>
-        {testimonials.length > 0 && (
+        {reviews.length > 0 && (
           <Pagination
             size='large'
             onChange={(_, p) => handleUpdatePage({ page: p })}
