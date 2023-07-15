@@ -24,7 +24,7 @@ function TransportUI({
 
   return (
     <Container className='my-8 flex flex-col items-center'>
-      <div className='lg:w-[60%] text-center py-3 px-6 regular-shadow rounded-lg'>
+      <div className='lg:w-[80%] text-center py-3 px-6 regular-shadow rounded-lg'>
         <Tabs
           value={currentTab}
           onChange={handleTabChange}
