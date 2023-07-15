@@ -3,5 +3,7 @@
   "airport_title": "Airport Transpers",
   "withdriver_title": "With Driver",
   "without_driver_title": "Without Driver",
-  "search_text": "Search your Need"
+  "search_text": "Search your Need",
+  "seemore_text": "See More",
+  "not_found_text": "Data not found!"
 }

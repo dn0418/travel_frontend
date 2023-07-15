@@ -3,6 +3,7 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { TourAccessoryType } from '../../types';
 
 interface TransportCardProps {
@@ -10,6 +11,7 @@ interface TransportCardProps {
 }
 
 function AccessoriesCard({ accessory }: TransportCardProps) {
+  const { t } = useTranslation('common');
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -63,7 +65,9 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
           </div>
           <div className="flex justify-end items-center">
             <Link href={`/services/tour-accessories/${accessory.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>See More</Button>
+              <Button
+                className="rounded-lg bg-black text-white"
+                variant='contained'>{t('seemore_text')}</Button>
             </Link>
           </div>
         </div>

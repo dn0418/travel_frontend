@@ -3,6 +3,7 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { CarWithOutType } from '../../types/car-type';
 
 interface TransportCardProps {
@@ -10,6 +11,7 @@ interface TransportCardProps {
 }
 
 function TransportCard({ car }: TransportCardProps) {
+  const { t } = useTranslation('common');
 
   return (
     <Card className="regular-shadow  w-full h-full rounded-lg">
@@ -56,7 +58,8 @@ function TransportCard({ car }: TransportCardProps) {
           </p>
           <div className="flex justify-end items-center">
             <Link href={`/services/transport/${car.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>See More</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>
+                {t('seemore_text')}</Button>
             </Link>
           </div>
         </div>

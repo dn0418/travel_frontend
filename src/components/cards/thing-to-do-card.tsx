@@ -3,6 +3,7 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { ThingToSeeType } from '../../types';
 
 interface ThingToSeeCardProps {
@@ -10,6 +11,7 @@ interface ThingToSeeCardProps {
 }
 
 function ThingToDoCard({ thing }: ThingToSeeCardProps) {
+  const { t } = useTranslation('common');
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -57,7 +59,7 @@ function ThingToDoCard({ thing }: ThingToSeeCardProps) {
 
           <div className="flex justify-end items-end">
             <Link href={`/armenia/thing-to-do/${thing.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>Submit</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>{t('seemore_text')}</Button>
             </Link>
           </div>
         </div>

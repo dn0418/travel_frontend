@@ -3,11 +3,13 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { HotelType } from '../../types';
 
 
 function HotelCard({ hotel }: { hotel: HotelType }) {
+  const { t } = useTranslation('common');
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -59,7 +61,7 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
           <p className="text-sm  text-[#5e5e5e] line-clamp-3">{hotel.shortDescription}</p>
           <div className="flex justify-end items-center">
             <Link href={`/services/hotels/${hotel.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>Submit</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>{t('seemore_text')}</Button>
             </Link>
           </div>
         </div>

@@ -69,7 +69,7 @@ function TransportUI({
             carsWithoutDriver.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  Cars data not found!
+                  {t('not_found_text')}
                 </p>
               </div>
 
