@@ -9,34 +9,24 @@ import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
-const tabs = [
-  { title: 'Airport Transfers', value: 'all' },
-  { title: 'Without driver', value: 'without_driver' },
-  { title: 'With driver', value: 'with_driver' },
-];
-
 const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const carsWithoutDriver = props.carsData?.data || [];
   const carWithDriver = props.carWithDriverData?.data[0] || {};
   const airportTransport = props.airportTransportData?.data[0] || {};
   const metaData = props.carsData?.meta || {};
-  const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const [currentTab, setCurrentTab] = useState('all');
   const router = useRouter();
-  const locale = router.locale;
   const params = router.query;
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    const findTab = tabs.find((tab) => tab.value === newValue);
-    // params['page'] = '1';
-
     if (newValue === "all") {
       router.push({
         pathname: '/services/transport',
       });
     }
 
-    if (findTab) {
-      setCurrentTab(findTab);
+    if (newValue) {
+      setCurrentTab(newValue);
     }
   };
 
@@ -68,7 +58,6 @@ const Transport: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
       <TransportUI
         currentTab={currentTab}
         handleTabChange={handleTabChange}
-        tabs={tabs}
         carsWithoutDriver={carsWithoutDriver}
         carsWithDriver={carWithDriver}
         airportTransport={airportTransport}

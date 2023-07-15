@@ -3,6 +3,7 @@
 import { Button } from "@mui/material";
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { AirportTransportType } from "../../../../types/car-type";
 
 
@@ -10,7 +11,7 @@ function AirportTransport(
   { airportTransport }: { airportTransport: AirportTransportType }) {
   const router = useRouter();
   const locale = router.locale;
-  console.log(locale)
+  const { t } = useTranslation('common');
 
   return (
     <div className='my-4 w-full md:my-8'>
@@ -37,7 +38,7 @@ function AirportTransport(
       </p>
       <div className="flex mt-5 justify-center">
         <Button className="bg-black text-white" variant="contained">
-          {locale === 'ru' ? 'Послать запрос' : (locale === 'hy' ? 'Հարցում ուղարկել' : 'Send Request')}
+          {t('sent_req_btn')}
         </Button>
       </div>
     </div>

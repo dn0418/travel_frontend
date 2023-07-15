@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
-const { i18n } = require('./next-i18next.config')
+const { i18n } = require('./next-i18next.config');
 const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  i18n: {
-    locales: ['en-US', 'hy', 'ru'],
-    defaultLocale: 'en-US',
-  },
+  i18n,
   images: {
     domains: ['i.ibb.co', 's3.ap-southeast-1.amazonaws.com'],
   },

@@ -1,6 +1,7 @@
 import { EmotionCache } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-
+import I18n from '../i18n';
 import ChatIcon from "../src/components/call-back/chat";
 import { GlobalContextProvider } from "../src/context/global-context";
 import QueryProvider from "../src/rest-api/query-provider";
@@ -41,6 +42,7 @@ function MyApp(props: MyAppProps) {
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
           <ChatIcon />
+          <I18n />
           {getLayout(<Component {...pageProps} />)}
         </ThemeProvider>
         <ToastContainer />
@@ -49,4 +51,4 @@ function MyApp(props: MyAppProps) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
