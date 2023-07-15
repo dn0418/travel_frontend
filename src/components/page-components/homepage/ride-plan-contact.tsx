@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BsFillPersonFill } from "react-icons/bs";
 import { FaRegAddressCard } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
@@ -19,6 +20,7 @@ import SectionTitle from "../../common/section-title";
 function RidePlanContact() {
   const [inputData, setInputData] = useState({})
   const router = useRouter()
+  const { t } = useTranslation('common');
 
   const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setInputData((prevState) => {
@@ -41,7 +43,7 @@ function RidePlanContact() {
   return (
     <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen'>
       <Container>
-        <SectionTitle title='Make your own ride plan with us' />
+        <SectionTitle title={t('home_plan_title')} />
         <div className='grid md:grid-cols-2'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5'>
             <FormControl variant='outlined'>

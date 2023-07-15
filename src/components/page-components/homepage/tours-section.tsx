@@ -1,27 +1,16 @@
 // @flow strict
 
-import { Button, Card, Container } from "@mui/material";
-import { AiOutlineRight } from "react-icons/ai";
+import { Card, Container } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import Slider from "react-slick";
 import { TourType } from "../../../types/tour";
 import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../common/section-title";
 
-function NextArrow(props: { onClick: any }) {
-  const { onClick } = props;
-  return (
-    <div className='flex items-center  m-0 p-0'>
-      <Button
-        className='min-w-fit m-0 p-0 text-xl font-bold text-[#5E5E5E]'
-        onClick={onClick}>
-        <AiOutlineRight />
-      </Button>
-    </div>
-  );
-}
-
 
 function TourSection({ tours }: { tours: TourType[] }) {
+  const { t } = useTranslation('common');
+
   const settings = {
     dots: false,
     infinite: true,
@@ -34,7 +23,7 @@ function TourSection({ tours }: { tours: TourType[] }) {
     <div className="my-3 md:my-6 w-screen">
       <Container className="grid grid-cols-1 md:grid-cols-3  mb-12 gap-4 md:gap-8">
         <div className="home-tours-section">
-          <SectionTitle title='Top Suggestion' />
+          <SectionTitle title={t('home_top_suggestion')} />
           <Card
             className='p-1 regular-shadow rounded-lg'
           >
@@ -49,7 +38,7 @@ function TourSection({ tours }: { tours: TourType[] }) {
           </Card>
         </div>
         <div className="home-tours-section">
-          <SectionTitle title='One Day' />
+          <SectionTitle title={t('home_one_day')} />
           <Card
             className='p-1 regular-shadow rounded-lg'
           >
@@ -64,7 +53,7 @@ function TourSection({ tours }: { tours: TourType[] }) {
           </Card>
         </div>
         <div className="home-tours-section">
-          <SectionTitle title='Fixed Date' />
+          <SectionTitle title={t('home_fixed_date')} />
           <Card
             className='p-1 regular-shadow rounded-lg'
           >

@@ -1,9 +1,15 @@
 {
-  "sent_req_btn": "Ուղարկել դիմում",
-  "airport_title": "Օդանավակայան տրանսփորտ",
-  "withdriver_title": "Կայքէջի հետ",
-  "without_driver_title": "Առանց վարորդի",
-  "search_text": "Որոնեք ձեր կարիքը",
-  "seemore_text": "Տեսնել ավելին",
-  "not_found_text": "Տվյալները չեն գտնվել:"
+  "sent_req_btn": "Ուղարկել հարցում",
+  "airport_title": "Ավտոբուսային տեղափոխում",
+  "withdriver_title": "Թափահարողով",
+  "without_driver_title": "Թափանցիկով",
+  "search_text": "Որոնեք ձեր պահանջները",
+  "seemore_text": "Դիտել ավելին",
+  "not_found_text": "Տվյալները չեն գտնվել!",
+  "home_top_suggestion": "Թոփ առաջարկներ",
+  "home_one_day": "Մեկօրյա",
+  "home_fixed_date": "Նախագծված ամսաթիվ",
+  "home_plan_title": "Ստեղծեք ձեր սեփական ճանապարհային ծրագիրը մեզ հետ",
+  "home_testimonial_title": "Ի՞նչ մտածում են ճանապարհողները մեր մասին",
+  "home_payment_title": "Մենք ընդունում ենք օնլայն վճարային միջոցները"
 }

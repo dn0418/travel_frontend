@@ -1,9 +1,15 @@
 {
-  "sent_req_btn": "Отправить заявку",
-  "airport_title": "Трансферы из аэропорта",
+  "sent_req_btn": "Отправить запрос",
+  "airport_title": "Трансферы в аэропорт",
   "withdriver_title": "С водителем",
   "without_driver_title": "Без водителя",
-  "search_text": "Найдите свою потребность",
-  "seemore_text": "Узнать больше",
-  "not_found_text": "Данные не найдены!"
+  "search_text": "Поиск по вашим потребностям",
+  "seemore_text": "Посмотреть еще",
+  "not_found_text": "Данные не найдены!",
+  "home_top_suggestion": "Лучшие предложения",
+  "home_one_day": "Однодневные",
+  "home_fixed_date": "Фиксированная дата",
+  "home_plan_title": "Создайте свой собственный план поездки с нами",
+  "home_testimonial_title": "Что думают путешественники о нас",
+  "home_payment_title": "Мы принимаем онлайн-оплату!"
 }

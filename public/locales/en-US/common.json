@@ -5,5 +5,11 @@
   "without_driver_title": "Without Driver",
   "search_text": "Search your Need",
   "seemore_text": "See More",
-  "not_found_text": "Data not found!"
+  "not_found_text": "Data not found!",
+  "home_top_suggestion": "Top Suggestion",
+  "home_one_day": "One Day",
+  "home_fixed_date": "Fixed Date",
+  "home_plan_title": "Make Your Own Ride Plan With Us",
+  "home_testimonial_title": "What Travelers Think About Us",
+  "home_payment_title": "We Accept Online Payment !"
 }
