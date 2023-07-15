@@ -2,6 +2,7 @@
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import dynamic from "next/dynamic";
+import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { HotelType } from "../../../../types";
 import HotelCard from "../../../cards/hotel-card";
@@ -43,6 +44,7 @@ function HotelsUI({
   handlePageChange,
   hotelTypes
 }: PropsType) {
+  const { t } = useTranslation('common');
 
   return (
     <Container className='my-8 flex flex-col items-center hotels-page'>
@@ -57,14 +59,14 @@ function HotelsUI({
         <div className="flex w-full items-center justify-between">
           <SectionTitle title='Special Hotel' />
           <FormControl size="small" className="shadow-sm" variant="outlined">
-            <InputLabel>Search your  Need</InputLabel>
+            <InputLabel>{t('search_text')}</InputLabel>
             <OutlinedInput
               endAdornment={
                 <InputAdornment position="end">
                   <BiSearch className="text-[#EDA592]" />
                 </InputAdornment>
               }
-              label="Search your Tours"
+              label={t('search_text')}
               onChange={(e) => handleSerachHotels(e.target.value)}
             />
           </FormControl>

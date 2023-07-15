@@ -1,11 +1,11 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { AccessoriesPageProps } from "../../../../types/page-props";
 import AccessoriesCard from "../../../cards/accessories-card";
 import SectionTitle from "../../../common/section-title";
-
 
 function TourAccessoriesUI({
   accessories,
@@ -13,6 +13,7 @@ function TourAccessoriesUI({
   handlePageChange,
   metaData
 }: AccessoriesPageProps) {
+  const { t } = useTranslation('common');
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -21,14 +22,14 @@ function TourAccessoriesUI({
           <SectionTitle title='Tour Accessories' />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your  Need</InputLabel>
+              <InputLabel>{t('search_text')}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label="Search your Tours"
+                label={t('search_text')}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -42,7 +43,6 @@ function TourAccessoriesUI({
                   Cars data not found!
                 </p>
               </div>
-
               :
               <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>

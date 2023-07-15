@@ -35,7 +35,6 @@ function TransportUI({
           <Tab value='all' className="" label={t('airport_title')} />
           <Tab value='without_driver' className="" label={t('airport_title')} />
           <Tab value='with_driver' className="" label={t('airport_title')} />
-
         </Tabs>
       </div>
 
@@ -52,14 +51,14 @@ function TransportUI({
           <SectionTitle title={t('without_driver_title')} />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your  Need</InputLabel>
+              <InputLabel>{t('search_text')}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label="Search your Tours"
+                label={t('search_text')}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>

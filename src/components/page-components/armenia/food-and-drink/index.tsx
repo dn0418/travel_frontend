@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { FoodAndDrinkPageProps } from "../../../../types/page-props";
 import FoodAndDrinkCard from "../../../cards/food-and-drink-card";
@@ -15,6 +16,7 @@ function FoodAndDrinksUI({
   handlePageChange,
   metaData
 }: FoodAndDrinkPageProps) {
+  const { t } = useTranslation('common');
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -51,14 +53,14 @@ function FoodAndDrinksUI({
           <SectionTitle title={currentTab?.title || "Food And Drinks"} />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your  Need</InputLabel>
+              <InputLabel>{t('search_text')}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label="Search your Tours"
+                label={t('search_text')}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>

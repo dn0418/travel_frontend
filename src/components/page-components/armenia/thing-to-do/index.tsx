@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { ThingToSeePageProps } from "../../../../types/page-props";
 import ThingToDoCard from "../../../cards/thing-to-do-card";
@@ -16,6 +17,7 @@ function ThingToDoUI({
   handlePageChange,
   metaData
 }: ThingToSeePageProps) {
+  const { t } = useTranslation('common');
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -52,14 +54,14 @@ function ThingToDoUI({
           <SectionTitle title={currentTab.title} />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your  Need</InputLabel>
+              <InputLabel>{t('search_text')}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label="Search your Tours"
+                label={t('search_text')}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
