@@ -8,10 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
 import { DestinationTypes } from "../../../types";
-import { tourTypes } from "../../../utils/data/tours-types";
 import CustomSelectInput from "../../common/select";
 
-function SearchFilterSection({ destinations }: { destinations: DestinationTypes[] }) {
+function SearchFilterSection({ destinations, typeItems }: { destinations: DestinationTypes[], typeItems: any }) {
   const [filterData, setFilterData] = useState({
     tourType: '',
     destination: '',
@@ -61,7 +60,7 @@ function SearchFilterSection({ destinations }: { destinations: DestinationTypes[
             title='Type of tour'
             value={filterData?.tourType}
             isHideTitle={filterData?.tourType ? true : false}
-            options={tourTypes}
+            options={typeItems}
           />
         </div>
 

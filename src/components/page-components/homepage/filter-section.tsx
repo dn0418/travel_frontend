@@ -2,7 +2,7 @@
 
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
@@ -18,8 +18,10 @@ function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
     days: ''
   });
   const [startDate, setStartDate] = useState<null | Date>(null);
+  const [typeItems, setTypeItems] = useState(tourTypes.en);
+
   const router = useRouter()
-  const { pathname, query } = router;
+  const { pathname, query, locale } = router;
 
   const handleChangeFilterData = (e: any) => {
     setFilterData(prev => ({
@@ -43,12 +45,22 @@ function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
       query['days'] = filterData.days;
     }
 
-
     router.push({
       pathname: '/search',
       query,
     });
   };
+
+  useEffect(() => {
+    if (locale && locale === 'ru') {
+      setTypeItems(tourTypes.ru);
+    } else if (locale && locale === 'hy') {
+      setTypeItems(tourTypes.hy);
+    } else {
+      setTypeItems(tourTypes.en);
+    }
+  }, [locale])
+
 
   return (
     <div
@@ -62,7 +74,7 @@ function FilterSection({ destinations }: { destinations: DestinationTypes[] }) {
             title='Type of tour'
             value={filterData?.tourType}
             isHideTitle={filterData?.tourType ? true : false}
-            options={tourTypes}
+            options={typeItems}
           />
         </div>
 

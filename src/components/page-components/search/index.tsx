@@ -13,7 +13,8 @@ function SearchPage({
   handlePageChange,
   meta,
   handleSearch,
-  destinations
+  destinations,
+  typeItems
 }: SearchPageProps) {
   const { t } = useTranslation('common');
   // console.log(meta)
@@ -22,7 +23,7 @@ function SearchPage({
     <Container className='my-8 flex flex-col items-center'>
       <div className='w-full my-4 md:my-8'>
         <div className="">
-          <SearchFilterSection destinations={destinations} />
+          <SearchFilterSection typeItems={typeItems} destinations={destinations} />
         </div>
         <div className="w-full flex items-center justify-between">
           <SectionTitle title="Top Suggestion for you" />

@@ -17,7 +17,7 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   const meta = toursData?.meta;
   const [title, setTitle] = useState('Tours')
   const [tabIndex, setTabIndex] = useState('active_tours');
-  const [typeItems, setTypeItems] = useState(tourTypes.en)
+  const [typeItems, setTypeItems] = useState(tourTypes.en);
 
   const router = useRouter()
   const { pathname, query, locale } = router;

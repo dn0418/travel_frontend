@@ -48,7 +48,7 @@ export interface SearchPageProps {
     limit: number;
   };
   destinations: DestinationTypes[];
-
+  typeItems: any;
 }
 
 export interface TransportPageProps {

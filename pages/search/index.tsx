@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GeneralLayout from "../../src/components/layouts/_general";
 import SearchPage from "../../src/components/page-components/search";
 import { getServerSideProps } from "../../src/rest-api/search.ssr";
@@ -16,8 +16,9 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
   const tours = toursData?.data;
   const meta = toursData?.meta;
   const destinations = destinationData?.data;
+  const [typeItems, setTypeItems] = useState(tourTypes.en);
   const router = useRouter()
-  const { pathname, query } = router;
+  const { pathname, query, locale } = router;
 
 
   const handlePageChange = (event: React.SyntheticEvent, value: number) => {
@@ -45,11 +46,21 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
   }
 
   useEffect(() => {
-    const findCurrentTab = tourTypes.find((tab: { value: string }) => tab.value === query["type"]);
+    const findCurrentTab = typeItems.find((tab: { value: string }) => tab.value === query["type"]);
     if (findCurrentTab) {
       // console.log(findCurrentTab.value);
     }
-  }, [query]);
+  }, [query, typeItems]);
+
+  useEffect(() => {
+    if (locale && locale === 'ru') {
+      setTypeItems(tourTypes.ru);
+    } else if (locale && locale === 'hy') {
+      setTypeItems(tourTypes.hy);
+    } else {
+      setTypeItems(tourTypes.en);
+    }
+  }, [locale])
 
   return (
     <div>
@@ -59,6 +70,7 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
         handleSearch={handleSearch}
         meta={meta}
         destinations={destinations}
+        typeItems={typeItems}
       />
     </div>
   );

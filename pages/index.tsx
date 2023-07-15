@@ -1,5 +1,4 @@
 import { InferGetStaticPropsType } from "next";
-import { useRouter } from "next/router";
 import GeneralLayout from "../src/components/layouts/_general";
 import Homepage from "../src/components/page-components/homepage";
 import { getStaticProps } from "../src/rest-api/homepage/home.ssr";
@@ -10,11 +9,6 @@ const Home: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const { toursData, reviewsData, destinationData } = props;
   const tours = toursData.data;
   const destinations = destinationData.data;
-
-  // console.log(destinations)
-
-  const router = useRouter();
-  const { locales } = router;
 
   return (
     <div className='container' aria-label="homepage">
