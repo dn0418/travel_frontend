@@ -1,10 +1,11 @@
 // @flow strict
 
-import { Button, CircularProgress, Container, Tab, Tabs, TextField } from "@mui/material";
+import { Button, CircularProgress, Container, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tabs, TextField } from "@mui/material";
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { MdCloudUpload } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
+import { MdCloudUpload, MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import AdminImage from "../../../src/components/admin-cards/admin-image";
 import SectionTitle from "../../../src/components/common/section-title";
@@ -30,7 +31,6 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
     description_ru: withdriver?.description_ru,
     description_hy: withdriver?.description_hy,
   })
-  console.log(withdriver)
 
   const handleImageChange = async (event: any) => {
     setUploading(true);
@@ -208,6 +208,52 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
             disabled={isLoading}>
             {isLoading ? <CircularProgress size={16} /> : 'Update Now'}
           </Button>
+        </div>
+      </div>
+      <div hidden={activeTab !== 'price'}
+        className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb] tour-details-page">
+        <div className="">
+          <p className="text-lg font-medium uppercase">Car With Driver Pricing</p>
+          <TableContainer className="tour-price-table bg-white">
+            <Table aria-label="tour pricing table">
+              <TableHead>
+                <TableRow>
+                  <TableCell className="text-base" align="center"></TableCell>
+                  <TableCell className="text-base" align="center">
+                    Duration
+                  </TableCell>
+                  <TableCell className="text-base" align="center">Pricing</TableCell>
+                  <TableCell className="text-base" align="center">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {
+                  withdriver?.pricing.map((pricing: any, index: number) => (
+                    <TableRow key={index}>
+                      <TableCell align="center">{index}</TableCell>
+                      <TableCell align="center">{pricing.duration}</TableCell>
+                      <TableCell align="center">{pricing.price} AMD</TableCell>
+                      <TableCell align="center">
+                        <div className="flex items-center justify-center gap-3">
+                          <Button className='shadow min-w-fit py-2 px-5 text-[#5e5e5e] text-lg'>
+                            <BiEdit />
+                          </Button>
+                          <Button className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
+                            <MdDelete />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <div className="flex mt-5 justify-end">
+            <Button className='bg-black text-white' variant='contained'>
+              Add New Price
+            </Button>
+          </div>
         </div>
       </div>
     </Container >

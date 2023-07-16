@@ -1,11 +1,10 @@
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Link from 'next/link';
 import { CarWithDriverType } from '../../../types/car-type';
 
 export default function WithDriverAdminPricing(
@@ -38,13 +37,6 @@ export default function WithDriverAdminPricing(
             </TableBody>
           </Table>
         </TableContainer>
-        <div className="flex mt-5 justify-end">
-          <Link href="/ride-plan">
-            <Button className='bg-black text-white' variant='contained'>
-              Send Request
-            </Button>
-          </Link>
-        </div>
       </div>
     </Container>
   );

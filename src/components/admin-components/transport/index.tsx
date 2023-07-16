@@ -1,7 +1,9 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { Key } from "react";
 import { BiSearch } from "react-icons/bi";
+import { CarWithOutType } from "../../../types/car-type";
 import CarAdminCard from "../../admin-cards/car-admin-card";
 import SectionTitle from "../../common/section-title";
 import AdminAirportTransport from "./admin-airport-transport";
@@ -31,7 +33,7 @@ function TransportDashboard({
             style: { display: "none" },
           }}>
           {
-            tabs.map((tab, i) => (
+            tabs.map((tab: { value: string; title: string; }, i: Key) => (
               <Tab key={i} value={tab.value} className="" label={tab.title} />
             ))
           }
@@ -76,7 +78,7 @@ function TransportDashboard({
               :
               <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-                {carsWithoutDriver?.map((car, i) => (
+                {carsWithoutDriver?.map((car: CarWithOutType, i: Key | null | undefined) => (
                   <CarAdminCard car={car} key={i} />
                 ))}
               </div>

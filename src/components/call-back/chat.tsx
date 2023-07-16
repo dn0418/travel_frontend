@@ -9,7 +9,6 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BsChatDots } from "react-icons/bs";
@@ -30,7 +29,6 @@ function ChatIcon() {
   const [openContactModal, setOpenContactModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [inputData, setInputData] = useState(initialState)
-  const theme = useTheme();
   const { t } = useTranslation('common');
 
   const handleChangeInput = (name: string, value: string) => {
@@ -80,27 +78,17 @@ function ChatIcon() {
       overflowY: "scroll",
       maxHeight: "90vh",
       color: "#5E5E5E",
-      [theme.breakpoints.down("md")]: {
-        width: "95%",
-        p: 3,
-      },
     },
     gridContainer: {
       display: "grid",
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: "16px",
       mt: "24px",
-      [theme.breakpoints.down("md")]: {
-        gridTemplateColumns: "repeat(1, 1fr)",
-        gap: "8px",
-        mt: "12px"
-      },
-    },
-    noteArea: {
-      gridColumn: "1 / span 2",
-      [theme.breakpoints.down("md")]: {
-        gridColumn: "1",
-      },
+      // [theme.breakpoints.down("md")]: {
+      //   gridTemplateColumns: "repeat(1, 1fr)",
+      //   gap: "8px",
+      //   mt: "12px"
+      // },
     },
     buttonContainer: {
       display: "flex",
@@ -182,7 +170,6 @@ function ChatIcon() {
               </Select>
             </FormControl>
             <TextField
-              sx={formStyles.noteArea}
               multiline
               maxRows={8}
               minRows={4}

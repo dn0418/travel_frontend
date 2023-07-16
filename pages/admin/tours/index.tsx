@@ -16,11 +16,12 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   const meta = props?.toursData?.meta;
   const [title, setTitle] = useState('Tours')
   const [tabIndex, setTabIndex] = useState('active_tours');
+  const typeItems = tourTypes.en;
   const router = useRouter()
   const { pathname, query } = router;
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    const findCurrentTab = tourTypes.find((tab: { value: string }) => tab.value === newValue);
+    const findCurrentTab = typeItems.find((tab: { value: string }) => tab.value === newValue);
 
     query['type'] = newValue;
     delete query['page'];
@@ -61,19 +62,19 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   }
 
   useEffect(() => {
-    const findCurrentTab = tourTypes.find((tab: { value: string }) => tab.value === query["type"]);
+    const findCurrentTab = typeItems.find((tab: { value: string }) => tab.value === query["type"]);
     if (findCurrentTab) {
       setTabIndex(findCurrentTab.value);
       setTitle(findCurrentTab.name);
     }
-  }, [query]);
+  }, [query, typeItems]);
 
   return (
     <>
       <ToursDashboard
         tabIndex={tabIndex}
         handleTabChange={handleTabChange}
-        tabs={tourTypes}
+        tabs={typeItems}
         title={title}
         tours={tours}
         handlePageChange={handlePageChange}
