@@ -61,6 +61,8 @@ class Client {
 
   carWithDriver = {
     all: () => HttpClient.get(API_ENDPOINTS.CAR_WITH_DRIVER),
+    newImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.CAR_WITH_DRIVER}/create/image`, data),
+    update: (id: number, data: any) => HttpClient.put(`${API_ENDPOINTS.CAR_WITH_DRIVER}/update/${id}`, data),
   }
 
   airportTransport = {

@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { TourAccessoryType } from '../../../../types';
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 
 export default function AccessoryPricingTable({ accessoryDetails }: Props) {
   const { pricing } = accessoryDetails;
+  const { t } = useTranslation('common');
 
   return (
     <Container
@@ -45,7 +47,7 @@ export default function AccessoryPricingTable({ accessoryDetails }: Props) {
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
             <Button className="bg-black text-white" variant='contained'>
-              Send Request
+              {t('sent_req_btn')}
             </Button>
           </Link>
         </div>

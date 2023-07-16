@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BsChatDots } from "react-icons/bs";
 import { toast } from "react-toastify";
 import client from "../../rest-api/client";
@@ -30,6 +31,7 @@ function ChatIcon() {
   const [isLoading, setIsLoading] = useState(false);
   const [inputData, setInputData] = useState(initialState)
   const theme = useTheme();
+  const { t } = useTranslation('common');
 
   const handleChangeInput = (name: string, value: string) => {
     setInputData((prev) => {
@@ -192,7 +194,7 @@ function ChatIcon() {
             <div style={formStyles.buttonContainer} className="">
               <Button variant="outlined">Cancle</Button>
               <Button disabled={isLoading} onClick={handleSubmit} variant="contained">
-                {isLoading ? "Loading..." : "Submit"}
+                {isLoading ? "Loading..." : t('submit')}
               </Button>
             </div>
           </Box>

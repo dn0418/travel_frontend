@@ -1,11 +1,14 @@
 // @flow strict
 
 import { Button, Rating } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { BiHash } from 'react-icons/bi';
 import { CarWithOutType } from '../../../../types/car-type';
 import CarThumbnailSection from './thumbnail-section';
 
 function CarSpecification({ car }: { car: CarWithOutType }) {
+  const { t } = useTranslation('common');
+
   return (
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
@@ -71,7 +74,7 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
           <div className="md:mt-8">
             <Button
               className="px-8 md:px-12 rounded-lg bg-black text-white"
-              variant="contained">Submit</Button>
+              variant="contained">{t('submit')}</Button>
           </div>
         </div>
       </div>

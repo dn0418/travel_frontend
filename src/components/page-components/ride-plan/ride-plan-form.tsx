@@ -6,6 +6,7 @@ import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { useTranslation } from 'react-i18next';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaBicycle, FaCarSide, FaHiking } from 'react-icons/fa';
 import { FiMinus } from 'react-icons/fi';
@@ -29,6 +30,8 @@ function RidePlanForm({
   decrementCount,
   isLoading
 }: any) {
+  const { t } = useTranslation('common');
+
 
   return (
     <div className="make-ride-plan">
@@ -264,7 +267,7 @@ function RidePlanForm({
         <div className="md:col-span-2 flex justify-end gap-5">
           <Button variant="outlined">Cancle</Button>
           <Button onClick={handleSubmit} disabled={isLoading} variant="contained">
-            {isLoading ? "Loading..." : "Submit"}
+            {isLoading ? "Loading..." : t('submit')}
           </Button>
         </div>
       </div>

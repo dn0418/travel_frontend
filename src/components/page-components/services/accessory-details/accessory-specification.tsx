@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Button, Rating } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { BiHash } from 'react-icons/bi';
 import { IoMdPricetags } from 'react-icons/io';
 import { TiCancelOutline } from 'react-icons/ti';
@@ -17,6 +18,8 @@ interface PropsType {
 }
 
 function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
+  const { t } = useTranslation('common');
+
   return (
     <div className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5">
@@ -87,7 +90,7 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
           <div className="md:mt-8">
             <Button
               className="px-8 md:px-12 rounded-lg bg-black text-white"
-              variant="contained">Submit</Button>
+              variant="contained">{t('submit')}</Button>
           </div>
         </div>
       </div>

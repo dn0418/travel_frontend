@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { BiCalendar, BiCategory, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { GiCancel, GiPriceTag } from "react-icons/gi";
@@ -10,6 +11,7 @@ import { TourType } from "../../../types/tour";
 
 
 function TourSpecification({ tour }: { tour: TourType }) {
+  const { t } = useTranslation('common');
 
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
@@ -100,7 +102,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">Submit</Button>
+          variant="contained">{t('submit')}</Button>
       </div>
     </div>
   );

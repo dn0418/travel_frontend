@@ -97,7 +97,7 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
 
   useEffect(() => {
     if (locale && locale === 'ru') {
-      setTabs(thingsSeeTabs.ru)
+      setTabs(thingsSeeTabs.ru);
     } else if (locale && locale === 'hy') {
       setTabs(thingsSeeTabs.hy);
     } else {

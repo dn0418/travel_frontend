@@ -38,7 +38,11 @@ export interface CarWithDriverType {
   createdAt: string;
   updatedAt: string;
   title: string;
+  title_ru: string;
+  title_hy: string;
   description: string;
+  description_ru: string;
+  description_hy: string;
   pricing: {
     id: number;
     duration: string;

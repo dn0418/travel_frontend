@@ -2,7 +2,6 @@
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
 import { BiSearch } from "react-icons/bi";
-import { TransportPageProps } from "../../../types/page-props";
 import CarAdminCard from "../../admin-cards/car-admin-card";
 import SectionTitle from "../../common/section-title";
 import AdminAirportTransport from "./admin-airport-transport";
@@ -18,7 +17,7 @@ function TransportDashboard({
   metaData,
   carsWithDriver,
   airportTransport
-}: TransportPageProps) {
+}: any) {
   // console.log(airportTransport)
 
   return (

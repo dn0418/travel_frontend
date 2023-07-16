@@ -2,6 +2,7 @@
 
 import { Button } from "@mui/material";
 import Image from "next/legacy/image";
+import Link from "next/link";
 import { CarWithDriverType } from "../../../types/car-type";
 import WithDriverAdminPricing from "./with-driver-admin-priceing";
 
@@ -16,9 +17,11 @@ function AdminWithDriver(
     <div className='my-4 w-full md:my-8'>
       <div className="flex justify-end">
         <h1 className="text-2xl font-bold">
-          <Button variant="text" className="text-black shadow py-2.5 px-6">
-            Edit Page
-          </Button>
+          <Link href="/admin/transports/update-with-driver">
+            <Button variant="text" className="text-black shadow py-2.5 px-6">
+              Edit Page
+            </Button>
+          </Link>
         </h1>
       </div>
       <h2 className="text-2xl font-medium">

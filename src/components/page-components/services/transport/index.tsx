@@ -33,10 +33,11 @@ function TransportUI({
             style: { display: "none" },
           }}>
           <Tab value='all' className="" label={t('airport_title')} />
-          <Tab value='without_driver' className="" label={t('airport_title')} />
-          <Tab value='with_driver' className="" label={t('airport_title')} />
+          <Tab value='without_driver' className="" label={t('without_driver_title')} />
+          <Tab value='with_driver' className="" label={t('withdriver_title')} />
         </Tabs>
       </div>
+
 
       <div className='w-full' hidden={currentTab !== "all"} >
         <AirportTransport airportTransport={airportTransport} />

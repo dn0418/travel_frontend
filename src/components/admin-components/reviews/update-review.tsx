@@ -4,6 +4,7 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, TextFie
 import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import { forwardRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
 import { ReviewTypes } from "../../../types";
@@ -20,6 +21,7 @@ const UpdateReview = forwardRef<HTMLDivElement, PropsType>(
     const [reviewInput, setReviewInput] = useState(review || {});
     const theme = useTheme();
     const router = useRouter();
+    const { t } = useTranslation('common');
 
     const handleChangeInput = (name: string, value: string) => {
       setReviewInput((prev) => {
@@ -174,7 +176,7 @@ const UpdateReview = forwardRef<HTMLDivElement, PropsType>(
                 onClick={handleSubmit}
                 disabled={isLoading}
                 variant="contained">
-                {isLoading ? "Loading..." : "Submit"}
+                {isLoading ? "Loading..." : t('submit')}
               </Button>
             </div>
           </Box>
