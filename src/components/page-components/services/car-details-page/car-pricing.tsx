@@ -6,7 +6,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import { CarWithOutType } from '../../../../types/car-type';
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
 
 export default function CarPricingTable({ car }: Props) {
   const { priceWithoutDriver } = car;
-  const { t } = useTranslation('common');
+
 
   return (
     <Container
@@ -51,7 +50,7 @@ export default function CarPricingTable({ car }: Props) {
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
             <Button className="bg-black text-white" variant='contained'>
-              {t('sent_req_btn')}
+              Send Request
             </Button>
           </Link>
         </div>

@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { FoodAndDrinkPageProps } from "../../../../types/page-props";
 import FoodAndDrinkCard from "../../../cards/food-and-drink-card";
@@ -16,7 +15,7 @@ function FoodAndDrinksUI({
   handlePageChange,
   metaData
 }: FoodAndDrinkPageProps) {
-  const { t } = useTranslation('common');
+
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -53,14 +52,14 @@ function FoodAndDrinksUI({
           <SectionTitle title={currentTab?.title || "Food And Drinks"} />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>{t('search_text')}</InputLabel>
+              <InputLabel>Search your Need</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label={t('search_text')}
+                label='Search your Need'
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -71,7 +70,7 @@ function FoodAndDrinksUI({
             foodAndDrinks.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  {t('not_found_text')}
+                  Data not found!
                 </p>
               </div>
 

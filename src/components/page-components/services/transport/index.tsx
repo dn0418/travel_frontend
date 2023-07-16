@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../../types/page-props";
 import TransportCard from "../../../cards/car-card";
@@ -20,7 +19,7 @@ function TransportUI({
   airportTransport
 }: TransportPageProps) {
   // console.log(airportTransport)
-  const { t } = useTranslation('common');
+
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -32,9 +31,9 @@ function TransportUI({
           TabIndicatorProps={{
             style: { display: "none" },
           }}>
-          <Tab value='all' className="" label={t('airport_title')} />
-          <Tab value='without_driver' className="" label={t('without_driver_title')} />
-          <Tab value='with_driver' className="" label={t('withdriver_title')} />
+          <Tab value='all' className="" label='Airport Transpers' />
+          <Tab value='without_driver' className="" label="Without Driver" />
+          <Tab value='with_driver' className="" label="With Driver" />
         </Tabs>
       </div>
 
@@ -49,17 +48,17 @@ function TransportUI({
 
       <div hidden={currentTab !== "without_driver"} className='my-4 w-full md:my-8'>
         <div className="flex items-center w-full justify-between">
-          <SectionTitle title={t('without_driver_title')} />
+          <SectionTitle title="Without Driver" />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>{t('search_text')}</InputLabel>
+              <InputLabel>Search your Need</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label={t('search_text')}
+                label='Search your Need'
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -70,7 +69,7 @@ function TransportUI({
             carsWithoutDriver.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  {t('not_found_text')}
+                  Data not found!
                 </p>
               </div>
 

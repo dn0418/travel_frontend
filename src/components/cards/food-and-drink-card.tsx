@@ -3,7 +3,6 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import { FoodAndDrinksType } from '../../types';
 
 interface FoodAndDrinkCardProps {
@@ -11,7 +10,7 @@ interface FoodAndDrinkCardProps {
 }
 
 function FoodAndDrinkCard({ foodDrink }: FoodAndDrinkCardProps) {
-  const { t } = useTranslation('common');
+
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -59,7 +58,9 @@ function FoodAndDrinkCard({ foodDrink }: FoodAndDrinkCardProps) {
 
           <div className="flex justify-end items-end">
             <Link href={`/armenia/food-and-drink/${foodDrink.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>{t('seemore_text')}</Button>
+              <Button className="rounded-lg bg-black text-white" variant='contained'>
+                See More
+              </Button>
             </Link>
           </div>
         </div>

@@ -3,7 +3,6 @@
 import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { forwardRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
 import { AddReviewPyloadType } from "../../../types";
@@ -30,7 +29,6 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
       note: ""
     });
     const theme = useTheme();
-    const { t } = useTranslation('common');
 
     const handleChangeInput = (name: string, value: string) => {
       setReviewInput((prev) => {
@@ -270,7 +268,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
                 onClick={handleSubmit}
                 disabled={isLoading}
                 variant="contained">
-                {isLoading ? "Loading..." : t('submit')}
+                {isLoading ? "Loading..." : "Submit"}
               </Button>
             </div>
           </Box>

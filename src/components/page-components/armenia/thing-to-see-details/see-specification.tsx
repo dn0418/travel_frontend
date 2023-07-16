@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiCalendar, BiCategory } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 import { MdEventAvailable, MdNestCamWiredStand, MdPayment } from "react-icons/md";
@@ -9,8 +8,6 @@ import { ReviewTypes, ThingToSeeType } from "../../../../types";
 
 
 function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
-  const { t } = useTranslation('common');
-
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
     reviews.map((review) => {
@@ -100,7 +97,7 @@ function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">{t('submit')}</Button>
+          variant="contained">Submit</Button>
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import { TourType } from '../../../../types/tour';
 
 const individualColumns = ['2-3 pax', '4-6 pax', '7-18 pax', '20 more'];
@@ -15,7 +14,7 @@ const departureColumns = ['Start date', 'End date', 'Max in the group', 'Price']
 
 export default function TourPriceTable({ tour }: { tour: TourType }) {
   const { individualPricing, departuresPricing } = tour;
-  const { t } = useTranslation('common');
+
 
   return (
     <Container
@@ -80,7 +79,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
             <Button className='bg-black text-white' variant='contained'>
-              {t('sent_req_btn')}
+              Send Request
             </Button>
           </Link>
         </div>

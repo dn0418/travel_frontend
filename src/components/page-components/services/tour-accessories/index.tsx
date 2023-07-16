@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { AccessoriesPageProps } from "../../../../types/page-props";
 import AccessoriesCard from "../../../cards/accessories-card";
@@ -13,7 +12,7 @@ function TourAccessoriesUI({
   handlePageChange,
   metaData
 }: AccessoriesPageProps) {
-  const { t } = useTranslation('common');
+
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -22,14 +21,14 @@ function TourAccessoriesUI({
           <SectionTitle title='Tour Accessories' />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>{t('search_text')}</InputLabel>
+              <InputLabel>Search your Need</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label={t('search_text')}
+                label='Search your Need'
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -40,7 +39,7 @@ function TourAccessoriesUI({
             accessories.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  {t('not_found_text')}
+                  Data not found!
                 </p>
               </div>
               :

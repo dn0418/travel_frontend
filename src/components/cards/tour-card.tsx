@@ -3,7 +3,6 @@
 import { Button, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import { BiCalendar } from 'react-icons/bi';
 import { TourType } from '../../types/tour';
 
@@ -18,7 +17,7 @@ function TourCard({ tour }: { tour: TourType }) {
     price,
     reviewsRating
   } = tour;
-  const { t } = useTranslation('common');
+
 
   return (
     <div className="bg-white p-3">
@@ -68,7 +67,7 @@ function TourCard({ tour }: { tour: TourType }) {
           <Link href={`/tour-details/${tour.id}`}>
             <Button
               className="rounded-lg bg-black text-white"
-              variant='contained'>{t('seemore_text')}</Button>
+              variant='contained'>See More</Button>
           </Link>
         </div>
       </div>

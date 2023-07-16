@@ -2,7 +2,6 @@
 
 import { Button, Container } from "@mui/material";
 import { Key, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { ReviewTypes } from "../../../types";
@@ -46,7 +45,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 
 function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { t } = useTranslation('common');
+
 
   // console.log(reviews.length)
 
@@ -79,7 +78,7 @@ function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   return (
     <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen home-testimonial-section'>
       <Container>
-        <SectionTitle title={t('home_testimonial_title')} />
+        <SectionTitle title='What Travelers Think About Us' />
         {
           reviews.length > 3 ?
             <Slider

@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiHash } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
 import { IoMdPricetags } from "react-icons/io";
@@ -19,7 +18,6 @@ interface Props {
 }
 
 function HotelSpecification({ hotel, metadata }: Props) {
-  const { t } = useTranslation('common');
 
   return (
     <div className="px-4 md:px-12">
@@ -91,7 +89,7 @@ function HotelSpecification({ hotel, metadata }: Props) {
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">{t('submit')}</Button>
+          variant="contained">Submit</Button>
       </div>
     </div>
   );

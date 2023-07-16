@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiCategory } from "react-icons/bi";
 import { FaAddressBook } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
@@ -10,8 +9,6 @@ import { FoodAndDrinksType, ReviewTypes } from "../../../../types";
 
 
 function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
-  const { t } = useTranslation('common');
-
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
     reviews.map((review) => {
@@ -101,7 +98,7 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">{t('submit')}</Button>
+          variant="contained">Submit</Button>
       </div>
     </div>
   );

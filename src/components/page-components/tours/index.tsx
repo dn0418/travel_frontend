@@ -1,7 +1,6 @@
 // @flow strict
 
 import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { BiSearch } from "react-icons/bi";
 import { ToursPageProps } from "../../../types/page-props";
 import TourCard from "../../cards/tour-card";
@@ -17,7 +16,7 @@ function ToursPage({
   meta,
   handleSearch
 }: ToursPageProps) {
-  const { t } = useTranslation('common');
+
   // console.log(meta)
 
   return (
@@ -45,14 +44,14 @@ function ToursPage({
         <div className="w-full flex items-center justify-between">
           <SectionTitle title={title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">
-            <InputLabel>{t('search_text')}</InputLabel>
+            <InputLabel>Search your Need</InputLabel>
             <OutlinedInput
               endAdornment={
                 <InputAdornment position="end">
                   <BiSearch className="text-[#EDA592]" />
                 </InputAdornment>
               }
-              label={t('search_text')}
+              label='Search your Need'
               onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>
