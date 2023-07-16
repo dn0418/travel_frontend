@@ -1,7 +1,6 @@
 import { EmotionCache } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
@@ -49,4 +48,4 @@ function MyApp(props: MyAppProps) {
   );
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;
