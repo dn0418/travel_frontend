@@ -39,7 +39,6 @@ interface TabType {
   icon: React.ReactNode;
 }
 
-
 const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const foodAndDrinks = props.foodAndDrinks?.data || [];
   const metaData = props.foodAndDrinks?.meta || {};
@@ -88,6 +87,16 @@ const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getSe
     });
   }
 
+  const findTab = (value: string) => {
+    if (locale === 'ru') {
+      return foodTabs.ru.find((tab) => tab.value === value);
+    } else if (locale === 'hy') {
+      return foodTabs.hy.find((tab) => tab.value === value);
+    } else {
+      return foodTabs.en.find((tab) => tab.value === value) || { title: '' };
+    }
+  };
+
   useEffect(() => {
     if (locale && locale === 'ru') {
       setTabs(foodTabs.ru)
@@ -108,6 +117,7 @@ const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getSe
         handleSearch={handleSearch}
         handlePageChange={handlePageChange}
         metaData={metaData}
+        findTab={findTab}
       />
     </>
   );

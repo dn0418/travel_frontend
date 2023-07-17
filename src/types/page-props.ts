@@ -77,6 +77,7 @@ export interface ThingToSeePageProps {
   handleSearch: any;
   handlePageChange: any;
   metaData: any;
+  findTab: any;
 }
 
 export interface FoodAndDrinkPageProps {
@@ -91,6 +92,7 @@ export interface FoodAndDrinkPageProps {
     value: string;
     icon: React.ReactNode;
   }[];
+  findTab: any;
   foodAndDrinks: FoodAndDrinksType[];
   handleSearch: any;
   handlePageChange: any;

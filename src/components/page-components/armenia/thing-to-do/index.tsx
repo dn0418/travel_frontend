@@ -14,7 +14,8 @@ function ThingToDoUI({
   things,
   handleSearch,
   handlePageChange,
-  metaData
+  metaData,
+  findTab
 }: ThingToSeePageProps) {
 
 
@@ -79,7 +80,7 @@ function ThingToDoUI({
               <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
                 {things?.map((thing, i) => (
-                  <ThingToDoCard thing={thing} key={i} />
+                  <ThingToDoCard findTab={findTab} thing={thing} key={i} />
                 ))}
               </div>
           }

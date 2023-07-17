@@ -83,6 +83,17 @@ const ThingToDo: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
     });
   }
 
+
+  const findTab = (value: string) => {
+    if (locale === 'ru') {
+      return thingDoTabs.ru.find((tab) => tab.value === value);
+    } else if (locale === 'hy') {
+      return thingDoTabs.hy.find((tab) => tab.value === value);
+    } else {
+      return thingDoTabs.en.find((tab) => tab.value === value) || { title: '' };
+    }
+  };
+
   useEffect(() => {
     if (locale && locale === 'ru') {
       setTabs(thingDoTabs.ru)
@@ -97,6 +108,7 @@ const ThingToDo: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
     <>
       <ThingToDoUI
         currentTab={currentTab}
+        findTab={findTab}
         handleTabChange={handleTabChange}
         tabs={tabs}
         things={things}

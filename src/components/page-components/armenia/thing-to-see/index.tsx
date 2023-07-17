@@ -13,9 +13,9 @@ function ThingToSeeUI({
   things,
   handleSearch,
   handlePageChange,
-  metaData
+  metaData,
+  findTab
 }: ThingToSeePageProps) {
-
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -78,7 +78,7 @@ function ThingToSeeUI({
               <div
                 className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
                 {things?.map((thing, i) => (
-                  <ThingToSeeCard thing={thing} key={i} />
+                  <ThingToSeeCard findTab={findTab} thing={thing} key={i} />
                 ))}
               </div>
           }
