@@ -11,7 +11,6 @@ function AirportTransport(
   const router = useRouter();
   const locale = router.locale;
 
-
   return (
     <div className='my-4 w-full md:my-8'>
       <div className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2 gap-4">
@@ -26,6 +25,7 @@ function AirportTransport(
               className="rounded-lg"
               alt="airport transport"
               layout="responsive"
+              priority
             />
           ))
         }
@@ -37,7 +37,10 @@ function AirportTransport(
       </p>
       <div className="flex mt-5 justify-center">
         <Button className="bg-black text-white" variant="contained">
-          Send Request
+          {
+            locale === 'ru' ? 'Послать запрос' :
+              (locale === 'hy' ? 'Հարցում ուղարկել' : 'Send Request')
+          }
         </Button>
       </div>
     </div>

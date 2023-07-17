@@ -5,8 +5,8 @@ export interface PriceWithoutDriverType {
   createdAt: string;
   updatedAt: string;
   destination: string;
-  destination_ru: string;
   destination_hy: string;
+  destination_ru: string;
   sedan_3seat: number;
   minivan_7seat: number;
   minibus_18seat: number;

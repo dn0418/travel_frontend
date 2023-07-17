@@ -3,6 +3,7 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { CarWithOutType } from '../../types/car-type';
 
 interface TransportCardProps {
@@ -10,7 +11,8 @@ interface TransportCardProps {
 }
 
 function TransportCard({ car }: TransportCardProps) {
-
+  const { locale } = useRouter();
+  // console.log(car)
 
   return (
     <Card className="regular-shadow  w-full h-full rounded-lg">
@@ -22,12 +24,15 @@ function TransportCard({ car }: TransportCardProps) {
           width={600}
           height={350}
           layout="responsive"
+          priority
         />
         <div className="p-3">
           <div className="flex items-center justify-between">
             <Link href={`/services/transport/${car.id}`}>
               <p className="text-xl font-medium my-2 text-black">
-                {car.name}
+                {locale === 'ru' ? car?.name_ru :
+                  (locale === 'hy' ? car?.name_hy : car?.name)
+                }
               </p>
             </Link>
             {
@@ -46,19 +51,32 @@ function TransportCard({ car }: TransportCardProps) {
             }
           </div>
           <p className="mt-0 text-[#5E5E5E] text-sm">
-            Year: {car.year}
+            {
+              ((locale === 'ru' ? 'Год:' : (locale === 'hy' ? 'Տարի:' : 'Year:'))
+                + ' ' + car.year)
+            }
           </p>
           <p className="mt-0 text-[#5E5E5E] text-sm">
-            No of Seats: {car.seatNo}
+            {
+              ((locale === 'ru' ? 'Количество мест:' :
+                (locale === 'hy' ? 'Նստատեղերի քանակը:' : 'No of Seats:'))
+                + ' ' + car.seatNo)
+            }
           </p>
 
           <p className="text-sm  text-[#5e5e5e]  line-clamp-3 mt-6">
-            {car.shortDescription}
+            {
+              locale === 'ru' ? car?.shortDescription_ru :
+                (locale === 'hy' ? car?.shortDescription_hy : car?.shortDescription)
+            }
           </p>
           <div className="flex justify-end items-center">
             <Link href={`/services/transport/${car.id}`}>
               <Button className="rounded-lg bg-black text-white" variant='contained'>
-                See More
+                {
+                  locale === 'ru' ? 'Узнать больше' :
+                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
+                }
               </Button>
             </Link>
           </div>

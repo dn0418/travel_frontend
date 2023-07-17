@@ -53,7 +53,7 @@ export interface SearchPageProps {
 
 export interface TransportPageProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
-  currentTab: string;
+  currentTab: any;
   carsWithoutDriver: CarWithOutType[];
   carsWithDriver: CarWithDriverType;
   airportTransport: AirportTransportType;

@@ -14,10 +14,12 @@ function TransportWithDriver({ carsWithDriver: car }: Props) {
   return (
     <div className='my-4 w-full md:my-8'>
       <h2 className="text-2xl font-medium pt-6">
-        {locale === 'ru' ? car.title_ru : (locale === 'hy' ? car.title_hy : car.title)}
+        {locale === 'ru' ? car.title_ru :
+          (locale === 'hy' ? car.title_hy : car.title)}
       </h2>
       <p className="">
-        {locale === 'ru' ? car.description_ru : (locale === 'hy' ? car.description_hy : car.description)}
+        {locale === 'ru' ? car.description_ru :
+          (locale === 'hy' ? car.description_hy : car.description)}
       </p>
       <div className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2 gap-4">
         {
@@ -31,6 +33,7 @@ function TransportWithDriver({ carsWithDriver: car }: Props) {
               className="rounded-lg"
               alt="with driver transport"
               layout="responsive"
+              priority
             />
           ))
         }

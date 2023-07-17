@@ -1,12 +1,16 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../../types/page-props";
+import { transportsTabs } from "../../../../utils/data/armenia-data";
 import TransportCard from "../../../cards/car-card";
 import SectionTitle from "../../../common/section-title";
 import AirportTransport from "./airport-transport";
 import TransportWithDriver from "./with-driver";
+
+
 
 function TransportUI({
   handleTabChange,
@@ -18,8 +22,8 @@ function TransportUI({
   carsWithDriver,
   airportTransport
 }: TransportPageProps) {
+  const { locale } = useRouter();
   // console.log(airportTransport)
-
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -31,12 +35,19 @@ function TransportUI({
           TabIndicatorProps={{
             style: { display: "none" },
           }}>
-          <Tab value='all' className="" label='Airport Transpers' />
-          <Tab value='without_driver' className="" label="Without Driver" />
-          <Tab value='with_driver' className="" label="With Driver" />
+          {
+            transportsTabs.map((tab, i) => (
+              <Tab
+                key={i}
+                value={tab.value}
+                label={locale === 'ru' ? tab.label.ru :
+                  (locale === 'hy' ? tab.label.hy : tab.label.en)
+                }
+              />
+            ))
+          }
         </Tabs>
       </div>
-
 
       <div className='w-full' hidden={currentTab !== "all"} >
         <AirportTransport airportTransport={airportTransport} />
@@ -48,10 +59,20 @@ function TransportUI({
 
       <div hidden={currentTab !== "without_driver"} className='my-4 w-full md:my-8'>
         <div className="flex items-center w-full justify-between">
-          <SectionTitle title="Without Driver" />
+          <SectionTitle
+            title={
+              locale === 'ru' ? 'Без водителя' :
+                (locale === 'hy' ? 'Առանց վարորդի' : 'Without Driver')
+            }
+          />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your Need</InputLabel>
+              <InputLabel>
+                {
+                  locale === 'ru' ? 'Найдите свою потребность' :
+                    (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+                }
+              </InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">

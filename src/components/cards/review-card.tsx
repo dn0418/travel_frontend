@@ -21,6 +21,7 @@ function ReviewCard({ review, isRating = false }: ReviewCardProps) {
             height={64}
             className='rounded-full'
             alt={review.firstName + ' ' + review.lastName}
+            priority
           />
           <div className=''>
             <p className='my-1 text-xl'>{review.firstName + ' ' + review.lastName}</p>

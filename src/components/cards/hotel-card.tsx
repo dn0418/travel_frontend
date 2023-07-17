@@ -20,6 +20,7 @@ function HotelCard({ hotel }: { hotel: HotelType }) {
           width={600}
           height={350}
           layout="responsive"
+          priority
         />
         <div className="p-3">
           <div className="flex items-center justify-between">

@@ -11,7 +11,6 @@ interface TransportCardProps {
 
 function AccessoriesCard({ accessory }: TransportCardProps) {
 
-
   return (
     <Card className="regular-shadow rounded-lg">
       <div className="bg-white p-3">
@@ -22,6 +21,7 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
           width={600}
           height={350}
           layout="responsive"
+          priority
         />
         <div className="p-3 flex flex-col justify-between">
           <div className="">
