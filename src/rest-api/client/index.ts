@@ -73,22 +73,22 @@ class Client {
 
 
   thingToSee = {
-    all: (page?: any, type?: any, search?: any) => HttpClient.get(
-      `${API_ENDPOINTS.THING_TO_SEE}?page=${page}&type=${type}&search=${search}`
+    all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.THING_TO_SEE}?page=${page}&type=${type}&search=${search}&lan=${locale}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.THING_TO_SEE}/${id}`),
   }
 
   thingToDo = {
-    all: (page?: any, type?: any, search?: any) => HttpClient.get(
-      `${API_ENDPOINTS.THING_TO_DO}?page=${page}&type=${type}&search=${search}`
+    all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.THING_TO_DO}?page=${page}&type=${type}&search=${search}&lan=${locale}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.THING_TO_DO}/${id}`),
   }
 
   foodAndDrinks = {
-    all: (page?: any, type?: any, search?: any) => HttpClient.get(
-      `${API_ENDPOINTS.FOOD_AND_DRINKS}?page=${page}&type=${type}&search=${search}`
+    all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.FOOD_AND_DRINKS}?page=${page}&type=${type}&search=${search}&lan=${locale}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.FOOD_AND_DRINKS}/${id}`),
   }

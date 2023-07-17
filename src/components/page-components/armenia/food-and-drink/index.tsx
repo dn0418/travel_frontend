@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { FoodAndDrinkPageProps } from "../../../../types/page-props";
 import FoodAndDrinkCard from "../../../cards/food-and-drink-card";
@@ -16,6 +17,7 @@ function FoodAndDrinksUI({
   metaData,
   findTab
 }: FoodAndDrinkPageProps) {
+  const { locale } = useRouter();
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -70,7 +72,10 @@ function FoodAndDrinksUI({
             foodAndDrinks.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  Data not found!
+                  {
+                    locale === 'ru' ? 'Данные не найдены!' :
+                      (locale === 'hy' ? 'Տվյալները չեն գտնվել:' : 'Data not found!')
+                  }
                 </p>
               </div>
 

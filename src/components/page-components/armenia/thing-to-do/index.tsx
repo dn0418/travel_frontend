@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { ThingToSeePageProps } from "../../../../types/page-props";
 import ThingToDoCard from "../../../cards/thing-to-do-card";
@@ -17,7 +18,7 @@ function ThingToDoUI({
   metaData,
   findTab
 }: ThingToSeePageProps) {
-
+  const { locale } = useRouter();
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -72,7 +73,10 @@ function ThingToDoUI({
             things.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  Data not found!
+                  {
+                    locale === 'ru' ? 'Данные не найдены!' :
+                      (locale === 'hy' ? 'Տվյալները չեն գտնվել:' : 'Data not found!')
+                  }
                 </p>
               </div>
 
