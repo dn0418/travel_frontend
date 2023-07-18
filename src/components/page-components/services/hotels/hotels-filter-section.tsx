@@ -1,8 +1,10 @@
 // @flow strict
 
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { useRouter } from "next/router";
 import "react-datepicker/dist/react-datepicker.css";
 import { FiSearch } from "react-icons/fi";
+import { HotelTypes } from "../../../../types/services";
 import { countriesAndCities } from "../../../../utils/data/hotel-filter-data";
 
 interface PropsType {
@@ -17,10 +19,7 @@ interface PropsType {
     value: string;
   }[];
   handleClickSearch: () => void;
-  hotelTypes: {
-    id: number;
-    name: string;
-  }[]
+  hotelTypes: HotelTypes[]
 }
 
 function HotelsFilterSection({
@@ -30,6 +29,8 @@ function HotelsFilterSection({
   handleClickSearch,
   hotelTypes
 }: PropsType) {
+  const { locale } = useRouter();
+  const countryData = locale === "ru" ? countriesAndCities.ru : (locale === "hy" ? countriesAndCities.hy : countriesAndCities.en);
 
   return (
     <div
@@ -42,14 +43,15 @@ function HotelsFilterSection({
         <div className='flex justify-center'>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>
-              {filterInput.country ? "" : 'Country'}
+              {filterInput.country ? "" :
+                (locale === 'ru' ? 'Страна' : (locale === 'hy' ? 'Երկիր' : 'Country'))}
             </InputLabel>
             <Select
               labelId='demo-simple-select-label'
               name="country"
               value={filterInput.country}
               onChange={handleChangeFilterData}>
-              {countriesAndCities.map((country) => (
+              {countryData.map((country) => (
                 <MenuItem key={country.value} value={country.value}>
                   {country.name}
                 </MenuItem>
@@ -61,7 +63,11 @@ function HotelsFilterSection({
         <div className='flex justify-center'>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>
-              {filterInput.city ? "" : 'Destination'}
+              {filterInput.city ? "" :
+                (locale === 'ru' ? 'Место назначения' :
+                  (locale === 'hy' ? 'Նպատակակետ' : 'Destination')
+                )
+              }
             </InputLabel>
             <Select
               labelId='demo-simple-select-label'
@@ -80,7 +86,9 @@ function HotelsFilterSection({
         <div className='flex justify-center'>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>
-              {filterInput.type ? "" : 'Type'}
+              {filterInput.type ? "" : (locale === 'ru' ? 'Тип' :
+                (locale === 'hy' ? 'Տիպ' : 'Type')
+              )}
             </InputLabel>
             <Select
               labelId='demo-simple-select-label'
@@ -89,21 +97,26 @@ function HotelsFilterSection({
               onChange={handleChangeFilterData}>
               {hotelTypes.map((type) => (
                 <MenuItem key={type.id} value={type.id}>
-                  {type.name}
+                  {
+                    locale === 'ru' ? type.name_ru :
+                      (locale === 'hy' ? type.name_hy : type.name)
+                  }
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
         </div>
 
-
-
         <div className='flex justify-center'>
           <Button
             onClick={handleClickSearch}
             className='text-white bg-black rounded-lg px-4 w-fit'>
             <FiSearch className='text-xl' />{" "}
-            <span className='capitalize pl-1'>Search</span>
+            <span className='capitalize pl-1'>
+              {
+                locale === 'ru' ? 'Поиск' : (locale === 'hy' ? 'Որոնում' : 'Search')
+              }
+            </span>
           </Button>
         </div>
       </div>

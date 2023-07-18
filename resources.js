@@ -3,7 +3,7 @@ import commonHy from './public/locales/hy/common.json';
 import commonRu from './public/locales/ru/common.json';
 
 export const resources = {
-  'en-US': {
+  en: {
     common: commonEn,
   },
   hy: {

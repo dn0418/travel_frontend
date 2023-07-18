@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { SearchPageProps } from "../../../types/page-props";
 import TourCard from "../../cards/tour-card";
@@ -15,6 +16,7 @@ function SearchPage({
   destinations,
   typeItems
 }: SearchPageProps) {
+  const { locale } = useRouter();
 
   // console.log(meta)
 
@@ -61,12 +63,18 @@ function SearchPage({
                     components={{
                       next: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Next
+                          {
+                            locale === 'ru' ? 'Следующий' :
+                              (locale === 'hy' ? 'Հաջորդը' : 'Next')
+                          }
                         </span>
                       ),
                       previous: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Prev
+                          {
+                            locale === 'ru' ? 'Пред.' :
+                              (locale === 'hy' ? 'Նախ' : 'Prev')
+                          }
                         </span>
                       ),
                     }}

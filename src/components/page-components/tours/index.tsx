@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { ToursPageProps } from "../../../types/page-props";
 import TourCard from "../../cards/tour-card";
@@ -16,7 +17,7 @@ function ToursPage({
   meta,
   handleSearch
 }: ToursPageProps) {
-
+  const { locale } = useRouter();
   // console.log(meta)
 
   return (
@@ -78,12 +79,18 @@ function ToursPage({
                     components={{
                       next: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Next
+                          {
+                            locale === 'ru' ? 'Следующий' :
+                              (locale === 'hy' ? 'Հաջորդը' : 'Next')
+                          }
                         </span>
                       ),
                       previous: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Prev
+                          {
+                            locale === 'ru' ? 'Пред.' :
+                              (locale === 'hy' ? 'Նախ' : 'Prev')
+                          }
                         </span>
                       ),
                     }}

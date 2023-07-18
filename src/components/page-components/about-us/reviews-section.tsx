@@ -13,6 +13,7 @@ interface Props {
 function ReviewsSection({ reviews, reviewsPagination }: Props) {
   const router = useRouter();
   const { totalPages } = reviewsPagination;
+  const { locale } = router;
 
   const handleUpdatePage = (queryParams: { page: number }) => {
     router.push({
@@ -42,12 +43,18 @@ function ReviewsSection({ reviews, reviewsPagination }: Props) {
                 components={{
                   next: (props) => (
                     <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                      Next
+                      {
+                        locale === 'ru' ? 'Следующий' :
+                          (locale === 'hy' ? 'Հաջորդը' : 'Next')
+                      }
                     </span>
                   ),
                   previous: (props) => (
                     <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                      Prev
+                      {
+                        locale === 'ru' ? 'Пред.' :
+                          (locale === 'hy' ? 'Նախ' : 'Prev')
+                      }
                     </span>
                   ),
                 }}

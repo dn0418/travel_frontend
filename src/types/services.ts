@@ -46,7 +46,7 @@ interface HotelPricingTable {
   lastPart: number;
 }
 
-interface HotelTypes {
+export interface HotelTypes {
   id: number;
   name: string;
   name_ru: string;

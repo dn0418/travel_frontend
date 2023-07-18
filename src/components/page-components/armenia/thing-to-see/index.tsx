@@ -101,12 +101,18 @@ function ThingToSeeUI({
                     components={{
                       next: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Next
+                          {
+                            locale === 'ru' ? 'Следующий' :
+                              (locale === 'hy' ? 'Հաջորդը' : 'Next')
+                          }
                         </span>
                       ),
                       previous: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Prev
+                          {
+                            locale === 'ru' ? 'Пред.' :
+                              (locale === 'hy' ? 'Նախ' : 'Prev')
+                          }
                         </span>
                       ),
                     }}

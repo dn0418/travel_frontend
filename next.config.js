@@ -6,8 +6,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   i18n: {
-    defaultLocale: 'en-US',
-    locales: ['en-US', 'hy', 'ru'],
+    defaultLocale: 'en',
+    locales: ['en', 'hy', 'ru'],
   },
   images: {
     domains: ['i.ibb.co', 's3.ap-southeast-1.amazonaws.com'],

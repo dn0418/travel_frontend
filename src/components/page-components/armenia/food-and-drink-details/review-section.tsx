@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { FoodAndDrinksType } from "../../../../types";
 import ReviewCard from "../../../cards/review-card";
@@ -11,6 +12,7 @@ function FoodAndDrinkReviewSection({ foodAndDrink }: { foodAndDrink: FoodAndDrin
   const { reviews } = foodAndDrink;
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
+  const { locale } = useRouter();
 
   const handleChangeFunction = () => {
     setIsReviewShow(!isReviewShow);
@@ -61,12 +63,18 @@ function FoodAndDrinkReviewSection({ foodAndDrink }: { foodAndDrink: FoodAndDrin
                       components={{
                         next: (props) => (
                           <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                            Next
+                            {
+                              locale === 'ru' ? 'Следующий' :
+                                (locale === 'hy' ? 'Հաջորդը' : 'Next')
+                            }
                           </span>
                         ),
                         previous: (props) => (
                           <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                            Prev
+                            {
+                              locale === 'ru' ? 'Пред.' :
+                                (locale === 'hy' ? 'Նախ' : 'Prev')
+                            }
                           </span>
                         ),
                       }}

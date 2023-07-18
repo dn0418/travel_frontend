@@ -28,14 +28,14 @@ export const getStaticProps: GetStaticProps = async () => {
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { query } = context;
+  const { query, locale } = context;
   const page = query["page"] || 1;
   const type = query["type"] || '';
   const search = query["search"] || "";
   const country = query["country"] || "";
   const city = query["city"] || "";
 
-  const hotels = await client.hotels.filtered(page, type, search, country, city);
+  const hotels = await client.hotels.filtered(page, type, search, country, city, locale);
   const hotelTypes = await client.hotelType.all();
 
   return {

@@ -107,8 +107,9 @@ class Client {
       type: any,
       search: any,
       country: any,
-      city: any
-    ) => HttpClient.get(`${API_ENDPOINTS.HOTELS}?page=${page}&type=${type}&search=${search}&country=${country}&city=${city}`),
+      city: any,
+      locale: any,
+    ) => HttpClient.get(`${API_ENDPOINTS.HOTELS}?page=${page}&type=${type}&search=${search}&country=${country}&city=${city}&lan=${locale}`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
   }
 

@@ -1,311 +1,430 @@
-export const hotelsTypes = [
-  {
-    id: 1,
-    name: 'Hotel',
-    value: 'hotel'
-  },
-  {
-    id: 2,
-    name: 'Resort',
-    value: 'resort'
-  },
-  {
-    id: 3,
-    name: 'Hostel',
-    value: 'hostel'
-  },
-  {
-    id: 4,
-    name: 'Guest House',
-    value: 'guest_house'
-  },
-  {
-    id: 5,
-    name: ' Motel',
-    value: 'motel'
-  },
-  {
-    id: 6,
-    name: 'B & B',
-    value: 'bb'
-  }
-];
+export const hotelsTypes = {
+  en: [
+    {
+      id: 1,
+      name: 'Hotel',
+      value: 'hotel'
+    },
+    {
+      id: 2,
+      name: 'Resort',
+      value: 'resort'
+    },
+    {
+      id: 3,
+      name: 'Hostel',
+      value: 'hostel'
+    },
+    {
+      id: 4,
+      name: 'Guest House',
+      value: 'guest_house'
+    },
+    {
+      id: 5,
+      name: ' Motel',
+      value: 'motel'
+    },
+    {
+      id: 6,
+      name: 'B & B',
+      value: 'bb'
+    }
+  ],
+  ru: [
+    {
+      id: 1,
+      name: 'Отель',
+      value: 'hotel'
+    },
+    {
+      id: 2,
+      name: 'Курорт',
+      value: 'resort'
+    },
+    {
+      id: 3,
+      name: 'Хостел',
+      value: 'hostel'
+    },
+    {
+      id: 4,
+      name: 'Гостевой дом',
+      value: 'guest_house'
+    },
+    {
+      id: 5,
+      name: 'Мотель',
+      value: 'motel'
+    },
+    {
+      id: 6,
+      name: 'Бед-энд-брекфаст',
+      value: 'bb'
+    }
+  ],
+  hy: [
+    {
+      id: 1,
+      name: 'Հյուրանոց',
+      value: 'hotel'
+    },
+    {
+      id: 2,
+      name: 'Ռեսորան',
+      value: 'resort'
+    },
+    {
+      id: 3,
+      name: 'Հոստել',
+      value: 'hostel'
+    },
+    {
+      id: 4,
+      name: 'Հյուրատուն',
+      value: 'guest_house'
+    },
+    {
+      id: 5,
+      name: 'Մոտել',
+      value: 'motel'
+    },
+    {
+      id: 6,
+      name: 'Բեդ-և-Բրեկֆաստ',
+      value: 'bb'
+    }
+  ]
+};
 
-export const countriesAndCities = [
-  {
-    name: "Armenia",
+export const countriesAndCities = {
+  en: [
+    {
+      name: "Armenia",
+      value: "armenia",
+      cities: [
+        {
+          name: "Yerevan",
+          value: "Yerevan"
+        },
+        {
+          name: "Gyumri",
+          value: "Gyumri"
+        },
+        {
+          name: "Dilijan",
+          value: "Dilijan"
+        },
+        {
+          name: "Tsakhkadzor",
+          value: "Tsakhkadzor"
+        },
+        {
+          name: "Jermuk",
+          value: "Jermuk"
+        },
+        {
+          name: "Goris",
+          value: "Goris"
+        },
+        {
+          name: "Aghveran",
+          value: "Aghveran"
+        },
+        {
+          name: "Lori",
+          value: "Lori"
+        },
+        {
+          name: "Sevan",
+          value: "Sevan"
+        },
+        {
+          name: "Sisian",
+          value: "Sisian"
+        },
+        {
+          name: "Garni",
+          value: "Garni"
+        },
+        {
+          name: "Ijevan",
+          value: "Ijevan"
+        },
+        {
+          name: "Arzni",
+          value: "Arzni"
+        },
+        {
+          name: "Kapan",
+          value: "Kapan"
+        },
+        {
+          name: "Ashtarak",
+          value: "Ashtarak"
+        },
+        {
+          name: "Yeghegnadzor",
+          value: "Yeghegnadzor"
+        },
+        {
+          name: "Meghri",
+          value: "Meghri"
+        },
+        {
+          name: "Stepanakert",
+          value: "Stepanakert"
+        }
+      ]
+    },
+    {
+      name: "Georgia",
+      value: "georgia",
+      cities: [
+        {
+          name: "Tbilisi",
+          value: "Tbilisi"
+        },
+        {
+          name: "Batumi",
+          value: "Batumi"
+        },
+        {
+          name: "Kutaisi",
+          value: "Kutaisi"
+        },
+        {
+          name: "Signaghi",
+          value: "Signaghi"
+        },
+        {
+          name: "Akhaltsikhe",
+          value: "Akhaltsikhe"
+        },
+        {
+          name: "Mestia",
+          value: "Mestia"
+        },
+        {
+          name: "Bakuriani",
+          value: "Bakuriani"
+        },
+        {
+          name: "Kazbegi",
+          value: "Kazbegi"
+        }
+      ]
+    },
+    {
+      name: "Iran",
+      value: "iran",
+      cities: []
+    }
+  ],
+  ru: [{
+    name: "Армения",
     value: "armenia",
+    cities: [{
+      name: "Ереван",
+      value: "Yerevan"
+    }, {
+      name: "Гюмри",
+      value: "Gyumri"
+    }, {
+      name: "Дилижан",
+      value: "Dilijan"
+    }, {
+      name: "Цахкадзор",
+      value: "Tsakhkadzor"
+    }, {
+      name: "Джермук",
+      value: "Jermuk"
+    }, {
+      name: "Горис",
+      value: "Goris"
+    }, {
+      name: "Агверан",
+      value: "Aghveran"
+    }, {
+      name: "Лори",
+      value: "Lori"
+    }, {
+      name: "Севан",
+      value: "Sevan"
+    }, {
+      name: "Сисиан",
+      value: "Sisian"
+    }, {
+      name: "Гарни",
+      value: "Garni"
+    }, {
+      name: "Иджеван",
+      value: "Ijevan"
+    }, {
+      name: "Арзни",
+      value: "Arzni"
+    }, {
+      name: "Капан",
+      value: "Kapan"
+    }, {
+      name: "Аштарак",
+      value: "Ashtarak"
+    }, {
+      name: "Егегнадзор",
+      value: "Yeghegnadzor"
+    }, {
+      name: "Мегри",
+      value: "Meghri"
+    }, {
+      name: "Степанакерт",
+      value: "Stepanakert"
+    }]
+  },
+  {
+    name: "Грузия",
+    value: "georgia",
     cities: [
       {
-        name: "Yerevan",
-        value: "yerevan"
+        name: "Тбилиси",
+        value: "Tbilisi"
       },
       {
-        name: "Gyumri",
-        value: "gyumri"
+        name: "Батуми",
+        value: "Batumi"
       },
       {
-        name: "Vanadzor",
-        value: "vanadzor"
+        name: "Кутаиси",
+        value: "Kutaisi"
       },
       {
-        name: "Vagharshapat",
-        value: "vagharshapat"
+        name: "Сигнахи",
+        value: "Signaghi"
       },
       {
-        name: "Hrazdan",
-        value: "hrazdan"
+        name: "Ахалцихе",
+        value: "Akhaltsikhe"
       },
       {
-        name: "Abovyan",
-        value: "abovyan"
+        name: "Местия",
+        value: "Mestia"
       },
       {
-        name: "Kapan",
-        value: "kapan"
+        name: "Бакуриани",
+        value: "Bakuriani"
       },
       {
-        name: "Ararat",
-        value: "ararat"
-      },
-      {
-        name: "Armavir",
-        value: "armavir"
-      },
-      {
-        name: "Gavar",
-        value: "gavar"
+        name: "Казбеги",
+        value: "Kazbegi"
       }
     ]
   },
   {
-    name: "USA",
-    value: "usa",
-    cities: [
-      {
-        name: "New York City",
-        value: "new_york_city"
-      },
-      {
-        name: "Los Angeles",
-        value: "los_angeles"
-      },
-      {
-        name: "Chicago",
-        value: "chicago"
-      },
-      {
-        name: "Houston",
-        value: "houston"
-      },
-      {
-        name: "Phoenix",
-        value: "phoenix"
-      },
-      {
-        name: "Philadelphia",
-        value: "philadelphia"
-      },
-      {
-        name: "San Antonio",
-        value: "san_antonio"
-      },
-      {
-        name: "San Diego",
-        value: "san_diego"
-      },
-      {
-        name: "Dallas",
-        value: "dallas"
-      },
-      {
-        name: "San Jose",
-        value: "san_jose"
-      }
-    ]
-  },
-  {
-    name: "UK",
-    value: "uk",
-    cities: [
-      {
-        name: "London",
-        value: "london"
-      },
-      {
-        name: "Birmingham",
-        value: "birmingham"
-      },
-      {
-        name: "Manchester",
-        value: "manchester"
-      },
-      {
-        name: "Glasgow",
-        value: "glasgow"
-      },
-      {
-        name: "Leeds",
-        value: "leeds"
-      },
-      {
-        name: "Liverpool",
-        value: "liverpool"
-      },
-      {
-        name: "Newcastle upon Tyne",
-        value: "newcastle_upon_tyne"
-      },
-      {
-        name: "Sheffield",
-        value: "sheffield"
-      },
-      {
-        name: "Bristol",
-        value: "bristol"
-      },
-      {
-        name: "Edinburgh",
-        value: "edinburgh"
-      }
-    ]
-  },
-  {
-    name: "UAE",
-    value: "uae",
-    cities: [
-      {
-        name: "Dubai",
-        value: "dubai"
-      },
-      {
-        name: "Abu Dhabi",
-        value: "abu_dhabi"
-      },
-      {
-        name: "Sharjah",
-        value: "sharjah"
-      },
-      {
-        name: "Ajman",
-        value: "ajman"
-      },
-      {
-        name: "Ras Al Khaimah",
-        value: "ras_al_khaimah"
-      },
-      {
-        name: "Fujairah",
-        value: "fujairah"
-      },
-      {
-        name: "Umm Al Quwain",
-        value: "umm_al_quwain"
-      },
-      {
-        name: "Al Ain",
-        value: "al_ain"
-      },
-      {
-        name: "Khor Fakkan",
-        value: "khor_fakkan"
-      },
-      {
-        name: "Dibba Al-Hisn",
-        value: "dibba_al_hisn"
-      }
-    ]
-  },
-  {
-    name: "Japan",
-    value: "japan",
-    cities: [
-      {
-        name: "Tokyo",
-        value: "tokyo"
-      },
-      {
-        name: "Yokohama",
-        value: "yokohama"
-      },
-      {
-        name: "Osaka",
-        value: "osaka"
-      },
-      {
-        name: "Nagoya",
-        value: "nagoya"
-      },
-      {
-        name: "Sapporo",
-        value: "sapporo"
-      },
-      {
-        name: "Fukuoka",
-        value: "fukuoka"
-      },
-      {
-        name: "Kobe",
-        value: "kobe"
-      },
-      {
-        name: "Kyoto",
-        value: "kyoto"
-      },
-      {
-        name: "Kawasaki",
-        value: "kawasaki"
-      },
-      {
-        name: "Saitama",
-        value: "saitama"
-      }
-    ]
-  },
-  {
-    name: "Thailand",
-    value: "thailand",
-    cities: [
-      {
-        name: "Bangkok",
-        value: "bangkok"
-      },
-      {
-        name: "Chiang Mai",
-        value: "chiang_mai"
-      },
-      {
-        name: "Phuket City",
-        value: "phuket_city"
-      },
-      {
-        name: "Pattaya",
-        value: "pattaya"
-      },
-      {
-        name: "Hua Hin",
-        value: "hua_hin"
-      },
-      {
-        name: "Nonthaburi",
-        value: "nonthaburi"
-      },
-      {
-        name: "Krabi",
-        value: "krabi"
-      },
-      {
-        name: "Ayutthaya",
-        value: "ayutthaya"
-      },
-      {
-        name: "Surat Thani",
-        value: "surat_thani"
-      },
-      {
-        name: "Samut Prakan",
-        value: "samut_prakan"
-      }
-    ]
+    name: "Иран",
+    value: "iran",
+    cities: []
   }
-]
+  ],
+  hy: [{
+    name: "Հայաստան",
+    value: "armenia",
+    cities: [{
+      name: "Երևան",
+      value: "Yerevan"
+    }, {
+      name: "Գյումրի",
+      value: "Gyumri"
+    }, {
+      name: "Դիլիջան",
+      value: "Dilijan"
+    }, {
+      name: "Ծաղկաձոր",
+      value: "Tsakhkadzor"
+    }, {
+      name: "Ջերմուկ",
+      value: "Jermuk"
+    }, {
+      name: "Գորիս",
+      value: "Goris"
+    }, {
+      name: "Աղվերան",
+      value: "Aghveran"
+    }, {
+      name: "Լոռի",
+      value: "Lori"
+    }, {
+      name: "Սևան",
+      value: "Sevan"
+    }, {
+      name: "Սիսիան",
+      value: "Sisian"
+    }, {
+      name: "Գառնի",
+      value: "Garni"
+    }, {
+      name: "Իջևան",
+      value: "Ijevan"
+    }, {
+      name: "Արզնի",
+      value: "Arzni"
+    }, {
+      name: "Կապան",
+      value: "Kapan"
+    }, {
+      name: "Աշտարակ",
+      value: "Ashtarak"
+    }, {
+      name: "Եղեգնաձոր",
+      value: "Yeghegnadzor"
+    }, {
+      name: "Մեղրի",
+      value: "Meghri"
+    }, {
+      name: "Ստեփանակերտ",
+      value: "Stepanakert"
+    }]
+  },
+  {
+    name: "Վրաստան",
+    value: "georgia",
+    cities: [
+      {
+        name: "Թբիլիսի",
+        value: "Tbilisi"
+      },
+      {
+        name: "Բաթումի",
+        value: "Batumi"
+      },
+      {
+        name: "Քուտաիսի",
+        value: "Kutaisi"
+      },
+      {
+        name: "Սիգնաղի",
+        value: "Signaghi"
+      },
+      {
+        name: "Ախալցխե",
+        value: "Akhaltsikhe"
+      },
+      {
+        name: "Մեստիա",
+        value: "Mestia"
+      },
+      {
+        name: "Բակուրիանի",
+        value: "Bakuriani"
+      },
+      {
+        name: "Քազբեգի",
+        value: "Kazbegi"
+      }
+    ]
+  },
+  {
+    name: "Իրան",
+    value: "iran",
+    cities: []
+  }
+  ]
+}

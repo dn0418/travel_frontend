@@ -151,7 +151,7 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
                   defaultValue=''
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}>
-                  <MenuItem value='en-US'>English</MenuItem>
+                  <MenuItem value='en'>English</MenuItem>
                   <MenuItem value='hy'>Armenian</MenuItem>
                   <MenuItem value='ru'>Russian</MenuItem>
                 </Select>

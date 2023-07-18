@@ -2,8 +2,9 @@
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
-import { HotelDataType } from "../../../../types/services";
+import { HotelDataType, HotelTypes } from "../../../../types/services";
 import HotelCard from "../../../cards/hotel-card";
 import SectionTitle from "../../../common/section-title";
 const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
@@ -26,10 +27,7 @@ interface PropsType {
   metadata: {
     totalPages: number;
   };
-  hotelTypes: {
-    id: number;
-    name: string;
-  }[]
+  hotelTypes: HotelTypes[]
 }
 
 function HotelsUI({
@@ -43,7 +41,7 @@ function HotelsUI({
   handlePageChange,
   hotelTypes
 }: PropsType) {
-
+  const { locale } = useRouter();
 
   return (
     <Container className='my-8 flex flex-col items-center hotels-page'>
@@ -56,16 +54,27 @@ function HotelsUI({
       />
       <div className='my-4 w-full md:my-8'>
         <div className="flex w-full items-center justify-between">
-          <SectionTitle title='Special Hotel' />
+          <SectionTitle title={
+            locale === 'ru' ? 'Специальный отель' :
+              (locale === 'hy' ? 'Հատուկ հյուրանոց' : 'Special Hotel')
+          } />
           <FormControl size="small" className="shadow-sm" variant="outlined">
-            <InputLabel>Search your Need</InputLabel>
+            <InputLabel>
+              {
+                locale === 'ru' ? 'Найдите свою потребность' :
+                  (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+              }
+            </InputLabel>
             <OutlinedInput
               endAdornment={
                 <InputAdornment position="end">
                   <BiSearch className="text-[#EDA592]" />
                 </InputAdornment>
               }
-              label='Search your Need'
+              label={
+                locale === 'ru' ? 'Найдите свою потребность' :
+                  (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+              }
               onChange={(e) => handleSerachHotels(e.target.value)}
             />
           </FormControl>
@@ -91,12 +100,18 @@ function HotelsUI({
                     components={{
                       next: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Next
+                          {
+                            locale === 'ru' ? 'Следующий' :
+                              (locale === 'hy' ? 'Հաջորդը' : 'Next')
+                          }
                         </span>
                       ),
                       previous: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          Prev
+                          {
+                            locale === 'ru' ? 'Пред.' :
+                              (locale === 'hy' ? 'Նախ' : 'Prev')
+                          }
                         </span>
                       ),
                     }}

@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import HotelsUI from "../../../src/components/page-components/services/hotels";
 import { getServerSideProps } from "../../../src/rest-api/hotels/hotels.ssr";
@@ -20,6 +20,7 @@ const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
   const metadata = props.hotelData.meta;
   const hotelTypes = props.hotelTypes.data;
   const [cities, setCities] = useState<CityType[]>([]);
+  const [countryData, setCountryData] = useState(countriesAndCities.en);
   const router = useRouter();
   const params = router.query;
   const [filterInput, setFilterInput] = useState({
@@ -27,10 +28,11 @@ const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
     city: '',
     country: '',
   });
+  const { locale } = router;
 
   const handleChangeFilterData = (e: any) => {
     if (e.target.name === 'country') {
-      const findCities = countriesAndCities.find(city => city.value === e.target.value);
+      const findCities = countryData.find(city => city.value === e.target.value);
       if (findCities) {
         setCities(findCities.cities);
         setFilterInput(prev => ({
@@ -92,6 +94,22 @@ const Hotels: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
       query: params,
     });
   }
+
+  useEffect(() => {
+    if (locale === 'ru') {
+      setCountryData(countriesAndCities.ru);
+    } else if (locale === 'hy') {
+      setCountryData(countriesAndCities.hy);
+    } else {
+      setCountryData(countriesAndCities.en);
+    }
+    setCities([]);
+    setFilterInput({
+      type: '',
+      city: '',
+      country: '',
+    })
+  }, [locale])
 
   return (
     <>

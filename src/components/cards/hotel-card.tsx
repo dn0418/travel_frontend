@@ -3,12 +3,13 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { HotelDataType } from '../../types/services';
 
 
 function HotelCard({ hotel }: { hotel: HotelDataType }) {
-
+  const { locale } = useRouter();
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -25,7 +26,11 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
         <div className="p-3">
           <div className="flex items-center justify-between">
             <Link href={`/services/hotels/${hotel.id}`}>
-              <p className="text-xl font-medium my-2 text-black">{hotel.name}</p>
+              <p className="text-xl font-medium my-2 text-black">
+                {locale === 'ru' ? hotel?.name_ru :
+                  (locale === 'hy' ? hotel?.name_hy : hotel?.name)
+                }
+              </p>
             </Link>
             {
               hotel.rating > 0 &&
@@ -46,23 +51,37 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
             <div className="flex items-center gap-2">
               <HiOutlineLocationMarker className="text-[#EDA592] text-base" />
               <span className=" text-[#5E5E5E] text-sm">
-                {hotel.city + " - " + hotel.country}
+                {(locale === 'ru' ? hotel?.city_ru :
+                  (locale === 'hy' ? hotel?.city_hy :
+                    hotel?.city)) + " - " + (locale === 'ru' ? hotel?.country_ru :
+                      (locale === 'hy' ? hotel?.country_hy : hotel?.country))
+                }
               </span>
             </div>
             {
               hotel.type &&
               <p className="my-0 text-[#5e5e5e] text-sm">
 
-                Type: {hotel.type?.name}
+                {(locale === 'ru' ? 'тип:' : (locale === 'hy' ? 'տիպ:' : 'Type:'))
+                  + ' ' + (locale === 'ru' ? hotel?.type.name_ru :
+                    (locale === 'hy' ? hotel?.type.name_hy : hotel?.type.name))}
               </p>
             }
           </div>
 
-          <p className="text-sm  text-[#5e5e5e] line-clamp-3">{hotel.shortDescription}</p>
+          <p className="text-sm  text-[#5e5e5e] line-clamp-3">
+            {
+              locale === 'ru' ? hotel?.shortDescription_ru :
+                (locale === 'hy' ? hotel?.shortDescription_hy : hotel?.shortDescription)
+            }
+          </p>
           <div className="flex justify-end items-center">
             <Link href={`/services/hotels/${hotel.id}`}>
               <Button className="rounded-lg bg-black text-white" variant='contained'>
-                See More
+                {
+                  locale === 'ru' ? 'Узнать больше' :
+                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
+                }
               </Button>
             </Link>
           </div>
