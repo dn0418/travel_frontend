@@ -11,7 +11,6 @@ import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
 const AccessoryDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const carDetails = props.carsDetails?.data;
   const accessoryDetails = props.accessoryDetails?.data;
   const accessories = props?.accessoriesData?.data;
   const reviews = props?.reviews?.data;
@@ -21,7 +20,6 @@ const AccessoryDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getSta
     <>
       <AccessoryDetailsUI
         accessories={accessories}
-        car={carDetails}
         reviews={reviews}
         accessoryDetails={accessoryDetails}
         metadata={metadata}

@@ -14,12 +14,9 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const tours = await client.tours?.sortedTour(+page, type, search, month, destination, days);
 
-  const tourType = await client.tourType.all()
-
   return {
     props: {
       toursData: tours,
-      tourType: tourType,
     },
   };
 };

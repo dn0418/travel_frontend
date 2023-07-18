@@ -3,6 +3,7 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { TourAccessoryType } from '../../types';
 
 interface TransportCardProps {
@@ -10,6 +11,7 @@ interface TransportCardProps {
 }
 
 function AccessoriesCard({ accessory }: TransportCardProps) {
+  const { locale } = useRouter();
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -28,15 +30,23 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
             <div className="flex items-center justify-between">
               <Link href={`/services/tour-accessories/${accessory.id}`}>
                 <p className="text-xl font-medium my-2 text-black">
-                  {accessory.title}
+                  {
+                    locale === 'ru' ? accessory.title_ru :
+                      (locale === 'hy' ? accessory.title_hy : accessory.title)
+                  }
                 </p>
               </Link>
             </div>
             <div className="flex justify-between items-center">
+              {
+                accessory.type &&
+                <p className="my-0 text-[#5e5e5e] text-sm">
 
-              <p className="my-2 text-[#5E5E5E] text-sm">
-                Type: {accessory.type.name}
-              </p>
+                  {(locale === 'ru' ? 'тип:' : (locale === 'hy' ? 'տիպ:' : 'Type:'))
+                    + ' ' + (locale === 'ru' ? accessory?.type.name_ru :
+                      (locale === 'hy' ? accessory?.type.name_hy : accessory?.type.name))}
+                </p>
+              }
               {
                 accessory.rating &&
                 <div className="flex items-center gap-1">
@@ -57,16 +67,27 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
 
             <p className="my-2 text-[#5E5E5E] text-sm">
               Available: {accessory.available}
+              {(locale === 'ru' ? 'Доступный:' : (locale === 'hy' ? 'Հասանելի է:' : 'Available:'))
+                + ' ' + (locale === 'ru' ? accessory?.available_ru :
+                  (locale === 'hy' ? accessory?.available_hy : accessory?.available))}
             </p>
             <p className="text-sm  text-[#5e5e5e] mt-6 line-clamp-3">
-              {accessory.shortDescription}
+              {
+                locale === 'ru' ? accessory.shortDescription_ru :
+                  (locale === 'hy' ? accessory.shortDescription_hy : accessory.shortDescription)
+              }
             </p>
           </div>
           <div className="flex justify-end items-center">
             <Link href={`/services/tour-accessories/${accessory.id}`}>
               <Button
                 className="rounded-lg bg-black text-white"
-                variant='contained'>See More</Button>
+                variant='contained'>
+                {
+                  locale === 'ru' ? 'Узнать больше' :
+                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
+                }
+              </Button>
             </Link>
           </div>
         </div>

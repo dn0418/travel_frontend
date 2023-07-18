@@ -45,14 +45,22 @@ function ToursPage({
         <div className="w-full flex items-center justify-between">
           <SectionTitle title={title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">
-            <InputLabel>Search your Need</InputLabel>
+            <InputLabel>
+              {
+                locale === 'ru' ? 'Найдите свою потребность' :
+                  (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+              }
+            </InputLabel>
             <OutlinedInput
               endAdornment={
                 <InputAdornment position="end">
                   <BiSearch className="text-[#EDA592]" />
                 </InputAdornment>
               }
-              label='Search your Need'
+              label={
+                locale === 'ru' ? 'Найдите свою потребность' :
+                  (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+              }
               onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>

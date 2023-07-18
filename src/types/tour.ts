@@ -2,18 +2,30 @@ import { ImageType, ReviewTypes } from ".";
 
 export interface TourType {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   title: string;
+  title_ru: string;
+  title_hy: string;
   price: number;
   dayLength: number;
   nightLength: number;
   bestTime: string;
-  date: null;
+  bestTime_ru: string;
+  bestTime_hy: string;
+  date: string | null;
   mainList: string;
+  mainList_ru: string;
+  mainList_hy: string;
   childList: string;
+  childList_ru: string;
+  childList_hy: string;
   shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
   longDescription: string;
+  longDescription_ru: string;
+  longDescription_hy: string;
   freeCancelation: boolean;
   activities: number;
   thumbnail: string;
@@ -42,18 +54,24 @@ export interface DeparturesPricing {
 
 export interface TourDestination {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   name: string;
+  name_ru: string;
+  name_hy: string;
   country: string;
+  country_ru: string;
+  country_hy: string;
 }
 
 export interface TourService {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   text: string;
-  type: Type;
+  text_ru: string;
+  text_hy: string;
+  type: string;
 }
 
 enum Type {
@@ -73,12 +91,25 @@ export interface IndividualPricing {
 
 export interface TourRoute {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   title: string;
+  title_ru: string;
+  title_hy: string;
   description: string;
+  description_ru: string;
+  description_hy: string;
   time: string;
+  time_ru: string;
+  time_hy: string;
   distance: string;
+  distance_ru: string;
+  distance_hy: string;
   meals: string;
+  meals_ru: string;
+  meals_hy: string;
   hotel: string;
+  hotel_ru: string;
+  hotel_hy: string;
+  type: Type;
 }

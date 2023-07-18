@@ -1,6 +1,6 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { HotelType } from '../../types';
+import { HotelDataType } from '../../types/services';
 import client from '../client';
 
 type ParsedQueryParams = {
@@ -11,7 +11,7 @@ type ParsedQueryParams = {
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
   const { data }: any = await client.hotels.all();
 
-  const paths = data?.map((item: HotelType) => {
+  const paths = data?.map((item: HotelDataType) => {
     return {
       params: { id: item.id.toString() },
     };

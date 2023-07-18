@@ -20,17 +20,28 @@ function TourAccessoriesUI({
     <Container className='my-8 flex flex-col items-center'>
       <div className='my-4 w-full md:my-8'>
         <div className="flex items-center w-full justify-between">
-          <SectionTitle title='Tour Accessories' />
+          <SectionTitle title={
+            locale === 'ru' ? 'Аксессуары для тура' :
+              (locale === 'hy' ? 'Տուրի պարագաներ' : 'Tour Accessories')
+          } />
           <div className="">
             <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your Need</InputLabel>
+              <InputLabel>
+                {
+                  locale === 'ru' ? 'Найдите свою потребность' :
+                    (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+                }
+              </InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position="end">
                     <BiSearch className="text-[#EDA592]" />
                   </InputAdornment>
                 }
-                label='Search your Need'
+                label={
+                  locale === 'ru' ? 'Найдите свою потребность' :
+                    (locale === 'hy' ? 'Որոնեք ձեր կարիքը' : 'Search your Need')
+                }
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -41,7 +52,10 @@ function TourAccessoriesUI({
             accessories.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  Data not found!
+                  {
+                    locale === 'ru' ? 'Данные не найдены!' :
+                      (locale === 'hy' ? 'Տվյալները չեն գտնվել:' : 'Data not found!')
+                  }
                 </p>
               </div>
               :
