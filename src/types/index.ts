@@ -60,32 +60,6 @@ export interface CarDriverType {
   licenseExpireDate: string;
 }
 
-export interface CarType {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
-  name: string;
-  thumbnail: string;
-  model: string;
-  carNo: string;
-  startedDate: string;
-  endDate: string;
-  seatNo: number;
-  isDriver: boolean;
-  description: string;
-  price: number;
-  discountedPrice: number;
-  carDriverId: number | null;
-  carId: number | null;
-  driverFirstName: string | null;
-  driverLastName: string | null;
-  driverLicenseNo: string | null;
-  rating: number;
-  totalReview: number;
-  reviews: ReviewTypes[];
-  year: number;
-}
-
 export interface TourAccessoryType {
   id: number;
   createdAt: string;
@@ -130,39 +104,6 @@ export interface TourAccessoryType {
     duration_hy: string | null;
   }[];
 }
-
-
-export interface HotelType {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
-  name: string;
-  thumbnail: string;
-  googleMap: string;
-  price: number;
-  fromAirport: string;
-  country: string;
-  city: string;
-  freeCancellation: boolean;
-  checkInTime: string;
-  checkOutTime: string;
-  shortDescription: string;
-  longDescription: string;
-  type: {
-    id: number;
-    name: string;
-  };
-  images: ImageType[];
-  reviews: ReviewTypes[];
-  rating: number;
-  pricingTable: {
-    id: number;
-    name: string;
-    firstPart: number;
-    lastPart: number;
-  }[]
-}
-
 
 export interface AddReviewPyloadType {
   firstName: string;

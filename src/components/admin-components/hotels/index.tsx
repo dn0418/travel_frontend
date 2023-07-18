@@ -2,12 +2,12 @@
 
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import { BiSearch } from "react-icons/bi";
-import { HotelType } from "../../../types";
+import { HotelDataType } from "../../../types/services";
 import HotelAdminCard from "../../admin-cards/hotel-admin-card";
 import SectionTitle from "../../common/section-title";
 
 interface PropsType {
-  hotels: HotelType[];
+  hotels: HotelDataType[];
   handlePageChange: any;
   handleSerachHotels: (name: string) => void;
   metadata: {
@@ -44,7 +44,7 @@ function HotelDashboard({
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {hotels.map((hotel: HotelType, i) => (
+            {hotels.map((hotel: HotelDataType, i) => (
               <HotelAdminCard hotel={hotel} key={i} />
             ))}
           </div>

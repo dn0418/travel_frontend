@@ -1,10 +1,10 @@
 // @flow strict
 
 import Image from "next/legacy/image";
-import { HotelType } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 
 
-function HotelDetailsMaps({ hotel }: { hotel: HotelType }) {
+function HotelDetailsMaps({ hotel }: { hotel: HotelDataType }) {
   return (
     <div className="tour-details-maps my-5 md:my-8 grid grid-cols-1 md:grid-cols-2 gap-5">
       <div className="">

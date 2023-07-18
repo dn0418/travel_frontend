@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { HotelType } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
@@ -42,7 +42,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function HotelThumbnailSection({ hotel }: { hotel: HotelType }) {
+function HotelThumbnailSection({ hotel }: { hotel: HotelDataType }) {
   const { thumbnail, images } = hotel;
   const [currentSlide, setCurrentSlide] = useState(0);
 

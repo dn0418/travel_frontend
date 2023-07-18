@@ -7,10 +7,10 @@ import { IoMdPricetags } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdLocalAirport } from "react-icons/md";
 import { TiCancelOutline } from "react-icons/ti";
-import { HotelType } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 
 interface Props {
-  hotel: HotelType,
+  hotel: HotelDataType,
   metadata: {
     total: number;
     avarage: number;

@@ -4,7 +4,7 @@ import { Button, Container } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { HotelType } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 import HotelCard from "../../../cards/hotel-card";
 import SectionTitle from "../../../common/section-title";
 
@@ -44,7 +44,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   );
 }
 
-function RelatedHotels({ hotels }: { hotels: HotelType[] }) {
+function RelatedHotels({ hotels }: { hotels: HotelDataType[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {

@@ -1,7 +1,8 @@
 // @flow strict
 
 import { Container } from "@mui/material";
-import { HotelType, ReviewTypes } from "../../../../types";
+import { ReviewTypes } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 import HotelDetailsMaps from "./hotel-details-map";
 import HotelPricingTable from "./hotel-pricing";
 import HotelSpecification from "./hotel-specifications";
@@ -10,8 +11,8 @@ import ReviewSection from "./review-section";
 import HotelThumbnailSection from "./thumbnail-section";
 
 interface PropsType {
-  allHotel: HotelType[];
-  hotel: HotelType;
+  allHotel: HotelDataType[];
+  hotel: HotelDataType;
   reviews: ReviewTypes[];
   metadata: {
     total: number;

@@ -4,11 +4,10 @@ import { Button, Rating } from '@mui/material';
 import { BiHash } from 'react-icons/bi';
 import { IoMdPricetags } from 'react-icons/io';
 import { TiCancelOutline } from 'react-icons/ti';
-import { CarType, TourAccessoryType } from '../../../../types';
+import { TourAccessoryType } from '../../../../types';
 import AccessoryThumbnailSection from './thumbnail-section';
 
 interface PropsType {
-  car: CarType;
   accessoryDetails: TourAccessoryType;
   metadata: {
     avarage: number;

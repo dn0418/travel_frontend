@@ -1,6 +1,6 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { CarType } from '../../types';
+import { CarWithOutType } from '../../types/car-type';
 import client from '../client';
 
 type ParsedQueryParams = {
@@ -11,7 +11,7 @@ type ParsedQueryParams = {
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
   const { data }: any = await client.carWithoutDriver.all();
 
-  const paths = data?.map((item: CarType) => {
+  const paths = data?.map((item: CarWithOutType) => {
     return {
       params: { id: item.id.toString() },
     };

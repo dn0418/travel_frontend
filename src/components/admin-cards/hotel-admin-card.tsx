@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { BiEdit } from 'react-icons/bi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
-import { HotelType } from '../../types';
+import { HotelDataType } from '../../types/services';
 
 
-function HotelAdminCard({ hotel }: { hotel: HotelType }) {
+function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
 
   return (
     <Card className="regular-shadow rounded-lg h-full">

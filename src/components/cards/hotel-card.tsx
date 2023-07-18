@@ -4,10 +4,10 @@ import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { HotelType } from '../../types';
+import { HotelDataType } from '../../types/services';
 
 
-function HotelCard({ hotel }: { hotel: HotelType }) {
+function HotelCard({ hotel }: { hotel: HotelDataType }) {
 
 
   return (

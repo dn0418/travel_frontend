@@ -6,10 +6,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
-import { HotelType } from '../../../../types';
+import { HotelDataType } from '../../../../types/services';
 
 interface Props {
-  hotel: HotelType
+  hotel: HotelDataType
 }
 
 export default function HotelPricingTable({ hotel }: Props) {

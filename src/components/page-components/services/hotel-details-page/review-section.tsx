@@ -2,14 +2,15 @@
 
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useState } from "react";
-import { HotelType, ReviewTypes } from "../../../../types";
+import { ReviewTypes } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
 interface PropsType {
   reviews: ReviewTypes[];
-  hotel: HotelType;
+  hotel: HotelDataType;
 }
 
 function ReviewSection({ reviews, hotel }: PropsType) {

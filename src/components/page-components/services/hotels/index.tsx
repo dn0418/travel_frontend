@@ -3,13 +3,13 @@
 import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import dynamic from "next/dynamic";
 import { BiSearch } from "react-icons/bi";
-import { HotelType } from "../../../../types";
+import { HotelDataType } from "../../../../types/services";
 import HotelCard from "../../../cards/hotel-card";
 import SectionTitle from "../../../common/section-title";
 const HotelsFilterSection = dynamic(() => import("./hotels-filter-section"))
 
 interface PropsType {
-  hotels: HotelType[];
+  hotels: HotelDataType[];
   filterInput: {
     country: string;
     city: string;
@@ -73,7 +73,7 @@ function HotelsUI({
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
-            {hotels.map((hotel: HotelType, i) => (
+            {hotels.map((hotel: HotelDataType, i) => (
               <HotelCard hotel={hotel} key={i} />
             ))}
           </div>
