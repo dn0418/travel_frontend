@@ -1,10 +1,12 @@
 // @flow strict
 
 import { Button, Container } from "@mui/material";
+import { useRouter } from "next/router";
 import { Key, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { ReviewTypes } from "../../../types";
+import { localizationData } from "../../../utils/locales";
 import ReviewCard from "../../cards/review-card";
 import SectionTitle from "../../common/section-title";
 
@@ -45,7 +47,10 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 
 function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { locale } = useRouter();
 
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   // console.log(reviews.length)
 
@@ -78,7 +83,7 @@ function Testimonial({ reviews }: { reviews: ReviewTypes[] }) {
   return (
     <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen home-testimonial-section'>
       <Container>
-        <SectionTitle title='What Travelers Think About Us' />
+        <SectionTitle title={localData.home_testimonial_title} />
         {
           reviews.length > 3 ?
             <Slider

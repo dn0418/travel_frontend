@@ -7,10 +7,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
-import { DestinationTypes } from "../../../types";
+import { TourDestination } from "../../../types/tour";
+import { localizationData } from "../../../utils/locales";
 import CustomSelectInput from "../../common/select";
 
-function SearchFilterSection({ destinations, typeItems }: { destinations: DestinationTypes[], typeItems: any }) {
+function SearchFilterSection({ destinations, typeItems }: { destinations: TourDestination[], typeItems: any }) {
   const [filterData, setFilterData] = useState({
     tourType: '',
     destination: '',
@@ -18,7 +19,10 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: Destin
   });
   const [startDate, setStartDate] = useState<null | Date>(null);
   const router = useRouter()
-  const { pathname, query } = router;
+  const { pathname, query, locale } = router;
+
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   const handleChangeFilterData = (e: any) => {
     setFilterData(prev => ({
@@ -57,7 +61,7 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: Destin
           <CustomSelectInput
             handleOnChange={handleChangeFilterData}
             name="tourType"
-            title='Type of tour'
+            title={localData.tour_type_title}
             value={filterData?.tourType}
             isHideTitle={filterData?.tourType ? true : false}
             options={typeItems}
@@ -68,7 +72,9 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: Destin
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             {
               !(filterData?.destination ? true : false) &&
-              <InputLabel className='text-black p-0'>Destination</InputLabel>
+              <InputLabel className='text-black p-0'>
+                {localData.destination_title}
+              </InputLabel>
             }
             <Select
               onChange={(e) => handleChangeFilterData(e)}
@@ -91,7 +97,7 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: Destin
             name="days"
             className='w-8 filter-date-count'
             type="number"
-            placeholder='Days'
+            placeholder={localData.days_title}
             onChange={handleChangeFilterData}
           />
         </div>
@@ -106,14 +112,14 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: Destin
               showMonthYearPicker
               showFullMonthYearPicker
               className='border-0 focus:outline-0 w-24 react-datepicker text-base font-medium'
-              placeholderText='Date'
+              placeholderText={localData.date_title}
             />
           </div>
         </div>
         <div className='flex justify-center'>
           <Button onClick={handleClick} className='text-white bg-black rounded-lg px-4 w-fit'>
             <FiSearch className='text-xl' />{" "}
-            <span className='capitalize pl-1'>Search</span>
+            <span className='capitalize pl-1'>{localData.search_text}</span>
           </Button>
         </div>
       </div>

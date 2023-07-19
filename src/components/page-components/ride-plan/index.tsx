@@ -2,9 +2,11 @@
 
 import { Container } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
+import { localizationData } from "../../../utils/locales";
 import SectionTitle from "../../common/section-title";
 import RidePlanForm from "./ride-plan-form";
 import RideSuccess from "./success-page";
@@ -30,6 +32,9 @@ function RidePlanUI() {
     name: '',
     duration: ''
   }]);
+  const { locale } = useRouter()
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   const changeDestinationCount = () => {
     if (destinationInput[destinationInput.length - 1].name === '') return;
@@ -126,7 +131,7 @@ function RidePlanUI() {
       {
         !isSuccess ?
           <Container className=' flex flex-col  mb-12 lg:mb-16 py-5'>
-            <SectionTitle title='Make your own ride plan with us' />
+            <SectionTitle title={localData.home_plan_title} />
             <div className="grid grid-cols-1">
               <RidePlanForm
                 inputData={inputData}

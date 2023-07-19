@@ -4,6 +4,7 @@ import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput
 import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { SearchPageProps } from "../../../types/page-props";
+import { localizationData } from "../../../utils/locales";
 import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../common/section-title";
 import SearchFilterSection from "./filter-section";
@@ -18,6 +19,9 @@ function SearchPage({
 }: SearchPageProps) {
   const { locale } = useRouter();
 
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
+
   // console.log(meta)
 
   return (
@@ -27,16 +31,16 @@ function SearchPage({
           <SearchFilterSection typeItems={typeItems} destinations={destinations} />
         </div>
         <div className="w-full flex items-center justify-between">
-          <SectionTitle title="Top Suggestion for you" />
+          <SectionTitle title={localData.top_suggested_title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">
-            <InputLabel>Search your Need</InputLabel>
+            <InputLabel>{localData.search_your_need}</InputLabel>
             <OutlinedInput
               endAdornment={
                 <InputAdornment position="end">
                   <BiSearch className="text-[#EDA592]" />
                 </InputAdornment>
               }
-              label='Search your Need'
+              label={localData.search_your_need}
               onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>
@@ -63,18 +67,12 @@ function SearchPage({
                     components={{
                       next: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          {
-                            locale === 'ru' ? 'Следующий' :
-                              (locale === 'hy' ? 'Հաջորդը' : 'Next')
-                          }
+                          {localData.next_text}
                         </span>
                       ),
                       previous: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          {
-                            locale === 'ru' ? 'Пред.' :
-                              (locale === 'hy' ? 'Նախ' : 'Prev')
-                          }
+                          {localData.prev_text}
                         </span>
                       ),
                     }}

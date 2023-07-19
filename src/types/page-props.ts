@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
 import { AirportTransportType, CarWithDriverType, CarWithOutType } from "./car-type";
-import { DestinationTypes, FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
-import { TourType } from "./tour";
+import { FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
+import { TourDestination, TourType } from "./tour";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -11,7 +11,7 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 export interface HomePageProps {
   reviews: ReviewTypes[];
   tours: TourType[];
-  destinations: DestinationTypes[];
+  destinations: TourDestination[];
 }
 
 export interface BlogPageProps {
@@ -47,7 +47,7 @@ export interface SearchPageProps {
     totalPages: number;
     limit: number;
   };
-  destinations: DestinationTypes[];
+  destinations: TourDestination[];
   typeItems: any;
 }
 

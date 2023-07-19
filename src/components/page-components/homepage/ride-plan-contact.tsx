@@ -14,11 +14,16 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { FaRegAddressCard } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
 import { SiGmail } from "react-icons/si";
+import { localizationData } from "../../../utils/locales";
 import SectionTitle from "../../common/section-title";
 
 function RidePlanContact() {
   const [inputData, setInputData] = useState({})
   const router = useRouter()
+  const { locale } = router;
+
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
 
   const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -42,59 +47,59 @@ function RidePlanContact() {
   return (
     <div className='bg-[#FFF8F6] py-5 md:py-8 w-screen'>
       <Container>
-        <SectionTitle title='Make Your Own Ride Plan With Us' />
+        <SectionTitle title={localData.home_plan_title} />
         <div className='grid md:grid-cols-2'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5'>
             <FormControl variant='outlined'>
-              <InputLabel>Name</InputLabel>
+              <InputLabel>{localData.name_text}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position='end'>
                     <BsFillPersonFill className='text-xl text-black' />
                   </InputAdornment>
                 }
-                label='Name'
+                label={localData.name_text}
                 name="name"
                 onChange={handleOnChange}
               />
             </FormControl>
             <FormControl variant='outlined'>
-              <InputLabel>Email</InputLabel>
+              <InputLabel>{localData.email_text}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position='end'>
                     <SiGmail className='text-xl text-black' />
                   </InputAdornment>
                 }
-                label='Email'
+                label={localData.email_text}
                 type="email"
                 name="email"
                 onChange={handleOnChange}
               />
             </FormControl>
             <FormControl variant='outlined'>
-              <InputLabel>Phone Number</InputLabel>
+              <InputLabel>{localData.phone_number}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position='end'>
                     <IoMdCall className='text-xl text-black' />
                   </InputAdornment>
                 }
-                label='Phone Number'
+                label={localData.phone_number}
                 type="tel"
                 name="phoneNumber"
                 onChange={handleOnChange}
               />
             </FormControl>
             <FormControl variant='outlined'>
-              <InputLabel>Address</InputLabel>
+              <InputLabel>{localData.address_text}</InputLabel>
               <OutlinedInput
                 endAdornment={
                   <InputAdornment position='end'>
                     <FaRegAddressCard className='text-xl text-black' />
                   </InputAdornment>
                 }
-                label='Address'
+                label={localData.address_text}
                 type="text"
                 name="address"
                 onChange={handleOnChange}
@@ -105,7 +110,7 @@ function RidePlanContact() {
               className='bg-black text-white py-2 '
               onClick={handleOnClick}
               variant='contained'>
-              Next
+              {localData.next_text}
             </Button>
           </div>
         </div>

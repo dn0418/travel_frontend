@@ -6,6 +6,7 @@ import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { useRouter } from 'next/router';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaBicycle, FaCarSide, FaHiking } from 'react-icons/fa';
 import { FiMinus } from 'react-icons/fi';
@@ -13,6 +14,7 @@ import { RiMotorbikeFill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { TiLocation } from 'react-icons/ti';
 import { destinationFilterData } from '../../../utils/data/homepage-data';
+import { localizationData } from '../../../utils/locales';
 
 function RidePlanForm({
   inputData,
@@ -29,23 +31,26 @@ function RidePlanForm({
   decrementCount,
   isLoading
 }: any) {
+  const { locale } = useRouter()
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   return (
     <div className="make-ride-plan">
       <div className='grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5'>
         <FormControl variant='outlined'>
-          <InputLabel>Name</InputLabel>
+          <InputLabel>{localData.name_text}</InputLabel>
           <OutlinedInput
-            label='Name'
+            label={localData.name_text}
             name='name'
             value={inputData?.name}
             onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
           />
         </FormControl>
         <FormControl variant='outlined'>
-          <InputLabel>Email</InputLabel>
+          <InputLabel>{localData.email_text}</InputLabel>
           <OutlinedInput
-            label='Email'
+            label={localData.email_text}
             name='email'
             value={inputData?.email}
             type='email'
@@ -53,18 +58,18 @@ function RidePlanForm({
           />
         </FormControl>
         <FormControl variant='outlined'>
-          <InputLabel>Phone Number</InputLabel>
+          <InputLabel>{localData.phone_number}</InputLabel>
           <OutlinedInput
-            label='Phone Number'
+            label={localData.phone_number}
             name='phoneNumber'
             value={inputData?.phoneNumber}
             onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
           />
         </FormControl>
         <FormControl variant='outlined'>
-          <InputLabel>Address</InputLabel>
+          <InputLabel>{localData.address_text}</InputLabel>
           <OutlinedInput
-            label='Address'
+            label={localData.address_text}
             name='address'
             value={inputData?.address}
             onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
@@ -73,7 +78,7 @@ function RidePlanForm({
         <div className="w-full">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              label="Date"
+              label={localData.date_title}
               value={date}
               disablePast
               onChange={(newValue) => setDate(newValue)}
@@ -83,7 +88,9 @@ function RidePlanForm({
         </div>
         <div className="w-full grid grid-cols-2">
           <FormControl variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Adult</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password">
+              {localData.adult_text}
+            </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type='number'
@@ -110,11 +117,11 @@ function RidePlanForm({
                   </div>
                 </InputAdornment>
               }
-              label="Adult"
+              label={localData.adult_text}
             />
           </FormControl>
           <FormControl variant="outlined">
-            <InputLabel>Child</InputLabel>
+            <InputLabel>{localData.child_text}</InputLabel>
             <OutlinedInput
               className='rounded-tl-none rounded-bl-none'
               type='number'
@@ -140,7 +147,7 @@ function RidePlanForm({
                   </div>
                 </InputAdornment>
               }
-              label="Child"
+              label={localData.child_text}
             />
           </FormControl>
         </div>
@@ -150,7 +157,7 @@ function RidePlanForm({
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">
                   {
-                    i === 0 ? 'Starting city' : 'Next city'
+                    i === 0 ? localData.starting_city : localData.next_city
                   }
                 </InputLabel>
                 <Select
@@ -191,9 +198,9 @@ function RidePlanForm({
                 </Select>
               </FormControl>
               <FormControl variant='outlined'>
-                <InputLabel>Duration</InputLabel>
+                <InputLabel>{localData.duration_text}</InputLabel>
                 <OutlinedInput
-                  label='Duration'
+                  label={localData.duration_text}
                   name='duration'
                   value={destinationInput[i].duration}
                   onChange={(e) => handleChangeDestination('duration', e.target.value, i)}
@@ -207,11 +214,11 @@ function RidePlanForm({
             onClick={changeDestinationCount}
             className='py-1'
             variant="contained">
-            Add Next
+            {localData.add_next}
           </Button>
         </div>
         <div className="md:col-span-2 flex items-center gap-5 border border-[#8c8c8ca2] border-solid rounded-lg p-2 w-fit px-4">
-          <p className='text-[#5e5e5e] m-0'>Ride type</p>
+          <p className='text-[#5e5e5e] m-0'>{localData.ride_type}</p>
           <Radio
             checked={inputData?.rideType === 'biCycle'}
             onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
@@ -255,16 +262,16 @@ function RidePlanForm({
         </div>
         <TextField
           className="text-area md:col-span-2"
-          label='Add your comment'
+          label={localData.add_your_comment}
           multiline
           maxRows={8}
           minRows={4}
           onChange={(e) => handleOnChangeInputData('note', e.target.value)}
         />
         <div className="md:col-span-2 flex justify-end gap-5">
-          <Button variant="outlined">Cancle</Button>
+          <Button variant="outlined">{localData.cancel_text}</Button>
           <Button onClick={handleSubmit} disabled={isLoading} variant="contained">
-            {isLoading ? "Loading..." : "Submit"}
+            {isLoading ? localData.loading_text : localData.cancel_text}
           </Button>
         </div>
       </div>
