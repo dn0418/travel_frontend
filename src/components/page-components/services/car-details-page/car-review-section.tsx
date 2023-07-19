@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { ReviewTypes } from "../../../../types";
 import { CarWithOutType } from "../../../../types/car-type";
+import { localizationData } from "../../../../utils/locales";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
@@ -18,6 +19,9 @@ function CarReviewSection({ reviews, car }: PropsType) {
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
   const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
+
 
   const handleChangeFunction = () => {
     setIsReviewShow(!isReviewShow);
@@ -33,7 +37,7 @@ function CarReviewSection({ reviews, car }: PropsType) {
     <>
       <div className="my-5">
         <ExpandedSectionTitle
-          title="Reviews"
+          title={localData.reviews_title}
           onchange={handleChangeFunction}
         />
         <div hidden={!isReviewShow} className="transition-all duration-1000 ease-in-out ">
@@ -43,7 +47,7 @@ function CarReviewSection({ reviews, car }: PropsType) {
                 onClick={handleChangeModal}
                 className="px-24 min-w-[196px] py-3 bg-black text-white"
                 variant="contained">
-                Add reviews
+                {localData.add_reviews}
               </Button>
             </div>
             <div className="grid grid-cols-1 gap-8">
@@ -67,18 +71,12 @@ function CarReviewSection({ reviews, car }: PropsType) {
                       components={{
                         next: (props) => (
                           <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                            {
-                              locale === 'ru' ? 'Следующий' :
-                                (locale === 'hy' ? 'Հաջորդը' : 'Next')
-                            }
+                            {localData.next_text}
                           </span>
                         ),
                         previous: (props) => (
                           <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                            {
-                              locale === 'ru' ? 'Пред.' :
-                                (locale === 'hy' ? 'Նախ' : 'Prev')
-                            }
+                            {localData.prev_text}
                           </span>
                         ),
                       }}

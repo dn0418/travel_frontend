@@ -1,15 +1,20 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiCalendar, BiCategory, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { GiCancel, GiPriceTag } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
 import { ReviewTypes } from "../../../types";
 import { TourType } from "../../../types/tour";
+import { localizationData } from "../../../utils/locales";
 
 
 function TourSpecification({ tour }: { tour: TourType }) {
+  const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
@@ -21,11 +26,20 @@ function TourSpecification({ tour }: { tour: TourType }) {
 
   return (
     <div className="px-4 md:px-12">
-      <h3 className="text-[#000000] text-xl font-semibold mt-0">{tour.title}</h3>
+      <h3 className="text-[#000000] text-xl font-semibold mt-0">
+        {
+          locale === "ru" ? tour.title_ru :
+            (locale === "hy" ? tour.title_hy : tour.title)
+        }
+      </h3>
       <p className="flex items-center gap-2">
         <IoLocationOutline className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          {tour.destination.name + ' - ' + tour.destination.country}
+          {(
+            locale === 'ru' ? tour.destination.name_ru : (locale === 'hy' ? tour.destination.name_hy : tour.destination.name)
+          ) + ' - ' + (
+              locale === 'ru' ? tour.destination.country_ru : (locale === 'hy' ? tour.destination.country_hy : tour.destination.country)
+            )}
         </span>
       </p>
       {
@@ -63,7 +77,10 @@ function TourSpecification({ tour }: { tour: TourType }) {
           Best time:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {tour.bestTime}
+          {
+            locale === 'ru' ? tour.bestTime_ru :
+              (locale === 'hy' ? tour.bestTime_hy : tour.bestTime)
+          }
         </span>
       </p>
       <p className="flex items-center gap-3">
@@ -72,7 +89,10 @@ function TourSpecification({ tour }: { tour: TourType }) {
           Type:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {tour.childList}
+          {
+            locale === 'ru' ? tour.childList_ru :
+              (locale === 'hy' ? tour.childList_hy : tour.childList)
+          }
         </span>
       </p>
       <p className="flex items-center gap-3">
@@ -100,7 +120,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">Submit</Button>
+          variant="contained">{localData.submit_text}</Button>
       </div>
     </div>
   );

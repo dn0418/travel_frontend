@@ -1,10 +1,12 @@
 // @flow strict
 
 import { Button, Card, Container } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { CarWithOutType } from "../../../../types/car-type";
+import { localizationData } from "../../../../utils/locales";
 import TransportCard from "../../../cards/car-card";
 import SectionTitle from "../../../common/section-title";
 
@@ -46,6 +48,9 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 
 function TopSuggestedCars({ cars }: { cars: CarWithOutType[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   const settings = {
     dots: false,
@@ -76,7 +81,7 @@ function TopSuggestedCars({ cars }: { cars: CarWithOutType[] }) {
   return (
     <div className="my-3 related-section">
       <Container>
-        <SectionTitle title='Top Suggestion' />
+        <SectionTitle title={localData.top_suggested_title} />
         {
           cars.length > 3 ?
 

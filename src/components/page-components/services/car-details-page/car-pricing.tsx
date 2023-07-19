@@ -6,7 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { CarWithOutType } from '../../../../types/car-type';
+import { localizationData } from '../../../../utils/locales';
 
 interface Props {
   car: CarWithOutType
@@ -14,29 +16,47 @@ interface Props {
 
 export default function CarPricingTable({ car }: Props) {
   const { priceWithoutDriver } = car;
+  const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
 
   return (
     <Container
       className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb]">
       <div className="">
-        <p className="text-lg font-medium uppercase">Car Pricing</p>
+        <p className="text-lg font-medium uppercase">
+          {localData.transportData.pricing_title}
+        </p>
         <TableContainer className="tour-price-table bg-white">
           <Table aria-label="tour pricing table">
             <TableHead>
               <TableRow>
                 <TableCell className="text-base" align="center"></TableCell>
-                <TableCell className="text-base" align="center">Sedan - 3 Seats</TableCell>
-                <TableCell className="text-base" align="center">Minivan 7 Seats</TableCell>
-                <TableCell className="text-base" align="center">Minibus 18 Seats</TableCell>
-                <TableCell className="text-base" align="center">Bus 35 Seats</TableCell>
+                <TableCell className="text-base" align="center">
+                  {localData.transportData.sedan_text}
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  {localData.transportData.minivan_text}
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  {localData.transportData.minibus_text}
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  {localData.transportData.bus_text}
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {
                 priceWithoutDriver.map((row, i) => (
                   <TableRow key={i}>
-                    <TableCell align="center">{row.destination}</TableCell>
+                    <TableCell align="center">
+                      {
+                        locale === 'ru' ? row.destination_ru :
+                          (locale === 'hy' ? row.destination_hy : row.destination)
+                      }
+                    </TableCell>
                     <TableCell align="center">{row.sedan_3seat}</TableCell>
                     <TableCell align="center">{row.minivan_7seat}</TableCell>
                     <TableCell align="center">{row.minibus_18seat}</TableCell>
@@ -50,7 +70,7 @@ export default function CarPricingTable({ car }: Props) {
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
             <Button className="bg-black text-white" variant='contained'>
-              Send Request
+              {localData.send_request}
             </Button>
           </Link>
         </div>

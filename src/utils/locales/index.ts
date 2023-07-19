@@ -1,5 +1,9 @@
+import { transportEnLocalization, transportHyLocalization, transportRuLocalization } from "./transport";
+import { LocaleDataType } from "./types";
+
 export const localizationData: LocaleDataType = {
   en: {
+    transportData: transportEnLocalization,
     home_plan_title: 'Make Your Own Ride Plan With Us',
     tour_type_title: 'Type of tour',
     destination_title: 'Destination',
@@ -29,8 +33,16 @@ export const localizationData: LocaleDataType = {
     cancel_text: 'Cancel',
     submit_text: 'Submit',
     loading_text: 'Loading...',
+    free_cancelation: 'Free Cancelation:',
+    send_request: 'Send Request',
+    reviews_title: 'Reviews',
+    add_reviews: 'Add reviews',
+    star_text: 'Star',
+    people_text: 'People',
+    start_from: 'Start From'
   },
   ru: {
+    transportData: transportRuLocalization,
     home_plan_title: 'Создайте свой собственный план поездки с нами',
     tour_type_title: 'Тип тура',
     destination_title: 'Место назначения',
@@ -43,12 +55,12 @@ export const localizationData: LocaleDataType = {
     home_testimonial_title: 'Что думают путешественники о нас',
     home_payment_title: 'Мы принимаем онлайн-оплату!',
     name_text: 'Имя',
-    email_text: 'Email',
+    email_text: 'Эл. адрес',
     phone_number: 'Номер телефона',
     address_text: 'Адрес',
-    next_text: 'Далее',
-    prev_text: 'Назад',
-    search_your_need: 'Ищите то, что вам нужно',
+    next_text: 'Следующий',
+    prev_text: 'Предыдущий',
+    search_your_need: 'Искать необходимое',
     adult_text: 'Взрослый',
     child_text: 'Ребенок',
     duration_text: 'Продолжительность',
@@ -60,74 +72,52 @@ export const localizationData: LocaleDataType = {
     cancel_text: 'Отмена',
     submit_text: 'Отправить',
     loading_text: 'Загрузка...',
+    free_cancelation: 'Бесплатная отмена:',
+    send_request: 'Отправить запрос',
+    reviews_title: 'Отзывы',
+    add_reviews: 'Добавить отзывы',
+    star_text: 'Звезда',
+    people_text: 'Люди',
+    start_from: 'Начать с'
   },
   hy: {
+    transportData: transportHyLocalization,
     home_plan_title: 'Ստեղծեք ձեր սեփական ճամպայքարը մեզ հետ',
     tour_type_title: 'Տեսաքարտի տեսաքարտ',
     destination_title: 'Նպատակ',
     days_title: 'Օրեր',
     date_title: 'Ամսաթիվ',
-    search_text: 'Որոնում',
+    search_text: 'Որոնել',
     top_suggested_title: 'Թոփ առաջարկ',
     one_day: 'Մեկ օր',
     fixed_date: 'Հասանելի ամսաթիվ',
-    home_testimonial_title: 'Ի՞նչ մտածում են ճամպայքարիները մեր մասին',
-    home_payment_title: 'Դուք կարող եք վճարել օնլայնով։',
+    home_testimonial_title: 'Ի՞նչ մտածում են ճամպանակները մեր մասին',
+    home_payment_title: 'Մենք ընդունում ենք օնլայն վճարումներ!',
     name_text: 'Անուն',
-    email_text: 'Էլ. փոստ',
+    email_text: 'Էլ. հասցե',
     phone_number: 'Հեռախոսահամար',
     address_text: 'Հասցե',
     next_text: 'Հաջորդը',
     prev_text: 'Նախորդը',
     search_your_need: 'Որոնեք ձեր պահանջը',
-    adult_text: 'Մեծահասական',
+    adult_text: 'Մեծահասակ',
     child_text: 'Երեխա',
     duration_text: 'Տևողություն',
-    starting_city: 'Սկիզբնական քաղաք',
+    starting_city: 'Սկիզբի քաղաք',
     next_city: 'Հաջորդ քաղաք',
-    add_next: 'Ավելացրեք հաջորդը',
+    add_next: 'Ավելացնել հաջորդը',
     ride_type: 'Տեսաքարտի տեսաքարտ',
-    add_your_comment: 'Ավելացրեք ձեր մեկնաբառը',
+    add_your_comment: 'Ավելացրեք ձեր կարծիքը',
     cancel_text: 'Չեղարկել',
-    submit_text: 'Ուղարկել',
-    loading_text: 'Բեռնում...',
+    submit_text: 'Ակտիվացնել',
+    loading_text: 'Բեռնվում է...',
+    free_cancelation: 'Անվճար չեղարկում:',
+    send_request: 'Ուղարկել հարցումը',
+    reviews_title: 'Կրթություններ',
+    add_reviews: 'Ավելացնել կրթություններ',
+    star_text: 'Աստղ',
+    people_text: 'Մարդիկ',
+    start_from: 'Սկսել'
   },
+  // Add other language translations here if needed.
 };
-
-interface LocaleDataItems {
-  home_plan_title: string;
-  tour_type_title: string;
-  destination_title: string;
-  days_title: string;
-  date_title: string;
-  search_text: string;
-  top_suggested_title: string;
-  one_day: string;
-  fixed_date: string;
-  home_testimonial_title: string;
-  home_payment_title: string;
-  name_text: string;
-  email_text: string;
-  phone_number: string;
-  address_text: string;
-  next_text: string;
-  prev_text: string;
-  search_your_need: string;
-  adult_text: string;
-  child_text: string;
-  duration_text: string;
-  starting_city: string;
-  next_city: string;
-  add_next: string;
-  ride_type: string;
-  add_your_comment: string;
-  cancel_text: string;
-  submit_text: string;
-  loading_text: string;
-}
-
-interface LocaleDataType {
-  en: LocaleDataItems,
-  ru: LocaleDataItems,
-  hy: LocaleDataItems
-}
