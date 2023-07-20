@@ -13,8 +13,8 @@ import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import { AiFillCaretRight } from 'react-icons/ai';
 import { BsFillCaretRightFill } from 'react-icons/bs';
-import { FaRegDotCircle } from 'react-icons/fa';
 import { MdDashboard, MdExpandLess, MdExpandMore } from 'react-icons/md';
 import { SiTemporal } from 'react-icons/si';
 import logo from '/public/Logo.png';
@@ -96,11 +96,21 @@ function SidebarItems() {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 5 }}>
+            <ListItemButton onClick={() =>
+              router.push('/admin/tours/create')}
+              selected={router.pathname === '/admin/tours/create'} sx={{ pl: 5 }}>
               <ListItemIcon>
-                <FaRegDotCircle />
+                <AiFillCaretRight />
               </ListItemIcon>
-              <ListItemText primary="Tour Types" />
+              <ListItemText primary="New Tour" />
+            </ListItemButton>
+            <ListItemButton onClick={() =>
+              router.push('/admin/tours/destination')}
+              selected={router.pathname === '/admin/tours/destination'} sx={{ pl: 5 }}>
+              <ListItemIcon>
+                <AiFillCaretRight />
+              </ListItemIcon>
+              <ListItemText primary="Tour Destination" />
             </ListItemButton>
           </List>
         </Collapse>

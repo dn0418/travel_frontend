@@ -1,13 +1,19 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiCalendar, BiCategory } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 import { MdEventAvailable, MdNestCamWiredStand, MdPayment } from "react-icons/md";
 import { ReviewTypes, ThingToSeeType } from "../../../../types";
+import { localizationData } from "../../../../utils/locales";
 
 
 function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
+  const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
+
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
     reviews.map((review) => {
@@ -31,7 +37,8 @@ function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
             precision={0.1}
           />
           <span className="text-base text-[#5e5e5e]">
-            {getReviewsAvarage(thing.reviews)} Star | {thing.reviews.length} People
+            {getReviewsAvarage(thing.reviews) + ' ' + localData.star_text
+              + ' | ' + thing.reviews.length + ' ' + localData.people_text}
           </span>
         </p>
       }
@@ -39,7 +46,10 @@ function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
         <IoLocation className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">From Yerevan:</span>
         <span className="text-base text-[#000000] font-bold">
-          $ {thing.fromYerevan}
+          {
+            locale === "ru" ? thing.fromYerevan_ru :
+              (locale === "hy" ? thing.fromYerevan_hy : thing.fromYerevan)
+          }
         </span>
       </p>
 
@@ -70,7 +80,10 @@ function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
           The nearest Settlement:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {thing.neatestSettlement}
+          {
+            locale === "ru" ? thing.neatestSettlement_ru :
+              (locale === "hy" ? thing.neatestSettlement_hy : thing.neatestSettlement)
+          }
         </span>
       </p>
 
@@ -80,7 +93,10 @@ function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
           Available:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {thing.available}
+          {
+            locale === "ru" ? thing.available_ru :
+              (locale === "hy" ? thing.available_hy : thing.available)
+          }
         </span>
       </p>
 
@@ -90,14 +106,17 @@ function SeeSpecification({ thing }: { thing: ThingToSeeType }) {
           Entrance:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {thing.entrance}
+          {
+            locale === "ru" ? thing.entrance_ru :
+              (locale === "hy" ? thing.entrance_hy : thing.entrance)
+          }
         </span>
       </p>
 
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">Submit</Button>
+          variant="contained">{localData.submit_text}</Button>
       </div>
     </div>
   );

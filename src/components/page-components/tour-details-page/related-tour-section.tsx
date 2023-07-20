@@ -75,11 +75,11 @@ function RelatedTourSection({ tours }: { tours: TourType[] }) {
   };
 
   return (
-    <div className="my-3 related-section">
+    <div className="my-3 w-full related-section">
       <Container>
         <SectionTitle title='Related tours' />
         {
-          tours.length >= 3 ?
+          tours.length > 3 ?
             <Slider
               afterChange={(e) => setCurrentSlide(e)}
               className='flex gap-4'
@@ -91,9 +91,9 @@ function RelatedTourSection({ tours }: { tours: TourType[] }) {
               ))}
             </Slider>
             :
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {tours.map((tour, i) => (
-                <Card className='regular-shadow rounded-lg' key={i}>
+                <Card className='regular-shadow  w-full rounded-lg' key={i}>
                   <TourCard tour={tour} />
                 </Card>
               ))}
