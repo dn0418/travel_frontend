@@ -1,6 +1,7 @@
 // @flow strict
 
-import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import { Button, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem, Tab, Tabs } from "@mui/material";
+import Link from "next/link";
 import { Key } from "react";
 import { BiSearch } from "react-icons/bi";
 import { CarWithOutType } from "../../../types/car-type";
@@ -49,22 +50,27 @@ function TransportDashboard({
       </div>
 
       <div hidden={currentTab.value !== "without_driver"} className='my-4 w-full md:my-8'>
+        <div className="flex w-full justify-end">
+          <Link href='/admin/transports/create'>
+            <Button variant="contained" >
+              Create New Car
+            </Button>
+          </Link>
+        </div>
         <div className="flex items-center w-full justify-between">
           <SectionTitle title={currentTab.title} />
-          <div className="">
-            <FormControl size="small" className="shadow-sm" variant="outlined">
-              <InputLabel>Search your  Need</InputLabel>
-              <OutlinedInput
-                endAdornment={
-                  <InputAdornment position="end">
-                    <BiSearch className="text-[#EDA592]" />
-                  </InputAdornment>
-                }
-                label="Search your Tours"
-                onChange={(e) => handleSearch(e.target.value)}
-              />
-            </FormControl>
-          </div>
+          <FormControl size="small" className="shadow-sm" variant="outlined">
+            <InputLabel>Search your  Need</InputLabel>
+            <OutlinedInput
+              endAdornment={
+                <InputAdornment position="end">
+                  <BiSearch className="text-[#EDA592]" />
+                </InputAdornment>
+              }
+              label="Search your Tours"
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          </FormControl>
         </div>
         <>
           {

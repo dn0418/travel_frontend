@@ -5,7 +5,7 @@ const SunEditor = dynamic(() => import('suneditor-react'), {
   ssr: false,
 });
 
-const TextEditor = ({ text, onChange }: any) => {
+const SunTextEditor = ({ text, onChange }: any) => {
 
   return (
     <>
@@ -60,4 +60,4 @@ const TextEditor = ({ text, onChange }: any) => {
     </>
   );
 };
-export default TextEditor;
+export default SunTextEditor;

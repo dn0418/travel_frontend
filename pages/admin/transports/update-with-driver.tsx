@@ -11,7 +11,7 @@ import AdminImage from "../../../src/components/admin-cards/admin-image";
 import SectionTitle from "../../../src/components/common/section-title";
 import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
 import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";
-import client from "../../../src/rest-api/client";
+import serviceClient from "../../../src/rest-api/client/service-client";
 import { ImageType } from "../../../src/types";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
@@ -48,7 +48,7 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
       const data = await response.json();
       if (data?.Location) {
         try {
-          const res: any = await client.carWithDriver.newImage({
+          const res: any = await serviceClient.carWithDriver.newImage({
             id: withdriver.id,
             url: data.Location,
           })
@@ -76,7 +76,7 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
   const handleUpdate = async () => {
     setIsLoading(true);
     try {
-      const response = await client.carWithDriver.update(
+      const response = await serviceClient.carWithDriver.update(
         withdriver.id,
         { ...inputData }
       );
