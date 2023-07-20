@@ -6,7 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { HotelDataType } from '../../../../types/services';
+import { localizationData } from '../../../../utils/locales';
 
 interface Props {
   hotel: HotelDataType
@@ -14,7 +16,9 @@ interface Props {
 
 export default function HotelPricingTable({ hotel }: Props) {
   const { pricingTable } = hotel;
-
+  const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   return (
     <Container
@@ -34,7 +38,12 @@ export default function HotelPricingTable({ hotel }: Props) {
               {
                 pricingTable.map((row, i) => (
                   <TableRow key={i}>
-                    <TableCell align="center">{row.name}</TableCell>
+                    <TableCell align="center">
+                      {
+                        locale === 'ru' ? row.name_ru :
+                          (locale === 'hy' ? row.name_hy : row.name)
+                      }
+                    </TableCell>
                     <TableCell align="center">{row.firstPart}</TableCell>
                     <TableCell align="center">{row.lastPart} AMD</TableCell>
                   </TableRow>
@@ -46,7 +55,7 @@ export default function HotelPricingTable({ hotel }: Props) {
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
             <Button className="bg-black text-white" variant='contained'>
-              Send Request
+              {localData.send_request}
             </Button>
           </Link>
         </div>

@@ -1,6 +1,7 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
 import { IoMdPricetags } from "react-icons/io";
@@ -8,6 +9,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdLocalAirport } from "react-icons/md";
 import { TiCancelOutline } from "react-icons/ti";
 import { HotelDataType } from "../../../../types/services";
+import { localizationData } from "../../../../utils/locales";
 
 interface Props {
   hotel: HotelDataType,
@@ -18,14 +20,25 @@ interface Props {
 }
 
 function HotelSpecification({ hotel, metadata }: Props) {
+  const { locale } = useRouter();
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   return (
     <div className="px-4 md:px-12">
-      <h3 className="text-[#000000] text-xl font-semibold mt-0">{hotel.name}</h3>
+      <h3 className="text-[#000000] text-xl font-semibold mt-0">
+        {
+          locale === 'ru' ? hotel.name_ru :
+            (locale === 'hy' ? hotel.name_hy : hotel.name)
+        }
+      </h3>
       <p className="flex items-center gap-2">
         <IoLocationOutline className="text-base text-[#EDA592]  font-bold" />
         <span className="text-sm text-[#5e5e5e]">
-          {hotel.country + '-' + hotel.city}
+          {(locale === 'ru' ? hotel.country_ru :
+            (locale === 'hy' ? hotel.country_hy : hotel.country)) + '-' +
+            (locale === 'ru' ? hotel.city_ru :
+              (locale === 'hy' ? hotel.city_hy : hotel.city))}
         </span>
       </p>
       {
@@ -40,14 +53,15 @@ function HotelSpecification({ hotel, metadata }: Props) {
             precision={0.1}
           />
           <span className="text-sm text-[#5e5e5e]">
-            {metadata.avarage} Star | {metadata.total} People
+            {metadata.avarage + ' ' + localData.star_text
+              + ' | ' + metadata.total + ' ' + localData.people_text}
           </span>
         </p>
       }
 
       <p className="flex items-center gap-2">
         <IoMdPricetags className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-sm text-[#5e5e5e]">Starts From</span>
+        <span className="text-sm text-[#5e5e5e]">{localData.start_from}</span>
         <span className="text-base text-[#000000] font-bold">
           $ {hotel.price}
         </span>
@@ -71,7 +85,8 @@ function HotelSpecification({ hotel, metadata }: Props) {
       <p className="flex items-center gap-4">
         <TiCancelOutline className="text-xl text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          Free Cancelation: {hotel.freeCancellation ? "Yes" : "No"}
+          {localData.free_cancelation + ' ' + hotel.freeCancellation ?
+            localData.transportData.yes_text : localData.transportData.no_text}
         </span>
       </p>
       <p className="flex items-center gap-4">
@@ -89,7 +104,9 @@ function HotelSpecification({ hotel, metadata }: Props) {
       <div className="md:mt-8">
         <Button
           className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained">Submit</Button>
+          variant="contained">
+          {localData.submit_text}
+        </Button>
       </div>
     </div>
   );

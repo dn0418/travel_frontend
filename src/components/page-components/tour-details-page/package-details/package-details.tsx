@@ -1,17 +1,17 @@
 // @flow strict
 
 import { Container } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
 import { TourType } from "../../../../types/tour";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
-
-
 function PackageDetails({ tour }: { tour: TourType }) {
   const { includesServices, excludeServices } = tour;
   const [isReviewShow, setIsReviewShow] = useState(false);
+  const { locale } = useRouter();
 
   const handleChangeFunction = () => {
     setIsReviewShow(!isReviewShow);
@@ -32,7 +32,12 @@ function PackageDetails({ tour }: { tour: TourType }) {
                   item.type === 'include' &&
                   <p className="flex gap-4 my-6 items-center" key={index}>
                     <AiOutlineCheckCircle className="text-[#00952A]" />
-                    <span className="text-sm">{item.text}</span>
+                    <span className="text-sm">
+                      {
+                        locale === 'ru' ? item.text_ru :
+                          (locale === 'hy' ? item.text_hy : item.text)
+                      }
+                    </span>
                   </p>
                 ))
               }
@@ -41,7 +46,12 @@ function PackageDetails({ tour }: { tour: TourType }) {
                   item.type === 'exclude' &&
                   <p className="flex gap-4 my-6 items-center" key={index}>
                     <RxCrossCircled className="text-[#FF3500]" />
-                    <span className="text-sm">{item.text}</span>
+                    <span className="text-sm">
+                      {
+                        locale === 'ru' ? item.text_ru :
+                          (locale === 'hy' ? item.text_hy : item.text)
+                      }
+                    </span>
                   </p>
                 ))
               }

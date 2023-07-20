@@ -78,7 +78,9 @@ function ThumbnailSection({ tour }: { tour: TourType }) {
               width={200}
               layout="responsive"
               className="rounded-lg"
-              alt="tour-details" />
+              alt="tour-details"
+              priority
+            />
           ))}
         </Slider>
           :
@@ -91,7 +93,9 @@ function ThumbnailSection({ tour }: { tour: TourType }) {
                 width={300}
                 layout="responsive"
                 className="rounded-lg"
-                alt="tour-details" />
+                alt="tour-details"
+                priority
+              />
             ))}
           </div>
       }

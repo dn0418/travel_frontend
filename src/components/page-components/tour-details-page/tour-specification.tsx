@@ -54,13 +54,16 @@ function TourSpecification({ tour }: { tour: TourType }) {
             precision={0.1}
           />
           <span className="text-base text-[#5e5e5e]">
-            {getReviewsAvarage(tour.reviews)} Star | {tour.reviews.length} People
+            {getReviewsAvarage(tour.reviews) + ' ' + localData.star_text
+              + ' | ' + tour.reviews.length + ' ' + localData.people_text}
           </span>
         </p>
       }
       <p className="flex items-center gap-3">
         <GiPriceTag className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">Start From:</span>
+        <span className="text-base text-[#5e5e5e]">
+          {localData.start_from}
+        </span>
         <span className="text-base text-[#000000] font-bold">
           $ {tour.price}
         </span>
@@ -98,10 +101,11 @@ function TourSpecification({ tour }: { tour: TourType }) {
       <p className="flex items-center gap-3">
         <GiCancel className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          Free Cancelation:
+          {localData.free_cancelation}
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {tour.freeCancelation ? "Yes" : "No"}
+          {tour.freeCancelation ? localData.transportData.yes_text
+            : localData.transportData.no_text}
         </span>
       </p>
       {
@@ -115,7 +119,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
       }
       <p className="flex items-center gap-4">
         <BsPerson className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">{tour.activities} Activities</span>
+        <span className="text-base text-[#5e5e5e]">{tour.activities + ' ' + localData.transportData.activities_text} </span>
       </p>
       <div className="md:mt-8">
         <Button

@@ -6,14 +6,30 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { TourType } from '../../../../types/tour';
+import { localizationData } from '../../../../utils/locales';
 
-const individualColumns = ['2-3 pax', '4-6 pax', '7-18 pax', '20 more'];
-const departureColumns = ['Start date', 'End date', 'Max in the group', 'Price']
+const individualColumnsData = {
+  en: ['2-3 pax', '4-6 pax', '7-18 pax', '20 more'],
+  ru: ['2-3 чел.', '4-6 чел.', '7-18 чел.', '20 и более'],
+  hy: ['2-3 հույս', '4-6 հույս', '7-18 հույս', '20 կամ ավելի'],
+};
 
+const departureColumnsData = {
+  en: ['Start date', 'End date', 'Max in the group', 'Price'],
+  ru: ['Дата начала', 'Дата окончания', 'Максимальное кол-во участников', 'Цена'],
+  hy: ['Սկզբնա ամսաթիվ', 'Ավարտնամսաթիվ', 'Խումբի մաքսիմալ քանակ', 'Գին'],
+};
 
 export default function TourPriceTable({ tour }: { tour: TourType }) {
   const { individualPricing, departuresPricing } = tour;
+  const { locale } = useRouter();
+  const individualColumns = locale === "ru" ? individualColumnsData.ru : (locale === 'hy' ? individualColumnsData.hy : individualColumnsData.en);
+  const departureColumns = locale === "ru" ? departureColumnsData.ru : (locale === 'hy' ? departureColumnsData.hy : departureColumnsData.en);
+
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
 
   return (
@@ -79,7 +95,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
         <div className="flex mt-5 justify-end">
           <Link href="/ride-plan">
             <Button className='bg-black text-white' variant='contained'>
-              Send Request
+              {localData.send_request}
             </Button>
           </Link>
         </div>
