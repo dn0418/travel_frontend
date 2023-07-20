@@ -1,5 +1,5 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-import client from "../client";
+import serviceClient from "../client/service-client";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -8,7 +8,7 @@ export const getServerSideProps: GetServerSideProps = async (
   const page = query["page"] || 1;
   const search = query["search"] || "";
 
-  const accessories = await client.accessories.all(page, search);
+  const accessories = await serviceClient.accessories.all(page, search);
 
   return {
     props: {

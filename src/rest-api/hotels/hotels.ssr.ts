@@ -1,13 +1,13 @@
 import type { GetServerSideProps, GetServerSidePropsContext, GetStaticProps } from "next";
 import { QueryClient, dehydrate } from "react-query";
 import { API_ENDPOINTS } from "../api-endpoints";
-import client from "../client";
+import serviceClient from "../client/service-client";
 
 export const getStaticProps: GetStaticProps = async () => {
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery([API_ENDPOINTS.HOTELS], client.hotels?.all);
+  await queryClient.prefetchQuery([API_ENDPOINTS.HOTELS], serviceClient.hotels?.all);
 
   const { queries } = JSON.parse(JSON.stringify(dehydrate(queryClient)));
 
@@ -35,8 +35,8 @@ export const getServerSideProps: GetServerSideProps = async (
   const country = query["country"] || "";
   const city = query["city"] || "";
 
-  const hotels = await client.hotels.filtered(page, type, search, country, city, locale);
-  const hotelTypes = await client.hotelType.all();
+  const hotels = await serviceClient.hotels.filtered(page, type, search, country, city, locale);
+  const hotelTypes = await serviceClient.hotelType.all();
 
   return {
     props: {

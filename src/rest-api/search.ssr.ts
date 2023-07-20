@@ -1,5 +1,5 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-import client from "./client";
+import tourClient from "./client/tour-client";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -12,8 +12,8 @@ export const getServerSideProps: GetServerSideProps = async (
   const destination = query["destination"] || "";
   const days = query["days"] || "";
 
-  const tours = await client.tours?.sortedTour(+page, type, search, month, destination, days);
-  const destinationData = await client.tourDestination.all();
+  const tours = await tourClient.tours?.sortedTour(+page, type, search, month, destination, days);
+  const destinationData = await tourClient.tourDestination.all();
 
   return {
     props: {

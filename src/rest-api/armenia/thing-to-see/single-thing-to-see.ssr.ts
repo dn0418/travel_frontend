@@ -1,7 +1,7 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { ThingToSeeType } from '../../../types';
-import client from '../../client';
+import armeniaClient from '../../client/armenia-client';
 
 type ParsedQueryParams = {
   id: string;
@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await client.thingToSee.all();
+  const { data }: any = await armeniaClient.thingToSee.all();
 
   const paths = data?.map((item: ThingToSeeType) => {
     return {
@@ -25,12 +25,12 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!;
-  const allThings = await client.thingToSee.all(1, '', '');
+  const allThings = await armeniaClient.thingToSee.all(1, '', '');
 
   try {
-    await client.thingToSee.all();
-    const thingDetails = await client.thingToSee.getByID(id);
-    const reviews = await client.reviews.thingToSeeReview(id);
+    await armeniaClient.thingToSee.all();
+    const thingDetails = await armeniaClient.thingToSee.getByID(id);
+    const reviews = await armeniaClient.reviews.thingToSeeReview(id);
 
     return {
       props: {

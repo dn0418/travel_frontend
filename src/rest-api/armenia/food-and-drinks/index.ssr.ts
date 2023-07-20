@@ -1,5 +1,5 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-import client from "../../client";
+import armeniaClient from "../../client/armenia-client";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async (
   const type = query["type"] || '';
   const search = query["search"] || "";
 
-  const foodAndDrinks = await client.foodAndDrinks.all(page, type, search, locale);
+  const foodAndDrinks = await armeniaClient.foodAndDrinks.all(page, type, search, locale);
 
   return {
     props: {

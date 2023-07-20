@@ -1,7 +1,7 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { TourAccessoryType } from '../../types';
-import client from '../client';
+import serviceClient from '../client/service-client';
 
 type ParsedQueryParams = {
   id: string;
@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await client.accessories.all(1, '');
+  const { data }: any = await serviceClient.accessories.all(1, '');
 
   const paths = data?.map((item: TourAccessoryType) => {
     return {
@@ -27,13 +27,13 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!;
-  const allAccessory = await client.accessories.all(1, '');
+  const allAccessory = await serviceClient.accessories.all(1, '');
 
   try {
-    await client.accessories.all();
-    const carsDetails = await client.carWithoutDriver.getByID(id);
-    const accessoryDetails = await client.accessories.getByID(id);
-    const reviews = await client.reviews.accessoryReview(id);
+    await serviceClient.accessories.all();
+    const carsDetails = await serviceClient.carWithoutDriver.getByID(id);
+    const accessoryDetails = await serviceClient.accessories.getByID(id);
+    const reviews = await serviceClient.reviews.accessoryReview(id);
 
     return {
       props: {

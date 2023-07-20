@@ -1,7 +1,7 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { HotelDataType } from '../../types/services';
-import client from '../client';
+import serviceClient from '../client/service-client';
 
 type ParsedQueryParams = {
   id: string;
@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await client.hotels.all();
+  const { data }: any = await serviceClient.hotels.all();
 
   const paths = data?.map((item: HotelDataType) => {
     return {
@@ -27,12 +27,12 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!; //* we know it's required because of getStaticPaths
-  const allHotel = await client.hotels.all();
+  const allHotel = await serviceClient.hotels.all();
 
   try {
-    await client.hotels.all();
-    const hotelDetails = await client.hotels.getByID(id);
-    const reviews = await client.reviews.hotelReview(id);
+    await serviceClient.hotels.all();
+    const hotelDetails = await serviceClient.hotels.getByID(id);
+    const reviews = await serviceClient.reviews.hotelReview(id);
 
     return {
       props: {

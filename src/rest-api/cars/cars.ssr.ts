@@ -1,5 +1,5 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-import client from "../client";
+import serviceClient from "../client/service-client";
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -8,9 +8,9 @@ export const getServerSideProps: GetServerSideProps = async (
   const page = query["page"] || 1;
   const search = query["search"] || "";
 
-  const carWithoutDriver = await client.carWithoutDriver.all(page, search);
-  const carWithDriver = await client.carWithDriver.all();
-  const airportTransport = await client.airportTransport.all();
+  const carWithoutDriver = await serviceClient.carWithoutDriver.all(page, search);
+  const carWithDriver = await serviceClient.carWithDriver.all();
+  const airportTransport = await serviceClient.airportTransport.all();
 
   return {
     props: {
