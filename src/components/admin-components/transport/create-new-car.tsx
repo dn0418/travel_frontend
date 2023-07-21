@@ -1,8 +1,10 @@
 import { Button, CircularProgress, FormControlLabel, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
+import { PriceWithoutDriverType } from "../../../types/car-type";
 import SunTextEditor from "../../common/SunEditor";
 import SectionTitle from "../../common/section-title";
+import CreateCarPricing from "./create-pricing";
 
 interface PropsType {
   handleImageChange: any;
@@ -21,6 +23,9 @@ interface PropsType {
   images: string[];
   inputData: any;
   setInputData: any;
+  handleSubmit: any;
+  pricing: PriceWithoutDriverType[];
+  handleInputChange: (name: string, value: string) => void;
 }
 
 function CreateNewCar({
@@ -33,9 +38,11 @@ function CreateNewCar({
   setInputData,
   uploading,
   uploadThumbnail,
-  tabs
+  tabs,
+  handleSubmit,
+  handleInputChange,
+  pricing
 }: PropsType) {
-
 
   return (
     <div className="w-full my-8">
@@ -104,73 +111,52 @@ function CreateNewCar({
                 ...inputData,
                 freeCancellation: e.target.checked
               })}
-              control={<Switch defaultChecked={inputData.freeCancellation} />}
+              control={<Switch />}
               label="Free Cancelation"
             />
           </div>
           <TextField
             label='Name'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              name: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('name', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Price'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              price: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('price', e.target.value)}
             variant='outlined'
             className="w-full"
             type="number"
           />
           <TextField
             label='Pickup'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              pickup: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('pickup', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Fuel'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              fuel: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('fuel', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Year'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              year: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('year', e.target.value)}
             variant='outlined'
             className="w-full"
             type="number"
           />
           <TextField
             label='Seat No.'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              seatNo: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('seatNo', e.target.value)}
             variant='outlined'
             className="w-full"
             type="number"
           />
           <TextField
             label='Short Description'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              shortDescription: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('shortDescription', e.target.value)}
             variant='outlined'
             className="w-full col-span-2"
             multiline
@@ -178,10 +164,8 @@ function CreateNewCar({
           />
           <div className="col-span-2 w-full">
             <p className="font-medium uppercase">Car Description</p>
-            <SunTextEditor onChange={(e: any) => setInputData({
-              ...inputData,
-              description: e.target.value
-            })}
+            <SunTextEditor
+              onChange={(text: string) => handleInputChange('description', text)}
             />
           </div>
           <div className="col-span-2 w-full">
@@ -232,53 +216,43 @@ function CreateNewCar({
             </div>
           </div>
         </div>
+        <div className="flex mx-5 lg:mx-12 justify-start mt-8">
+          <Button onClick={handleSubmit} className="py-3" variant="contained">
+            Create Car Without driver
+          </Button>
+        </div>
       </div>
 
       <div className="mt-5" hidden={currentTab.value !== 'ru'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="col-span-2">
             <FormControlLabel
-              onChange={(e: any) => setInputData({
-                ...inputData,
-                isRu: e.target.checked
-              })}
-              control={<Switch defaultChecked={inputData.isRu} />}
+              onChange={(e: any) => handleInputChange('isRu', e.target.checked)}
+              control={<Switch />}
               label="Is Russian Data Available"
             />
           </div>
           <TextField
             label='Name(ru)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              name_ru: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('name_ru', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Pickup(ru)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              pickup_ru: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('pickup_ru', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Fuel(ru)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              fuel_ru: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('fuel_ru', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Short Description(ru)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              shortDescription_ru: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
             className="w-full col-span-2"
             multiline
@@ -286,10 +260,9 @@ function CreateNewCar({
           />
           <div className="col-span-2 w-full">
             <p className="font-medium uppercase">Car Description(ru)</p>
-            <SunTextEditor onChange={(e: any) => setInputData({
-              ...inputData,
-              description_ru: e.target.value
-            })} />
+            <SunTextEditor
+              onChange={(text: string) => handleInputChange('description_ru', text)}
+            />
           </div>
         </div>
       </div>
@@ -298,47 +271,32 @@ function CreateNewCar({
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="col-span-2">
             <FormControlLabel
-              onChange={(e: any) => setInputData({
-                ...inputData,
-                isHy: e.target.checked
-              })}
-              control={<Switch defaultChecked={inputData.isHy} />}
+              onChange={(e: any) => handleInputChange('isHy', e.target.checked)}
+              control={<Switch />}
               label="Is Armenian Data Available"
             />
           </div>
           <TextField
             label='Name(hy)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              name_hy: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('name_hy', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Pickup(hy)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              pickup_hy: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('pickup_hy', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Fuel(hy)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              fuel_hy: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('fuel_hy', e.target.value)}
             variant='outlined'
             className="w-full"
           />
           <TextField
             label='Short Description(hy)'
-            onChange={(e: any) => setInputData({
-              ...inputData,
-              shortDescription_hy: e.target.value
-            })}
+            onChange={(e: any) => handleInputChange('shortDescription_hy', e.target.value)}
             variant='outlined'
             className="w-full col-span-2"
             multiline
@@ -346,16 +304,15 @@ function CreateNewCar({
           />
           <div className="col-span-2 w-full">
             <p className="font-medium uppercase">Car Description(hy)</p>
-            <SunTextEditor onChange={(e: any) => setInputData({
-              ...inputData,
-              description_hy: e.target.value
-            })} />
+            <SunTextEditor
+              onChange={(text: string) => handleInputChange('description_hy', text)}
+            />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center mt-8">
-        <Button variant="contained">Create Car Without driver</Button>
+      <div className="mt-5" hidden={currentTab.value !== "pricing"}>
+        <CreateCarPricing pricing={pricing} />
       </div>
     </div>
   );

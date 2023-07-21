@@ -2,8 +2,6 @@ import { ImageType, ReviewTypes } from ".";
 
 export interface PriceWithoutDriverType {
   id: number;
-  createdAt: string;
-  updatedAt: string;
   destination: string;
   destination_hy: string;
   destination_ru: string;
