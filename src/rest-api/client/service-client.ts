@@ -13,7 +13,17 @@ class ServiceClient {
       `${API_ENDPOINTS.CAR_WITHOUT_DRIVER}?page=${page}&search=${search}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/${id}`),
-  }
+    create: (data: any) =>
+      HttpClient.post(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/create`, data),
+    update: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/update/${id}`, data),
+    delete: (id: any) =>
+      HttpClient.delete(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/delete/${id}`),
+    createNewImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/image/create`, data),
+    createNewPrice: (data: any) => HttpClient.post(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/pricing/create`, data),
+    deletePrice: (id: any) => HttpClient.delete(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/pricing/delete/${id}`),
+    updatePrice: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/pricing/update/${id}`, data),
+  };
+
 
   carWithDriver = {
     all: () => HttpClient.get(API_ENDPOINTS.CAR_WITH_DRIVER),

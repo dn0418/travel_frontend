@@ -1,20 +1,27 @@
 // @flow strict
 
+import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewCar from '../../../src/components/admin-components/transport/without-driver/create-new-car';
-import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
-import serviceClient from '../../../src/rest-api/client/service-client';
-import { PriceWithoutDriverType } from '../../../src/types/car-type';
-import { NextPageWithLayout } from '../../../src/types/page-props';
-
+import UpdateWithoutCar from '../../../../src/components/admin-components/transport/without-driver/update-car';
+import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
+import {
+  getStaticPaths,
+  getStaticProps
+} from "../../../../src/rest-api/cars/car-details.ssr";
+import client from '../../../../src/rest-api/client';
+import serviceClient from '../../../../src/rest-api/client/service-client';
+import { ImageType } from '../../../../src/types';
+import { CarWithOutType, PriceWithoutDriverType } from '../../../../src/types/car-type';
+import { NextPageWithLayout } from "../../../../src/types/page-props";
+export { getStaticPaths, getStaticProps };
 interface WithoutInputDataType {
   [key: string]: any; // Add this line to indicate that a string can be used as an index
   name: string;
   name_ru: string;
   name_hy: string;
-  price: string;
+  price: number;
   freeCancellation: boolean;
   isRu: boolean;
   isHy: boolean;
@@ -24,8 +31,8 @@ interface WithoutInputDataType {
   fuel: string;
   fuel_ru: string;
   fuel_hy: string;
-  year: string;
-  seatNo: string;
+  year: number;
+  seatNo: number;
   thumbnail: string;
   shortDescription: string;
   shortDescription_ru: string;
@@ -41,36 +48,39 @@ const tabs = [
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateCar: NextPageWithLayout = () => {
+const UpdateCar: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+  const carDetails: CarWithOutType = props.carsDetails?.data;
+  console.log(carDetails)
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
-  const [pricing, setPricing] = useState<PriceWithoutDriverType[]>([]);
+  const [images, setImages] = useState<ImageType[]>(carDetails?.images || []);
+  const [pricing, setPricing] = useState<PriceWithoutDriverType[]>(carDetails?.priceWithoutDriver || []);
   const [inputData, setInputData] = useState<WithoutInputDataType>({
-    name: "",
-    name_ru: "",
-    name_hy: "",
-    price: '',
-    freeCancellation: false,
-    isRu: false,
-    isHy: false,
-    pickup: "",
-    pickup_ru: "",
-    pickup_hy: "",
-    fuel: "",
-    fuel_ru: "",
-    fuel_hy: "",
-    year: '',
-    seatNo: '',
-    thumbnail: "",
-    shortDescription: "",
-    shortDescription_ru: "",
-    shortDescription_hy: "",
-    description: "",
-    description_ru: "",
-    description_hy: "",
+    name: carDetails?.name || '',
+    name_ru: carDetails?.name_ru || '',
+    name_hy: carDetails?.name_hy || '',
+    price: carDetails?.price,
+    freeCancellation: carDetails?.freeCancellation || false,
+    isRu: carDetails?.isRu || false,
+    isHy: carDetails?.isHy || false,
+    pickup: carDetails?.pickup || '',
+    pickup_ru: carDetails?.pickup_ru || '',
+    pickup_hy: carDetails?.pickup_hy || '',
+    fuel: carDetails?.fuel || '',
+    fuel_ru: carDetails?.fuel_ru || '',
+    fuel_hy: carDetails?.fuel_hy || '',
+    year: carDetails?.year,
+    seatNo: carDetails?.seatNo,
+    thumbnail: carDetails?.thumbnail || '',
+    shortDescription: carDetails?.shortDescription || '',
+    shortDescription_ru: carDetails?.shortDescription_ru || '',
+    shortDescription_hy: carDetails?.shortDescription_hy || '',
+    description: carDetails?.description || '',
+    description_ru: carDetails?.description_ru || '',
+    description_hy: carDetails?.description_hy || '',
   });
+
   const router = useRouter();
 
   const handleImageChange = async (event: any) => {
@@ -88,7 +98,17 @@ const CreateCar: NextPageWithLayout = () => {
 
       const data = await response.json();
       if (data?.Location) {
-        setImages([...images, data?.Location]);
+        try {
+          const res: any = await serviceClient.carWithoutDriver.createNewImage({
+            carId: carDetails.id,
+            url: data.Location
+          });
+          if (res?.data) {
+            setImages([...images, res?.data]);
+          }
+        } catch (error) {
+          toast.error('Something went wrong!');
+        }
       }
     } catch (error) {
       toast.error('Something went wrong!');
@@ -121,8 +141,15 @@ const CreateCar: NextPageWithLayout = () => {
     }
   }
 
-  const handleRemoveImage = (index: number) => {
-    setImages(images.filter((image, i) => i !== index));
+  const handleRemoveImage = async (id: number) => {
+    try {
+      const res = await client.images.deleteImage(id);
+      console.log(res)
+      setImages(images.filter((image, i) => image.id !== id));
+    } catch (error) {
+      toast.error('Something went wrong!');
+      console.log(error)
+    }
   }
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -175,15 +202,10 @@ const CreateCar: NextPageWithLayout = () => {
       return;
     }
     setIsLoading(true);
-    const payload = JSON.stringify({
-      ...inputData,
-      pricing: pricing,
-      images: images
-    });
 
     try {
-      const res = await serviceClient.carWithoutDriver.create(payload);
-      toast.success('Car created successfully');
+      const res = await serviceClient.carWithoutDriver.update(carDetails.id, inputData);
+      toast.success('Car updated successfully');
       router.push('/admin/transports');
     } catch (error) {
       console.log(error);
@@ -195,7 +217,7 @@ const CreateCar: NextPageWithLayout = () => {
 
   return (
     <>
-      <CreateNewCar
+      <UpdateWithoutCar
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -211,13 +233,14 @@ const CreateCar: NextPageWithLayout = () => {
         pricing={pricing}
         setPricing={setPricing}
         isLoading={isLoading}
+        carDetails={carDetails}
       />
     </>
   );
 };
 
-CreateCar.getLayout = function getLayout(page) {
+UpdateCar.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default CreateCar;
+export default UpdateCar;

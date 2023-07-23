@@ -3,8 +3,12 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import swal from 'sweetalert';
+import serviceClient from '../../rest-api/client/service-client';
 import { CarWithOutType } from '../../types/car-type';
 
 interface TransportCardProps {
@@ -12,6 +16,43 @@ interface TransportCardProps {
 }
 
 function CarAdminCard({ car }: TransportCardProps) {
+  const router = useRouter();
+
+  const handleDeleteReview = () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Car!",
+      icon: "warning",
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: false,
+          visible: true,
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          closeModal: true
+        }
+      }
+    })
+      .then(async (willDelete) => {
+        if (willDelete) {
+          try {
+            const res = await serviceClient.carWithoutDriver.delete(car.id)
+            toast.success('Car deleted successfully!')
+            router.push({
+              pathname: '/admin/dashboard'
+            });
+          } catch (error) {
+            toast.error('Something went wrong!')
+          }
+        }
+      });
+  }
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -58,16 +99,16 @@ function CarAdminCard({ car }: TransportCardProps) {
           </p>
           <div className="flex justify-end items-center">
             <div className="flex items-center gap-3">
-              <Link href='#'>
+              <Link href={`/admin/transports/update-without/${car.id}`}>
                 <Button className='shadow min-w-fit py-2 px-5 text-[#5e5e5e] text-lg'>
                   <BiEdit />
                 </Button>
               </Link>
-              <Link href='#'>
-                <Button className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
-                  <MdDelete />
-                </Button>
-              </Link>
+              <Button
+                onClick={handleDeleteReview}
+                className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
+                <MdDelete />
+              </Button>
             </div>
           </div>
         </div>

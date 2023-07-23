@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { TransportPageProps } from "../../../../types/page-props";
 import { transportsTabs } from "../../../../utils/data/armenia-data";
+import { localizationData } from "../../../../utils/locales";
 import TransportCard from "../../../cards/car-card";
 import SectionTitle from "../../../common/section-title";
 import AirportTransport from "./airport-transport";
@@ -24,6 +25,8 @@ function TransportUI({
 }: TransportPageProps) {
   const { locale } = useRouter();
   // console.log(airportTransport)
+  const localData = locale === "ru" ? localizationData.ru :
+    (locale === 'hy' ? localizationData.hy : localizationData.en);
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -90,10 +93,7 @@ function TransportUI({
             carsWithoutDriver.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  {
-                    locale === 'ru' ? 'Данные не найдены!' :
-                      (locale === 'hy' ? 'Տվյալները չեն գտնվել:' : 'Data not found!')
-                  }
+                  {localData.search_your_need}
                 </p>
               </div>
 
@@ -119,18 +119,12 @@ function TransportUI({
                     components={{
                       next: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          {
-                            locale === 'ru' ? 'Следующий' :
-                              (locale === 'hy' ? 'Հաջորդը' : 'Next')
-                          }
+                          {localData.next_text}
                         </span>
                       ),
                       previous: (props) => (
                         <span className='border-0 p-0 bg-transparent text-[#EDA592]'>
-                          {
-                            locale === 'ru' ? 'Пред.' :
-                              (locale === 'hy' ? 'Նախ' : 'Prev')
-                          }
+                          {localData.prev_text}
                         </span>
                       ),
                     }}

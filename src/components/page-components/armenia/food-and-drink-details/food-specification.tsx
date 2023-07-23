@@ -45,7 +45,9 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
       }
       <p className="flex items-center gap-3">
         <IoLocation className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">From Yerevan:</span>
+        <span className="text-base text-[#5e5e5e]">
+          {localData.from_yerevan_text}
+        </span>
         <span className="text-base text-[#000000] font-bold">
           {
             locale === "ru" ? thing.fromYerevan_ru :
@@ -53,8 +55,6 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
           }
         </span>
       </p>
-
-
       <p className="flex items-center gap-3">
         <BiCategory className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">

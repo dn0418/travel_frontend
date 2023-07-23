@@ -1,9 +1,9 @@
 import { Button, CircularProgress, FormControlLabel, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
-import { PriceWithoutDriverType } from "../../../types/car-type";
-import SunTextEditor from "../../common/SunEditor";
-import SectionTitle from "../../common/section-title";
+import { PriceWithoutDriverType } from "../../../../types/car-type";
+import SunTextEditor from "../../../common/SunEditor";
+import SectionTitle from "../../../common/section-title";
 import CreateCarPricing from "./create-pricing";
 
 interface PropsType {
@@ -24,8 +24,10 @@ interface PropsType {
   inputData: any;
   setInputData: any;
   handleSubmit: any;
+  setPricing: any;
   pricing: PriceWithoutDriverType[];
   handleInputChange: (name: string, value: string) => void;
+  isLoading: boolean;
 }
 
 function CreateNewCar({
@@ -41,13 +43,15 @@ function CreateNewCar({
   tabs,
   handleSubmit,
   handleInputChange,
-  pricing
+  pricing,
+  setPricing,
+  isLoading
 }: PropsType) {
 
   return (
     <div className="w-full my-8">
       <div className="w-full flex flex-col items-center gap-4">
-        <div className='lg:w-[70%] text-center py-3 px-6 regular-shadow rounded-lg'>
+        <div className='lg:w-[60%] text-center py-3 px-6 regular-shadow rounded-lg'>
           <Tabs
             value={currentTab.value}
             onChange={handleTabChange}
@@ -107,11 +111,14 @@ function CreateNewCar({
           }
           <div className="col-span-2">
             <FormControlLabel
-              onChange={(e: any) => setInputData({
-                ...inputData,
-                freeCancellation: e.target.checked
-              })}
-              control={<Switch />}
+              control={
+                <Switch
+                  onChange={(e: any) => setInputData({
+                    ...inputData,
+                    freeCancellation: e.target.checked
+                  })}
+                  checked={inputData.freeCancellation}
+                />}
               label="Free Cancelation"
             />
           </div>
@@ -216,9 +223,16 @@ function CreateNewCar({
             </div>
           </div>
         </div>
+        <div className="mt-5 mx-5 lg:mx-12">
+          <CreateCarPricing setPricing={setPricing} pricing={pricing} />
+        </div>
         <div className="flex mx-5 lg:mx-12 justify-start mt-8">
-          <Button onClick={handleSubmit} className="py-3" variant="contained">
-            Create Car Without driver
+          <Button
+            disabled={isLoading}
+            onClick={handleSubmit}
+            className="py-3"
+            variant="contained">
+            {isLoading ? "Creating..." : "Create Car Without driver"}
           </Button>
         </div>
       </div>
@@ -227,8 +241,12 @@ function CreateNewCar({
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="col-span-2">
             <FormControlLabel
-              onChange={(e: any) => handleInputChange('isRu', e.target.checked)}
-              control={<Switch />}
+              control={
+                <Switch
+                  onChange={(e: any) => handleInputChange('isRu', e.target.checked)}
+                  checked={inputData.isRu}
+                />
+              }
               label="Is Russian Data Available"
             />
           </div>
@@ -271,8 +289,12 @@ function CreateNewCar({
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="col-span-2">
             <FormControlLabel
-              onChange={(e: any) => handleInputChange('isHy', e.target.checked)}
-              control={<Switch />}
+              control={
+                <Switch
+                  onChange={(e: any) => handleInputChange('isHy', e.target.checked)}
+                  checked={inputData.isHy}
+                />
+              }
               label="Is Armenian Data Available"
             />
           </div>
@@ -309,10 +331,6 @@ function CreateNewCar({
             />
           </div>
         </div>
-      </div>
-
-      <div className="mt-5" hidden={currentTab.value !== "pricing"}>
-        <CreateCarPricing pricing={pricing} />
       </div>
     </div>
   );

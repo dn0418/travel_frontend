@@ -52,6 +52,7 @@ export interface LocaleDataItems {
   star_text: string;
   people_text: string;
   start_from: string;
+  from_yerevan_text: string;
 }
 
 export interface LocaleDataType {

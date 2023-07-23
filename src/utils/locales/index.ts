@@ -39,7 +39,8 @@ export const localizationData: LocaleDataType = {
     add_reviews: 'Add reviews',
     star_text: 'Star',
     people_text: 'People',
-    start_from: 'Start From'
+    start_from: 'Start From',
+    from_yerevan_text: 'From Yerevan:'
   },
   ru: {
     transportData: transportRuLocalization,
@@ -78,7 +79,8 @@ export const localizationData: LocaleDataType = {
     add_reviews: 'Добавить отзывы',
     star_text: 'Звезда',
     people_text: 'Люди',
-    start_from: 'Начать с'
+    start_from: 'Начать с',
+    from_yerevan_text: 'Из Еревана'
   },
   hy: {
     transportData: transportHyLocalization,
@@ -117,7 +119,8 @@ export const localizationData: LocaleDataType = {
     add_reviews: 'Ավելացնել կրթություններ',
     star_text: 'Աստղ',
     people_text: 'Մարդիկ',
-    start_from: 'Սկսել'
+    start_from: 'Սկսել',
+    from_yerevan_text: 'Երևանից.'
   },
   // Add other language translations here if needed.
 };
