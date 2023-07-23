@@ -12,7 +12,7 @@ export interface HotelDataType {
   thumbnail: string;
   googleMap: string;
   price: number;
-  fromAirport: boolean;
+  fromAirport: string;
   country: string;
   country_ru: string;
   country_hy: string;

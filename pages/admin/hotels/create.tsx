@@ -10,29 +10,31 @@ import { PriceWithoutDriverType } from '../../../src/types/car-type';
 import { NextPageWithLayout } from '../../../src/types/page-props';
 
 interface WithoutInputDataType {
-  [key: string]: any; // Add this line to indicate that a string can be used as an index
+  [key: string]: any;
+  isRu?: boolean;
+  isHy?: boolean;
   name: string;
   name_ru: string;
   name_hy: string;
-  price: string;
-  freeCancellation: boolean;
-  isRu: boolean;
-  isHy: boolean;
-  pickup: string;
-  pickup_ru: string;
-  pickup_hy: string;
-  fuel: string;
-  fuel_ru: string;
-  fuel_hy: string;
-  year: string;
-  seatNo: string;
   thumbnail: string;
+  googleMap: string;
+  price: string;
+  fromAirport: string;
+  country: string;
+  country_ru: string;
+  country_hy: string;
+  city: string;
+  city_ru: string;
+  city_hy: string;
+  freeCancellation?: boolean;
+  checkInTime?: string;
+  checkOutTime?: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;
-  description: string;
-  description_ru: string;
-  description_hy: string;
+  longDescription: string;
+  longDescription_ru: string;
+  longDescription_hy: string;
 }
 
 const tabs = [
@@ -48,28 +50,28 @@ const CreateHotel: NextPageWithLayout = () => {
   const [images, setImages] = useState<string[]>([]);
   const [pricing, setPricing] = useState<PriceWithoutDriverType[]>([]);
   const [inputData, setInputData] = useState<WithoutInputDataType>({
-    name: "",
-    name_ru: "",
-    name_hy: "",
+    name: '',
+    name_ru: '',
+    name_hy: '',
+    thumbnail: '',
+    googleMap: '',
     price: '',
+    fromAirport: '',
+    country: '',
+    country_ru: '',
+    country_hy: '',
+    city: '',
+    city_ru: '',
+    city_hy: '',
     freeCancellation: false,
-    isRu: false,
-    isHy: false,
-    pickup: "",
-    pickup_ru: "",
-    pickup_hy: "",
-    fuel: "",
-    fuel_ru: "",
-    fuel_hy: "",
-    year: '',
-    seatNo: '',
-    thumbnail: "",
-    shortDescription: "",
-    shortDescription_ru: "",
-    shortDescription_hy: "",
-    description: "",
-    description_ru: "",
-    description_hy: "",
+    checkInTime: '',
+    checkOutTime: '',
+    shortDescription: '',
+    shortDescription_ru: '',
+    shortDescription_hy: '',
+    longDescription: '',
+    longDescription_ru: '',
+    longDescription_hy: '',
   });
   const router = useRouter();
 
