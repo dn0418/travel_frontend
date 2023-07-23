@@ -58,12 +58,18 @@ class ServiceClient {
       locale: any,
     ) => HttpClient.get(`${API_ENDPOINTS.HOTELS}?page=${page}&type=${type}&search=${search}&country=${country}&city=${city}&lan=${locale}`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
+    deleteHotels: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELS}/delete/${id}`),
   }
+
 
   hotelType = {
-    all: () => HttpClient.get(API_ENDPOINTS.HOTELTYPE)
-  }
-}
+    all: () => HttpClient.get(API_ENDPOINTS.HOTELTYPE),
+    deleteType: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELTYPE}/delete/${id}`),
+    updateType: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELTYPE}/update/${id}`, data),
+    createType: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELTYPE}/create`, data),
+  };
 
+  // End
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default new ServiceClient();

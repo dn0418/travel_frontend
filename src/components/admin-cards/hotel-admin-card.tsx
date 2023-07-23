@@ -3,13 +3,55 @@
 import { Button, Card, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BiEdit } from 'react-icons/bi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdDelete } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import swal from 'sweetalert';
+import serviceClient from '../../rest-api/client/service-client';
 import { HotelDataType } from '../../types/services';
 
 
 function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
+  const router = useRouter();
+  const { pathname } = router;
+
+  const handleDeleteReview = () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: false,
+          visible: true,
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          closeModal: true
+        }
+      }
+    })
+      .then(async (willDelete) => {
+        if (willDelete) {
+          try {
+            const res = await serviceClient.hotels.deleteHotels(hotel.id)
+            toast.success('Hotel deleted successfully!')
+            router.push({
+              pathname: router.pathname
+            });
+          } catch (error) {
+            toast.error('Something went wrong!')
+          }
+        }
+      });
+  }
 
   return (
     <Card className="regular-shadow rounded-lg h-full">
@@ -52,7 +94,6 @@ function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
             {
               hotel.type &&
               <p className="my-0 text-[#5e5e5e] text-sm">
-
                 Type: {hotel.type?.name}
               </p>
             }
@@ -62,15 +103,16 @@ function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
           <div className="flex justify-end items-center">
             <div className="flex items-center gap-3">
               <Link href='#'>
-                <Button className='shadow min-w-fit py-2 px-5 text-[#5e5e5e] text-lg'>
+                <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                   <BiEdit />
                 </Button>
               </Link>
-              <Link href='#'>
-                <Button className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
-                  <MdDelete />
-                </Button>
-              </Link>
+              <Button
+                onClick={handleDeleteReview}
+                color='error'
+                className='shadow min-w-fit py-2 px-5 text-lg'>
+                <MdDelete />
+              </Button>
             </div>
           </div>
         </div>

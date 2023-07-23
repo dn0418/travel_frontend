@@ -1,6 +1,7 @@
 // @flow strict
 
-import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { Button, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { HotelDataType } from "../../../types/services";
 import HotelAdminCard from "../../admin-cards/hotel-admin-card";
@@ -26,8 +27,15 @@ function HotelDashboard({
   return (
     <Container className='flex flex-col items-center hotels-page'>
       <div className='my-4 w-full md:my-8'>
+        <div className="flex justify-end">
+          <Link href='admin/hotels/create'>
+            <Button color="secondary" variant="contained">
+              Create New Hotel
+            </Button>
+          </Link>
+        </div>
         <div className="flex w-full items-center justify-between">
-          <SectionTitle title='Special Hotel' />
+          <SectionTitle title='All Hotel' />
           <FormControl size="small" className="shadow-sm" variant="outlined">
             <InputLabel>Search your  Need</InputLabel>
             <OutlinedInput
@@ -40,7 +48,6 @@ function HotelDashboard({
               onChange={(e) => handleSerachHotels(e.target.value)}
             />
           </FormControl>
-
         </div>
         <>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
