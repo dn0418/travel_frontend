@@ -29,6 +29,9 @@ class ServiceClient {
     all: () => HttpClient.get(API_ENDPOINTS.CAR_WITH_DRIVER),
     newImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.CAR_WITH_DRIVER}/create/image`, data),
     update: (id: number, data: any) => HttpClient.put(`${API_ENDPOINTS.CAR_WITH_DRIVER}/update/${id}`, data),
+    createPrice: (data: any) => HttpClient.post(`${API_ENDPOINTS.CAR_WITH_DRIVER}/pricing/create`, data),
+    deletePrice: (id: number) => HttpClient.delete(`${API_ENDPOINTS.CAR_WITH_DRIVER}/pricing/delete/${id}`),
+    updatePrice: (id: number, data: any) => HttpClient.put(`${API_ENDPOINTS.CAR_WITH_DRIVER}/pricing/update/${id}`, data),
   }
 
   airportTransport = {
