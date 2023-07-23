@@ -36,7 +36,7 @@ interface WithoutInputDataType {
 }
 
 const tabs = [
-  { title: 'New Car Data', value: 'en' },
+  { title: 'New Hotel Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];

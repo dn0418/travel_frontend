@@ -66,7 +66,7 @@ function CreateNewHotel({
             }
           </Tabs>
         </div>
-        <SectionTitle title="Create New Car Without Driver" />
+        <SectionTitle title="Create New Hotel" />
       </div>
       <div hidden={currentTab.value !== 'en'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
