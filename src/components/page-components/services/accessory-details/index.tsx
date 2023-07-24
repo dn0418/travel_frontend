@@ -12,11 +12,16 @@ interface PropsType {
   metadata: {
     avarage: number;
     total: number;
-  }
+  };
 }
 
-function AccessoryDetailsUI({ accessories, reviews, accessoryDetails, metadata }: PropsType) {
-
+function AccessoryDetailsUI({
+  accessories,
+  reviews,
+  accessoryDetails,
+  metadata,
+}: PropsType) {
+  console.log(accessories);
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
@@ -33,6 +38,6 @@ function AccessoryDetailsUI({ accessories, reviews, accessoryDetails, metadata }
       {/* <TopSuggestedAccessories accessories={accessories} /> */}
     </div>
   );
-};
+}
 
 export default AccessoryDetailsUI;

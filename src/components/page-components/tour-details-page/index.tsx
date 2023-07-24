@@ -16,7 +16,6 @@ interface PropsType {
 }
 
 function TourDetailsUI({ tour, tours }: PropsType) {
-
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
@@ -35,6 +34,6 @@ function TourDetailsUI({ tour, tours }: PropsType) {
       <ReviewSection tour={tour} />
     </div>
   );
-};
+}
 
 export default TourDetailsUI;

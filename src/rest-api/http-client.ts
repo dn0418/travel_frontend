@@ -22,7 +22,7 @@ Axios.interceptors.response.use(
       Router.reload();
     }
     return Promise.reject(error);
-  },
+  }
 );
 
 export class HttpClient {

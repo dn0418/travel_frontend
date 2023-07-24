@@ -53,10 +53,27 @@ export interface LocaleDataItems {
   people_text: string;
   start_from: string;
   from_yerevan_text: string;
+  per_pax_text: string;
+  rent_from_text: string;
+  available_text: string;
+  type_text: string;
+  accessory_pricing_text: string;
+  time_duration_text: string;
+  price_text: string;
+  from_airport_text: string;
+  checkOut_text: string;
+  checkIn_text: string;
+  hotel_pricing: string;
+  the_nearest_settlement_text: string;
+  entrance_text: string;
+  best_time_text: string;
+  route_text: string;
+  package_details_text: string;
+  related_tours_text: string;
 }
 
 export interface LocaleDataType {
-  en: LocaleDataItems,
-  ru: LocaleDataItems,
-  hy: LocaleDataItems
+  en: LocaleDataItems;
+  ru: LocaleDataItems;
+  hy: LocaleDataItems;
 }
