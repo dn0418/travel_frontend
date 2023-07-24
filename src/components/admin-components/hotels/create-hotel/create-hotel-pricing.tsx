@@ -171,7 +171,7 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
               variant='outlined'
             />
             <TextField
-              label='First Part'
+              label='01.02-30.03'
               name="firstPart"
               value={priceInput?.firstPart}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
@@ -179,14 +179,14 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
               type='number'
             />
             <TextField
-              label='Last Part'
+              label='01.04-30.12'
               name="lastPart"
               value={priceInput?.lastPart}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
               type='number'
             />
-            <div style={formStyles.buttonContainer} className="">
+            <div style={formStyles.buttonContainer}>
               <Button
                 onClick={handleAddModal}
                 color="secondary"

@@ -15,9 +15,8 @@ import { HotelDataType } from '../../types/services';
 
 function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
   const router = useRouter();
-  const { pathname } = router;
 
-  const handleDeleteReview = () => {
+  const handleDelete = () => {
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this data!",
@@ -108,7 +107,7 @@ function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
                 </Button>
               </Link>
               <Button
-                onClick={handleDeleteReview}
+                onClick={handleDelete}
                 color='error'
                 className='shadow min-w-fit py-2 px-5 text-lg'>
                 <MdDelete />

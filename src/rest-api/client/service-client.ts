@@ -45,6 +45,7 @@ class ServiceClient {
       `${API_ENDPOINTS.TOUR_ACCESSORIES}?page=${page}&search=${search}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOUR_ACCESSORIES}/${id}`),
+    deleteByID: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOUR_ACCESSORIES}/delete/${id}`),
   }
 
   hotels = {
@@ -59,6 +60,7 @@ class ServiceClient {
     ) => HttpClient.get(`${API_ENDPOINTS.HOTELS}?page=${page}&type=${type}&search=${search}&country=${country}&city=${city}&lan=${locale}`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
     deleteHotels: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELS}/delete/${id}`),
+    createNewHotel: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELS}/create`, data),
   }
 
 

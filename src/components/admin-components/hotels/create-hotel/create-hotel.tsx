@@ -1,8 +1,8 @@
-import { Button, CircularProgress, FormControlLabel, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
-import { PriceWithoutDriverType } from "../../../../types/car-type";
 import { HotelInputType } from "../../../../types/input-type";
+import { HotelPricingTable, HotelTypes } from "../../../../types/services";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
 import CreateHotelPricing from "./create-hotel-pricing";
@@ -26,9 +26,10 @@ interface PropsType {
   setInputData: any;
   handleSubmit: any;
   setPricing: any;
-  pricing: PriceWithoutDriverType[];
+  pricing: HotelPricingTable[];
   handleInputChange: (name: string, value: string) => void;
   isLoading: boolean;
+  hotelsTypes: HotelTypes[];
 }
 
 function CreateNewHotel({
@@ -46,8 +47,11 @@ function CreateNewHotel({
   handleInputChange,
   pricing,
   setPricing,
-  isLoading
+  isLoading,
+  hotelsTypes
 }: PropsType) {
+
+  // console.log(hotelsTypes)
 
   return (
     <div className="w-full my-8">
@@ -123,6 +127,22 @@ function CreateNewHotel({
               label="Free Cancelation"
             />
           </div>
+          <FormControl fullWidth>
+            <InputLabel id='demo-simple-select-label'>Hotel Type</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              value={inputData?.type}
+              label='Hotel Type'
+              name="type"
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+            >
+              {hotelsTypes.map((type) => (
+                <MenuItem key={type.id} value={type.id}>
+                  {type.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             label='Name'
             onChange={(e: any) => handleInputChange('name', e.target.value)}
@@ -131,6 +151,14 @@ function CreateNewHotel({
             value={inputData.name}
           />
           <TextField
+            label='Google maps'
+            onChange={(e: any) => handleInputChange('googleMap', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.googleMap}
+          />
+
+          <TextField
             label='Price'
             onChange={(e: any) => handleInputChange('price', e.target.value)}
             variant='outlined'
@@ -138,7 +166,49 @@ function CreateNewHotel({
             type="number"
             value={inputData.price}
           />
-
+          <div className="col-span-2">
+            <FormControlLabel
+              control={
+                <Switch
+                  onChange={(e: any) => setInputData({
+                    ...inputData,
+                    fromAirport: e.target.checked
+                  })}
+                  checked={inputData.fromAirport}
+                />}
+              label="From Airport"
+            />
+          </div>
+          <TextField
+            label='Country'
+            onChange={(e: any) => handleInputChange('country', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.country}
+          />
+          <TextField
+            label='City'
+            onChange={(e: any) => handleInputChange('city', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.city}
+          />
+          <TextField
+            label='Check In Time'
+            onChange={(e: any) => handleInputChange('checkInTime', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.checkInTime}
+            type="time"
+          />
+          <TextField
+            label='Check Out Time'
+            onChange={(e: any) => handleInputChange('checkOutTime', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.checkOutTime}
+            type="time"
+          />
           <TextField
             label='Short Description'
             onChange={(e: any) => handleInputChange('shortDescription', e.target.value)}
@@ -149,14 +219,14 @@ function CreateNewHotel({
             value={inputData.shortDescription}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Description</p>
+            <p className="font-medium uppercase">Hotel Description</p>
             <SunTextEditor
-              onChange={(text: string) => handleInputChange('description', text)}
-              text={inputData.description}
+              onChange={(text: string) => handleInputChange('longDescription', text)}
+              text={inputData.longDescription}
             />
           </div>
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Images</p>
+            <p className="font-medium uppercase">Hotel Images</p>
             <div
               className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2
              lg:grid-cols-3  gap-4">
@@ -212,7 +282,7 @@ function CreateNewHotel({
             onClick={handleSubmit}
             className="py-3"
             variant="contained">
-            {isLoading ? "Creating..." : "Create Car Without driver"}
+            {isLoading ? "Creating..." : "Create Hotel"}
           </Button>
         </div>
       </div>
@@ -238,6 +308,20 @@ function CreateNewHotel({
             value={inputData.name_ru}
           />
           <TextField
+            label='Country(ru)'
+            onChange={(e: any) => handleInputChange('country_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.country_ru}
+          />
+          <TextField
+            label='City(ru)'
+            onChange={(e: any) => handleInputChange('city_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.city_ru}
+          />
+          <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
@@ -247,10 +331,10 @@ function CreateNewHotel({
             value={inputData.shortDescription_ru}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Description(ru)</p>
+            <p className="font-medium uppercase">Hotel Description(ru)</p>
             <SunTextEditor
-              onChange={(text: string) => handleInputChange('description_ru', text)}
-              text={inputData.description_ru}
+              onChange={(text: string) => handleInputChange('longDescription_ru', text)}
+              text={inputData.longDescription_ru}
             />
           </div>
         </div>
@@ -277,6 +361,20 @@ function CreateNewHotel({
             value={inputData.name_hy}
           />
           <TextField
+            label='Country(hy)'
+            onChange={(e: any) => handleInputChange('country_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.country_hy}
+          />
+          <TextField
+            label='City(hy)'
+            onChange={(e: any) => handleInputChange('city_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.city_hy}
+          />
+          <TextField
             label='Short Description(hy)'
             onChange={(e: any) => handleInputChange('shortDescription_hy', e.target.value)}
             variant='outlined'
@@ -286,10 +384,10 @@ function CreateNewHotel({
             value={inputData.shortDescription_hy}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Description(hy)</p>
+            <p className="font-medium uppercase">Hotel Description(hy)</p>
             <SunTextEditor
-              onChange={(text: string) => handleInputChange('description_hy', text)}
-              text={inputData.description_hy}
+              onChange={(text: string) => handleInputChange('longDescription_hy', text)}
+              text={inputData.longDescription_hy}
             />
           </div>
         </div>

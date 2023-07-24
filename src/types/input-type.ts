@@ -8,7 +8,7 @@ export interface HotelInputType {
   thumbnail: string;
   googleMap: string;
   price: string;
-  fromAirport: string;
+  fromAirport: boolean;
   country: string;
   country_ru: string;
   country_hy: string;
@@ -24,6 +24,7 @@ export interface HotelInputType {
   longDescription: string;
   longDescription_ru: string;
   longDescription_hy: string;
+  type: string;
 }
 
 export interface WithoutDriverInputType {

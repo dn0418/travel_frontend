@@ -18,7 +18,7 @@ interface TransportCardProps {
 function CarAdminCard({ car }: TransportCardProps) {
   const router = useRouter();
 
-  const handleDeleteReview = () => {
+  const handleDelete = () => {
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this Car!",
@@ -99,14 +99,15 @@ function CarAdminCard({ car }: TransportCardProps) {
           </p>
           <div className="flex justify-end items-center">
             <div className="flex items-center gap-3">
-              <Link href={`/admin/transports/update-without/${car.id}`}>
-                <Button className='shadow min-w-fit py-2 px-5 text-[#5e5e5e] text-lg'>
+              <Link href='#'>
+                <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                   <BiEdit />
                 </Button>
               </Link>
               <Button
-                onClick={handleDeleteReview}
-                className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
+                onClick={handleDelete}
+                color='error'
+                className='shadow min-w-fit py-2 px-5 text-lg'>
                 <MdDelete />
               </Button>
             </div>

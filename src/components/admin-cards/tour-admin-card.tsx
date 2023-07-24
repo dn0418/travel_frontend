@@ -3,8 +3,12 @@
 import { Button, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BiCalendar, BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import swal from 'sweetalert';
+import tourClient from '../../rest-api/client/tour-client';
 import { TourType } from '../../types/tour';
 
 function TourAdminCard({ tour }: { tour: TourType }) {
@@ -18,6 +22,43 @@ function TourAdminCard({ tour }: { tour: TourType }) {
     price,
     reviewsRating
   } = tour;
+  const router = useRouter();
+
+  const handleDelete = () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: false,
+          visible: true,
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          closeModal: true
+        }
+      }
+    })
+      .then(async (willDelete) => {
+        if (willDelete) {
+          try {
+            const res = await tourClient.tours.deleteById(tour.id)
+            toast.success('Tour deleted successfully!')
+            router.push({
+              pathname: router.pathname
+            });
+          } catch (error) {
+            toast.error('Something went wrong!')
+          }
+        }
+      })
+  }
 
   return (
     <div className="bg-white p-3">
@@ -66,15 +107,16 @@ function TourAdminCard({ tour }: { tour: TourType }) {
           </div>
           <div className="flex items-center gap-3">
             <Link href='#'>
-              <Button className='shadow min-w-fit py-2 px-5 text-[#5e5e5e] text-lg'>
+              <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                 <BiEdit />
               </Button>
             </Link>
-            <Link href='#'>
-              <Button className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
-                <MdDelete />
-              </Button>
-            </Link>
+            <Button
+              onClick={handleDelete}
+              color='error'
+              className='shadow min-w-fit py-2 px-5 text-lg'>
+              <MdDelete />
+            </Button>
           </div>
         </div>
       </div>

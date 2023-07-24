@@ -28,7 +28,7 @@ function HotelDashboard({
     <Container className='flex flex-col items-center hotels-page'>
       <div className='my-4 w-full md:my-8'>
         <div className="flex justify-end">
-          <Link href='admin/hotels/create'>
+          <Link href='/admin/hotels/create'>
             <Button color="secondary" variant="contained">
               Create New Hotel
             </Button>

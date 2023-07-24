@@ -1,14 +1,17 @@
 // @flow strict
 
+import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import CreateNewHotel from '../../../src/components/admin-components/hotels/create-hotel/create-hotel';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
 import serviceClient from '../../../src/rest-api/client/service-client';
-import { PriceWithoutDriverType } from '../../../src/types/car-type';
+import { getServerSideProps } from '../../../src/rest-api/hotels/hotel-type.ssr';
 import { HotelInputType } from '../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../src/types/page-props';
+import { HotelPricingTable, HotelTypes } from '../../../src/types/services';
+export { getServerSideProps };
 
 const tabs = [
   { title: 'New Hotel Data', value: 'en' },
@@ -16,12 +19,13 @@ const tabs = [
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateHotel: NextPageWithLayout = () => {
+const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const hotelsTypes: HotelTypes[] = props?.hotelsTypesData?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<string[]>([]);
-  const [pricing, setPricing] = useState<PriceWithoutDriverType[]>([]);
+  const [pricing, setPricing] = useState<HotelPricingTable[]>([]);
   const [inputData, setInputData] = useState<HotelInputType>({
     name: '',
     name_ru: '',
@@ -29,7 +33,7 @@ const CreateHotel: NextPageWithLayout = () => {
     thumbnail: '',
     googleMap: '',
     price: '',
-    fromAirport: '',
+    fromAirport: false,
     country: '',
     country_ru: '',
     country_hy: '',
@@ -45,6 +49,7 @@ const CreateHotel: NextPageWithLayout = () => {
     longDescription: '',
     longDescription_ru: '',
     longDescription_hy: '',
+    type: '',
   });
   const router = useRouter();
 
@@ -112,20 +117,22 @@ const CreateHotel: NextPageWithLayout = () => {
     const requiredFields = [
       "name",
       "price",
-      "description",
-      "pickup",
-      "fuel",
-      "year",
-      "seatNo",
-      "thumbnail"
+      "googleMap",
+      "country",
+      "city",
+      "checkInTime",
+      "checkOutTime",
+      "shortDescription",
+      "longDescription",
+      "type"
     ];
 
     if (inputData.isRu) {
-      requiredFields.push("name_ru", "pickup_ru", "fuel_ru", "shortDescription_ru", "description_ru");
+      requiredFields.push("name_ru", "country_ru", "city_ru", "shortDescription_ru", "longDescription_ru");
     }
 
     if (inputData.isHy) {
-      requiredFields.push("name_hy", "pickup_hy", "fuel_hy", "shortDescription_hy", "description_hy");
+      requiredFields.push("name_hy", "country_hy", "city_hy", "shortDescription_hy", "longDescription_hy");
     }
 
     const missingFields = requiredFields.filter((field) => !inputData[field]);
@@ -149,15 +156,17 @@ const CreateHotel: NextPageWithLayout = () => {
       toast.error(error);
       return;
     }
-    setIsLoading(true);
+    // setIsLoading(true);
     const payload = JSON.stringify({
       ...inputData,
-      pricing: pricing,
+      price: parseInt(inputData.price),
+      type: parseInt(inputData.type),
+      pricingData: pricing,
       images: images
     });
 
     try {
-      const res = await serviceClient.carWithoutDriver.create(payload);
+      const res = await serviceClient.hotels.createNewHotel(payload);
       toast.success('Hotel created successfully');
       router.push('/admin/hotels');
     } catch (error) {
@@ -186,6 +195,7 @@ const CreateHotel: NextPageWithLayout = () => {
         pricing={pricing}
         setPricing={setPricing}
         isLoading={isLoading}
+        hotelsTypes={hotelsTypes}
       />
     </>
   );
