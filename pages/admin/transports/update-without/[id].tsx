@@ -26,7 +26,6 @@ const tabs = [
 
 const UpdateCar: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const carDetails: CarWithOutType = props.carsDetails?.data;
-  console.log(carDetails)
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

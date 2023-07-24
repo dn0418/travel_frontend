@@ -101,7 +101,7 @@ function HotelAdminCard({ hotel }: { hotel: HotelDataType }) {
           <p className="text-sm  text-[#5e5e5e] line-clamp-3">{hotel.shortDescription}</p>
           <div className="flex justify-end items-center">
             <div className="flex items-center gap-3">
-              <Link href='#'>
+              <Link href={`/admin/hotels/update/${hotel.id}`}>
                 <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                   <BiEdit />
                 </Button>

@@ -1,17 +1,19 @@
 // @flow strict
 
-import { InferGetServerSidePropsType } from 'next';
+import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewHotel from '../../../src/components/admin-components/hotels/create-hotel/create-hotel';
-import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
-import serviceClient from '../../../src/rest-api/client/service-client';
-import { getServerSideProps } from '../../../src/rest-api/hotels/hotel-type.ssr';
-import { HotelInputType } from '../../../src/types/input-type';
-import { NextPageWithLayout } from '../../../src/types/page-props';
-import { HotelPricingTable, HotelTypes } from '../../../src/types/services';
-export { getServerSideProps };
+import UpdateAdminHotel from '../../../../src/components/admin-components/hotels/update-hotel/update-hotel';
+import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
+import client from '../../../../src/rest-api/client';
+import serviceClient from '../../../../src/rest-api/client/service-client';
+import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/hotels/hotel-details.ssr';
+import { ImageType } from '../../../../src/types';
+import { HotelInputType } from '../../../../src/types/input-type';
+import { NextPageWithLayout } from '../../../../src/types/page-props';
+import { HotelDataType, HotelPricingTable, HotelTypes } from '../../../../src/types/services';
+export { getStaticPaths, getStaticProps };
 
 const tabs = [
   { title: 'New Hotel Data', value: 'en' },
@@ -19,39 +21,40 @@ const tabs = [
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const hotelsTypes: HotelTypes[] = props?.hotelsTypesData?.data;
+  const hotelDetails: HotelDataType = props?.hotelDetails?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
-  const [pricing, setPricing] = useState<HotelPricingTable[]>([]);
+  const [images, setImages] = useState<ImageType[]>(hotelDetails?.images || []);
+  const [pricing, setPricing] = useState<HotelPricingTable[]>(hotelDetails?.pricingTable || []);
   const [inputData, setInputData] = useState<HotelInputType>({
-    isRu: false,
-    isHy: false,
-    name: '',
-    name_ru: '',
-    name_hy: '',
-    thumbnail: '',
-    googleMap: '',
-    price: '',
-    fromAirport: false,
-    country: '',
-    country_ru: '',
-    country_hy: '',
-    city: '',
-    city_ru: '',
-    city_hy: '',
-    freeCancellation: false,
-    checkInTime: '',
-    checkOutTime: '',
-    shortDescription: '',
-    shortDescription_ru: '',
-    shortDescription_hy: '',
-    longDescription: '',
-    longDescription_ru: '',
-    longDescription_hy: '',
-    type: '',
+    isRu: hotelDetails?.isRu || false,
+    isHy: hotelDetails?.isHy || false,
+    name: hotelDetails?.name || '',
+    name_ru: hotelDetails?.name_ru || '',
+    name_hy: hotelDetails?.name_hy || '',
+    thumbnail: hotelDetails?.thumbnail || '',
+    googleMap: hotelDetails?.googleMap || '',
+    price: hotelDetails?.price.toString() || '',
+    fromAirport: hotelDetails?.fromAirport || false,
+    country: hotelDetails?.country || '',
+    country_ru: hotelDetails?.country_ru || '',
+    country_hy: hotelDetails?.country_hy || '',
+    city: hotelDetails?.city || '',
+    city_ru: hotelDetails?.city_ru || '',
+    city_hy: hotelDetails?.city_hy || '',
+    freeCancellation: hotelDetails?.freeCancellation || false,
+    checkInTime: hotelDetails?.checkInTime || '',
+    checkOutTime: hotelDetails?.checkOutTime || '',
+    shortDescription: hotelDetails?.shortDescription || '',
+    shortDescription_ru: hotelDetails?.shortDescription_ru || '',
+    shortDescription_hy: hotelDetails?.shortDescription_hy || '',
+    longDescription: hotelDetails?.longDescription || '',
+    longDescription_ru: hotelDetails?.longDescription_ru || '',
+    longDescription_hy: hotelDetails?.longDescription_hy || '',
+    type: hotelDetails?.type.id.toString() || '',
   });
   const router = useRouter();
 
@@ -70,7 +73,17 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
 
       const data = await response.json();
       if (data?.Location) {
-        setImages([...images, data?.Location]);
+        try {
+          const res: any = await serviceClient.hotels.newImage({
+            hotelId: hotelDetails.id,
+            url: data.Location
+          });
+          if (res?.data) {
+            setImages([...images, res?.data]);
+          }
+        } catch (error) {
+          toast.error('Something went wrong!');
+        }
       }
     } catch (error) {
       toast.error('Something went wrong!');
@@ -103,8 +116,15 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     }
   }
 
-  const handleRemoveImage = (index: number) => {
-    setImages(images.filter((image, i) => i !== index));
+  const handleRemoveImage = async (id: number) => {
+    try {
+      const res = await client.images.deleteImage(id);
+      console.log(res)
+      setImages(images.filter((image, i) => image.id !== id));
+    } catch (error) {
+      toast.error('Something went wrong!');
+      console.log(error)
+    }
   }
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -160,17 +180,9 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     }
     setIsLoading(true);
 
-    const payload = JSON.stringify({
-      ...inputData,
-      price: parseInt(inputData.price),
-      type: parseInt(inputData.type),
-      pricingData: pricing,
-      images: images
-    });
-
     try {
-      const res = await serviceClient.hotels.createNewHotel(payload);
-      toast.success('Hotel created successfully');
+      const res = await serviceClient.hotels.updateHotel(hotelDetails.id, inputData);
+      toast.success('Hotel updated successfully');
       router.push('/admin/hotels');
     } catch (error) {
       console.log(error);
@@ -182,7 +194,7 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
 
   return (
     <>
-      <CreateNewHotel
+      <UpdateAdminHotel
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -204,8 +216,8 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
   );
 };
 
-CreateHotel.getLayout = function getLayout(page) {
+UpdateHotel.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default CreateHotel;
+export default UpdateHotel;

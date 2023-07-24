@@ -33,12 +33,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     await serviceClient.hotels.all();
     const hotelDetails = await serviceClient.hotels.getByID(id);
     const reviews = await serviceClient.reviews.hotelReview(id);
+    const hotelsTypes = await serviceClient.hotelType.all();
 
     return {
       props: {
         allHotel: allHotel,
         hotelDetails: hotelDetails,
-        hotelReviews: reviews
+        hotelReviews: reviews,
+        hotelsTypesData: hotelsTypes,
       },
       revalidate: 30,
     };

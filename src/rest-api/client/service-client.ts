@@ -61,8 +61,12 @@ class ServiceClient {
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.HOTELS}/${id}`),
     deleteHotels: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELS}/delete/${id}`),
     createNewHotel: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELS}/create`, data),
-  }
-
+    newImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELS}/image/create`, data),
+    updateHotel: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELS}/update/${id}`, data),
+    createNewPrice: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELS}/pricing/create`, data),
+    updateHotelPrice: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELS}/pricing/update/${id}`, data),
+    deleteHotelPrice: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELS}/pricing/delete/${id}`),
+  };
 
   hotelType = {
     all: () => HttpClient.get(API_ENDPOINTS.HOTELTYPE),
