@@ -7,35 +7,8 @@ import CreateNewHotel from '../../../src/components/admin-components/hotels/crea
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
 import serviceClient from '../../../src/rest-api/client/service-client';
 import { PriceWithoutDriverType } from '../../../src/types/car-type';
+import { HotelInputType } from '../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../src/types/page-props';
-
-interface WithoutInputDataType {
-  [key: string]: any;
-  isRu?: boolean;
-  isHy?: boolean;
-  name: string;
-  name_ru: string;
-  name_hy: string;
-  thumbnail: string;
-  googleMap: string;
-  price: string;
-  fromAirport: string;
-  country: string;
-  country_ru: string;
-  country_hy: string;
-  city: string;
-  city_ru: string;
-  city_hy: string;
-  freeCancellation?: boolean;
-  checkInTime?: string;
-  checkOutTime?: string;
-  shortDescription: string;
-  shortDescription_ru: string;
-  shortDescription_hy: string;
-  longDescription: string;
-  longDescription_ru: string;
-  longDescription_hy: string;
-}
 
 const tabs = [
   { title: 'New Hotel Data', value: 'en' },
@@ -49,7 +22,7 @@ const CreateHotel: NextPageWithLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<string[]>([]);
   const [pricing, setPricing] = useState<PriceWithoutDriverType[]>([]);
-  const [inputData, setInputData] = useState<WithoutInputDataType>({
+  const [inputData, setInputData] = useState<HotelInputType>({
     name: '',
     name_ru: '',
     name_hy: '',
@@ -185,8 +158,8 @@ const CreateHotel: NextPageWithLayout = () => {
 
     try {
       const res = await serviceClient.carWithoutDriver.create(payload);
-      toast.success('Car created successfully');
-      router.push('/admin/transports');
+      toast.success('Hotel created successfully');
+      router.push('/admin/hotels');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");

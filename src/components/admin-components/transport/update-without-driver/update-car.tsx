@@ -3,6 +3,7 @@ import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { ImageType } from "../../../../types";
 import { CarWithOutType, PriceWithoutDriverType } from "../../../../types/car-type";
+import { WithoutDriverInputType } from "../../../../types/input-type";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
 import PricingTable from "./pricing-table";
@@ -22,7 +23,7 @@ interface PropsType {
   }[];
   uploading: boolean;
   images: ImageType[];
-  inputData: any;
+  inputData: WithoutDriverInputType;
   setInputData: any;
   handleSubmit: any;
   setPricing: any;

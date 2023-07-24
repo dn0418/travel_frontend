@@ -35,7 +35,7 @@ export interface HotelDataType {
   pricingTable: HotelPricingTable[]
 }
 
-interface HotelPricingTable {
+export interface HotelPricingTable {
   id: number;
   createdAt: string;
   updatedAt: string;

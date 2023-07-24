@@ -14,33 +14,9 @@ import client from '../../../../src/rest-api/client';
 import serviceClient from '../../../../src/rest-api/client/service-client';
 import { ImageType } from '../../../../src/types';
 import { CarWithOutType, PriceWithoutDriverType } from '../../../../src/types/car-type';
+import { WithoutDriverInputType } from '../../../../src/types/input-type';
 import { NextPageWithLayout } from "../../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
-interface WithoutInputDataType {
-  [key: string]: any; // Add this line to indicate that a string can be used as an index
-  name: string;
-  name_ru: string;
-  name_hy: string;
-  price: number;
-  freeCancellation: boolean;
-  isRu: boolean;
-  isHy: boolean;
-  pickup: string;
-  pickup_ru: string;
-  pickup_hy: string;
-  fuel: string;
-  fuel_ru: string;
-  fuel_hy: string;
-  year: number;
-  seatNo: number;
-  thumbnail: string;
-  shortDescription: string;
-  shortDescription_ru: string;
-  shortDescription_hy: string;
-  description: string;
-  description_ru: string;
-  description_hy: string;
-}
 
 const tabs = [
   { title: 'New Car Data', value: 'en' },
@@ -56,7 +32,7 @@ const UpdateCar: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[]>(carDetails?.images || []);
   const [pricing, setPricing] = useState<PriceWithoutDriverType[]>(carDetails?.priceWithoutDriver || []);
-  const [inputData, setInputData] = useState<WithoutInputDataType>({
+  const [inputData, setInputData] = useState<WithoutDriverInputType>({
     name: carDetails?.name || '',
     name_ru: carDetails?.name_ru || '',
     name_hy: carDetails?.name_hy || '',

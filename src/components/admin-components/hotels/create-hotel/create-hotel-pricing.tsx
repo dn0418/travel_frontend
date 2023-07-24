@@ -16,23 +16,21 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { PriceWithoutDriverType } from '../../../../types/car-type';
+import { HotelPricingTable } from '../../../../types/services';
 
 interface PropsType {
-  pricing: PriceWithoutDriverType[],
+  pricing: HotelPricingTable[],
   setPricing: any,
 }
 
 function CreateHotelPricing({ pricing, setPricing }: PropsType) {
   const [openModal, setOpenModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
-    destination: '',
-    destination_ru: '',
-    destination_hy: '',
-    sedan_3seat: '',
-    minivan_7seat: '',
-    minibus_18seat: '',
-    bus_35seat: '',
+    name: '',
+    name_ru: '',
+    name_hy: '',
+    firstPart: '',
+    lastPart: '',
   });
   const theme = useTheme();
 
@@ -49,7 +47,7 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
   }
 
   const handleSubmit = async () => {
-    if (!priceInput.destination || !priceInput.destination_ru || !priceInput.destination_hy || !priceInput.sedan_3seat || !priceInput.minivan_7seat || !priceInput.minibus_18seat || !priceInput.bus_35seat) {
+    if (!priceInput.name || !priceInput.name_ru || !priceInput.name_hy || !priceInput.firstPart || !priceInput.lastPart) {
       toast.error("All fields are required!");
       return;
     }
@@ -103,29 +101,29 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
     <div
       className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb] tour-details-page">
       <div className="">
-        <p className="text-lg font-medium uppercase">Car Without Driver Pricing</p>
+        <p className="text-lg font-medium uppercase">Hotel Pricing Table</p>
         <TableContainer className="tour-price-table bg-white">
           <Table aria-label="tour pricing table">
             <TableHead>
               <TableRow>
                 <TableCell className="text-base" align="center">
-                  Destination
+                  Name
                 </TableCell>
-                <TableCell className="text-base" align="center">Sedan - 3 Seats</TableCell>
-                <TableCell className="text-base" align="center">Minivan 7 Seats</TableCell>
-                <TableCell className="text-base" align="center">Minibus 18 Seats</TableCell>
-                <TableCell className="text-base" align="center">Bus 35 Seats</TableCell>
+                <TableCell className="text-base" align="center">Name(Ru)</TableCell>
+                <TableCell className="text-base" align="center">Name(Hy)</TableCell>
+                <TableCell className="text-base" align="center">First Part</TableCell>
+                <TableCell className="text-base" align="center">Last Part</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {
                 pricing.map((pricing, index: number) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{pricing.destination}</TableCell>
-                    <TableCell align="center">{pricing.sedan_3seat} AMD</TableCell>
-                    <TableCell align="center">{pricing.minivan_7seat} AMD</TableCell>
-                    <TableCell align="center">{pricing.minibus_18seat} AMD</TableCell>
-                    <TableCell align="center">{pricing.bus_35seat} AMD</TableCell>
+                    <TableCell align="center">{pricing.name}</TableCell>
+                    <TableCell align="center">{pricing.name_ru} </TableCell>
+                    <TableCell align="center">{pricing.name_hy} </TableCell>
+                    <TableCell align="center">{pricing.firstPart} </TableCell>
+                    <TableCell align="center">{pricing.lastPart} </TableCell>
                   </TableRow>
                 ))
               }
@@ -152,54 +150,38 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
           <Box
             sx={formStyles.gridContainer}>
             <TextField
-              label='Destination'
-              name="destination"
-              value={priceInput?.destination}
+              label='Name'
+              name="name"
+              value={priceInput?.name}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Destination Ru'
-              name="destination_ru"
-              value={priceInput?.destination_ru}
+              label='Name Ru'
+              name="name_ru"
+              value={priceInput?.name_ru}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Destination Hy'
-              name="destination_hy"
-              value={priceInput?.destination_hy}
+              label='Name Hy'
+              name="name_hy"
+              value={priceInput?.name_hy}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Sedan 3 Seat'
-              name="sedan_3seat"
-              value={priceInput?.sedan_3seat}
-              onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
-              type='number'
-            />
-            <TextField
-              label='Minivan 7 Seat'
-              name="minivan_7seat"
-              value={priceInput?.minivan_7seat}
+              label='First Part'
+              name="firstPart"
+              value={priceInput?.firstPart}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
               type='number'
             />
             <TextField
-              label='Minibus 18 seat'
-              name="minibus_18seat"
-              value={priceInput?.minibus_18seat}
-              onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
-              type='number'
-            />
-            <TextField
-              label='Bus 35 seat'
-              name="bus_35seat"
-              value={priceInput?.bus_35seat}
+              label='Last Part'
+              name="lastPart"
+              value={priceInput?.lastPart}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
               type='number'
