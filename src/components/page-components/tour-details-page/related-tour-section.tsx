@@ -7,16 +7,18 @@ import Slider from "react-slick";
 import { TourType } from "../../../types/tour";
 import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../common/section-title";
-
+import { useRouter } from "next/router";
+import { localizationData } from "../../../utils/locales";
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
 
   return (
-    <div className='flex items-center  m-0 p-0'>
+    <div className="flex items-center  m-0 p-0">
       <Button
-        className='min-w-fit m-0 p-0 text-2xl font-bold text-[#5E5E5E]'
-        onClick={onClick}>
+        className="min-w-fit m-0 p-0 text-2xl font-bold text-[#5E5E5E]"
+        onClick={onClick}
+      >
         <AiOutlineRight />
       </Button>
     </div>
@@ -27,17 +29,19 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
   const { onClick, currentSlide } = props;
 
   return (
-    <div className='flex items-center  m-0 p-0'>
+    <div className="flex items-center  m-0 p-0">
       {currentSlide === 0 ? (
         <Button
-          className='min-w-fit m-0 p-0 text-2xl font-bold text-transparent'
-          disabled>
+          className="min-w-fit m-0 p-0 text-2xl font-bold text-transparent"
+          disabled
+        >
           <AiOutlineLeft />
         </Button>
       ) : (
         <Button
-          className='min-w-fit m-0 p-0 text-2xl font-bold text-[#5E5E5E]'
-          onClick={onClick}>
+          className="min-w-fit m-0 p-0 text-2xl font-bold text-[#5E5E5E]"
+          onClick={onClick}
+        >
           <AiOutlineLeft />
         </Button>
       )}
@@ -46,6 +50,13 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 }
 
 function RelatedTourSection({ tours }: { tours: TourType[] }) {
+  const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+      ? localizationData.hy
+      : localizationData.en;
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -77,31 +88,31 @@ function RelatedTourSection({ tours }: { tours: TourType[] }) {
   return (
     <div className="my-3 w-full related-section">
       <Container>
-        <SectionTitle title='Related tours' />
-        {
-          tours.length > 3 ?
-            <Slider
-              afterChange={(e) => setCurrentSlide(e)}
-              className='flex gap-4'
-              {...settings}>
-              {tours.map((tour, i) => (
-                <Card className='regular-shadow rounded-lg' key={i}>
-                  <TourCard tour={tour} />
-                </Card>
-              ))}
-            </Slider>
-            :
-            <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {tours.map((tour, i) => (
-                <Card className='regular-shadow  w-full rounded-lg' key={i}>
-                  <TourCard tour={tour} />
-                </Card>
-              ))}
-            </div>
-        }
+        <SectionTitle title={localData.related_tours_text} />
+        {tours.length > 3 ? (
+          <Slider
+            afterChange={(e) => setCurrentSlide(e)}
+            className="flex gap-4"
+            {...settings}
+          >
+            {tours.map((tour, i) => (
+              <Card className="regular-shadow rounded-lg" key={i}>
+                <TourCard tour={tour} />
+              </Card>
+            ))}
+          </Slider>
+        ) : (
+          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {tours.map((tour, i) => (
+              <Card className="regular-shadow  w-full rounded-lg" key={i}>
+                <TourCard tour={tour} />
+              </Card>
+            ))}
+          </div>
+        )}
       </Container>
     </div>
   );
-};
+}
 
 export default RelatedTourSection;
