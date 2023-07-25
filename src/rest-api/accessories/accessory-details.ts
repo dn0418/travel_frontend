@@ -31,16 +31,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     await serviceClient.accessories.all();
-    const carsDetails = await serviceClient.carWithoutDriver.getByID(id);
     const accessoryDetails = await serviceClient.accessories.getByID(id);
     const reviews = await serviceClient.reviews.accessoryReview(id);
+    const accessoryTypes = await serviceClient.accessoryType.all();
 
     return {
       props: {
-        carsDetails: carsDetails,
         accessoryDetails: accessoryDetails,
         accessoriesData: allAccessory,
-        reviews: reviews
+        reviews: reviews,
+        accessoryTypes: accessoryTypes,
       },
       revalidate: 30,
     };

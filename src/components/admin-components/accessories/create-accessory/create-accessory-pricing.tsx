@@ -113,12 +113,12 @@ function CreateAccessoryPricing({ pricing, setPricing }: PropsType) {
             </TableHead>
             <TableBody>
               {
-                pricing.map((pricing, index: number) => (
+                pricing.map((price, index: number) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{pricing.duration}</TableCell>
-                    <TableCell align="center">{pricing.duration_ru} </TableCell>
-                    <TableCell align="center">{pricing.duration_hy} </TableCell>
-                    <TableCell align="center">{pricing.price} </TableCell>
+                    <TableCell align="center">{price.duration}</TableCell>
+                    <TableCell align="center">{price.duration_ru} </TableCell>
+                    <TableCell align="center">{price.duration_hy} </TableCell>
+                    <TableCell align="center">{price.price} </TableCell>
                   </TableRow>
                 ))
               }

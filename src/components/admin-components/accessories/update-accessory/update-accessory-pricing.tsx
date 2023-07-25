@@ -18,28 +18,26 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import swal from 'sweetalert';
 import serviceClient from '../../../../rest-api/client/service-client';
-import { HotelDataType, HotelPricingTable } from '../../../../types/services';
+import { AccessoriesPricingType, TourAccessoryType } from '../../../../types/services';
 import UpdatePricing from './update-pricing';
 
 interface PropsType {
-  pricing: HotelPricingTable[],
+  pricing: AccessoriesPricingType[],
   setPricing: any,
-  hotel?: HotelDataType
+  accessory: TourAccessoryType
 }
 
-function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
+function UpdateAccessoryPricing({ pricing, setPricing, accessory }: PropsType) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
-    name: '',
-    name_ru: '',
-    name_hy: '',
-    firstPart: '',
-    lastPart: '',
+    duration: '',
+    duration_ru: '',
+    duration_hy: '',
+    price: '',
   });
   const theme = useTheme();
-  console.log(hotel)
 
   const closeUpdateModal = () => {
     setUpdateModal(false);
@@ -63,14 +61,14 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   }
 
   const handleSubmit = async () => {
-    if (!priceInput.name || !priceInput.name_ru || !priceInput.name_hy || !priceInput.firstPart || !priceInput.lastPart) {
+    if (!priceInput.duration || !priceInput.duration_ru || !priceInput.duration_hy || !priceInput.price) {
       toast.error("All fields are required!");
       return;
     }
     try {
-      const res: any = await serviceClient.hotels.createNewPrice({
+      const res: any = await serviceClient.accessoriesPricing.createNewPricing({
         ...priceInput,
-        hotelId: hotel?.id,
+        accessoriesId: accessory?.id,
       });
       setPricing((previewData: any) => {
         const temp = JSON.parse(JSON.stringify(previewData));
@@ -109,7 +107,7 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
       .then(async (willDelete) => {
         if (willDelete) {
           try {
-            const res = await serviceClient.hotels.deleteHotelPrice(id);
+            const res = await serviceClient.accessoriesPricing.deletePricing(id);
             toast.success('Price deleted successfully!')
             setPricing((previewData: any) => {
               const temp = JSON.parse(JSON.stringify(previewData));
@@ -165,40 +163,36 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
     <div
       className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb] tour-details-page">
       <div className="">
-        <p className="text-lg font-medium uppercase">Hotel Pricing Table</p>
+        <p className="text-lg font-medium uppercase">Accessory Pricing Table</p>
         <TableContainer className="tour-price-table bg-white">
           <Table aria-label="tour pricing table">
             <TableHead>
               <TableRow>
-                <TableCell className="text-base" align="center">
-                  Name
-                </TableCell>
-                <TableCell className="text-base" align="center">Name(Ru)</TableCell>
-                <TableCell className="text-base" align="center">Name(Hy)</TableCell>
-                <TableCell className="text-base" align="center">First Part</TableCell>
-                <TableCell className="text-base" align="center">Last Part</TableCell>
+                <TableCell className="text-base" align="center">Duration</TableCell>
+                <TableCell className="text-base" align="center">Duration(Ru)</TableCell>
+                <TableCell className="text-base" align="center">Duration(Hy)</TableCell>
+                <TableCell className="text-base" align="center">Price</TableCell>
                 <TableCell className="text-base" align="center">Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {
-                pricing.map((pricing, index: number) => (
+                pricing.map((price, index: number) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{pricing.name}</TableCell>
-                    <TableCell align="center">{pricing.name_ru} </TableCell>
-                    <TableCell align="center">{pricing.name_hy} </TableCell>
-                    <TableCell align="center">{pricing.firstPart} </TableCell>
-                    <TableCell align="center">{pricing.lastPart} </TableCell>
+                    <TableCell align="center">{price.duration}</TableCell>
+                    <TableCell align="center">{price.duration_ru} </TableCell>
+                    <TableCell align="center">{price.duration_hy} </TableCell>
+                    <TableCell align="center">{price.price} </TableCell>
                     <TableCell className='flex gap-2' align="center">
                       <Button
                         variant='text'
                         color='secondary'
-                        onClick={() => changeUpdateModal(pricing)}
+                        onClick={() => changeUpdateModal(price)}
                         className='shadow text-xs'>Edit</Button>
                       <Button
                         variant='text'
                         color='secondary'
-                        onClick={() => handleDeletePrice(pricing.id)}
+                        onClick={() => handleDeletePrice(price.id)}
                         className='shadow text-xs'>Delete</Button>
                     </TableCell>
                   </TableRow>
@@ -227,38 +221,30 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
           <Box
             sx={formStyles.gridContainer}>
             <TextField
-              label='Name'
-              name="name"
-              value={priceInput?.name}
+              label='Duration'
+              name="duration"
+              value={priceInput?.duration}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Name Ru'
-              name="name_ru"
-              value={priceInput?.name_ru}
+              label='Duration Ru'
+              name="duration_ru"
+              value={priceInput?.duration_ru}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Name Hy'
-              name="name_hy"
-              value={priceInput?.name_hy}
+              label='Duration Hy'
+              name="duration_hy"
+              value={priceInput?.duration_hy}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='01.02-30.03'
-              name="firstPart"
-              value={priceInput?.firstPart}
-              onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
-              type='number'
-            />
-            <TextField
-              label='01.04-30.12'
-              name="lastPart"
-              value={priceInput?.lastPart}
+              label='Price'
+              name="price"
+              value={priceInput?.price}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
               type='number'
@@ -292,4 +278,4 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   );
 }
 
-export default UpdateHotelPricing;
+export default UpdateAccessoryPricing;

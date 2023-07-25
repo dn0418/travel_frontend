@@ -20,4 +20,5 @@ export const API_ENDPOINTS = {
   FOOD_AND_DRINKS: "/food-and-drinks",
   DESTINATION: "/destinations",
   IMAGES: "/images",
+  ACCESSORY_PRICING: "/accessories-pricing"
 };

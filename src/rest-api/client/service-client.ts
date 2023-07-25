@@ -47,7 +47,20 @@ class ServiceClient {
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOUR_ACCESSORIES}/${id}`),
     deleteByID: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOUR_ACCESSORIES}/delete/${id}`),
     createNewAccessory: (data: any) => HttpClient.post(`${API_ENDPOINTS.TOUR_ACCESSORIES}/create`, data),
+    newImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.TOUR_ACCESSORIES}/image/create`, data),
+    updateAccessory: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.TOUR_ACCESSORIES}/update/${id}`, data),
   };
+
+  accessoriesPricing = {
+    createNewPricing: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.ACCESSORY_PRICING}/create`, data),
+    updatePricing: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.ACCESSORY_PRICING}/update/${id}`, data),
+    deletePricing: (id: any) => HttpClient.delete(
+      `${API_ENDPOINTS.ACCESSORY_PRICING}/delete/${id}`),
+  }
 
   accessoryType = {
     all: () => HttpClient.get(API_ENDPOINTS.ACCESSORY_TYPE),

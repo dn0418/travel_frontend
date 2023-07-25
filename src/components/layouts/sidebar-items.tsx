@@ -71,7 +71,7 @@ const sidebarItems: SidebarItem[] = [
 
 function SidebarItem({ title, icon, path, subItems }: SidebarItem) {
   const router = useRouter();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleItemClick = () => {
     if (subItems) {

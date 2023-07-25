@@ -19,7 +19,7 @@ import { NextPageWithLayout } from "../../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
 const tabs = [
-  { title: 'New Car Data', value: 'en' },
+  { title: 'Car Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];

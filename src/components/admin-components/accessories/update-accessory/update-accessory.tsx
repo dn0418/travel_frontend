@@ -2,11 +2,11 @@ import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, Me
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { ImageType } from "../../../../types";
-import { HotelInputType } from "../../../../types/input-type";
-import { HotelDataType, HotelPricingTable, HotelTypes } from "../../../../types/services";
+import { AccessoriesInputType } from "../../../../types/input-type";
+import { AccessoriesPricingType, AccessoryTypes, TourAccessoryType } from "../../../../types/services";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
-import UpdateHotelPricing from "./update-hotel-pricing";
+import UpdateAccessoryPricing from "./update-accessory-pricing";
 
 interface PropsType {
   handleImageChange: any;
@@ -23,18 +23,18 @@ interface PropsType {
   }[];
   uploading: boolean;
   images: ImageType[];
-  inputData: HotelInputType;
+  inputData: AccessoriesInputType;
   setInputData: any;
   handleSubmit: any;
   setPricing: any;
-  pricing: HotelPricingTable[];
+  pricing: AccessoriesPricingType[];
   handleInputChange: (name: string, value: string) => void;
   isLoading: boolean;
-  hotelsTypes: HotelTypes[];
-  hotel: HotelDataType;
+  accessoriesTypes: AccessoryTypes[];
+  accessory: TourAccessoryType;
 }
 
-function UpdateAdminHotel({
+function UpdateAdminAccessory({
   currentTab,
   handleImageChange,
   inputData,
@@ -50,8 +50,8 @@ function UpdateAdminHotel({
   pricing,
   setPricing,
   isLoading,
-  hotelsTypes,
-  hotel
+  accessoriesTypes,
+  accessory
 }: PropsType) {
 
   // console.log(hotelsTypes)
@@ -74,7 +74,7 @@ function UpdateAdminHotel({
             }
           </Tabs>
         </div>
-        <SectionTitle title="Update Hotel" />
+        <SectionTitle title="Update Tour Accessory" />
       </div>
       <div hidden={currentTab.value !== 'en'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -131,15 +131,15 @@ function UpdateAdminHotel({
             />
           </div>
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Hotel Type</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Accessory Type</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               value={inputData?.type}
-              label='Hotel Type'
+              label='Accessory Type'
               name="type"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             >
-              {hotelsTypes.map((type) => (
+              {accessoriesTypes.map((type) => (
                 <MenuItem key={type.id} value={type.id}>
                   {type.name}
                 </MenuItem>
@@ -147,18 +147,18 @@ function UpdateAdminHotel({
             </Select>
           </FormControl>
           <TextField
-            label='Name'
-            onChange={(e: any) => handleInputChange('name', e.target.value)}
+            label='Title'
+            onChange={(e: any) => handleInputChange('title', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.name}
+            value={inputData.title}
           />
           <TextField
-            label='Google maps'
-            onChange={(e: any) => handleInputChange('googleMap', e.target.value)}
+            label='Per Pax'
+            onChange={(e: any) => handleInputChange('perPax', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.googleMap}
+            value={inputData.perPax}
           />
 
           <TextField
@@ -169,48 +169,19 @@ function UpdateAdminHotel({
             type="number"
             value={inputData.price}
           />
-          <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    fromAirport: e.target.checked
-                  })}
-                  checked={inputData.fromAirport}
-                />}
-              label="From Airport"
-            />
-          </div>
           <TextField
-            label='Country'
-            onChange={(e: any) => handleInputChange('country', e.target.value)}
+            label='Rent From'
+            onChange={(e: any) => handleInputChange('rentFrom', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.country}
+            value={inputData.rentFrom}
           />
           <TextField
-            label='City'
-            onChange={(e: any) => handleInputChange('city', e.target.value)}
+            label='Available'
+            onChange={(e: any) => handleInputChange('available', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.city}
-          />
-          <TextField
-            label='Check In Time'
-            onChange={(e: any) => handleInputChange('checkInTime', e.target.value)}
-            variant='outlined'
-            className="w-full"
-            value={inputData.checkInTime}
-            type="time"
-          />
-          <TextField
-            label='Check Out Time'
-            onChange={(e: any) => handleInputChange('checkOutTime', e.target.value)}
-            variant='outlined'
-            className="w-full"
-            value={inputData.checkOutTime}
-            type="time"
+            value={inputData.available}
           />
           <TextField
             label='Short Description'
@@ -222,14 +193,14 @@ function UpdateAdminHotel({
             value={inputData.shortDescription}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Hotel Description</p>
+            <p className="font-medium uppercase">Accessory Description</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('longDescription', text)}
               text={inputData.longDescription}
             />
           </div>
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Hotel Images</p>
+            <p className="font-medium uppercase">Accessory Images</p>
             <div
               className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2
              lg:grid-cols-3  gap-4">
@@ -277,8 +248,8 @@ function UpdateAdminHotel({
           </div>
         </div>
         <div className="mt-5 mx-5 lg:mx-12">
-          <UpdateHotelPricing
-            hotel={hotel}
+          <UpdateAccessoryPricing
+            accessory={accessory}
             setPricing={setPricing}
             pricing={pricing} />
         </div>
@@ -288,7 +259,7 @@ function UpdateAdminHotel({
             onClick={handleSubmit}
             className="py-3"
             variant="contained">
-            {isLoading ? "Updating..." : "Update Hotel"}
+            {isLoading ? "Updating..." : "Update Accessory"}
           </Button>
         </div>
       </div>
@@ -307,25 +278,32 @@ function UpdateAdminHotel({
             />
           </div>
           <TextField
-            label='Name(ru)'
-            onChange={(e: any) => handleInputChange('name_ru', e.target.value)}
+            label='Title(ru)'
+            onChange={(e: any) => handleInputChange('title_ru', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.name_ru}
+            value={inputData.title_ru}
           />
           <TextField
-            label='Country(ru)'
-            onChange={(e: any) => handleInputChange('country_ru', e.target.value)}
+            label='Per Pax(ru)'
+            onChange={(e: any) => handleInputChange('perPax_ru', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.country_ru}
+            value={inputData.perPax_ru}
           />
           <TextField
-            label='City(ru)'
-            onChange={(e: any) => handleInputChange('city_ru', e.target.value)}
+            label='Rent From(ru)'
+            onChange={(e: any) => handleInputChange('rentFrom_ru', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.city_ru}
+            value={inputData.rentFrom_ru}
+          />
+          <TextField
+            label='Available(ru)'
+            onChange={(e: any) => handleInputChange('available_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.available_ru}
           />
           <TextField
             label='Short Description(ru)'
@@ -337,7 +315,7 @@ function UpdateAdminHotel({
             value={inputData.shortDescription_ru}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Hotel Description(ru)</p>
+            <p className="font-medium uppercase">Accessory Description(ru)</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('longDescription_ru', text)}
               text={inputData.longDescription_ru}
@@ -360,25 +338,32 @@ function UpdateAdminHotel({
             />
           </div>
           <TextField
-            label='Name(hy)'
-            onChange={(e: any) => handleInputChange('name_hy', e.target.value)}
+            label='Title(hy)'
+            onChange={(e: any) => handleInputChange('title_hy', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.name_hy}
+            value={inputData.title_hy}
           />
           <TextField
-            label='Country(hy)'
-            onChange={(e: any) => handleInputChange('country_hy', e.target.value)}
+            label='Per Pax(hy)'
+            onChange={(e: any) => handleInputChange('perPax_hy', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.country_hy}
+            value={inputData.perPax_hy}
           />
           <TextField
-            label='City(hy)'
-            onChange={(e: any) => handleInputChange('city_hy', e.target.value)}
+            label='Rent From(hy)'
+            onChange={(e: any) => handleInputChange('rentFrom_hy', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.city_hy}
+            value={inputData.rentFrom_hy}
+          />
+          <TextField
+            label='Available(hy)'
+            onChange={(e: any) => handleInputChange('available_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.available_hy}
           />
           <TextField
             label='Short Description(hy)'
@@ -390,7 +375,7 @@ function UpdateAdminHotel({
             value={inputData.shortDescription_hy}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Hotel Description(hy)</p>
+            <p className="font-medium uppercase">Accessory Description(hy)</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('longDescription_hy', text)}
               text={inputData.longDescription_hy}
@@ -402,4 +387,4 @@ function UpdateAdminHotel({
   );
 };
 
-export default UpdateAdminHotel;
+export default UpdateAdminAccessory;

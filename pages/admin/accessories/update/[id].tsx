@@ -4,57 +4,56 @@ import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import UpdateAdminHotel from '../../../../src/components/admin-components/hotels/update-hotel/update-hotel';
+import UpdateAdminAccessory from '../../../../src/components/admin-components/accessories/update-accessory/update-accessory';
 import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
+import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/accessories/accessory-details';
 import client from '../../../../src/rest-api/client';
 import serviceClient from '../../../../src/rest-api/client/service-client';
-import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/hotels/hotel-details.ssr';
 import { ImageType } from '../../../../src/types';
-import { HotelInputType } from '../../../../src/types/input-type';
+import { AccessoriesInputType } from '../../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../../src/types/page-props';
-import { HotelDataType, HotelPricingTable, HotelTypes } from '../../../../src/types/services';
+import { AccessoriesPricingType, AccessoryTypes, TourAccessoryType } from '../../../../src/types/services';
 export { getStaticPaths, getStaticProps };
 
 const tabs = [
-  { title: 'Hotel Data', value: 'en' },
+  { title: 'Accessory Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const hotelsTypes: HotelTypes[] = props?.hotelsTypesData?.data;
-  const hotelDetails: HotelDataType = props?.hotelDetails?.data;
+const UpdateAccessory: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+  const accessoryTypes: AccessoryTypes[] = props?.accessoryTypes?.data;
+  const accessory: TourAccessoryType = props?.accessoryDetails?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<ImageType[]>(hotelDetails?.images || []);
-  const [pricing, setPricing] = useState<HotelPricingTable[]>(hotelDetails?.pricingTable || []);
-  const [inputData, setInputData] = useState<HotelInputType>({
-    isRu: hotelDetails?.isRu || false,
-    isHy: hotelDetails?.isHy || false,
-    name: hotelDetails?.name || '',
-    name_ru: hotelDetails?.name_ru || '',
-    name_hy: hotelDetails?.name_hy || '',
-    thumbnail: hotelDetails?.thumbnail || '',
-    googleMap: hotelDetails?.googleMap || '',
-    price: hotelDetails?.price.toString() || '',
-    fromAirport: hotelDetails?.fromAirport || false,
-    country: hotelDetails?.country || '',
-    country_ru: hotelDetails?.country_ru || '',
-    country_hy: hotelDetails?.country_hy || '',
-    city: hotelDetails?.city || '',
-    city_ru: hotelDetails?.city_ru || '',
-    city_hy: hotelDetails?.city_hy || '',
-    freeCancellation: hotelDetails?.freeCancellation || false,
-    checkInTime: hotelDetails?.checkInTime || '',
-    checkOutTime: hotelDetails?.checkOutTime || '',
-    shortDescription: hotelDetails?.shortDescription || '',
-    shortDescription_ru: hotelDetails?.shortDescription_ru || '',
-    shortDescription_hy: hotelDetails?.shortDescription_hy || '',
-    longDescription: hotelDetails?.longDescription || '',
-    longDescription_ru: hotelDetails?.longDescription_ru || '',
-    longDescription_hy: hotelDetails?.longDescription_hy || '',
-    type: hotelDetails?.type.id.toString() || '',
+  const [images, setImages] = useState<ImageType[]>(accessory?.images || []);
+  const [pricing, setPricing] = useState<AccessoriesPricingType[]>(accessory?.pricing || []);
+  const [inputData, setInputData] = useState<AccessoriesInputType>({
+    isRu: accessory?.isRu || false,
+    isHy: accessory?.isHy || false,
+    title: accessory?.title || "",
+    title_ru: accessory?.title_ru || "",
+    title_hy: accessory?.title_hy || "",
+    thumbnail: accessory?.thumbnail || "",
+    perPax: accessory?.perPax || "",
+    perPax_ru: accessory?.perPax_ru || "",
+    perPax_hy: accessory?.perPax_hy || "",
+    freeCancellation: accessory?.freeCancellation || true,
+    rentFrom: accessory?.rentFrom || "",
+    rentFrom_ru: accessory?.rentFrom_ru || "",
+    rentFrom_hy: accessory?.rentFrom_hy || "",
+    available: accessory?.available || "",
+    available_ru: accessory?.available_ru || "",
+    available_hy: accessory?.available_hy || "",
+    shortDescription: accessory?.shortDescription || '',
+    shortDescription_ru: accessory?.shortDescription_ru || '',
+    shortDescription_hy: accessory?.shortDescription_hy || '',
+    longDescription: accessory?.longDescription || '',
+    longDescription_ru: accessory?.longDescription_ru || '',
+    longDescription_hy: accessory?.longDescription_hy || '',
+    price: accessory?.price.toString() || '',
+    type: accessory?.type.id.toString() || '',
   });
   const router = useRouter();
 
@@ -74,8 +73,8 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
       const data = await response.json();
       if (data?.Location) {
         try {
-          const res: any = await serviceClient.hotels.newImage({
-            hotelId: hotelDetails.id,
+          const res: any = await serviceClient.accessories.newImage({
+            accessoryId: accessory.id,
             url: data.Location
           });
           if (res?.data) {
@@ -136,24 +135,23 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
 
   const checkInputValidation = () => {
     const requiredFields = [
-      "name",
+      "title",
       "price",
-      "googleMap",
-      "country",
-      "city",
-      "checkInTime",
-      "checkOutTime",
+      "perPax",
+      "thumbnail",
+      "rentFrom",
+      "available",
       "shortDescription",
       "longDescription",
       "type"
     ];
 
     if (inputData.isRu) {
-      requiredFields.push("name_ru", "country_ru", "city_ru", "shortDescription_ru", "longDescription_ru");
+      requiredFields.push("title_ru", "perPax_ru", "rentFrom_ru", "available_ru", "shortDescription_ru", "longDescription_ru");
     }
 
     if (inputData.isHy) {
-      requiredFields.push("name_hy", "country_hy", "city_hy", "shortDescription_hy", "longDescription_hy");
+      requiredFields.push("title_hy", "perPax_hy", "rentFrom_hy", "available_hy", "shortDescription_hy", "longDescription_hy");
     }
 
     const missingFields = requiredFields.filter((field) => !inputData[field]);
@@ -180,9 +178,9 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
     setIsLoading(true);
 
     try {
-      const res = await serviceClient.hotels.updateHotel(hotelDetails.id, inputData);
-      toast.success('Hotel updated successfully');
-      router.push('/admin/hotels');
+      const res = await serviceClient.accessories.updateAccessory(accessory.id, inputData);
+      toast.success('Accessory updated successfully');
+      router.push('/admin/accessories');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -193,7 +191,7 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
 
   return (
     <>
-      <UpdateAdminHotel
+      <UpdateAdminAccessory
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -209,15 +207,15 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
         pricing={pricing}
         setPricing={setPricing}
         isLoading={isLoading}
-        hotelsTypes={hotelsTypes}
-        hotel={hotelDetails}
+        accessoriesTypes={accessoryTypes}
+        accessory={accessory}
       />
     </>
   );
 };
 
-UpdateHotel.getLayout = function getLayout(page) {
+UpdateAccessory.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default UpdateHotel;
+export default UpdateAccessory;
