@@ -70,6 +70,15 @@ export interface LocaleDataItems {
   route_text: string;
   package_details_text: string;
   related_tours_text: string;
+  vegas_text: string;
+  food_and_drink: string;
+  no_text: string;
+  yes_text: string;
+  related_hotels_text: string;
+  night_text: string;
+  individual_tour_title: string;
+  departure_tour_title: string;
+  price_per_pax_title: string;
 }
 
 export interface LocaleDataType {
