@@ -100,7 +100,7 @@ function ThingToDoAdminCard({ thing }: ThingToSeeCardProps) {
 
           <div className="flex justify-end items-end">
             <div className="flex items-center gap-3">
-              <Link href='#'>
+              <Link href={`/admin/thing-todo/update/${thing.id}`}>
                 <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                   <BiEdit />
                 </Button>

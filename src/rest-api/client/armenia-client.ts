@@ -28,7 +28,9 @@ class ArmeniaClient {
     createNewThing: (data: any) => HttpClient.post(
       `${API_ENDPOINTS.THING_TO_DO}/create`, data),
     updateThing: (id: any, data: any) => HttpClient.put(
-      `${API_ENDPOINTS.THING_TO_DO}/update/${id}`, data)
+      `${API_ENDPOINTS.THING_TO_DO}/update/${id}`, data),
+    newImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.THING_TO_DO}/image/create`, data),
   };
 
 
