@@ -4,54 +4,53 @@ import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewHotel from '../../../src/components/admin-components/hotels/create-hotel/create-hotel';
+import CreateNewAccessory from '../../../src/components/admin-components/accessories/create-accessory/create-accessory';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
+import { getServerSideProps } from '../../../src/rest-api/accessories/accessory-type.ssr';
 import serviceClient from '../../../src/rest-api/client/service-client';
-import { getServerSideProps } from '../../../src/rest-api/hotels/hotel-type.ssr';
-import { HotelInputType } from '../../../src/types/input-type';
+import { AccessoriesInputType } from '../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../src/types/page-props';
-import { HotelPricingTable, HotelTypes } from '../../../src/types/services';
+import { AccessoriesPricingType, AccessoryTypes } from '../../../src/types/services';
 export { getServerSideProps };
 
 const tabs = [
-  { title: 'New Hotel Data', value: 'en' },
+  { title: 'New Accessory Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const hotelsTypes: HotelTypes[] = props?.hotelsTypesData?.data;
+const CreateAccessory: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const accessoriesTypes: AccessoryTypes[] = props?.accessoryTypeData?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<string[]>([]);
-  const [pricing, setPricing] = useState<HotelPricingTable[]>([]);
-  const [inputData, setInputData] = useState<HotelInputType>({
+  const [pricing, setPricing] = useState<AccessoriesPricingType[]>([]);
+  const [inputData, setInputData] = useState<AccessoriesInputType>({
     isRu: false,
     isHy: false,
-    name: '',
-    name_ru: '',
-    name_hy: '',
-    thumbnail: '',
-    googleMap: '',
+    title: "",
+    title_ru: "",
+    title_hy: "",
     price: '',
-    fromAirport: false,
-    country: '',
-    country_ru: '',
-    country_hy: '',
-    city: '',
-    city_ru: '',
-    city_hy: '',
-    freeCancellation: false,
-    checkInTime: '',
-    checkOutTime: '',
-    shortDescription: '',
-    shortDescription_ru: '',
-    shortDescription_hy: '',
-    longDescription: '',
-    longDescription_ru: '',
-    longDescription_hy: '',
+    thumbnail: "",
+    perPax: "",
+    perPax_ru: "",
+    perPax_hy: "",
     type: '',
+    freeCancellation: true,
+    rentFrom: "",
+    rentFrom_ru: "",
+    rentFrom_hy: "",
+    available: "",
+    available_ru: "",
+    available_hy: "",
+    shortDescription: "",
+    shortDescription_ru: "",
+    shortDescription_hy: "",
+    longDescription: "",
+    longDescription_ru: "",
+    longDescription_hy: "",
   });
   const router = useRouter();
 
@@ -117,25 +116,23 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
 
   const checkInputValidation = () => {
     const requiredFields = [
-      "name",
+      "title",
       "price",
-      "googleMap",
-      "country",
-      "city",
-      "checkInTime",
-      "checkOutTime",
+      "perPax",
+      "thumbnail",
+      "rentFrom",
+      "available",
       "shortDescription",
       "longDescription",
-      "type",
-      "thumbnail"
+      "type"
     ];
 
     if (inputData.isRu) {
-      requiredFields.push("name_ru", "country_ru", "city_ru", "shortDescription_ru", "longDescription_ru");
+      requiredFields.push("title_ru", "perPax_ru", "rentFrom_ru", "available_ru", "shortDescription_ru", "longDescription_ru");
     }
 
     if (inputData.isHy) {
-      requiredFields.push("name_hy", "country_hy", "city_hy", "shortDescription_hy", "longDescription_hy");
+      requiredFields.push("title_hy", "perPax_hy", "rentFrom_hy", "available_hy", "shortDescription_hy", "longDescription_hy");
     }
 
     const missingFields = requiredFields.filter((field) => !inputData[field]);
@@ -165,14 +162,14 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
       ...inputData,
       price: parseInt(inputData.price),
       type: parseInt(inputData.type),
-      pricingData: pricing,
+      pricing: pricing,
       images: images
     });
 
     try {
-      const res = await serviceClient.hotels.createNewHotel(payload);
-      toast.success('Hotel created successfully');
-      router.push('/admin/hotels');
+      const res = await serviceClient.accessories.createNewAccessory(payload);
+      toast.success('Accessory created successfully');
+      router.push('/admin/accessories');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -183,7 +180,7 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
 
   return (
     <>
-      <CreateNewHotel
+      <CreateNewAccessory
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -199,14 +196,14 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
         pricing={pricing}
         setPricing={setPricing}
         isLoading={isLoading}
-        hotelsTypes={hotelsTypes}
+        accessoriesTypes={accessoriesTypes}
       />
     </>
   );
 };
 
-CreateHotel.getLayout = function getLayout(page) {
+CreateAccessory.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default CreateHotel;
+export default CreateAccessory;

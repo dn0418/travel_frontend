@@ -4,7 +4,7 @@ import { Button, Card, Container } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { TourAccessoryType } from "../../../../types";
+import { TourAccessoryType } from "../../../../types/services";
 import AccessoriesCard from "../../../cards/accessories-card";
 import SectionTitle from "../../../common/section-title";
 

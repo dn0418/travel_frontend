@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
-import { TourAccessoryType } from "../../../../types";
+import { TourAccessoryType } from "../../../../types/services";
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;

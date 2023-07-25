@@ -1,6 +1,7 @@
 // @flow strict
 import { Container } from "@mui/material";
-import { ReviewTypes, TourAccessoryType } from "../../../../types";
+import { ReviewTypes } from "../../../../types";
+import { TourAccessoryType } from "../../../../types/services";
 import AccessoryPricingTable from "./accessory-pricing";
 import AccessoryReviewSection from "./accessory-review-section";
 import AccessorySpecification from "./accessory-specification";

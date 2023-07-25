@@ -9,7 +9,7 @@ import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 import serviceClient from "../../rest-api/client/service-client";
-import { TourAccessoryType } from "../../types";
+import { TourAccessoryType } from "../../types/services";
 
 interface TransportCardProps {
   accessory: TourAccessoryType;

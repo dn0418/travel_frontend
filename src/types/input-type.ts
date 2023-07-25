@@ -27,6 +27,34 @@ export interface HotelInputType {
   type: string;
 }
 
+export interface AccessoriesInputType {
+  [key: string]: any;
+  isRu: boolean;
+  isHy: boolean;
+  title: string;
+  title_ru: string;
+  title_hy: string;
+  price: string;
+  thumbnail: string;
+  perPax: string;
+  perPax_ru: string;
+  perPax_hy: string;
+  type: string;
+  freeCancellation: boolean;
+  rentFrom: string;
+  rentFrom_ru: string;
+  rentFrom_hy: string;
+  available: string;
+  available_ru: string;
+  available_hy: string;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  longDescription: string;
+  longDescription_ru: string;
+  longDescription_hy: string;
+}
+
 export interface WithoutDriverInputType {
   [key: string]: any; // Add this line to indicate that a string can be used as an index
   name: string;

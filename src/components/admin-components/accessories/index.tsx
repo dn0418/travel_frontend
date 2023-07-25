@@ -1,11 +1,11 @@
 // @flow strict
 
-import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { Button, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { AccessoriesPageProps } from "../../../types/page-props";
 import AccessoriesAdminCard from "../../admin-cards/accessories-admin-card";
 import SectionTitle from "../../common/section-title";
-
 
 function AccessoriesDashboard({
   accessories,
@@ -17,6 +17,13 @@ function AccessoriesDashboard({
   return (
     <Container className='flex flex-col items-center'>
       <div className='my-4 w-full md:my-8'>
+        <div className="flex justify-end">
+          <Link href='/admin/accessories/create'>
+            <Button color="secondary" variant="contained">
+              Create New Accessory
+            </Button>
+          </Link>
+        </div>
         <div className="flex items-center w-full justify-between">
           <SectionTitle title='Tour Accessories' />
           <div className="">

@@ -6,8 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Link from "next/link";
-import { TourAccessoryType } from "../../../../types";
 import { useRouter } from "next/router";
+import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 
 interface Props {
@@ -22,8 +22,8 @@ export default function AccessoryPricingTable({ accessoryDetails }: Props) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Container className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb]">

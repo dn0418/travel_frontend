@@ -47,9 +47,10 @@ const sidebarItems: SidebarItem[] = [
     path: '/admin/transports',
   },
   {
-    title: 'Tour Accessories',
+    title: 'Accessories',
     icon: <BsFillCaretRightFill />,
     path: '/admin/accessories',
+    subItems: [{ title: 'Accessories Types', path: '/admin/accessories/type' }]
   },
   {
     title: 'Thing Todo',

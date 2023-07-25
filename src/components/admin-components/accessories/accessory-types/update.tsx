@@ -6,14 +6,14 @@ import { useRouter } from "next/router";
 import { forwardRef, useState } from "react";
 import { toast } from "react-toastify";
 import serviceClient from "../../../../rest-api/client/service-client";
-import { HotelTypes } from "../../../../types/services";
+import { AccessoryTypes } from "../../../../types/services";
 
 interface PropsType {
   handleChangeModal: any;
-  type: HotelTypes;
+  type: AccessoryTypes;
 }
 
-const UpdateHotelType = forwardRef<HTMLDivElement, PropsType>(
+const UpdateAccessoryType = forwardRef<HTMLDivElement, PropsType>(
   ({ handleChangeModal, type }, ref) => {
     const [isLoading, setIsLoading] = useState(false);
     const [typeInput, setTypeInput] = useState(type || {});
@@ -33,8 +33,8 @@ const UpdateHotelType = forwardRef<HTMLDivElement, PropsType>(
         toast.error("Please fill all the fields!");
         return;
       }
-
       setIsLoading(true);
+
       const payload = {
         name: typeInput.name,
         name_ru: typeInput.name_ru,
@@ -42,8 +42,8 @@ const UpdateHotelType = forwardRef<HTMLDivElement, PropsType>(
       }
 
       try {
-        const res = await serviceClient.hotelType.updateType(type.id, payload);
-        toast.success("Hotel type updated successfully");
+        const res = await serviceClient.accessoryType.updateType(type.id, payload);
+        toast.success("Accessory type updated successfully");
         router.push({
           pathname: router.pathname
         });
@@ -99,7 +99,7 @@ const UpdateHotelType = forwardRef<HTMLDivElement, PropsType>(
         <Box sx={formStyles.modalContainer}>
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-            Update Hotel Type
+            Update Accessory Type
           </Typography>
           <Box
             sx={formStyles.gridContainer}>
@@ -145,6 +145,6 @@ const UpdateHotelType = forwardRef<HTMLDivElement, PropsType>(
   }
 );
 
-UpdateHotelType.displayName = 'UpdateDestination';
+UpdateAccessoryType.displayName = 'UpdateAccessoryType';
 
-export default UpdateHotelType;
+export default UpdateAccessoryType;

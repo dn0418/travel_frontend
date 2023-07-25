@@ -4,7 +4,7 @@ import { Button, Card, Rating } from "@mui/material";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { TourAccessoryType } from "../../types";
+import { TourAccessoryType } from "../../types/services";
 
 interface TransportCardProps {
   accessory: TourAccessoryType;
@@ -33,8 +33,8 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
                   {locale === "ru"
                     ? accessory.title_ru
                     : locale === "hy"
-                    ? accessory.title_hy
-                    : accessory.title}
+                      ? accessory.title_hy
+                      : accessory.title}
                 </p>
               </Link>
             </div>
@@ -44,14 +44,14 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
                   {(locale === "ru"
                     ? "тип:"
                     : locale === "hy"
-                    ? "տիպ:"
-                    : "Type:") +
+                      ? "տիպ:"
+                      : "Type:") +
                     " " +
                     (locale === "ru"
                       ? accessory?.type.name_ru
                       : locale === "hy"
-                      ? accessory?.type.name_hy
-                      : accessory?.type.name)}
+                        ? accessory?.type.name_hy
+                        : accessory?.type.name)}
                 </p>
               )}
               {accessory.rating && (
@@ -76,21 +76,21 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
               {(locale === "ru"
                 ? "Доступный:"
                 : locale === "hy"
-                ? "Հասանելի է:"
-                : "Available:") +
+                  ? "Հասանելի է:"
+                  : "Available:") +
                 " " +
                 (locale === "ru"
                   ? accessory?.available_ru
                   : locale === "hy"
-                  ? accessory?.available_hy
-                  : accessory?.available)}
+                    ? accessory?.available_hy
+                    : accessory?.available)}
             </p>
             <p className="text-sm  text-[#5e5e5e] mt-6 line-clamp-3">
               {locale === "ru"
                 ? accessory.shortDescription_ru
                 : locale === "hy"
-                ? accessory.shortDescription_hy
-                : accessory.shortDescription}
+                  ? accessory.shortDescription_hy
+                  : accessory.shortDescription}
             </p>
           </div>
           <div className="flex justify-end items-center">
@@ -102,8 +102,8 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
                 {locale === "ru"
                   ? "Узнать больше"
                   : locale === "hy"
-                  ? "Տեսնել ավելին"
-                  : "See More"}
+                    ? "Տեսնել ավելին"
+                    : "See More"}
               </Button>
             </Link>
           </div>

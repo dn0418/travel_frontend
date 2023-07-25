@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
 import { AirportTransportType, CarWithDriverType, CarWithOutType } from "./car-type";
-import { FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType, TourAccessoryType } from "./index";
+import { FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType } from "./index";
+import { TourAccessoryType } from "./services";
 import { TourDestination, TourType } from "./tour";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {

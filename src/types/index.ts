@@ -60,51 +60,6 @@ export interface CarDriverType {
   licenseExpireDate: string;
 }
 
-export interface TourAccessoryType {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
-  isRu: boolean;
-  isHy: boolean;
-  title: string;
-  title_ru: string | null;
-  title_hy: string | null;
-  thumbnail: string;
-  price: number;
-  perPax: string;
-  perPax_ru: string | null;
-  perPax_hy: string | null;
-  freeCancellation: boolean;
-  rentFrom: string;
-  rentFrom_ru: string | null;
-  rentFrom_hy: string | null;
-  available: string;
-  available_ru: string | null;
-  available_hy: string | null;
-  shortDescription: string;
-  shortDescription_ru: string | null;
-  shortDescription_hy: string | null;
-  longDescription: string;
-  longDescription_ru: string | null;
-  longDescription_hy: string | null;
-  type: {
-    id: number;
-    name: string;
-    name_ru: string | null;
-    name_hy: string | null;
-  };
-  reviews: ReviewTypes[];
-  rating: number | null;
-  images: ImageType[];
-  pricing: {
-    id: number,
-    price: number,
-    duration: string;
-    duration_ru: string | null;
-    duration_hy: string | null;
-  }[];
-}
-
 export interface AddReviewPyloadType {
   firstName: string;
   lastName: string;

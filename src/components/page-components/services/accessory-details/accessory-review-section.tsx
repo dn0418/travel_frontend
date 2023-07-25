@@ -3,7 +3,8 @@
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ReviewTypes, TourAccessoryType } from "../../../../types";
+import { ReviewTypes } from "../../../../types";
+import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";

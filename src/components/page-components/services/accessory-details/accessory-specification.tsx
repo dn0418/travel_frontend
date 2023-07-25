@@ -1,13 +1,13 @@
 // @flow strict
 
 import { Button, Rating } from "@mui/material";
+import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
 import { IoMdPricetags } from "react-icons/io";
 import { TiCancelOutline } from "react-icons/ti";
-import { TourAccessoryType } from "../../../../types";
-import AccessoryThumbnailSection from "./thumbnail-section";
-import { useRouter } from "next/router";
+import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
+import AccessoryThumbnailSection from "./thumbnail-section";
 
 interface PropsType {
   accessoryDetails: TourAccessoryType;
@@ -24,8 +24,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <div className="">
@@ -36,8 +36,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
             {locale === "hy"
               ? accessoryDetails.title_hy
               : locale === "ru"
-              ? accessoryDetails.title_ru
-              : accessoryDetails.title}
+                ? accessoryDetails.title_ru
+                : accessoryDetails.title}
           </h3>
           {accessoryDetails.type && (
             <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
@@ -47,8 +47,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
                 {locale === "hy"
                   ? accessoryDetails.type.name_hy
                   : locale === "ru"
-                  ? accessoryDetails.type.name_ru
-                  : accessoryDetails.type.name}
+                    ? accessoryDetails.type.name_ru
+                    : accessoryDetails.type.name}
               </span>
             </p>
           )}
@@ -83,8 +83,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {locale === "hy"
                 ? accessoryDetails.available_hy
                 : locale === "ru"
-                ? accessoryDetails.available_ru
-                : accessoryDetails.available}
+                  ? accessoryDetails.available_ru
+                  : accessoryDetails.available}
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
@@ -94,8 +94,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {locale === "hy"
                 ? accessoryDetails.perPax_hy
                 : locale === "ru"
-                ? accessoryDetails.perPax_ru
-                : accessoryDetails.perPax}
+                  ? accessoryDetails.perPax_ru
+                  : accessoryDetails.perPax}
             </span>
           </p>
 
@@ -116,8 +116,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {locale === "hy"
                 ? accessoryDetails.rentFrom_hy
                 : locale === "ru"
-                ? accessoryDetails.rentFrom_ru
-                : accessoryDetails.rentFrom}
+                  ? accessoryDetails.rentFrom_ru
+                  : accessoryDetails.rentFrom}
               {localData.days_title}
             </span>
           </p>
@@ -137,8 +137,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
             {locale === "hy"
               ? accessoryDetails.longDescription_hy
               : locale === "ru"
-              ? accessoryDetails.longDescription_ru
-              : accessoryDetails.longDescription}
+                ? accessoryDetails.longDescription_ru
+                : accessoryDetails.longDescription}
           </p>
         </div>
       </div>

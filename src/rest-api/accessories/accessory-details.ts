@@ -1,6 +1,6 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { TourAccessoryType } from '../../types';
+import { TourAccessoryType } from '../../types/services';
 import serviceClient from '../client/service-client';
 
 type ParsedQueryParams = {

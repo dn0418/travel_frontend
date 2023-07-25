@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
   HOTELTYPE: "/hotel-type",
   FILEUPLOADS: "/file/upload",
   TOUR_ACCESSORIES: "/tour-accessories",
+  ACCESSORY_TYPE: "/accessory-type",
   RIDE_PLAN: "/ride-plan",
   NEW_RIDE_PLAN: "/ride-plan/create",
   NEW_CALLBACK: "/call-back/create",

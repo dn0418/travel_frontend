@@ -46,7 +46,19 @@ class ServiceClient {
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOUR_ACCESSORIES}/${id}`),
     deleteByID: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOUR_ACCESSORIES}/delete/${id}`),
-  }
+    createNewAccessory: (data: any) => HttpClient.post(`${API_ENDPOINTS.TOUR_ACCESSORIES}/create`, data),
+  };
+
+  accessoryType = {
+    all: () => HttpClient.get(API_ENDPOINTS.ACCESSORY_TYPE),
+    deleteType: (id: any) => HttpClient.delete(
+      `${API_ENDPOINTS.ACCESSORY_TYPE}/delete/${id}`),
+    updateType: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.ACCESSORY_TYPE}/update/${id}`, data),
+    createType: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.ACCESSORY_TYPE}/create`, data),
+  };
+
 
   hotels = {
     all: () => HttpClient.get(API_ENDPOINTS.HOTELS),
