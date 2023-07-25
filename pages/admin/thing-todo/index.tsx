@@ -2,10 +2,10 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import ThingToDoDashboard from "../../src/components/admin-components/thing-todo";
-import DashboardLayout from "../../src/components/layouts/dashboard-layout";
-import { getServerSideProps } from "../../src/rest-api/armenia/thing-to-do/thing-to-do.ssr";
-import { NextPageWithLayout } from "../../src/types/page-props";
+import ThingToDoDashboard from "../../../src/components/admin-components/thing-todo";
+import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
+import { getServerSideProps } from "../../../src/rest-api/armenia/thing-to-do/thing-to-do.ssr";
+import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
 const ThingToDo: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {

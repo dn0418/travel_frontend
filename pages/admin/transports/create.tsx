@@ -3,37 +3,12 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewCar from '../../../src/components/admin-components/transport/without-driver/create-new-car';
+import CreateNewCar from '../../../src/components/admin-components/transport/create-without-driver/create-new-car';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
 import serviceClient from '../../../src/rest-api/client/service-client';
 import { PriceWithoutDriverType } from '../../../src/types/car-type';
+import { WithoutDriverInputType } from '../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../src/types/page-props';
-
-interface WithoutInputDataType {
-  [key: string]: any; // Add this line to indicate that a string can be used as an index
-  name: string;
-  name_ru: string;
-  name_hy: string;
-  price: string;
-  freeCancellation: boolean;
-  isRu: boolean;
-  isHy: boolean;
-  pickup: string;
-  pickup_ru: string;
-  pickup_hy: string;
-  fuel: string;
-  fuel_ru: string;
-  fuel_hy: string;
-  year: string;
-  seatNo: string;
-  thumbnail: string;
-  shortDescription: string;
-  shortDescription_ru: string;
-  shortDescription_hy: string;
-  description: string;
-  description_ru: string;
-  description_hy: string;
-}
 
 const tabs = [
   { title: 'New Car Data', value: 'en' },
@@ -47,7 +22,7 @@ const CreateCar: NextPageWithLayout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<string[]>([]);
   const [pricing, setPricing] = useState<PriceWithoutDriverType[]>([]);
-  const [inputData, setInputData] = useState<WithoutInputDataType>({
+  const [inputData, setInputData] = useState<WithoutDriverInputType>({
     name: "",
     name_ru: "",
     name_hy: "",

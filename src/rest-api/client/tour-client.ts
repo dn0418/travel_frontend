@@ -16,6 +16,7 @@ class TourClient {
       month: any,
       destination: any,
       days: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}&month=${month}&destination=${destination}&days=${days}`),
+    deleteById: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOURS}/delete/${id}`),
   }
 
   tourType = {

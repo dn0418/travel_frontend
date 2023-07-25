@@ -1,11 +1,12 @@
-import { Button, CircularProgress, FormControlLabel, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { ImageType } from "../../../../types";
-import { CarWithOutType, PriceWithoutDriverType } from "../../../../types/car-type";
+import { HotelInputType } from "../../../../types/input-type";
+import { HotelPricingTable, HotelTypes } from "../../../../types/services";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
-import PricingTable from "./pricing-table";
+import UpdateHotelPricing from "./update-hotel-pricing";
 
 interface PropsType {
   handleImageChange: any;
@@ -22,17 +23,17 @@ interface PropsType {
   }[];
   uploading: boolean;
   images: ImageType[];
-  inputData: any;
+  inputData: HotelInputType;
   setInputData: any;
   handleSubmit: any;
   setPricing: any;
-  pricing: PriceWithoutDriverType[];
+  pricing: HotelPricingTable[];
   handleInputChange: (name: string, value: string) => void;
   isLoading: boolean;
-  carDetails: CarWithOutType
+  hotelsTypes: HotelTypes[];
 }
 
-function UpdateWithoutCar({
+function UpdateAdminHotel({
   currentTab,
   handleImageChange,
   inputData,
@@ -48,8 +49,10 @@ function UpdateWithoutCar({
   pricing,
   setPricing,
   isLoading,
-  carDetails
+  hotelsTypes
 }: PropsType) {
+
+  // console.log(hotelsTypes)
 
   return (
     <div className="w-full my-8">
@@ -69,7 +72,7 @@ function UpdateWithoutCar({
             }
           </Tabs>
         </div>
-        <SectionTitle title="Update Car Without Driver" />
+        <SectionTitle title="Update Hotel" />
       </div>
       <div hidden={currentTab.value !== 'en'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -121,11 +124,26 @@ function UpdateWithoutCar({
                     freeCancellation: e.target.checked
                   })}
                   checked={inputData.freeCancellation}
-                />
-              }
+                />}
               label="Free Cancelation"
             />
           </div>
+          <FormControl fullWidth>
+            <InputLabel id='demo-simple-select-label'>Hotel Type</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              value={inputData?.type}
+              label='Hotel Type'
+              name="type"
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+            >
+              {hotelsTypes.map((type) => (
+                <MenuItem key={type.id} value={type.id}>
+                  {type.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             label='Name'
             onChange={(e: any) => handleInputChange('name', e.target.value)}
@@ -134,6 +152,14 @@ function UpdateWithoutCar({
             value={inputData.name}
           />
           <TextField
+            label='Google maps'
+            onChange={(e: any) => handleInputChange('googleMap', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.googleMap}
+          />
+
+          <TextField
             label='Price'
             onChange={(e: any) => handleInputChange('price', e.target.value)}
             variant='outlined'
@@ -141,35 +167,48 @@ function UpdateWithoutCar({
             type="number"
             value={inputData.price}
           />
+          <div className="col-span-2">
+            <FormControlLabel
+              control={
+                <Switch
+                  onChange={(e: any) => setInputData({
+                    ...inputData,
+                    fromAirport: e.target.checked
+                  })}
+                  checked={inputData.fromAirport}
+                />}
+              label="From Airport"
+            />
+          </div>
           <TextField
-            label='Pickup'
-            onChange={(e: any) => handleInputChange('pickup', e.target.value)}
+            label='Country'
+            onChange={(e: any) => handleInputChange('country', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.pickup}
+            value={inputData.country}
           />
           <TextField
-            label='Fuel'
-            onChange={(e: any) => handleInputChange('fuel', e.target.value)}
+            label='City'
+            onChange={(e: any) => handleInputChange('city', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.fuel}
+            value={inputData.city}
           />
           <TextField
-            label='Year'
-            onChange={(e: any) => handleInputChange('year', e.target.value)}
+            label='Check In Time'
+            onChange={(e: any) => handleInputChange('checkInTime', e.target.value)}
             variant='outlined'
             className="w-full"
-            type="number"
-            value={inputData.year}
+            value={inputData.checkInTime}
+            type="time"
           />
           <TextField
-            label='Seat No.'
-            onChange={(e: any) => handleInputChange('seatNo', e.target.value)}
+            label='Check Out Time'
+            onChange={(e: any) => handleInputChange('checkOutTime', e.target.value)}
             variant='outlined'
             className="w-full"
-            type="number"
-            value={inputData.seatNo}
+            value={inputData.checkOutTime}
+            type="time"
           />
           <TextField
             label='Short Description'
@@ -181,14 +220,14 @@ function UpdateWithoutCar({
             value={inputData.shortDescription}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Description</p>
+            <p className="font-medium uppercase">Hotel Description</p>
             <SunTextEditor
-              onChange={(text: string) => handleInputChange('description', text)}
-              text={inputData.description}
+              onChange={(text: string) => handleInputChange('longDescription', text)}
+              text={inputData.longDescription}
             />
           </div>
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Images</p>
+            <p className="font-medium uppercase">Hotel Images</p>
             <div
               className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2
              lg:grid-cols-3  gap-4">
@@ -205,7 +244,7 @@ function UpdateWithoutCar({
                       layout="responsive"
                     />
                     <Button
-                      onClick={() => handleRemoveImage(image.id)}
+                      onClick={() => handleRemoveImage(i)}
                       className="absolute min-w-fit shadow py-0 px-[5px] text-sm
                      -top-1 -right-1 bg-red-600 text-white rounded-full">X</Button>
                   </div>
@@ -236,10 +275,7 @@ function UpdateWithoutCar({
           </div>
         </div>
         <div className="mt-5 mx-5 lg:mx-12">
-          <PricingTable
-            setPricing={setPricing}
-            carDetails={carDetails}
-            pricing={pricing} />
+          <UpdateHotelPricing setPricing={setPricing} pricing={pricing} />
         </div>
         <div className="flex mx-5 lg:mx-12 justify-start mt-8">
           <Button
@@ -247,7 +283,7 @@ function UpdateWithoutCar({
             onClick={handleSubmit}
             className="py-3"
             variant="contained">
-            {isLoading ? "Updating..." : "Update Car Without driver"}
+            {isLoading ? "Updating..." : "Update Hotel"}
           </Button>
         </div>
       </div>
@@ -273,33 +309,33 @@ function UpdateWithoutCar({
             value={inputData.name_ru}
           />
           <TextField
-            label='Pickup(ru)'
-            onChange={(e: any) => handleInputChange('pickup_ru', e.target.value)}
+            label='Country(ru)'
+            onChange={(e: any) => handleInputChange('country_ru', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.pickup_ru}
+            value={inputData.country_ru}
           />
           <TextField
-            label='Fuel(ru)'
-            onChange={(e: any) => handleInputChange('fuel_ru', e.target.value)}
+            label='City(ru)'
+            onChange={(e: any) => handleInputChange('city_ru', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.fuel_ru}
+            value={inputData.city_ru}
           />
           <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
             className="w-full col-span-2"
-            value={inputData.shortDescription_ru}
             multiline
             rows={3}
+            value={inputData.shortDescription_ru}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Description(ru)</p>
+            <p className="font-medium uppercase">Hotel Description(ru)</p>
             <SunTextEditor
-              onChange={(text: string) => handleInputChange('description_ru', text)}
-              text={inputData.description_ru}
+              onChange={(text: string) => handleInputChange('longDescription_ru', text)}
+              text={inputData.longDescription_ru}
             />
           </div>
         </div>
@@ -326,33 +362,33 @@ function UpdateWithoutCar({
             value={inputData.name_hy}
           />
           <TextField
-            label='Pickup(hy)'
-            onChange={(e: any) => handleInputChange('pickup_hy', e.target.value)}
+            label='Country(hy)'
+            onChange={(e: any) => handleInputChange('country_hy', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.pickup_hy}
+            value={inputData.country_hy}
           />
           <TextField
-            label='Fuel(hy)'
-            onChange={(e: any) => handleInputChange('fuel_hy', e.target.value)}
+            label='City(hy)'
+            onChange={(e: any) => handleInputChange('city_hy', e.target.value)}
             variant='outlined'
             className="w-full"
-            value={inputData.fuel_hy}
+            value={inputData.city_hy}
           />
           <TextField
             label='Short Description(hy)'
             onChange={(e: any) => handleInputChange('shortDescription_hy', e.target.value)}
             variant='outlined'
             className="w-full col-span-2"
-            value={inputData.shortDescription_hy}
             multiline
             rows={3}
+            value={inputData.shortDescription_hy}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Car Description(hy)</p>
+            <p className="font-medium uppercase">Hotel Description(hy)</p>
             <SunTextEditor
-              onChange={(text: string) => handleInputChange('description_hy', text)}
-              text={inputData.description_hy}
+              onChange={(text: string) => handleInputChange('longDescription_hy', text)}
+              text={inputData.longDescription_hy}
             />
           </div>
         </div>
@@ -361,4 +397,4 @@ function UpdateWithoutCar({
   );
 };
 
-export default UpdateWithoutCar;
+export default UpdateAdminHotel;

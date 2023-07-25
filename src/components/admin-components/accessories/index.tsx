@@ -39,7 +39,7 @@ function AccessoriesDashboard({
             accessories.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  Cars data not found!
+                  Accessories data not found!
                 </p>
               </div>
 

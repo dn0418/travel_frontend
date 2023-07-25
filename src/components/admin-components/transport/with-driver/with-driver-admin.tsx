@@ -3,7 +3,7 @@
 import { Button } from "@mui/material";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { CarWithDriverType } from "../../../types/car-type";
+import { CarWithDriverType } from "../../../../types/car-type";
 import WithDriverAdminPricing from "./with-driver-admin-priceing";
 
 
@@ -40,6 +40,7 @@ function AdminWithDriver(
               className="rounded-lg"
               alt="with driver transport"
               layout="responsive"
+              priority
             />
           ))
         }

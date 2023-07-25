@@ -8,7 +8,7 @@ import { CarWithOutType } from "../../../types/car-type";
 import CarAdminCard from "../../admin-cards/car-admin-card";
 import SectionTitle from "../../common/section-title";
 import AdminAirportTransport from "./admin-airport-transport";
-import AdminWithDriver from "./with-driver-admin";
+import AdminWithDriver from "./with-driver/with-driver-admin";
 
 function TransportDashboard({
   handleTabChange,

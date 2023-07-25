@@ -1,11 +1,10 @@
 // @flow strict
 
-import { Button, CircularProgress, Container, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tabs, TextField } from "@mui/material";
+import { Button, CircularProgress, Container, TextField } from "@mui/material";
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { BiEdit } from "react-icons/bi";
-import { MdCloudUpload, MdDelete } from "react-icons/md";
+import { MdCloudUpload } from "react-icons/md";
 import { toast } from "react-toastify";
 import AdminImage from "../../../src/components/admin-cards/admin-image";
 import SectionTitle from "../../../src/components/common/section-title";
@@ -22,7 +21,6 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[]>(withdriver?.images || []);
-  const [activeTab, setActiveTab] = useState('all');
   const [inputData, setInputData] = useState({
     title: withdriver?.title,
     title_ru: withdriver?.title_ru,
@@ -91,27 +89,13 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
 
   return (
     <Container className='my-5 w-full lg:my-8 pb-5'>
-      <div className="flex items-center w-full justify-center">
-        <div className='text-center w-fit py-3 px-6 regular-shadow rounded-lg'>
-          <Tabs
-            value={activeTab}
-            onChange={(_, v) => setActiveTab(v)}
-            className='pages-tabs gap-8 lg:gap-16'
-            TabIndicatorProps={{
-              style: { display: "none" },
-            }}>
-            <Tab value='all' className="" label='With Driver Data' />
-            <Tab value='price' className="" label='With Driver Pricing' />
-          </Tabs>
-        </div>
-      </div>
       <div className="flex items-center w-full justify-between">
         <SectionTitle title="Update Car With Driver" />
         <Button onClick={() => router.back()} className="shadow">
           Back
         </Button>
       </div>
-      <div hidden={activeTab !== 'all'}>
+      <div>
         <h2 className="mb-2">Images</h2>
         <div
           className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-3 lg:grid-cols-4  gap-4">
@@ -208,52 +192,6 @@ const UpdateWithDriver: NextPageWithLayout<InferGetServerSidePropsType<typeof ge
             disabled={isLoading}>
             {isLoading ? <CircularProgress size={16} /> : 'Update Now'}
           </Button>
-        </div>
-      </div>
-      <div hidden={activeTab !== 'price'}
-        className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb] tour-details-page">
-        <div className="">
-          <p className="text-lg font-medium uppercase">Car With Driver Pricing</p>
-          <TableContainer className="tour-price-table bg-white">
-            <Table aria-label="tour pricing table">
-              <TableHead>
-                <TableRow>
-                  <TableCell className="text-base" align="center"></TableCell>
-                  <TableCell className="text-base" align="center">
-                    Duration
-                  </TableCell>
-                  <TableCell className="text-base" align="center">Pricing</TableCell>
-                  <TableCell className="text-base" align="center">Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {
-                  withdriver?.pricing.map((pricing: any, index: number) => (
-                    <TableRow key={index}>
-                      <TableCell align="center">{index}</TableCell>
-                      <TableCell align="center">{pricing.duration}</TableCell>
-                      <TableCell align="center">{pricing.price} AMD</TableCell>
-                      <TableCell align="center">
-                        <div className="flex items-center justify-center gap-3">
-                          <Button className='shadow min-w-fit py-2 px-5 text-[#5e5e5e] text-lg'>
-                            <BiEdit />
-                          </Button>
-                          <Button className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
-                            <MdDelete />
-                          </Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))
-                }
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <div className="flex mt-5 justify-end">
-            <Button className='bg-black text-white' variant='contained'>
-              Add New Price
-            </Button>
-          </div>
         </div>
       </div>
     </Container >

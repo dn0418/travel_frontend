@@ -2,15 +2,15 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import FoodAndDrinksDashboard from "../../src/components/admin-components/food-and-drink";
-import DashboardLayout from "../../src/components/layouts/dashboard-layout";
-import { getServerSideProps } from "../../src/rest-api/armenia/food-and-drinks/index.ssr";
-import { NextPageWithLayout } from "../../src/types/page-props";
+import AccessoriesDashboard from "../../../src/components/admin-components/accessories";
+import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
+import { getServerSideProps } from "../../../src/rest-api/accessories/accessories.ssr";
+import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
-const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const foodAndDrinks = props.foodAndDrinks?.data || [];
-  const metaData = props.foodAndDrinks?.meta || {};
+const Accessories: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const accessories = props.accessoriesData?.data || [];
+  const metaData = props.accessoriesData?.meta || {};
   const router = useRouter();
   const params = router.query;
 
@@ -18,7 +18,7 @@ const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getSe
     params['page'] = value.toString();
 
     router.push({
-      pathname: '/admin/food-and-drink',
+      pathname: '/admin/accessories',
       query: params,
     });
   }
@@ -32,15 +32,15 @@ const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getSe
     params['page'] = '1';
 
     router.push({
-      pathname: '/admin/food-and-drink',
+      pathname: '/admin/accessories',
       query: params,
     });
   }
 
   return (
     <>
-      <FoodAndDrinksDashboard
-        foodAndDrinks={foodAndDrinks}
+      <AccessoriesDashboard
+        accessories={accessories}
         handleSearch={handleSearch}
         handlePageChange={handlePageChange}
         metaData={metaData}
@@ -49,8 +49,8 @@ const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getSe
   );
 };
 
-FoodAndDrinks.getLayout = function getLayout(page) {
+Accessories.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default FoodAndDrinks;
+export default Accessories;

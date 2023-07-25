@@ -2,6 +2,7 @@ import { Button, CircularProgress, FormControlLabel, Switch, Tab, Tabs, TextFiel
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { PriceWithoutDriverType } from "../../../../types/car-type";
+import { WithoutDriverInputType } from "../../../../types/input-type";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
 import CreateCarPricing from "./create-pricing";
@@ -21,7 +22,7 @@ interface PropsType {
   }[];
   uploading: boolean;
   images: string[];
-  inputData: any;
+  inputData: WithoutDriverInputType;
   setInputData: any;
   handleSubmit: any;
   setPricing: any;

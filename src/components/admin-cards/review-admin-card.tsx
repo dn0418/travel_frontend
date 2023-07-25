@@ -126,7 +126,8 @@ function ReviewAdminCard({ review, isRating = false }: ReviewCardProps) {
             </Button>
             <Button
               onClick={handleDeleteReview}
-              className='shadow min-w-fit py-2 px-5 text-orange-500 text-lg'>
+              color='error'
+              className='shadow min-w-fit py-2 px-5 text-lg'>
               <MdDelete />
             </Button>
           </div>
