@@ -25,6 +25,10 @@ class ArmeniaClient {
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.THING_TO_DO}/${id}`),
     delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.THING_TO_DO}/delete/${id}`),
+    createNewThing: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.THING_TO_DO}/create`, data),
+    updateThing: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.THING_TO_DO}/update/${id}`, data)
   };
 
 

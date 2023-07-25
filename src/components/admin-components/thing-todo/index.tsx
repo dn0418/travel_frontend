@@ -1,6 +1,7 @@
 // @flow strict
 
-import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { Button, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { ThingToSeeType } from "../../../types";
 import ThingToDoAdminCard from "../../admin-cards/thing-todo-admin-card";
@@ -23,6 +24,13 @@ function ThingToDoDashboard({
   return (
     <Container className='flex flex-col items-center'>
       <div className='my-4 w-full md:my-8'>
+        <div className="flex justify-end">
+          <Link href='/admin/thing-todo/create'>
+            <Button color="secondary" variant="contained">
+              Create New Thing To Do
+            </Button>
+          </Link>
+        </div>
         <div className="flex flex-col md:flex-row items-center w-full justify-between">
           <SectionTitle title="Thing Todo" />
           <div className="">

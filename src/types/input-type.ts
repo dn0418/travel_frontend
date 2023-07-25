@@ -80,3 +80,33 @@ export interface WithoutDriverInputType {
   description_ru: string;
   description_hy: string;
 }
+
+export interface ThingToDoInputType {
+  [key: string]: any;
+  isRu: boolean;
+  isHy: boolean;
+  name: string;
+  name_ru: string;
+  name_hy: string;
+  thumbnail: string;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  type: string;
+  fromYerevan: string;
+  fromYerevan_ru: string;
+  fromYerevan_hy: string;
+  date: string;
+  neatestSettlement: string;
+  neatestSettlement_ru: string;
+  neatestSettlement_hy: string;
+  available: string;
+  available_ru: string;
+  available_hy: string;
+  entrance: string;
+  entrance_ru: string;
+  entrance_hy: string;
+}

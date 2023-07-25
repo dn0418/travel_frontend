@@ -24,3 +24,24 @@ export const transportsTabs = [
     }
   },
 ];
+
+export const thingDoTypes = {
+  en: [
+    { title: 'Entertainment', value: 'entertainment' },
+    { title: 'Festival', value: 'festival' },
+    { title: 'Tourists experience', value: 'tourists_experience' },
+    { title: 'Shopping', value: 'shopping' },
+  ],
+  ru: [
+    { title: 'Развлечения', value: 'entertainment' },
+    { title: 'Фестиваль', value: 'festival' },
+    { title: 'Туристический опыт', value: 'tourists_experience' },
+    { title: 'Шоппинг', value: 'shopping' },
+  ],
+  hy: [
+    { title: 'Մարմնավաճառք', value: 'entertainment' },
+    { title: 'Ֆեստիվալ', value: 'festival' },
+    { title: 'Հատուկ զարգացում', value: 'tourists_experience' },
+    { title: 'Գնորդավաճառք', value: 'shopping' },
+  ]
+}
