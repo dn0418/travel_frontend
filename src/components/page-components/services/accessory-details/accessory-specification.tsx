@@ -102,7 +102,12 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
             <TiCancelOutline className="text-xl text-[#EDA592] font-bold" />
             <span className="font-medium">{localData.free_cancelation}:</span>
-            <span> {accessoryDetails.freeCancellation ? "Yes" : "No"}</span>
+            <span>
+              {" "}
+              {accessoryDetails.freeCancellation
+                ? `${localData.yes_text}`
+                : `${localData.no_text}`}
+            </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
             <BiHash className="text-base text-[#EDA592]  font-bold" />

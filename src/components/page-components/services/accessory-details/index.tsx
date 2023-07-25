@@ -21,7 +21,6 @@ function AccessoryDetailsUI({
   accessoryDetails,
   metadata,
 }: PropsType) {
-  console.log(accessories);
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>

@@ -83,7 +83,11 @@ function TourSpecification({ tour }: { tour: TourType }) {
       <p className="flex items-center gap-3">
         <BiHash className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          {tour.dayLength + " days" + " " + tour.nightLength + " night"}
+          {tour.dayLength +
+            `${localData.days_title}` +
+            " " +
+            tour.nightLength +
+            `${localData.night_text}`}
         </span>
       </p>
       <p className="flex items-center gap-3">
