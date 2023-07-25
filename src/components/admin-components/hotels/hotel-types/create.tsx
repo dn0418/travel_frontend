@@ -13,7 +13,7 @@ interface PropsType {
 
 const CreateHotelType = ({ handleChangeModal }: PropsType) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [reviewInput, setReviewInput] = useState({
+  const [typeInput, setTypeInput] = useState({
     name: '',
     name_ru: '',
     name_hy: '',
@@ -22,7 +22,7 @@ const CreateHotelType = ({ handleChangeModal }: PropsType) => {
   const router = useRouter();
 
   const handleChangeInput = (name: string, value: string) => {
-    setReviewInput((prev) => {
+    setTypeInput((prev) => {
       const temp = JSON.parse(JSON.stringify(prev));
       temp[name] = value;
       return temp;
@@ -30,23 +30,27 @@ const CreateHotelType = ({ handleChangeModal }: PropsType) => {
   }
 
   const handleSubmit = async () => {
+    if (!typeInput.name || !typeInput.name_ru || !typeInput.name_hy) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     setIsLoading(true);
     const payload = {
-      name: reviewInput.name,
-      name_ru: reviewInput.name_ru,
-      name_hy: reviewInput.name_hy,
+      name: typeInput.name,
+      name_ru: typeInput.name_ru,
+      name_hy: typeInput.name_hy,
     }
 
     try {
       const res = await serviceClient.hotelType.createType(payload);
-      toast.success("Hotel type updated successfully");
+      toast.success("Hotel type created successfully");
       router.push({
         pathname: router.pathname
       });
       handleChangeModal();
     } catch (error) {
       toast.error("Something went wrong");
-      // console.log(error)
+      console.log(error)
     } finally {
       setIsLoading(false);
     }
@@ -102,21 +106,21 @@ const CreateHotelType = ({ handleChangeModal }: PropsType) => {
           <TextField
             label='Name'
             name="name"
-            value={reviewInput?.name}
+            value={typeInput?.name}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Name Ru'
             name="name_ru"
-            value={reviewInput?.name_ru}
+            value={typeInput?.name_ru}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Name Hy'
             name="name_hy"
-            value={reviewInput?.name_hy}
+            value={typeInput?.name_hy}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />

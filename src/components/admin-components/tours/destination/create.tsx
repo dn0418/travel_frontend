@@ -13,7 +13,7 @@ interface PropsType {
 
 const CreateDestination = ({ handleChangeModal }: PropsType) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [reviewInput, setReviewInput] = useState({
+  const [destinationInput, setDestinationInput] = useState({
     name: '',
     name_ru: '',
     name_hy: '',
@@ -25,7 +25,7 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
   const router = useRouter();
 
   const handleChangeInput = (name: string, value: string) => {
-    setReviewInput((prev) => {
+    setDestinationInput((prev) => {
       const temp = JSON.parse(JSON.stringify(prev));
       temp[name] = value;
       return temp;
@@ -33,14 +33,19 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
   }
 
   const handleSubmit = async () => {
+    if (!destinationInput.name || !destinationInput.name_ru || !destinationInput.name_hy || !destinationInput.country || !destinationInput.country_ru || !destinationInput.country_hy) {
+      toast.error("Please fill all the fields");
+      return;
+    }
+
     setIsLoading(true);
     const payload = {
-      name: reviewInput.name,
-      name_ru: reviewInput.name_ru,
-      name_hy: reviewInput.name_hy,
-      country: reviewInput.country,
-      country_ru: reviewInput.country_ru,
-      country_hy: reviewInput.country_hy,
+      name: destinationInput.name,
+      name_ru: destinationInput.name_ru,
+      name_hy: destinationInput.name_hy,
+      country: destinationInput.country,
+      country_ru: destinationInput.country_ru,
+      country_hy: destinationInput.country_hy,
     }
 
     try {
@@ -108,42 +113,42 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
           <TextField
             label='Name'
             name="name"
-            value={reviewInput?.name}
+            value={destinationInput?.name}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Name Ru'
             name="name_ru"
-            value={reviewInput?.name_ru}
+            value={destinationInput?.name_ru}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Name Hy'
             name="name_hy"
-            value={reviewInput?.name_hy}
+            value={destinationInput?.name_hy}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Country'
             name="country"
-            value={reviewInput?.country}
+            value={destinationInput?.country}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Country Ru'
             name="country_ru"
-            value={reviewInput?.country_ru}
+            value={destinationInput?.country_ru}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Country Hy'
             name="country_hy"
-            value={reviewInput?.country_hy}
+            value={destinationInput?.country_hy}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             type='email'
             variant='outlined'

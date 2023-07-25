@@ -21,6 +21,7 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
   const router = useRouter();
   const { pathname } = router;
   const [openModal, setOpenModal] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
     duration: '',
@@ -28,8 +29,13 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
   });
   const theme = useTheme();
 
-  const changeUpdateModal = () => {
+  const changeUpdateModal = (price: any) => {
+    setSelectedPrice(price);
     setUpdateModal(!updateModal);
+  }
+
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
   }
 
   const handleAddModal = () => {
@@ -170,7 +176,7 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
                       <Button
                         variant='text'
                         color='secondary'
-                        onClick={changeUpdateModal}
+                        onClick={() => changeUpdateModal(pricing)}
                         className='shadow text-xs'>Edit</Button>
                       <Button
                         variant='text'
@@ -178,14 +184,6 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
                         onClick={() => handleDeletePrice(pricing.id)}
                         className='shadow text-xs'>Delete</Button>
                     </TableCell>
-                    <Modal
-                      open={updateModal}
-                      onClose={changeUpdateModal}>
-                      <UpdateWithDriverPricing
-                        price={pricing}
-                        handleCancelModal={changeUpdateModal}
-                      />
-                    </Modal>
                   </TableRow>
                 ))
               }
@@ -242,6 +240,14 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
             </div>
           </Box>
         </Box>
+      </Modal>
+      <Modal
+        open={updateModal && selectedPrice !== null}
+        onClose={closeUpdateModal}>
+        <UpdateWithDriverPricing
+          price={selectedPrice}
+          handleCancelModal={closeUpdateModal}
+        />
       </Modal>
     </Container>
   );

@@ -244,7 +244,7 @@ function UpdateAdminHotel({
                       layout="responsive"
                     />
                     <Button
-                      onClick={() => handleRemoveImage(i)}
+                      onClick={() => handleRemoveImage(image.id)}
                       className="absolute min-w-fit shadow py-0 px-[5px] text-sm
                      -top-1 -right-1 bg-red-600 text-white rounded-full">X</Button>
                   </div>

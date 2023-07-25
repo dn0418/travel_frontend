@@ -30,6 +30,7 @@ interface PropsType {
 function PricingTable({ pricing, setPricing, carDetails }: PropsType) {
   const [openModal, setOpenModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(null);
   const [priceInput, setPriceInput] = useState({
     destination: '',
     destination_ru: '',
@@ -41,8 +42,13 @@ function PricingTable({ pricing, setPricing, carDetails }: PropsType) {
   });
   const theme = useTheme();
 
-  const changeUpdateModal = () => {
-    setUpdateModal(!updateModal);
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+  }
+
+  const changeUpdateModal = (price: any) => {
+    setSelectedPrice(price);
+    setUpdateModal(true);
   }
 
   const handleAddModal = () => {
@@ -63,13 +69,13 @@ function PricingTable({ pricing, setPricing, carDetails }: PropsType) {
       return;
     }
     try {
-      const res = await serviceClient.carWithoutDriver.createNewPrice({
+      const res: any = await serviceClient.carWithoutDriver.createNewPrice({
         ...priceInput,
         carId: carDetails?.id,
       });
       setPricing((previewData: any) => {
         const temp = JSON.parse(JSON.stringify(previewData));
-        temp.push(priceInput);
+        temp.push(res.data);
         return temp;
       })
       toast.success("Price created successfully!");
@@ -177,34 +183,25 @@ function PricingTable({ pricing, setPricing, carDetails }: PropsType) {
             </TableHead>
             <TableBody>
               {
-                pricing.map((pricing, index: number) => (
+                pricing.map((price, index: number) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{pricing.destination}</TableCell>
-                    <TableCell align="center">{pricing.sedan_3seat} AMD</TableCell>
-                    <TableCell align="center">{pricing.minivan_7seat} AMD</TableCell>
-                    <TableCell align="center">{pricing.minibus_18seat} AMD</TableCell>
-                    <TableCell align="center">{pricing.bus_35seat} AMD</TableCell>
+                    <TableCell align="center">{price.destination}</TableCell>
+                    <TableCell align="center">{price.sedan_3seat} AMD</TableCell>
+                    <TableCell align="center">{price.minivan_7seat} AMD</TableCell>
+                    <TableCell align="center">{price.minibus_18seat} AMD</TableCell>
+                    <TableCell align="center">{price.bus_35seat} AMD</TableCell>
                     <TableCell className='flex gap-2' align="center">
                       <Button
                         variant='text'
                         color='secondary'
-                        onClick={changeUpdateModal}
+                        onClick={() => changeUpdateModal(price)}
                         className='shadow text-xs'>Edit</Button>
                       <Button
                         variant='text'
                         color='secondary'
-                        onClick={() => handleDeletePrice(pricing.id)}
+                        onClick={() => handleDeletePrice(price.id)}
                         className='shadow text-xs'>Delete</Button>
                     </TableCell>
-                    <Modal
-                      open={updateModal}
-                      onClose={changeUpdateModal}>
-                      <UpdatePricing
-                        price={pricing}
-                        handleCancelModal={changeUpdateModal}
-                        setPricing={setPricing}
-                      />
-                    </Modal>
                   </TableRow>
                 ))
               }
@@ -298,6 +295,15 @@ function PricingTable({ pricing, setPricing, carDetails }: PropsType) {
             </div>
           </Box>
         </Box>
+      </Modal>
+      <Modal
+        open={updateModal && selectedPrice !== null}
+        onClose={closeUpdateModal}>
+        <UpdatePricing
+          price={selectedPrice}
+          handleCancelModal={closeUpdateModal}
+          setPricing={setPricing}
+        />
       </Modal>
     </div>
   );

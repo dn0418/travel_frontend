@@ -29,6 +29,7 @@ interface PropsType {
 
 function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   const [openModal, setOpenModal] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
     name: '',
@@ -39,8 +40,13 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   });
   const theme = useTheme();
 
-  const changeUpdateModal = () => {
-    setUpdateModal(!updateModal);
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+  }
+
+  const changeUpdateModal = (price: any) => {
+    setSelectedPrice(price);
+    setUpdateModal(true);
   }
 
   const handleAddModal = () => {
@@ -61,13 +67,13 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
       return;
     }
     try {
-      const res = await serviceClient.hotels.createNewPrice({
+      const res: any = await serviceClient.hotels.createNewPrice({
         ...priceInput,
         hotelId: hotel?.id,
       });
       setPricing((previewData: any) => {
         const temp = JSON.parse(JSON.stringify(previewData));
-        temp.push(priceInput);
+        temp.push(res.data);
         return temp;
       })
       toast.success("Price created successfully!");
@@ -186,7 +192,7 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
                       <Button
                         variant='text'
                         color='secondary'
-                        onClick={changeUpdateModal}
+                        onClick={() => changeUpdateModal(pricing)}
                         className='shadow text-xs'>Edit</Button>
                       <Button
                         variant='text'
@@ -194,15 +200,6 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
                         onClick={() => handleDeletePrice(pricing.id)}
                         className='shadow text-xs'>Delete</Button>
                     </TableCell>
-                    <Modal
-                      open={updateModal}
-                      onClose={changeUpdateModal}>
-                      <UpdatePricing
-                        price={pricing}
-                        handleCancelModal={changeUpdateModal}
-                        setPricing={setPricing}
-                      />
-                    </Modal>
                   </TableRow>
                 ))
               }
@@ -280,6 +277,15 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
             </div>
           </Box>
         </Box>
+      </Modal>
+      <Modal
+        open={updateModal && selectedPrice !== null}
+        onClose={closeUpdateModal}>
+        <UpdatePricing
+          price={selectedPrice}
+          handleCancelModal={closeUpdateModal}
+          setPricing={setPricing}
+        />
       </Modal>
     </div>
   );

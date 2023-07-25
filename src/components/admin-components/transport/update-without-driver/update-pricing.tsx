@@ -5,11 +5,10 @@ import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { forwardRef, useState } from "react";
 import { toast } from "react-toastify";
 import serviceClient from "../../../../rest-api/client/service-client";
-import { PriceWithoutDriverType } from "../../../../types/car-type";
 
 interface PropsType {
   handleCancelModal: any;
-  price: PriceWithoutDriverType;
+  price: any;
   setPricing: any;
 }
 
@@ -39,12 +38,12 @@ const UpdatePricing = forwardRef<HTMLDivElement, PropsType>(({ handleCancelModal
       return;
     }
     try {
-      const res = await serviceClient.carWithoutDriver.updatePrice(price.id, priceInput);
+      const res: any = await serviceClient.carWithoutDriver.updatePrice(price.id, priceInput);
       toast.success("Price updated successfully!");
       setPricing((prev: any) => {
         const temp = JSON.parse(JSON.stringify(prev));
         const index = temp.findIndex((item: any) => item.id === price.id);
-        temp[index] = priceInput;
+        temp[index] = res.data;
         return temp;
       })
       handleCancelModal();
@@ -96,7 +95,7 @@ const UpdatePricing = forwardRef<HTMLDivElement, PropsType>(({ handleCancelModal
     <Box tabIndex={-1} ref={ref} sx={formStyles.modalContainer}>
       <Typography
         sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-        Create New Price
+        Update Price
       </Typography>
       <Box
         sx={formStyles.gridContainer}>

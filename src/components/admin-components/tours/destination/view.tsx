@@ -47,7 +47,7 @@ const ViewDestination = forwardRef<HTMLDivElement, PropsType>(
         <Box sx={formStyles.modalContainer}>
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-            Update Destination
+            View Destination
           </Typography>
           <Box>
             <p> <span style={{ fontWeight: 500 }}>

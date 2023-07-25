@@ -45,7 +45,7 @@ function CarAdminCard({ car }: TransportCardProps) {
             const res = await serviceClient.carWithoutDriver.delete(car.id)
             toast.success('Car deleted successfully!')
             router.push({
-              pathname: '/admin/dashboard'
+              pathname: router.pathname,
             });
           } catch (error) {
             toast.error('Something went wrong!')
@@ -99,7 +99,7 @@ function CarAdminCard({ car }: TransportCardProps) {
           </p>
           <div className="flex justify-end items-center">
             <div className="flex items-center gap-3">
-              <Link href='#'>
+              <Link href={`/admin/transports/update-without/${car.id}`}>
                 <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                   <BiEdit />
                 </Button>

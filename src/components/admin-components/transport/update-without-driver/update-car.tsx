@@ -84,6 +84,7 @@ function UpdateWithoutCar({
                   className="rounded-lg"
                   alt="airport transport"
                   layout="responsive"
+                  priority
                 />
                 <Button
                   onClick={() => setInputData({ ...inputData, thumbnail: '' })}
@@ -204,6 +205,7 @@ function UpdateWithoutCar({
                       className="rounded-lg"
                       alt="airport transport"
                       layout="responsive"
+                      priority
                     />
                     <Button
                       onClick={() => handleRemoveImage(image.id)}

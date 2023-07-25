@@ -5,11 +5,10 @@ import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { forwardRef, useState } from "react";
 import { toast } from "react-toastify";
 import serviceClient from "../../../../rest-api/client/service-client";
-import { HotelPricingTable } from "../../../../types/services";
 
 interface PropsType {
   handleCancelModal: any;
-  price: HotelPricingTable;
+  price: any;
   setPricing: any;
 }
 
@@ -42,7 +41,10 @@ const UpdatePricing = forwardRef<HTMLDivElement, PropsType>(({ handleCancelModal
       setPricing((prev: any) => {
         const temp = JSON.parse(JSON.stringify(prev));
         const index = temp.findIndex((item: any) => item.id === price.id);
-        temp[index] = priceInput;
+        temp[index] = {
+          ...priceInput,
+          id: price.id,
+        };
         return temp;
       })
       handleCancelModal();
