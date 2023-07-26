@@ -31,7 +31,7 @@ export interface TourType {
   thumbnail: string;
   locationImg: string;
   reviews: ReviewTypes[];
-  destination: TourDestination;
+  destination: TourDestinationType;
   includesServices: TourService[];
   excludeServices: TourService[];
   images: ImageType[];
@@ -52,7 +52,7 @@ export interface DeparturesPricing {
   price: number;
 }
 
-export interface TourDestination {
+export interface TourDestinationType {
   id: number;
   createdAt: string;
   updatedAt: string;

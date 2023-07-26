@@ -4,12 +4,12 @@ import { Button, ButtonGroup, Modal, TableCell, TableRow } from "@mui/material";
 import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { TourDestination } from "../../../../types/tour";
+import { TourDestinationType } from "../../../../types/tour";
 import UpdateDestination from "./update";
 import ViewDestination from "./view";
 
 interface PropsType {
-  destination: TourDestination;
+  destination: TourDestinationType;
   handleDelete: any;
 }
 

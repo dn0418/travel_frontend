@@ -3,7 +3,7 @@ import type { ReactElement, ReactNode } from "react";
 import { AirportTransportType, CarWithDriverType, CarWithOutType } from "./car-type";
 import { FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType } from "./index";
 import { TourAccessoryType } from "./services";
-import { TourDestination, TourType } from "./tour";
+import { TourDestinationType, TourType } from "./tour";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -12,7 +12,7 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 export interface HomePageProps {
   reviews: ReviewTypes[];
   tours: TourType[];
-  destinations: TourDestination[];
+  destinations: TourDestinationType[];
 }
 
 export interface BlogPageProps {
@@ -48,7 +48,7 @@ export interface SearchPageProps {
     totalPages: number;
     limit: number;
   };
-  destinations: TourDestination[];
+  destinations: TourDestinationType[];
   typeItems: any;
 }
 

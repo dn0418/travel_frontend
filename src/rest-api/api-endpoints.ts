@@ -14,7 +14,7 @@ export const API_ENDPOINTS = {
   ACCESSORY_TYPE: "/accessory-type",
   RIDE_PLAN: "/ride-plan",
   NEW_RIDE_PLAN: "/ride-plan/create",
-  NEW_CALLBACK: "/call-back/create",
+  CALLBACK: "/call-back",
   THING_TO_SEE: "/thing-to-see",
   THING_TO_DO: "/thing-to-do",
   FOOD_AND_DRINKS: "/food-and-drinks",

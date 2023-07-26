@@ -151,3 +151,46 @@ export interface FoodAndDrinksType {
   images: ImageType[];
   rating: number;
 }
+
+export interface CallbackType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  contact: string;
+  phone: string | null;
+  whatsapp: string | null;
+  telegram: string | null;
+  voice: string | null;
+  country: string;
+  timezone: string;
+  note: string;
+}
+
+
+export interface RidePlanDestination {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  duration: string;
+}
+
+export interface RidePlanType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  date: string;
+  adult: number;
+  child: number;
+  rideType: string;
+  note: string;
+  destination: RidePlanDestination[];
+}
+

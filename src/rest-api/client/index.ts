@@ -22,11 +22,23 @@ class Client {
   ridePlan = {
     newRidePlan: (plan: any) =>
       HttpClient.post(API_ENDPOINTS.NEW_RIDE_PLAN, plan),
+    allPlans: (page: any) => HttpClient.get(
+      `${API_ENDPOINTS.RIDE_PLAN}?page=${page}`),
+    deletePlan: (id: any) => HttpClient.delete(
+      `${API_ENDPOINTS.RIDE_PLAN}/delete/${id}`),
+    updatePlan: (id: any, input: any) => HttpClient.put(
+      `${API_ENDPOINTS.RIDE_PLAN}/update/${id}`, input),
+    getPlan: (id: any) => HttpClient.get(`${API_ENDPOINTS.RIDE_PLAN}/${id}`)
   };
 
   callBack = {
     newCallBack: (input: any) =>
-      HttpClient.post(API_ENDPOINTS.NEW_CALLBACK, input),
+      HttpClient.post(`${API_ENDPOINTS.CALLBACK}/create`, input),
+    allCallBack: (page: any) => HttpClient.get(`${API_ENDPOINTS.CALLBACK}?page=${page}`),
+    deleteCallBack: (id: any) => HttpClient.delete(
+      `${API_ENDPOINTS.CALLBACK}/delete/${id}`),
+    updateCallBack: (id: any, input: any) => HttpClient.put(
+      `${API_ENDPOINTS.CALLBACK}/update/${id}`, input),
   };
 
   images = {

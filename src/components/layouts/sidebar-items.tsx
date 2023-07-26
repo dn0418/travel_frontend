@@ -67,6 +67,16 @@ const sidebarItems: SidebarItem[] = [
     icon: <BsFillCaretRightFill />,
     path: '/admin/food-and-drink',
   },
+  {
+    title: 'Call Back',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/callback',
+  },
+  {
+    title: 'Ride Plans',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/ride-plan',
+  },
 ];
 
 function SidebarItem({ title, icon, path, subItems }: SidebarItem) {

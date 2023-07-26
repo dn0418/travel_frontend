@@ -6,11 +6,11 @@ import { useRouter } from "next/router";
 import { forwardRef, useState } from "react";
 import { toast } from "react-toastify";
 import tourClient from "../../../../rest-api/client/tour-client";
-import { TourDestination } from "../../../../types/tour";
+import { TourDestinationType } from "../../../../types/tour";
 
 interface PropsType {
   handleChangeModal: any;
-  destination: TourDestination;
+  destination: TourDestinationType;
 }
 
 const UpdateDestination = forwardRef<HTMLDivElement, PropsType>(

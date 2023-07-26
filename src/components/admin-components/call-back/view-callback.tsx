@@ -3,17 +3,23 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { forwardRef } from "react";
-import { TourDestinationType } from "../../../../types/tour";
+import { CallbackType } from "../../../types";
+import { countries } from "../../../utils/data/countries";
 
 interface PropsType {
   handleChangeModal: any;
-  destination: TourDestinationType;
+  callback: CallbackType;
 }
 
-const ViewDestination = forwardRef<HTMLDivElement, PropsType>(
-  ({ handleChangeModal, destination }, ref) => {
+const ViewCallBack = forwardRef<HTMLDivElement, PropsType>(
+  ({ handleChangeModal, callback }, ref) => {
     const theme = useTheme();
 
+
+    const getCountry = (code: string) => {
+      const find = countries.find(country => country.code === code);
+      return find ? find.name : '';
+    }
 
     const formStyles = {
       modalContainer: {
@@ -47,21 +53,27 @@ const ViewDestination = forwardRef<HTMLDivElement, PropsType>(
         <Box sx={formStyles.modalContainer}>
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-            View Destination
+            View Call Back
           </Typography>
           <Box>
             <p> <span style={{ fontWeight: 500 }}>
-              Name:</span> {destination.name}</p>
+              Name:</span> {callback.firstName + " " + callback.lastName}</p>
             <p><span style={{ fontWeight: 500 }}>
-              Name Russian:</span> {destination.name_ru}</p>
+              Email:</span> {callback.email}</p>
             <p><span style={{ fontWeight: 500 }}>
-              Name Armenian:</span> {destination.name_hy}</p>
+              Country:</span> {getCountry(callback.country)}</p>
             <p><span style={{ fontWeight: 500 }}>
-              Country:</span> {destination.country}</p>
+              Time Zone:</span> {callback.timezone}</p>
             <p><span style={{ fontWeight: 500 }}>
-              Country Russian:</span> {destination.country_ru}</p>
+              Phone:</span> {callback.phone}</p>
             <p><span style={{ fontWeight: 500 }}>
-              Country Armenian:</span> {destination.country_hy}</p>
+              WhatsApp:</span> {callback.whatsapp}</p>
+            <p><span style={{ fontWeight: 500 }}>
+              Telegram:</span> {callback.telegram}</p>
+            <p><span style={{ fontWeight: 500 }}>
+              Voice:</span> {callback.voice}</p>
+            <p><span style={{ fontWeight: 500 }}>
+              Message:</span> {callback.note}</p>
             <div style={formStyles.buttonContainer} className="">
               <Button
                 onClick={handleChangeModal}
@@ -77,6 +89,6 @@ const ViewDestination = forwardRef<HTMLDivElement, PropsType>(
   }
 );
 
-ViewDestination.displayName = 'UpdateDestination';
+ViewCallBack.displayName = 'ViewCallBack';
 
-export default ViewDestination;
+export default ViewCallBack;

@@ -2,12 +2,12 @@
 
 import { Button, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useState } from "react";
-import { TourDestination } from "../../../../types/tour";
+import { TourDestinationType } from "../../../../types/tour";
 import CreateDestination from "./create";
 import SingleDestination from "./single-destination";
 
 interface PropsType {
-  destinations: TourDestination[];
+  destinations: TourDestinationType[];
   handleDelete: any;
 }
 

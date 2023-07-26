@@ -7,12 +7,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
-import { TourDestination } from "../../../types/tour";
+import { TourDestinationType } from "../../../types/tour";
 import { tourTypes } from "../../../utils/data/tours-types";
 import { localizationData } from "../../../utils/locales";
 import CustomSelectInput from "../../common/select";
 
-function FilterSection({ destinations }: { destinations: TourDestination[] }) {
+function FilterSection({ destinations }: { destinations: TourDestinationType[] }) {
   const [filterData, setFilterData] = useState({
     tourType: '',
     destination: '',

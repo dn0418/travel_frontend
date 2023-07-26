@@ -9,11 +9,11 @@ import DashboardLayout from '../../../../src/components/layouts/dashboard-layout
 import tourClient from '../../../../src/rest-api/client/tour-client';
 import { getServerSideProps } from "../../../../src/rest-api/tours/destination.ssr";
 import { NextPageWithLayout } from '../../../../src/types/page-props';
-import { TourDestination } from '../../../../src/types/tour';
+import { TourDestinationType } from '../../../../src/types/tour';
 export { getServerSideProps };
 
 const TourDestination: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const destinations: TourDestination[] = props?.destinationData?.data;
+  const destinations: TourDestinationType[] = props?.destinationData?.data;
   const router = useRouter();
 
   const handleDelete = (id: number) => {
