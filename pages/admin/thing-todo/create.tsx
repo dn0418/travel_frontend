@@ -3,7 +3,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewThingTodo from '../../../src/components/admin-components/thing-todo/create-thing-todo/create-thing-todo';
+import CreateNewThingTodo from '../../../src/components/admin-components/thing-todo/create-thing-todo';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
 import armeniaClient from '../../../src/rest-api/client/armenia-client';
 import { ThingToDoInputType } from '../../../src/types/input-type';

@@ -1,12 +1,11 @@
 // @flow strict
-
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import UpdateNewThingTodo from '../../../../src/components/admin-components/thing-todo/update-thing-todo';
+import UpdateNewThingToSee from '../../../../src/components/admin-components/thing-to-see/update-thing-tosee';
 import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
-import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/armenia/thing-to-do/single-thing-to-do.ssr';
+import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/armenia/thing-to-see/single-thing-to-see.ssr';
 import client from '../../../../src/rest-api/client';
 import armeniaClient from '../../../../src/rest-api/client/armenia-client';
 import { ImageType, ThingToSeeType } from '../../../../src/types';
@@ -15,7 +14,7 @@ import { NextPageWithLayout } from '../../../../src/types/page-props';
 export { getStaticPaths, getStaticProps };
 
 const tabs = [
-  { title: 'Thing To Do Data', value: 'en' },
+  { title: 'Thing To See Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
@@ -64,7 +63,7 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     formData.append("file", file);
 
     try {
-      const response = await fetch('http://localhost:5000/file/upload', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/file/upload`, {
         method: 'POST',
         body: formData
       });
@@ -72,7 +71,7 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
       const data = await response.json();
       if (data?.Location) {
         try {
-          const res: any = await armeniaClient.thingToDo.newImage({
+          const res: any = await armeniaClient.thingToSee.newImage({
             thingId: thingTodo.id,
             url: data.Location
           });
@@ -178,9 +177,9 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     setIsLoading(true);
 
     try {
-      const res = await armeniaClient.thingToDo.updateThing(thingTodo.id, inputData);
-      toast.success('Thing to do updated successfully');
-      router.push('/admin/thing-todo');
+      const res = await armeniaClient.thingToSee.updateThing(thingTodo.id, inputData);
+      toast.success('Thing to see updated successfully');
+      router.push('/admin/thing-to-see');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -191,7 +190,7 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
 
   return (
     <>
-      <UpdateNewThingTodo
+      <UpdateNewThingToSee
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}

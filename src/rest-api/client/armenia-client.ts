@@ -17,6 +17,12 @@ class ArmeniaClient {
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.THING_TO_SEE}/${id}`),
     deleteByID: (id: any) => HttpClient.delete(`${API_ENDPOINTS.THING_TO_SEE}/delete/${id}`),
+    createNewThing: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.THING_TO_SEE}/create`, data),
+    updateThing: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.THING_TO_SEE}/update/${id}`, data),
+    newImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.THING_TO_SEE}/image/create`, data),
   }
 
   thingToDo = {

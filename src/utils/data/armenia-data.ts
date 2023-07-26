@@ -45,3 +45,36 @@ export const thingDoTypes = {
     { title: 'Գնորդավաճառք', value: 'shopping' },
   ]
 }
+
+export const thingsSeeTypes = {
+  en: [
+    { title: 'OLd Road', value: 'old_road' },
+    { title: 'Statues', value: 'statues' },
+    { title: 'Museums', value: 'museums' },
+    { title: 'Soviet Modernism', value: 'soviet_modernism' },
+    { title: 'Churches & Monasteries', value: 'churches_monasteries' },
+    { title: 'Natural Sites', value: 'natural_sites' },
+    { title: 'Archeological sites & founding', value: 'archeological_sites' },
+    { title: 'Abandoned Place', value: 'abandoned_place' },
+  ],
+  ru: [
+    { title: 'Старая дорога', value: 'old_road' },
+    { title: 'Статуи', value: 'statues' },
+    { title: 'Музеи', value: 'museums' },
+    { title: 'Советский модернизм', value: 'soviet_modernism' },
+    { title: 'Церкви и монастыри', value: 'churches_monasteries' },
+    { title: 'Природные места', value: 'natural_sites' },
+    { title: 'Археологические места и основание', value: 'archeological_sites' },
+    { title: 'Заброшенные места', value: 'abandoned_place' },
+  ],
+  hy: [
+    { title: 'Հին ճանապարհ', value: 'old_road' },
+    { title: 'Ստատուերներ', value: 'statues' },
+    { title: 'Թանգարաններ', value: 'museums' },
+    { title: 'Սովետական մոդեռնիզմ', value: 'soviet_modernism' },
+    { title: 'Եկեղեցիներ և վանքեր', value: 'churches_monasteries' },
+    { title: 'Բնակավայրերի բնույթ', value: 'natural_sites' },
+    { title: 'Արեգական հուշարձաններ և հիմնականացում', value: 'archeological_sites' },
+    { title: 'Թուղթատեղեկագիր վայր', value: 'abandoned_place' },
+  ]
+}

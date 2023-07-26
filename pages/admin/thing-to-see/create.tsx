@@ -1,58 +1,52 @@
 // @flow strict
 
-import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import UpdateNewThingTodo from '../../../../src/components/admin-components/thing-todo/update-thing-todo';
-import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
-import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/armenia/thing-to-do/single-thing-to-do.ssr';
-import client from '../../../../src/rest-api/client';
-import armeniaClient from '../../../../src/rest-api/client/armenia-client';
-import { ImageType, ThingToSeeType } from '../../../../src/types';
-import { ThingToDoInputType } from '../../../../src/types/input-type';
-import { NextPageWithLayout } from '../../../../src/types/page-props';
-export { getStaticPaths, getStaticProps };
+import CreateNewThingToSee from '../../../src/components/admin-components/thing-to-see/create-thing-see';
+import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
+import armeniaClient from '../../../src/rest-api/client/armenia-client';
+import { ThingToDoInputType } from '../../../src/types/input-type';
+import { NextPageWithLayout } from '../../../src/types/page-props';
 
 const tabs = [
-  { title: 'Thing To Do Data', value: 'en' },
+  { title: 'New Thing To See Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const thingTodo: ThingToSeeType = props?.thingDetails?.data;
+const CreateThingToSee: NextPageWithLayout = () => {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<ImageType[]>(thingTodo?.images || []);
+  const [images, setImages] = useState<string[]>([]);
   const [inputData, setInputData] = useState<ThingToDoInputType>({
-    isRu: thingTodo?.isRu || false,
-    isHy: thingTodo?.isHy || false,
-    name: thingTodo?.name || "",
-    name_ru: thingTodo?.name_ru || "",
-    name_hy: thingTodo?.name_hy || "",
-    thumbnail: thingTodo?.thumbnail || "",
-    shortDescription: thingTodo?.shortDescription || "",
-    shortDescription_ru: thingTodo?.shortDescription_ru || "",
-    shortDescription_hy: thingTodo?.shortDescription_hy || "",
-    description: thingTodo?.description || "",
-    description_ru: thingTodo?.description_ru || "",
-    description_hy: thingTodo?.description_hy || "",
-    type: thingTodo?.type || "",
-    fromYerevan: thingTodo?.fromYerevan || "",
-    fromYerevan_ru: thingTodo?.fromYerevan_ru || "",
-    fromYerevan_hy: thingTodo?.fromYerevan_hy || "",
-    date: thingTodo?.date || "",
-    neatestSettlement: thingTodo?.neatestSettlement || "",
-    neatestSettlement_ru: thingTodo?.neatestSettlement_ru || "",
-    neatestSettlement_hy: thingTodo?.neatestSettlement_hy || "",
-    available: thingTodo?.available || "",
-    available_ru: thingTodo?.available_ru || "",
-    available_hy: thingTodo?.available_hy || "",
-    entrance: thingTodo?.entrance || "",
-    entrance_ru: thingTodo?.entrance_ru || "",
-    entrance_hy: thingTodo?.entrance_hy || "",
+    isRu: false,
+    isHy: false,
+    name: "",
+    name_ru: "",
+    name_hy: "",
+    thumbnail: "",
+    shortDescription: "",
+    shortDescription_ru: "",
+    shortDescription_hy: "",
+    description: "",
+    description_ru: "",
+    description_hy: "",
+    type: "",
+    fromYerevan: "",
+    fromYerevan_ru: "",
+    fromYerevan_hy: "",
+    date: "",
+    neatestSettlement: "",
+    neatestSettlement_ru: "",
+    neatestSettlement_hy: "",
+    available: "",
+    available_ru: "",
+    available_hy: "",
+    entrance: "",
+    entrance_ru: "",
+    entrance_hy: "",
   });
   const router = useRouter();
 
@@ -71,17 +65,7 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
 
       const data = await response.json();
       if (data?.Location) {
-        try {
-          const res: any = await armeniaClient.thingToDo.newImage({
-            thingId: thingTodo.id,
-            url: data.Location
-          });
-          if (res?.data) {
-            setImages([...images, res?.data]);
-          }
-        } catch (error) {
-          toast.error('Something went wrong!');
-        }
+        setImages([...images, data?.Location]);
       }
     } catch (error) {
       toast.error('Something went wrong!');
@@ -114,14 +98,8 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     }
   }
 
-  const handleRemoveImage = async (id: number) => {
-    try {
-      const res = await client.images.deleteImage(id);
-      setImages(images.filter((image, i) => image.id !== id));
-    } catch (error) {
-      toast.error('Something went wrong!');
-      console.log(error)
-    }
+  const handleRemoveImage = (index: number) => {
+    setImages(images.filter((image, i) => i !== index));
   }
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -177,10 +155,15 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     }
     setIsLoading(true);
 
+    const payload = JSON.stringify({
+      ...inputData,
+      images: images
+    });
+
     try {
-      const res = await armeniaClient.thingToDo.updateThing(thingTodo.id, inputData);
-      toast.success('Thing to do updated successfully');
-      router.push('/admin/thing-todo');
+      const res = await armeniaClient.thingToSee.createNewThing(payload);
+      toast.success('Thing to see created successfully');
+      router.push('/admin/thing-to-see');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -191,7 +174,7 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
 
   return (
     <>
-      <UpdateNewThingTodo
+      <CreateNewThingToSee
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -210,8 +193,8 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
   );
 };
 
-CreateThingTodo.getLayout = function getLayout(page) {
+CreateThingToSee.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default CreateThingTodo;
+export default CreateThingToSee;

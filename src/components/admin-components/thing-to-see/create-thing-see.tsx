@@ -1,11 +1,10 @@
 import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
-import { ImageType } from "../../../../types";
-import { ThingToDoInputType } from "../../../../types/input-type";
-import { thingDoTypes } from "../../../../utils/data/armenia-data";
-import SunTextEditor from "../../../common/SunEditor";
-import SectionTitle from "../../../common/section-title";
+import { ThingToDoInputType } from "../../../types/input-type";
+import { thingsSeeTypes } from "../../../utils/data/armenia-data";
+import SunTextEditor from "../../common/SunEditor";
+import SectionTitle from "../../common/section-title";
 
 interface PropsType {
   handleImageChange: any;
@@ -21,7 +20,7 @@ interface PropsType {
     value: string;
   }[];
   uploading: boolean;
-  images: ImageType[];
+  images: string[];
   inputData: ThingToDoInputType;
   setInputData: any;
   handleSubmit: any;
@@ -29,7 +28,7 @@ interface PropsType {
   isLoading: boolean;
 }
 
-function UpdateNewThingTodo({
+function CreateNewThingToSee({
   currentTab,
   handleImageChange,
   inputData,
@@ -63,7 +62,7 @@ function UpdateNewThingTodo({
             }
           </Tabs>
         </div>
-        <SectionTitle title="Update Thing Todo" />
+        <SectionTitle title="Create New Thing To See" />
       </div>
       <div hidden={currentTab.value !== 'en'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -108,7 +107,7 @@ function UpdateNewThingTodo({
           }
           <div className="col-span-2"></div>
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Thing Todo Type</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Thing To See Type</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               value={inputData?.type}
@@ -116,7 +115,7 @@ function UpdateNewThingTodo({
               name="type"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             >
-              {thingDoTypes.en.map((type) => (
+              {thingsSeeTypes.en.map((type) => (
                 <MenuItem key={type.value} value={type.value}>
                   {type.title}
                 </MenuItem>
@@ -178,31 +177,31 @@ function UpdateNewThingTodo({
             value={inputData.shortDescription}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Thing Todo Description</p>
+            <p className="font-medium uppercase">Thing To See Description</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('description', text)}
               text={inputData.description}
             />
           </div>
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Thing Todo Images</p>
+            <p className="font-medium uppercase">Thing To See Images</p>
             <div
               className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2
              lg:grid-cols-3  gap-4">
               {
                 images?.length > 0 &&
-                images.map((image: ImageType, i: number) => (
+                images.map((image: string, i: number) => (
                   <div key={i} className="w-full relative">
                     <Image
                       width={1000}
                       height={500}
-                      src={image.url}
+                      src={image}
                       className="rounded-lg"
                       alt="airport transport"
                       layout="responsive"
                     />
                     <Button
-                      onClick={() => handleRemoveImage(image.id)}
+                      onClick={() => handleRemoveImage(i)}
                       className="absolute min-w-fit shadow py-0 px-[5px] text-sm
                      -top-1 -right-1 bg-red-600 text-white rounded-full">X</Button>
                   </div>
@@ -238,7 +237,7 @@ function UpdateNewThingTodo({
             onClick={handleSubmit}
             className="py-3"
             variant="contained">
-            {isLoading ? "Updating..." : "Update Thing Todo"}
+            {isLoading ? "Creating..." : "Create Thing To See"}
           </Button>
         </div>
       </div>
@@ -301,7 +300,7 @@ function UpdateNewThingTodo({
             value={inputData.shortDescription_ru}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Thing Todo Description(ru)</p>
+            <p className="font-medium uppercase">Thing To See Description(ru)</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('description_ru', text)}
               text={inputData.description_ru}
@@ -368,7 +367,7 @@ function UpdateNewThingTodo({
             value={inputData.shortDescription_hy}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Thing Todo Description(hy)</p>
+            <p className="font-medium uppercase">Thing To See Description(hy)</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('description_hy', text)}
               text={inputData.description_hy}
@@ -380,4 +379,4 @@ function UpdateNewThingTodo({
   );
 };
 
-export default UpdateNewThingTodo;
+export default CreateNewThingToSee;

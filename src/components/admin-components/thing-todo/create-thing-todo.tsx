@@ -1,10 +1,10 @@
 import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
-import { ThingToDoInputType } from "../../../../types/input-type";
-import { thingDoTypes } from "../../../../utils/data/armenia-data";
-import SunTextEditor from "../../../common/SunEditor";
-import SectionTitle from "../../../common/section-title";
+import { ThingToDoInputType } from "../../../types/input-type";
+import { thingDoTypes } from "../../../utils/data/armenia-data";
+import SunTextEditor from "../../common/SunEditor";
+import SectionTitle from "../../common/section-title";
 
 interface PropsType {
   handleImageChange: any;
