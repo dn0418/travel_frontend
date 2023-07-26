@@ -26,6 +26,7 @@ function ThingToDoDetailsUI({ thing, things, reviews }: PropsType) {
       </Container>
       <DoReviewSection
         thing={thing}
+        reviews={reviews}
       />
     </div>
   );

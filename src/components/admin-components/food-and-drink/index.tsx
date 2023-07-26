@@ -1,6 +1,7 @@
 // @flow strict
 
-import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { Button, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { FoodAndDrinksType } from "../../../types";
 import FoodAndDrinkAdminCard from "../../admin-cards/food-drink-admin-card";
@@ -23,6 +24,13 @@ function FoodAndDrinksDashboard({
   return (
     <Container className='flex flex-col items-center'>
       <div className='my-4 w-full md:my-8'>
+        <div className="flex justify-end">
+          <Link href='/admin/food-and-drink/create'>
+            <Button color="secondary" variant="contained">
+              Create New Food and Drinks
+            </Button>
+          </Link>
+        </div>
         <div className="flex flex-col md:flex-row items-center w-full justify-between">
           <SectionTitle title="Food And Drinks" />
           <div className="">

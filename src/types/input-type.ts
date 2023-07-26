@@ -110,3 +110,35 @@ export interface ThingToDoInputType {
   entrance_ru: string;
   entrance_hy: string;
 }
+
+export interface FoodAndDrinkInputType {
+  [key: string]: any;
+  isRu: boolean;
+  isHy: boolean;
+  name: string;
+  name_ru: string;
+  name_hy: string;
+  thumbnail: string;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  type: string;
+  fromYerevan: string;
+  fromYerevan_ru: string;
+  fromYerevan_hy: string;
+  address: string;
+  address_ru: string;
+  address_hy: string;
+  neatestSettlement: string;
+  neatestSettlement_ru: string;
+  neatestSettlement_hy: string;
+  vegan: string;
+  vegan_ru: string;
+  vegan_hy: string;
+  entrance: string;
+  entrance_ru: string;
+  entrance_hy: string;
+}

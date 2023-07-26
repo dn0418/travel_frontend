@@ -100,7 +100,7 @@ function FoodAndDrinkAdminCard({ foodDrink }: FoodAndDrinkCardProps) {
 
           <div className="flex justify-end items-end">
             <div className="flex items-center gap-3">
-              <Link href='#'>
+              <Link href={`/admin/food-and-drink/update/${foodDrink.id}`}>
                 <Button color='secondary' className='shadow min-w-fit py-2 px-5 text-lg'>
                   <BiEdit />
                 </Button>

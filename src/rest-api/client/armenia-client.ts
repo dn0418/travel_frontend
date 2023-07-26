@@ -46,6 +46,12 @@ class ArmeniaClient {
     ),
     delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.FOOD_AND_DRINKS}/delete/${id}`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.FOOD_AND_DRINKS}/${id}`),
+    createNew: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.FOOD_AND_DRINKS}/create`, data),
+    update: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.FOOD_AND_DRINKS}/update/${id}`, data),
+    newImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.FOOD_AND_DRINKS}/image/create`, data),
   }
 }
 

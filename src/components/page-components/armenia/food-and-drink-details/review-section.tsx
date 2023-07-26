@@ -3,14 +3,18 @@
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FoodAndDrinksType } from "../../../../types";
+import { FoodAndDrinksType, ReviewTypes } from "../../../../types";
 import { localizationData } from "../../../../utils/locales";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
-function FoodAndDrinkReviewSection({ foodAndDrink }: { foodAndDrink: FoodAndDrinksType }) {
-  const { reviews } = foodAndDrink;
+interface PropsType {
+  reviews: ReviewTypes[];
+  foodAndDrink: FoodAndDrinksType;
+}
+
+function FoodAndDrinkReviewSection({ foodAndDrink, reviews }: PropsType) {
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
   const { locale } = useRouter();

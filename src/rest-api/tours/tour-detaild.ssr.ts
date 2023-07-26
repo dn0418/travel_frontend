@@ -31,10 +31,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const tourDetails = await tourClient.tours.getByID(id);
     const toursData = await tourClient.tours.all();
+    const reviews = await tourClient.reviews.tourReview(id);
+
     return {
       props: {
         tourDetails: tourDetails,
-        toursData: toursData
+        toursData: toursData,
+        tourReviews: reviews,
       },
       revalidate: 30,
     };

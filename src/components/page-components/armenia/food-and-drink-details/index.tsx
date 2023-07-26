@@ -26,6 +26,7 @@ function FoodAndDrinkDetailsUI({ foodAndDrinkDetails, foodAndDrinks, reviews }: 
       </Container>
       <FoodAndDrinkReviewSection
         foodAndDrink={foodAndDrinkDetails}
+        reviews={reviews}
       />
     </div>
   );

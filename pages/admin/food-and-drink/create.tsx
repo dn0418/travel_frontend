@@ -3,25 +3,25 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewThingToSee from '../../../src/components/admin-components/thing-to-see/create-thing-see';
+import CreateNewFoodAndDrink from '../../../src/components/admin-components/food-and-drink/create-food-and-drink';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
 import armeniaClient from '../../../src/rest-api/client/armenia-client';
-import { ThingToDoInputType } from '../../../src/types/input-type';
+import { FoodAndDrinkInputType } from '../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../src/types/page-props';
 
 const tabs = [
-  { title: 'New Thing To See Data', value: 'en' },
+  { title: 'New Food and Drink Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateThingToSee: NextPageWithLayout = () => {
+const CreateFoodAndDrink: NextPageWithLayout = () => {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<string[]>([]);
-  const [inputData, setInputData] = useState<ThingToDoInputType>({
-    isRu: false,
+  const [inputData, setInputData] = useState<FoodAndDrinkInputType>({
+    isRu: true,
     isHy: false,
     name: "",
     name_ru: "",
@@ -37,13 +37,15 @@ const CreateThingToSee: NextPageWithLayout = () => {
     fromYerevan: "",
     fromYerevan_ru: "",
     fromYerevan_hy: "",
-    date: "",
+    address: "",
+    address_ru: "",
+    address_hy: "",
     neatestSettlement: "",
     neatestSettlement_ru: "",
     neatestSettlement_hy: "",
-    available: "",
-    available_ru: "",
-    available_hy: "",
+    vegan: "",
+    vegan_ru: "",
+    vegan_hy: "",
     entrance: "",
     entrance_ru: "",
     entrance_hy: "",
@@ -118,18 +120,18 @@ const CreateThingToSee: NextPageWithLayout = () => {
       "description",
       "type",
       "fromYerevan",
-      "date",
-      "available",
+      "address",
+      "vegan",
       "neatestSettlement",
       "entrance"
     ];
 
     if (inputData.isRu) {
-      requiredFields.push("name_ru", "shortDescription_ru", "description_ru", "fromYerevan_ru", "available_ru", "neatestSettlement_ru", "entrance_ru");
+      requiredFields.push("name_ru", "shortDescription_ru", "description_ru", "fromYerevan_ru", "address_ru", "vegan_ru", "neatestSettlement_ru", "entrance_ru");
     }
 
     if (inputData.isHy) {
-      requiredFields.push("name_hy", "shortDescription_hy", "description_hy", "fromYerevan_hy", "available_hy", "neatestSettlement_hy", "entrance_hy");
+      requiredFields.push("name_hy", "shortDescription_hy", "description_hy", "fromYerevan_hy", "address_hy", "vegan_hy", "neatestSettlement_hy", "entrance_hy");
     }
 
     const missingFields = requiredFields.filter((field) => !inputData[field]);
@@ -161,9 +163,9 @@ const CreateThingToSee: NextPageWithLayout = () => {
     });
 
     try {
-      const res = await armeniaClient.thingToSee.createNewThing(payload);
-      toast.success('Thing to see created successfully');
-      router.push('/admin/thing-to-see');
+      const res = await armeniaClient.foodAndDrinks.createNew(payload);
+      toast.success('New food and drink data created successfully');
+      router.push('/admin/food-and-drink');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -174,7 +176,7 @@ const CreateThingToSee: NextPageWithLayout = () => {
 
   return (
     <>
-      <CreateNewThingToSee
+      <CreateNewFoodAndDrink
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -193,8 +195,8 @@ const CreateThingToSee: NextPageWithLayout = () => {
   );
 };
 
-CreateThingToSee.getLayout = function getLayout(page) {
+CreateFoodAndDrink.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default CreateThingToSee;
+export default CreateFoodAndDrink;

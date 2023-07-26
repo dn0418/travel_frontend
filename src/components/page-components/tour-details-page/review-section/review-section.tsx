@@ -3,14 +3,19 @@
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { ReviewTypes } from "../../../../types";
 import { TourType } from "../../../../types/tour";
 import { localizationData } from "../../../../utils/locales";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
-function ReviewSection({ tour }: { tour: TourType }) {
-  const { reviews } = tour;
+interface PropsType {
+  reviews: ReviewTypes[];
+  tour: TourType;
+}
+
+function ReviewSection({ tour, reviews }: PropsType) {
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
   const { locale } = useRouter();

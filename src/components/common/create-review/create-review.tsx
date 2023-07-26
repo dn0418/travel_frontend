@@ -261,6 +261,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
             <div style={formStyles.buttonContainer} className="">
               <Button
                 onClick={handleChangeModal}
+                color="secondary"
                 variant="outlined">
                 Cancle
               </Button>

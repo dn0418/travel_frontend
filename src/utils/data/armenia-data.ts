@@ -78,3 +78,24 @@ export const thingsSeeTypes = {
     { title: 'Թուղթատեղեկագիր վայր', value: 'abandoned_place' },
   ]
 }
+
+export const foodAndDrinksTypes = {
+  en: [
+    { title: 'Cafes', value: 'cafes' },
+    { title: 'Village Yards', value: 'village_yards' },
+    { title: 'Restaurants', value: 'restaurants' },
+    { title: 'Wineries', value: 'wineries' },
+  ],
+  ru: [
+    { title: 'Кафе', value: 'cafes' },
+    { title: 'Дворы деревень', value: 'village_yards' },
+    { title: 'Рестораны', value: 'restaurants' },
+    { title: 'Винодельни', value: 'wineries' },
+  ],
+  hy: [
+    { title: 'Սրճարաններ', value: 'cafes' },
+    { title: 'Հուշահամալիրներ', value: 'village_yards' },
+    { title: 'Ռեստորաններ', value: 'restaurants' },
+    { title: 'Գինիների արտադրամասեր', value: 'wineries' },
+  ]
+}

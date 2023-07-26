@@ -26,6 +26,7 @@ function ThingToSeeDetailsUI({ thing, things, reviews }: PropsType) {
       </Container>
       <SeeReviewSection
         thing={thing}
+        reviews={reviews}
       />
     </div>
   );

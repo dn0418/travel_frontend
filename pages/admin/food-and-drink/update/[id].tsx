@@ -3,55 +3,57 @@ import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import UpdateNewThingToSee from '../../../../src/components/admin-components/thing-to-see/update-thing-tosee';
+import UpdateAdminFoodDrink from '../../../../src/components/admin-components/food-and-drink/update-food-drink';
 import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
-import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/armenia/thing-to-see/single-thing-to-see.ssr';
+import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/armenia/food-and-drinks/details.ssr';
 import client from '../../../../src/rest-api/client';
 import armeniaClient from '../../../../src/rest-api/client/armenia-client';
-import { ImageType, ThingToSeeType } from '../../../../src/types';
-import { ThingToDoInputType } from '../../../../src/types/input-type';
+import { FoodAndDrinksType, ImageType } from '../../../../src/types';
+import { FoodAndDrinkInputType } from '../../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../../src/types/page-props';
 export { getStaticPaths, getStaticProps };
 
 const tabs = [
-  { title: 'Thing To See Data', value: 'en' },
+  { title: 'Food and Drink Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
 
 const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const thingTodo: ThingToSeeType = props?.thingDetails?.data;
+  const foodAndDrink: FoodAndDrinksType = props?.foodAndDrinkDetails?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<ImageType[]>(thingTodo?.images || []);
-  const [inputData, setInputData] = useState<ThingToDoInputType>({
-    isRu: thingTodo?.isRu || false,
-    isHy: thingTodo?.isHy || false,
-    name: thingTodo?.name || "",
-    name_ru: thingTodo?.name_ru || "",
-    name_hy: thingTodo?.name_hy || "",
-    thumbnail: thingTodo?.thumbnail || "",
-    shortDescription: thingTodo?.shortDescription || "",
-    shortDescription_ru: thingTodo?.shortDescription_ru || "",
-    shortDescription_hy: thingTodo?.shortDescription_hy || "",
-    description: thingTodo?.description || "",
-    description_ru: thingTodo?.description_ru || "",
-    description_hy: thingTodo?.description_hy || "",
-    type: thingTodo?.type || "",
-    fromYerevan: thingTodo?.fromYerevan || "",
-    fromYerevan_ru: thingTodo?.fromYerevan_ru || "",
-    fromYerevan_hy: thingTodo?.fromYerevan_hy || "",
-    date: thingTodo?.date || "",
-    neatestSettlement: thingTodo?.neatestSettlement || "",
-    neatestSettlement_ru: thingTodo?.neatestSettlement_ru || "",
-    neatestSettlement_hy: thingTodo?.neatestSettlement_hy || "",
-    available: thingTodo?.available || "",
-    available_ru: thingTodo?.available_ru || "",
-    available_hy: thingTodo?.available_hy || "",
-    entrance: thingTodo?.entrance || "",
-    entrance_ru: thingTodo?.entrance_ru || "",
-    entrance_hy: thingTodo?.entrance_hy || "",
+  const [images, setImages] = useState<ImageType[]>(foodAndDrink?.images || []);
+  const [inputData, setInputData] = useState<FoodAndDrinkInputType>({
+    isRu: foodAndDrink?.isRu || false,
+    isHy: foodAndDrink?.isHy || false,
+    name: foodAndDrink?.name || "",
+    name_ru: foodAndDrink?.name_ru || "",
+    name_hy: foodAndDrink?.name_hy || "",
+    thumbnail: foodAndDrink?.thumbnail || "",
+    shortDescription: foodAndDrink?.shortDescription || "",
+    shortDescription_ru: foodAndDrink?.shortDescription_ru || "",
+    shortDescription_hy: foodAndDrink?.shortDescription_hy || "",
+    description: foodAndDrink?.description || "",
+    description_ru: foodAndDrink?.description_ru || "",
+    description_hy: foodAndDrink?.description_hy || "",
+    type: foodAndDrink?.type || "",
+    fromYerevan: foodAndDrink?.fromYerevan || "",
+    fromYerevan_ru: foodAndDrink?.fromYerevan_ru || "",
+    fromYerevan_hy: foodAndDrink?.fromYerevan_hy || "",
+    address: foodAndDrink?.address || "",
+    address_ru: foodAndDrink?.address_ru || "",
+    address_hy: foodAndDrink?.address_hy || "",
+    neatestSettlement: foodAndDrink?.neatestSettlement || "",
+    neatestSettlement_ru: foodAndDrink?.neatestSettlement_ru || "",
+    neatestSettlement_hy: foodAndDrink?.neatestSettlement_hy || "",
+    vegan: foodAndDrink?.vegan || "",
+    vegan_ru: foodAndDrink?.vegan_ru || "",
+    vegan_hy: foodAndDrink?.vegan_hy || "",
+    entrance: foodAndDrink?.entrance || "",
+    entrance_ru: foodAndDrink?.entrance_ru || "",
+    entrance_hy: foodAndDrink?.entrance_hy || "",
   });
   const router = useRouter();
 
@@ -71,8 +73,8 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
       const data = await response.json();
       if (data?.Location) {
         try {
-          const res: any = await armeniaClient.thingToSee.newImage({
-            thingId: thingTodo.id,
+          const res: any = await armeniaClient.foodAndDrinks.newImage({
+            foodId: foodAndDrink.id,
             url: data.Location
           });
           if (res?.data) {
@@ -139,18 +141,18 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
       "description",
       "type",
       "fromYerevan",
-      "date",
-      "available",
+      "address",
+      "vegan",
       "neatestSettlement",
       "entrance"
     ];
 
     if (inputData.isRu) {
-      requiredFields.push("name_ru", "shortDescription_ru", "description_ru", "fromYerevan_ru", "available_ru", "neatestSettlement_ru", "entrance_ru");
+      requiredFields.push("name_ru", "shortDescription_ru", "description_ru", "fromYerevan_ru", "address_ru", "vegan_ru", "neatestSettlement_ru", "entrance_ru");
     }
 
     if (inputData.isHy) {
-      requiredFields.push("name_hy", "shortDescription_hy", "description_hy", "fromYerevan_hy", "available_hy", "neatestSettlement_hy", "entrance_hy");
+      requiredFields.push("name_hy", "shortDescription_hy", "description_hy", "fromYerevan_hy", "address_hy", "vegan_hy", "neatestSettlement_hy", "entrance_hy");
     }
 
     const missingFields = requiredFields.filter((field) => !inputData[field]);
@@ -177,9 +179,9 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     setIsLoading(true);
 
     try {
-      const res = await armeniaClient.thingToSee.updateThing(thingTodo.id, inputData);
-      toast.success('Thing to see updated successfully');
-      router.push('/admin/thing-to-see');
+      const res = await armeniaClient.foodAndDrinks.update(foodAndDrink.id, inputData);
+      toast.success('Food and drink updated successfully');
+      router.push('/admin/food-and-drink');
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -190,7 +192,7 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
 
   return (
     <>
-      <UpdateNewThingToSee
+      <UpdateAdminFoodDrink
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}

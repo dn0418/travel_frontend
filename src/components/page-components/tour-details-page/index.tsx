@@ -1,5 +1,6 @@
 // @flow strict
 import { Container } from "@mui/material";
+import { ReviewTypes } from "../../../types";
 import { TourType } from "../../../types/tour";
 import PackageDetails from "./package-details/package-details";
 import TourPriceTable from "./package-details/tour-price-table";
@@ -13,9 +14,10 @@ import TourSpecification from "./tour-specification";
 interface PropsType {
   tour: TourType;
   tours: TourType[];
+  reviews: ReviewTypes[];
 }
 
-function TourDetailsUI({ tour, tours }: PropsType) {
+function TourDetailsUI({ tour, tours, reviews }: PropsType) {
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>
@@ -31,7 +33,10 @@ function TourDetailsUI({ tour, tours }: PropsType) {
         <TourPriceTable tour={tour} />
       </Container>
       <RelatedTourSection tours={tours} />
-      <ReviewSection tour={tour} />
+      <ReviewSection
+        reviews={reviews}
+        tour={tour}
+      />
     </div>
   );
 }

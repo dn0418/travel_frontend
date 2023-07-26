@@ -3,14 +3,18 @@
 import { Button, Container, Modal, Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { ThingToSeeType } from "../../../../types";
+import { ReviewTypes, ThingToSeeType } from "../../../../types";
 import { localizationData } from "../../../../utils/locales";
 import ReviewCard from "../../../cards/review-card";
 import CreateNewReview from "../../../common/create-review/create-review";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
-function SeeReviewSection({ thing }: { thing: ThingToSeeType }) {
-  const { reviews } = thing;
+interface PropsType {
+  reviews: ReviewTypes[];
+  thing: ThingToSeeType;
+}
+
+function SeeReviewSection({ thing, reviews }: PropsType) {
   const [isReviewShow, setIsReviewShow] = useState(false);
   const [page, setPage] = useState(1);
   const { locale } = useRouter();

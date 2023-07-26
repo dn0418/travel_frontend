@@ -9,11 +9,18 @@ export { getStaticPaths, getStaticProps };
 
 const TourDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { tourDetails, toursData } = props;
+  const tour = tourDetails.data;
   const tours = toursData.data;
+  const reviews = props?.tourReviews?.data;
+  const metadata = props?.tourReviews?.meta;
 
   return (
     <>
-      <TourDetailsUI tour={tourDetails.data} tours={tours} />
+      <TourDetailsUI
+        tour={tour}
+        tours={tours}
+        reviews={reviews}
+      />
     </>
   );
 };
