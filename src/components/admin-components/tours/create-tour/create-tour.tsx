@@ -1,8 +1,7 @@
 import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
-import { TourInputType } from "../../../../types/input-type";
-import { DeparturesPricing, IndividualPricing, TourDestinationType, TourRouteType } from "../../../../types/tour";
+import { CreateTourPropsType } from "../../../../types/tour";
 import { tourTypes } from "../../../../utils/data/tours-types";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
@@ -11,42 +10,6 @@ import CreateIndividualPricing from "./individual-pricing";
 import TourThumbnail from "./thumbnail";
 import CreateTourRoute from "./tour-route";
 import CreateTourServices from "./tour-services";
-
-interface PropsType {
-  handleImageChange: any;
-  uploadThumbnail: any;
-  uploadLocation: any;
-  handleRemoveImage: any;
-  handleTabChange: any;
-  currentTab: {
-    title: string;
-    value: string;
-  };
-  tabs: {
-    title: string;
-    value: string;
-  }[];
-  uploading: boolean;
-  images: string[];
-  inputData: TourInputType;
-  setInputData: any;
-  handleSubmit: any;
-  setIndividualPricing: any;
-  setDeparturesPricing: any;
-  individualPricing: IndividualPricing[];
-  departuresPricing: DeparturesPricing[];
-  handleInputChange: (name: string, value: string) => void;
-  isLoading: boolean;
-  destinations: TourDestinationType[];
-  routes: TourRouteType[];
-  setRoutes: any;
-  includeServices: any[];
-  setIncludeServices: any;
-  excludeServices: any[];
-  setExcludeServices: any;
-  saveData: any;
-  childList: any[];
-}
 
 function CreateNewTour({
   currentTab,
@@ -76,7 +39,7 @@ function CreateNewTour({
   setExcludeServices,
   childList,
   saveData
-}: PropsType) {
+}: CreateTourPropsType) {
 
   return (
     <div className="w-full my-8">
@@ -386,7 +349,7 @@ function CreateNewTour({
             value={inputData.shortDescription_ru}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Hotel Description(ru)</p>
+            <p className="font-medium uppercase">Tour Description(ru)</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('longDescription_ru', text)}
               text={inputData.longDescription_ru}
@@ -432,7 +395,7 @@ function CreateNewTour({
             value={inputData.shortDescription_hy}
           />
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Hotel Description(hy)</p>
+            <p className="font-medium uppercase">Tour Description(hy)</p>
             <SunTextEditor
               onChange={(text: string) => handleInputChange('longDescription_hy', text)}
               text={inputData.longDescription_hy}

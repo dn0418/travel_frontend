@@ -16,14 +16,14 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { DeparturesPricing } from '../../../../types/tour';
+import { DeparturesPricing, TourType } from '../../../../types/tour';
 
 interface PropsType {
-  pricing: DeparturesPricing[],
-  setPricing: any,
+  tourDetails: TourType,
 }
 
-function CreateDeparturesPricing({ pricing, setPricing }: PropsType) {
+function UpdateDeparturesPricing({ tourDetails }: PropsType) {
+  const [departuresPricing, setDeparturesPricing] = useState<DeparturesPricing[]>(tourDetails.departuresPricing || []);
   const [openModal, setOpenModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
     startDate: '',
@@ -51,7 +51,7 @@ function CreateDeparturesPricing({ pricing, setPricing }: PropsType) {
       return;
     }
 
-    setPricing((previewData: any) => {
+    setDeparturesPricing((previewData: any) => {
       const temp = JSON.parse(JSON.stringify(previewData));
       temp.push({
         ...priceInput,
@@ -118,7 +118,7 @@ function CreateDeparturesPricing({ pricing, setPricing }: PropsType) {
             </TableHead>
             <TableBody>
               {
-                pricing.map((pricing, index: number) => (
+                departuresPricing.map((pricing, index: number) => (
                   <TableRow key={index}>
                     <TableCell align="center">{pricing.startDate}</TableCell>
                     <TableCell align="center">{pricing.endDate} </TableCell>
@@ -199,4 +199,4 @@ function CreateDeparturesPricing({ pricing, setPricing }: PropsType) {
   );
 }
 
-export default CreateDeparturesPricing;
+export default UpdateDeparturesPricing;

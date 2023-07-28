@@ -1,77 +1,31 @@
-import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
-import Image from "next/legacy/image";
-import { MdCloudUpload } from "react-icons/md";
-import { TourInputType } from "../../../../types/input-type";
-import { DeparturesPricing, IndividualPricing, TourDestinationType, TourRouteType } from "../../../../types/tour";
+import { Button, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { UpdateTourPropsType } from "../../../../types/tour";
+import { tourTypes } from "../../../../utils/data/tours-types";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
-import CreateDeparturesPricing from "./departures-pricing";
+import UpdateDeparturesPricing from "./departures-pricing";
 import CreateIndividualPricing from "./individual-pricing";
 import TourThumbnail from "./thumbnail";
-import CreateTourRoute from "./tour-route";
-import CreateTourServices from "./tour-services";
+import TourImages from "./tour-images";
+import UpdateTourRoute from "./tour-route";
+import UpdateTourServices from "./tour-services";
 
-interface PropsType {
-  handleImageChange: any;
-  uploadThumbnail: any;
-  uploadLocation: any;
-  handleRemoveImage: any;
-  handleTabChange: any;
-  currentTab: {
-    title: string;
-    value: string;
-  };
-  tabs: {
-    title: string;
-    value: string;
-  }[];
-  uploading: boolean;
-  images: string[];
-  inputData: TourInputType;
-  setInputData: any;
-  handleSubmit: any;
-  setIndividualPricing: any;
-  setDeparturesPricing: any;
-  individualPricing: IndividualPricing[];
-  departuresPricing: DeparturesPricing[];
-  handleInputChange: (name: string, value: string) => void;
-  isLoading: boolean;
-  destinations: TourDestinationType[];
-  routes: TourRouteType[];
-  setRoutes: any;
-  includeServices: string[];
-  setIncludeServices: any;
-  excludeServices: string[];
-  setExcludeServices: any;
-}
-
-function UpdateTourData({
+function UpdateAdminTour({
   currentTab,
-  handleImageChange,
   inputData,
-  handleRemoveImage,
   handleTabChange,
-  images,
   setInputData,
   uploading,
   uploadThumbnail,
   tabs,
   handleSubmit,
   handleInputChange,
-  individualPricing,
-  setIndividualPricing,
   isLoading,
   destinations,
   uploadLocation,
-  setDeparturesPricing,
-  departuresPricing,
-  routes,
-  setRoutes,
-  includeServices,
-  excludeServices,
-  setIncludeServices,
-  setExcludeServices,
-}: PropsType) {
+  childList,
+  tourDetails
+}: UpdateTourPropsType) {
 
   return (
     <div className="w-full my-8">
@@ -91,8 +45,11 @@ function UpdateTourData({
             }
           </Tabs>
         </div>
-        <SectionTitle title="Create New Tour" />
+        <div className="w-full flex justify-start px-5 lg:px-12 ">
+          <SectionTitle title="Update Tour Data" />
+        </div>
       </div>
+
       <div hidden={currentTab.value !== 'en'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <TourThumbnail
@@ -126,6 +83,38 @@ function UpdateTourData({
             >
               {destinations.map((type) => (
                 <MenuItem key={type.id} value={type.id}>
+                  {type.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='demo-simple-select-label'>Tour main Type</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              value={inputData?.mainList}
+              label='Tour main Type'
+              name="mainList"
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+            >
+              {tourTypes.en.map((type, i) => (
+                <MenuItem key={i} value={type.value}>
+                  {type.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='demo-simple-select-label'>Tour main Type</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              value={inputData?.childList}
+              label='Tour child Type'
+              name="childList"
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+            >
+              {childList.map((type) => (
+                <MenuItem key={type.id} value={type.value}>
                   {type.name}
                 </MenuItem>
               ))}
@@ -225,77 +214,27 @@ function UpdateTourData({
             />
           </div>
           <div className="col-span-2 w-full">
-            <p className="font-medium uppercase">Tour Images</p>
-            <div
-              className="grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2
-             lg:grid-cols-3  gap-4">
-              {
-                images?.length > 0 &&
-                images.map((image: string, i: number) => (
-                  <div key={i} className="w-full relative">
-                    <Image
-                      width={1000}
-                      height={500}
-                      src={image}
-                      className="rounded-lg"
-                      alt="airport transport"
-                      layout="responsive"
-                    />
-                    <Button
-                      onClick={() => handleRemoveImage(i)}
-                      className="absolute min-w-fit shadow py-0 px-[5px] text-sm
-                     -top-1 -right-1 bg-red-600 text-white rounded-full">X</Button>
-                  </div>
-                ))
-              }
-              <div
-                className="border-2 border-[#0000004d] border-dashed flex items-center
-           justify-center w-full min-h-[170px] relative bg-[#f1f1f1]  rounded-lg">
-                {
-                  uploading ?
-                    <div className="w-16 h-16"><CircularProgress /></div> :
-                    <div className="flex items-center justify-center flex-col py-8">
-                      <MdCloudUpload className="text-2xl" />
-                      <p className="my-2">
-                        Choose an <span className="text-[#6f7531]">Image</span> to upload.
-                      </p>
-                    </div>
-                }
-                <input
-                  type="file"
-                  className="block border-none absolute top-0 left-0 
-                right-0 bottom-0 opacity-0"
-                  accept=".png, .jpg, .jpeg"
-                  onChange={handleImageChange}
-                />
-              </div>
-            </div>
+            <TourImages tourDetails={tourDetails} />
           </div>
         </div>
         <div className="mt-5 mx-5 lg:mx-12">
-          <CreateTourServices
-            includeServices={includeServices}
-            excludeServices={excludeServices}
-            setIncludeServices={setIncludeServices}
-            setExcludeServices={setExcludeServices}
+          <UpdateTourServices
+            tourDetails={tourDetails}
           />
         </div>
         <div className="mt-5 mx-5 lg:mx-12">
           <CreateIndividualPricing
-            setPricing={setIndividualPricing}
-            pricing={individualPricing}
+            tourDetails={tourDetails}
           />
         </div>
         <div className="mt-5 mx-5 lg:mx-12">
-          <CreateDeparturesPricing
-            setPricing={setDeparturesPricing}
-            pricing={departuresPricing}
+          <UpdateDeparturesPricing
+            tourDetails={tourDetails}
           />
         </div>
         <div className="mt-5 mx-5 lg:mx-12">
-          <CreateTourRoute
-            routes={routes}
-            setRoutes={setRoutes}
+          <UpdateTourRoute
+            tourDetails={tourDetails}
           />
         </div>
         <div className="flex mx-5 lg:mx-12 justify-start mt-8">
@@ -304,7 +243,7 @@ function UpdateTourData({
             onClick={handleSubmit}
             className="py-3"
             variant="contained">
-            {isLoading ? "Creating..." : "Create Tour"}
+            {isLoading ? "Updating..." : "Update Tour"}
           </Button>
         </div>
       </div>
@@ -404,4 +343,4 @@ function UpdateTourData({
   );
 };
 
-export default UpdateTourData;
+export default UpdateAdminTour;

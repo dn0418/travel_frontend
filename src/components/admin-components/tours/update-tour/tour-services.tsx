@@ -5,25 +5,25 @@ import { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
 import { toast } from "react-toastify";
+import { TourType } from "../../../../types/tour";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
 interface PropsType {
-  includeServices: string[];
-  excludeServices: string[];
-  setIncludeServices: any;
-  setExcludeServices: any;
+  tourDetails: TourType;
 }
 
-function CreateTourServices({
-  includeServices,
-  excludeServices,
-  setIncludeServices,
-  setExcludeServices
+function UpdateTourServices({
+  tourDetails
 }: PropsType) {
+  const [includeServices, setIncludeServices] = useState<any[]>([]);
+  const [excludeServices, setExcludeServices] = useState<any[]>([]);
+
   const [openModal, setOpenModal] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [inputData, setInputData] = useState({
-    title: "",
+    en: "",
+    ru: "",
+    hy: "",
     type: "",
   });
   const theme = useTheme();
@@ -37,18 +37,36 @@ function CreateTourServices({
   };
 
   const handleSubmit = () => {
-    if (!inputData.title || !inputData.type) {
+    if (!inputData.en || !inputData.type) {
       toast.warning("Please fill all the fields");
       return;
     }
 
     if (inputData.type === "include") {
-      setIncludeServices([...includeServices, inputData.title]);
+      setIncludeServices((prev: any) => {
+        const temp = [...prev];
+        temp.push({
+          en: inputData.en,
+          ru: inputData.ru,
+          hy: inputData.hy,
+        });
+        return temp;
+      });
     } else {
-      setExcludeServices([...includeServices, inputData.title]);
+      setExcludeServices((prev: any) => {
+        const temp = [...prev];
+        temp.push({
+          en: inputData.en,
+          ru: inputData.ru,
+          hy: inputData.hy,
+        });
+        return temp;
+      });
     }
     setInputData({
-      title: '',
+      en: '',
+      ru: '',
+      hy: '',
       type: '',
     })
     setOpenModal(false);
@@ -109,7 +127,7 @@ function CreateTourServices({
                 <p className="flex gap-4 my-6 items-center" key={index}>
                   <AiOutlineCheckCircle className="text-[#00952A]" />
                   <span className="text-sm">
-                    {item}
+                    {item.en}
                   </span>
                 </p>
               )
@@ -118,7 +136,7 @@ function CreateTourServices({
                 <p className="flex gap-4 my-6 items-center" key={index}>
                   <RxCrossCircled className="text-[#FF3500]" />
                   <span className="text-sm">
-                    {item}
+                    {item.en}
                   </span>
                 </p>
               )
@@ -147,10 +165,24 @@ function CreateTourServices({
             sx={formStyles.gridContainer}>
             <TextField
               label='Title'
-              name="title"
+              name="en"
               variant='outlined'
-              value={inputData?.title}
-              onChange={(e) => setInputData({ ...inputData, title: e.target.value })}
+              value={inputData?.en}
+              onChange={(e) => setInputData({ ...inputData, en: e.target.value })}
+            />
+            <TextField
+              label='Title(Ru)'
+              name="ru"
+              variant='outlined'
+              value={inputData?.ru}
+              onChange={(e) => setInputData({ ...inputData, ru: e.target.value })}
+            />
+            <TextField
+              label='Title(Hy)'
+              name="hy"
+              variant='outlined'
+              value={inputData?.hy}
+              onChange={(e) => setInputData({ ...inputData, hy: e.target.value })}
             />
             <FormControl fullWidth>
               <InputLabel id='demo-simple-select-label'>Service Type</InputLabel>
@@ -189,4 +221,4 @@ function CreateTourServices({
   );
 }
 
-export default CreateTourServices;
+export default UpdateTourServices;

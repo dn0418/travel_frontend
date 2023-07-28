@@ -100,13 +100,14 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
         </div>
       </div>
       <div className="tour-details-maps my-5 md:my-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="">
-          <p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
-            {
-              locale === 'ru' ? car.description_ru :
-                (locale === 'hy' ? car.description_hy : car.description)
+        <div dangerouslySetInnerHTML={{
+          __html: (`<p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
+          ${locale === 'ru' ? car.description_ru :
+              (locale === 'hy' ? car.description_hy : car.description)
             }
-          </p>
+        </p>`)
+        }
+        }>
         </div>
         <div>
         </div>

@@ -132,14 +132,16 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
         </div>
       </div>
       <div className="tour-details-maps my-5 md:my-8 gap-5">
-        <div className="">
-          <p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
-            {locale === "hy"
+        <div dangerouslySetInnerHTML={{
+          __html: (`<p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
+            ${locale === "hy"
               ? accessoryDetails.longDescription_hy
               : locale === "ru"
                 ? accessoryDetails.longDescription_ru
                 : accessoryDetails.longDescription}
-          </p>
+          </p>`)
+        }
+        }>
         </div>
       </div>
     </div>

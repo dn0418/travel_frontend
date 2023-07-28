@@ -17,7 +17,9 @@ class TourClient {
       destination: any,
       days: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}&month=${month}&destination=${destination}&days=${days}`),
     deleteById: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOURS}/delete/${id}`),
-    create: (data: any) => HttpClient.post(`${API_ENDPOINTS.TOURS}/create`, data)
+    create: (data: any) => HttpClient.post(`${API_ENDPOINTS.TOURS}/create`, data),
+    createNewImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.TOURS}/image/create`, data),
   }
 
   tourType = {

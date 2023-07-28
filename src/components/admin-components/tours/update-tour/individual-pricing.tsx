@@ -16,14 +16,14 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { IndividualPricing } from '../../../../types/tour';
+import { IndividualPricing, TourType } from '../../../../types/tour';
 
 interface PropsType {
-  pricing: IndividualPricing[],
-  setPricing: any,
+  tourDetails: TourType,
 }
 
-function CreateIndividualPricing({ pricing, setPricing }: PropsType) {
+function UpdateIndividualPricing({ tourDetails }: PropsType) {
+  const [individualPricing, setIndividualPricing] = useState<IndividualPricing[]>(tourDetails.individualPricing || []);
   const [openModal, setOpenModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
     pax2_3: '',
@@ -50,7 +50,7 @@ function CreateIndividualPricing({ pricing, setPricing }: PropsType) {
       toast.error("All fields are required!");
       return;
     }
-    setPricing((previewData: any) => {
+    setIndividualPricing((previewData: any) => {
       const temp = JSON.parse(JSON.stringify(previewData));
       temp.push(priceInput);
       return temp;
@@ -113,7 +113,7 @@ function CreateIndividualPricing({ pricing, setPricing }: PropsType) {
             </TableHead>
             <TableBody>
               {
-                pricing.map((pricing, index: number) => (
+                individualPricing.map((pricing, index: number) => (
                   <TableRow key={index}>
                     <TableCell align="center">{pricing.pax2_3}</TableCell>
                     <TableCell align="center">{pricing.pax4_6} </TableCell>
@@ -196,4 +196,4 @@ function CreateIndividualPricing({ pricing, setPricing }: PropsType) {
   );
 }
 
-export default CreateIndividualPricing;
+export default UpdateIndividualPricing;

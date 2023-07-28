@@ -1,9 +1,12 @@
 import { ImageType, ReviewTypes } from ".";
+import { TourInputType } from "./input-type";
 
 export interface TourType {
   id: number;
   createdAt: string;
   updatedAt: string;
+  isRu: boolean;
+  isHy: boolean;
   title: string;
   title_ru: string;
   title_hy: string;
@@ -13,13 +16,11 @@ export interface TourType {
   bestTime: string;
   bestTime_ru: string;
   bestTime_hy: string;
-  date: string | null;
+  isFixedDate: boolean;
+  startDate: string;
+  endDate: string;
   mainList: string;
-  mainList_ru: string;
-  mainList_hy: string;
   childList: string;
-  childList_ru: string;
-  childList_hy: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;
@@ -111,4 +112,65 @@ export interface TourRouteType {
   hotel: string;
   hotel_ru: string;
   hotel_hy: string;
+}
+
+
+
+export interface UpdateTourPropsType {
+  uploadThumbnail: any;
+  uploadLocation: any;
+  handleTabChange: any;
+  currentTab: {
+    title: string;
+    value: string;
+  };
+  tabs: {
+    title: string;
+    value: string;
+  }[];
+  uploading: boolean;
+  inputData: TourInputType;
+  setInputData: any;
+  handleSubmit: any;
+  handleInputChange: (name: string, value: string) => void;
+  isLoading: boolean;
+  destinations: TourDestinationType[];
+  childList: any[];
+  tourDetails: TourType;
+}
+
+export interface CreateTourPropsType {
+  handleImageChange: any;
+  uploadThumbnail: any;
+  uploadLocation: any;
+  handleRemoveImage: any;
+  handleTabChange: any;
+  currentTab: {
+    title: string;
+    value: string;
+  };
+  tabs: {
+    title: string;
+    value: string;
+  }[];
+  uploading: boolean;
+  images: string[];
+  inputData: TourInputType;
+  setInputData: any;
+  handleSubmit: any;
+  setIndividualPricing: any;
+  setDeparturesPricing: any;
+  individualPricing: IndividualPricing[];
+  departuresPricing: DeparturesPricing[];
+  handleInputChange: (name: string, value: string) => void;
+  isLoading: boolean;
+  destinations: TourDestinationType[];
+  routes: TourRouteType[];
+  setRoutes: any;
+  includeServices: any[];
+  setIncludeServices: any;
+  excludeServices: any[];
+  setExcludeServices: any;
+  saveData: any;
+  childList: any[];
 }

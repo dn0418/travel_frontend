@@ -21,16 +21,16 @@ import { GiCoffeeCup } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdExpandMore } from "react-icons/md";
 import { RiHotelLine } from "react-icons/ri";
-import { TourRouteType } from "../../../../types/tour";
+import { TourRouteType, TourType } from "../../../../types/tour";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 import CreateNewRoute from "./new-route";
 
 interface PropsType {
-  routes: TourRouteType[],
-  setRoutes: any;
+  tourDetails: TourType;
 }
 
-function CreateTourRoute({ routes, setRoutes }: PropsType) {
+function UpdateRoute({ tourDetails }: PropsType) {
+  const [routes, setRoutes] = useState<TourRouteType[]>(tourDetails.routes || []);
   const [openModal, setOpenModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -143,4 +143,4 @@ function CreateTourRoute({ routes, setRoutes }: PropsType) {
   );
 }
 
-export default CreateTourRoute;
+export default UpdateRoute;

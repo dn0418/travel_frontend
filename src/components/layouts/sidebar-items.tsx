@@ -1,5 +1,5 @@
 import { Button, Collapse, Divider, List, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';

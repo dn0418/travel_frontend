@@ -2,88 +2,63 @@
 
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import UpdateTourData from '../../../../src/components/admin-components/tours/update-tour/update-tour';
+import UpdateAdminTour from '../../../../src/components/admin-components/tours/update-tour/update-tour';
 import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
 import tourClient from '../../../../src/rest-api/client/tour-client';
 import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/tours/tour-detaild.ssr';
 import { TourInputType } from '../../../../src/types/input-type';
 import { NextPageWithLayout } from '../../../../src/types/page-props';
-import { DeparturesPricing, IndividualPricing, TourDestinationType, TourRouteType } from '../../../../src/types/tour';
+import { TourDestinationType, TourType } from '../../../../src/types/tour';
+import { tourTypes } from '../../../../src/utils/data/tours-types';
 export { getStaticPaths, getStaticProps };
 
 const tabs = [
-  { title: 'New Tour Data', value: 'en' },
+  { title: 'Tour Data', value: 'en' },
   { title: 'Russian Data', value: 'ru' },
   { title: 'Armenian Data', value: 'hy' },
 ];
 
 const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStaticProps>> = (props) => {
   const destinations: TourDestinationType[] = props?.destinationData?.data;
+  const tourDetails: TourType = props.tourDetails?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
-  const [individualPricing, setIndividualPricing] = useState<IndividualPricing[]>([]);
-  const [departuresPricing, setDeparturesPricing] = useState<DeparturesPricing[]>([]);
-  const [routes, setRoutes] = useState<TourRouteType[]>([]);
-  const [includeServices, setIncludeServices] = useState<string[]>([]);
-  const [excludeServices, setExcludeServices] = useState<string[]>([]);
+  const [childList, setChildList] = useState<any[]>([]);
   const [inputData, setInputData] = useState<TourInputType>({
-    isRu: false,
-    isHy: false,
-    title: "",
-    title_ru: "",
-    title_hy: "",
-    price: '',
-    dayLength: '',
-    nightLength: '',
-    bestTime: "",
-    bestTime_ru: "",
-    bestTime_hy: "",
-    isFixedDate: false,
-    startDate: '',
-    endDate: '',
-    mainList: "",
-    childList: "",
-    shortDescription: "",
-    shortDescription_ru: "",
-    shortDescription_hy: "",
-    longDescription: "",
-    longDescription_ru: "",
-    longDescription_hy: "",
-    freeCancelation: true,
-    activities: '',
-    locationImg: "",
-    thumbnail: "",
-    destinationId: '',
+    isRu: tourDetails?.isRu || false,
+    isHy: tourDetails?.isHy || false,
+    title: tourDetails?.title || "",
+    title_ru: tourDetails?.title_ru || "",
+    title_hy: tourDetails?.title_hy || "",
+    price: tourDetails?.price.toString() || '',
+    dayLength: tourDetails?.dayLength.toString() || '',
+    nightLength: tourDetails?.nightLength.toString() || '',
+    bestTime: tourDetails?.bestTime || '',
+    bestTime_ru: tourDetails?.bestTime_ru || '',
+    bestTime_hy: tourDetails?.bestTime_hy || '',
+    isFixedDate: tourDetails?.isFixedDate || false,
+    startDate: tourDetails?.startDate || '',
+    endDate: tourDetails?.endDate || '',
+    mainList: tourDetails?.mainList || '',
+    childList: tourDetails?.childList || "",
+    shortDescription: tourDetails?.shortDescription || "",
+    shortDescription_ru: tourDetails?.shortDescription_ru || "",
+    shortDescription_hy: tourDetails?.shortDescription_hy || "",
+    longDescription: tourDetails?.longDescription || "",
+    longDescription_ru: tourDetails?.longDescription_ru || "",
+    longDescription_hy: tourDetails?.longDescription_hy || "",
+    freeCancelation: tourDetails?.freeCancelation || true,
+    activities: tourDetails?.activities.toString() || '',
+    locationImg: tourDetails?.locationImg || "",
+    thumbnail: tourDetails?.thumbnail || "",
+    destinationId: tourDetails?.destination.id.toString() || "",
   });
   const router = useRouter();
 
-  const handleImageChange = async (event: any) => {
-    setUploading(true);
-    const formData = new FormData();
 
-    const file = event.target.files[0];
-    formData.append("file", file);
-
-    try {
-      const response = await fetch('http://localhost:5000/file/upload', {
-        method: 'POST',
-        body: formData
-      });
-
-      const data = await response.json();
-      if (data?.Location) {
-        setImages([...images, data?.Location]);
-      }
-    } catch (error) {
-      toast.error('Something went wrong!');
-    } finally {
-      setUploading(false);
-    }
-  };
 
   const uploadThumbnail = async (event: any) => {
     setUploading(true);
@@ -133,9 +108,7 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
     }
   }
 
-  const handleRemoveImage = (index: number) => {
-    setImages(images.filter((image, i) => i !== index));
-  }
+
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
@@ -199,17 +172,13 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
       dayLength: parseInt(inputData.dayLength),
       nightLength: parseInt(inputData.nightLength),
       destinationId: parseInt(inputData.destinationId),
-      includesServices: includeServices,
-      excludeServices: excludeServices,
-      images: images,
-      routes: routes,
-      individualPricing: individualPricing,
-      departuresPricing: departuresPricing
     });
+
 
     try {
       const res = await tourClient.tours.create(payload);
       toast.success('Tour created successfully');
+      localStorage.removeItem('tourInputData');
       router.push('/admin/tours');
     } catch (error) {
       console.log(error);
@@ -219,14 +188,21 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
     }
   }
 
+  useEffect(() => {
+    if (inputData.mainList) {
+      const find = tourTypes.en.find((type) => type.value === inputData.mainList);
+      if (find) {
+        setChildList(find.children);
+        setInputData((prev) => ({ ...prev, childList: '' }));
+      }
+    }
+  }, [inputData.mainList]);
+
   return (
     <>
-      <UpdateTourData
+      <UpdateAdminTour
         currentTab={currentTab}
-        handleImageChange={handleImageChange}
-        handleRemoveImage={handleRemoveImage}
         handleTabChange={handleTabChange}
-        images={images}
         inputData={inputData}
         setInputData={setInputData}
         tabs={tabs}
@@ -234,19 +210,11 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
         uploading={uploading}
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
-        individualPricing={individualPricing}
-        setIndividualPricing={setIndividualPricing}
         isLoading={isLoading}
         destinations={destinations}
         uploadLocation={uploadLocation}
-        departuresPricing={departuresPricing}
-        setDeparturesPricing={setDeparturesPricing}
-        routes={routes}
-        setRoutes={setRoutes}
-        includeServices={includeServices}
-        setIncludeServices={setIncludeServices}
-        excludeServices={excludeServices}
-        setExcludeServices={setExcludeServices}
+        childList={childList}
+        tourDetails={tourDetails}
       />
     </>
   );
