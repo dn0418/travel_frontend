@@ -35,7 +35,7 @@ export interface TourType {
   includesServices: TourService[];
   excludeServices: TourService[];
   images: ImageType[];
-  routes: TourRoute[];
+  routes: TourRouteType[];
   individualPricing: IndividualPricing[];
   departuresPricing: DeparturesPricing[];
   reviewsRating: number | null;
@@ -71,7 +71,7 @@ export interface TourService {
   text: string;
   text_ru: string;
   text_hy: string;
-  type: string;
+  type: Type;
 }
 
 enum Type {
@@ -89,7 +89,7 @@ export interface IndividualPricing {
   pax20_more: number;
 }
 
-export interface TourRoute {
+export interface TourRouteType {
   id: number;
   createdAt: string;
   updatedAt: string;
@@ -111,5 +111,4 @@ export interface TourRoute {
   hotel: string;
   hotel_ru: string;
   hotel_hy: string;
-  type: Type;
 }

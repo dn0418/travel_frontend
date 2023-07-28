@@ -1,6 +1,7 @@
 // @flow strict
 
-import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { Button, Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { ToursPageProps } from "../../../types/page-props";
 import TourAdminCard from "../../admin-cards/tour-admin-card";
@@ -20,26 +21,14 @@ function ToursDashboard({
 
   return (
     <Container className='flex flex-col items-center'>
-      {/* <div className='w-full  text-center py-3 px-6 regular-shadow rounded-lg'>
-        <Tabs
-          value={tabIndex}
-          onChange={handleTabChange}
-          className='pages-tabs'
-          TabIndicatorProps={{
-            style: { display: "none" },
-          }}>
-          {
-            tabs.map((tab) => (
-              <Tab
-                key={tab.id}
-                value={tab.value}
-                className=""
-                label={tab.name} />
-            ))
-          }
-        </Tabs>
-      </div> */}
       <div className='w-full my-4 md:my-8'>
+        <div className="flex justify-end">
+          <Link href='/admin/tours/create'>
+            <Button color="secondary" variant="contained">
+              Create New Tour
+            </Button>
+          </Link>
+        </div>
         <div className="w-full flex items-center justify-between">
           <SectionTitle title={title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">

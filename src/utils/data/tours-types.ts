@@ -1,37 +1,86 @@
 export const tourTypes = {
   en: [{
-    id: 1,
     name: 'Active Tours',
     value: 'active_tours',
-    children: [{}],
+    children: [{
+      name: 'Off road tours',
+      value: 'off_road_tours',
+    }],
   }, {
-    id: 2,
     name: 'Gastro Tours',
     value: 'gastro_tours',
-    children: [{}]
+    children: [{
+      name: 'Velo and moto tours',
+      value: 'velo_and_moto_tours',
+    }]
   },
   {
-    id: 3,
     name: 'Oneday Tours',
     value: 'oneday_tours',
-    children: [{}]
+    children: [{
+      name: 'Academic tours',
+      value: 'academic_tours',
+    }]
   },
   {
-    id: 4,
     name: 'Classic Tours',
     value: 'classic_tours',
-    children: [{}]
+    children: [{
+      name: 'Hiking and trekking tours',
+      value: 'hiking_and_trekking_tours',
+    }]
   },
   {
-    id: 5,
-    name: 'Fixed date Tour',
+    name: 'Tours with guaranteed departures',
     value: 'fixed_date_tour',
-    children: [{}]
+    children: [{
+      name: 'Horse riding tours',
+      value: 'horse_riding_tours',
+    }]
   }, {
-    id: 6,
     name: 'Themed Tours',
     value: 'themed_tours',
-    children: [{}]
+    children: [{
+      name: 'Archaeological tours',
+      value: 'archaeological_tours',
+    },
+    {
+      name: 'Eco tours',
+      value: 'eco_tours',
+    },
+    {
+      name: 'Health tours',
+      value: 'health_tours',
+    },
+    {
+      name: 'City tours',
+      value: 'city_tours',
+    },
+    {
+      name: 'Cultural tours',
+      value: 'cultural_tours',
+    },
+    {
+      name: 'Tours for kids',
+      value: 'kids_tours',
+    },
+    {
+      name: 'Food and wine tours',
+      value: 'food_and_wine_tours',
+    },
+    {
+      name: 'Regional tours',
+      value: 'regional_tours',
+    },
+    {
+      name: 'Winter tours',
+      value: 'winter_tours',
+    },
+    {
+      name: 'Air tours',
+      value: 'air_tours',
+    }
+    ]
   }],
   ru: [
     {

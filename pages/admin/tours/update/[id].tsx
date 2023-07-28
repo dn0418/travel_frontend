@@ -2,17 +2,16 @@
 
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
-import CreateNewTour from '../../../src/components/admin-components/tours/create-tour/create-tour';
-import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
-import tourClient from '../../../src/rest-api/client/tour-client';
-import { getServerSideProps } from '../../../src/rest-api/tours/destination.ssr';
-import { TourInputType } from '../../../src/types/input-type';
-import { NextPageWithLayout } from '../../../src/types/page-props';
-import { DeparturesPricing, IndividualPricing, TourDestinationType, TourRouteType } from '../../../src/types/tour';
-import { tourTypes } from '../../../src/utils/data/tours-types';
-export { getServerSideProps };
+import UpdateTourData from '../../../../src/components/admin-components/tours/update-tour/update-tour';
+import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';
+import tourClient from '../../../../src/rest-api/client/tour-client';
+import { getStaticPaths, getStaticProps } from '../../../../src/rest-api/tours/tour-detaild.ssr';
+import { TourInputType } from '../../../../src/types/input-type';
+import { NextPageWithLayout } from '../../../../src/types/page-props';
+import { DeparturesPricing, IndividualPricing, TourDestinationType, TourRouteType } from '../../../../src/types/tour';
+export { getStaticPaths, getStaticProps };
 
 const tabs = [
   { title: 'New Tour Data', value: 'en' },
@@ -20,7 +19,7 @@ const tabs = [
   { title: 'Armenian Data', value: 'hy' },
 ];
 
-const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStaticProps>> = (props) => {
   const destinations: TourDestinationType[] = props?.destinationData?.data;
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [uploading, setUploading] = useState(false);
@@ -29,9 +28,8 @@ const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
   const [individualPricing, setIndividualPricing] = useState<IndividualPricing[]>([]);
   const [departuresPricing, setDeparturesPricing] = useState<DeparturesPricing[]>([]);
   const [routes, setRoutes] = useState<TourRouteType[]>([]);
-  const [includeServices, setIncludeServices] = useState<any[]>([]);
-  const [excludeServices, setExcludeServices] = useState<any[]>([]);
-  const [childList, setChildList] = useState<any[]>([]);
+  const [includeServices, setIncludeServices] = useState<string[]>([]);
+  const [excludeServices, setExcludeServices] = useState<string[]>([]);
   const [inputData, setInputData] = useState<TourInputType>({
     isRu: false,
     isHy: false,
@@ -209,12 +207,9 @@ const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
       departuresPricing: departuresPricing
     });
 
-    console.log(payload)
-
     try {
       const res = await tourClient.tours.create(payload);
       toast.success('Tour created successfully');
-      localStorage.removeItem('tourInputData');
       router.push('/admin/tours');
     } catch (error) {
       console.log(error);
@@ -224,56 +219,9 @@ const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     }
   }
 
-  const saveData = () => {
-    const stateData = {
-      images,
-      individualPricing,
-      departuresPricing,
-      routes,
-      includeServices,
-      excludeServices,
-      childList,
-      inputData,
-    };
-
-    localStorage.setItem('tourInputData', JSON.stringify(stateData));
-    toast.success('Data saved successfully');
-  };
-
-  const loadData = () => {
-    const savedData = localStorage.getItem('tourInputData');
-    if (savedData) {
-      const stateData = JSON.parse(savedData);
-      setImages(stateData.images);
-      setIndividualPricing(stateData.individualPricing);
-      setDeparturesPricing(stateData.departuresPricing);
-      setRoutes(stateData.routes);
-      setIncludeServices(stateData.includeServices);
-      setExcludeServices(stateData.excludeServices);
-      setChildList(stateData.childList);
-      setInputData(stateData.inputData);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      loadData();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (inputData.mainList) {
-      const find = tourTypes.en.find((type) => type.value === inputData.mainList);
-      if (find) {
-        setChildList(find.children);
-        setInputData((prev) => ({ ...prev, childList: '' }));
-      }
-    }
-  }, [inputData.mainList]);
-
   return (
     <>
-      <CreateNewTour
+      <UpdateTourData
         currentTab={currentTab}
         handleImageChange={handleImageChange}
         handleRemoveImage={handleRemoveImage}
@@ -299,15 +247,13 @@ const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
         setIncludeServices={setIncludeServices}
         excludeServices={excludeServices}
         setExcludeServices={setExcludeServices}
-        childList={childList}
-        saveData={saveData}
       />
     </>
   );
 };
 
-CreateTour.getLayout = function getLayout(page) {
+UpdateTour.getLayout = function getLayout(page) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default CreateTour;
+export default UpdateTour;

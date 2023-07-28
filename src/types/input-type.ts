@@ -142,3 +142,34 @@ export interface FoodAndDrinkInputType {
   entrance_ru: string;
   entrance_hy: string;
 }
+
+export interface TourInputType {
+  [key: string]: any;
+  isRu: boolean;
+  isHy: boolean;
+  title: string;
+  title_ru: string;
+  title_hy: string;
+  price: string;
+  dayLength: string;
+  nightLength: string;
+  bestTime: string;
+  bestTime_ru: string;
+  bestTime_hy: string;
+  isFixedDate: boolean;
+  startDate: string | null;
+  endDate: string | null;
+  mainList: string;
+  childList: string;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  longDescription: string;
+  longDescription_ru: string;
+  longDescription_hy: string;
+  freeCancelation: boolean;
+  activities: string;
+  locationImg: string;
+  thumbnail: string;
+  destinationId: string;
+}
