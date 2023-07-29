@@ -59,7 +59,6 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
   const router = useRouter();
 
 
-
   const uploadThumbnail = async (event: any) => {
     setUploading(true);
     const formData = new FormData();
@@ -107,8 +106,6 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
       setUploading(false);
     }
   }
-
-
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     const findTab = tabs.find((tab) => tab.value === newValue);
@@ -176,12 +173,10 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
 
 
     try {
-      const res = await tourClient.tours.create(payload);
-      toast.success('Tour created successfully');
-      localStorage.removeItem('tourInputData');
+      const res = await tourClient.tours.update(tourDetails.id, payload);
+      toast.success('Tour updated successfully');
       router.push('/admin/tours');
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
@@ -193,7 +188,14 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
       const find = tourTypes.en.find((type) => type.value === inputData.mainList);
       if (find) {
         setChildList(find.children);
-        setInputData((prev) => ({ ...prev, childList: '' }));
+        if (find.value !== inputData.mainList) {
+          setInputData((previewData) => {
+            return {
+              ...previewData,
+              childList: ''
+            };
+          });
+        }
       }
     }
   }, [inputData.mainList]);

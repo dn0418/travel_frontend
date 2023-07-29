@@ -105,7 +105,7 @@ function UpdateAdminTour({
             </Select>
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Tour main Type</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Tour Child Type</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               value={inputData?.childList}
@@ -113,8 +113,8 @@ function UpdateAdminTour({
               name="childList"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             >
-              {childList.map((type) => (
-                <MenuItem key={type.id} value={type.value}>
+              {childList.map((type, i: number) => (
+                <MenuItem key={i} value={type.value}>
                   {type.name}
                 </MenuItem>
               ))}

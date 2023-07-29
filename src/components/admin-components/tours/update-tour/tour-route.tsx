@@ -8,6 +8,7 @@ import TimelineItem, { timelineItemClasses } from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import {
   Accordion,
+  AccordionActions,
   AccordionDetails,
   AccordionSummary,
   Button,
@@ -21,9 +22,13 @@ import { GiCoffeeCup } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdExpandMore } from "react-icons/md";
 import { RiHotelLine } from "react-icons/ri";
+import { toast } from "react-toastify";
+import swal from "sweetalert";
+import tourClient from "../../../../rest-api/client/tour-client";
 import { TourRouteType, TourType } from "../../../../types/tour";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 import CreateNewRoute from "./new-route";
+import UpdateTourRoute from "./update-route";
 
 interface PropsType {
   tourDetails: TourType;
@@ -33,6 +38,8 @@ function UpdateRoute({ tourDetails }: PropsType) {
   const [routes, setRoutes] = useState<TourRouteType[]>(tourDetails.routes || []);
   const [openModal, setOpenModal] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [updateModal, setUpdateModal] = useState(false);
+  const [selectedRoute, setSelectedRoute] = useState(null);
 
   const handleChangeExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -41,6 +48,53 @@ function UpdateRoute({ tourDetails }: PropsType) {
   const handleAddModal = () => {
     setOpenModal(!openModal);
   };
+
+  const closeUpdateModal = () => {
+    setUpdateModal(false);
+  }
+
+  const changeUpdateModal = (route: any) => {
+    setSelectedRoute(route);
+    setUpdateModal(true);
+  }
+
+  const handleDeletePrice = async (id: number) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: false,
+          visible: true,
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          closeModal: true
+        }
+      }
+    })
+      .then(async (willDelete) => {
+        if (willDelete) {
+          try {
+            const res = await tourClient.routes.delete(id);
+            toast.success('Route deleted successfully!')
+            setRoutes((previewData: any) => {
+              const temp = JSON.parse(JSON.stringify(previewData));
+              const filteredData = temp.filter((item: any) => item.id !== id);
+              return filteredData;
+            })
+          } catch (error) {
+            toast.error('Something went wrong!')
+          }
+        }
+      });
+  }
 
   return (
     <div className="my-5">
@@ -115,7 +169,20 @@ function UpdateRoute({ tourDetails }: PropsType) {
                           </span>
                         </p>
                       </div>
+
                     </AccordionDetails>
+                    <AccordionActions className='flex justify-end gap-2'>
+                      <Button
+                        variant='text'
+                        color='secondary'
+                        onClick={() => changeUpdateModal(route)}
+                        className='shadow text-xs'>Edit</Button>
+                      <Button
+                        variant='text'
+                        color='warning'
+                        onClick={() => handleDeletePrice(route.id)}
+                        className='shadow text-xs'>Delete</Button>
+                    </AccordionActions>
                   </Accordion>
                 </TimelineContent>
               </TimelineItem>
@@ -136,6 +203,16 @@ function UpdateRoute({ tourDetails }: PropsType) {
         onClose={handleAddModal}>
         <CreateNewRoute
           handleAddModal={handleAddModal}
+          setRoutes={setRoutes}
+          tourDetails={tourDetails}
+        />
+      </Modal>
+      <Modal
+        open={updateModal && selectedRoute !== null}
+        onClose={closeUpdateModal}>
+        <UpdateTourRoute
+          route={selectedRoute}
+          handleCancelModal={closeUpdateModal}
           setRoutes={setRoutes}
         />
       </Modal>

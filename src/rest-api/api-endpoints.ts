@@ -1,6 +1,10 @@
 // all api endpoint goes here
 export const API_ENDPOINTS = {
   TOURS: "/tours",
+  TOUR_SERVICES: "/tour-services",
+  DEPARTURES_PRICING: "/departures-pricing",
+  INDIVIDUAL_PRICING: "/individual-pricing",
+  TOUR_ROUTES: "/routes",
   REVIEWS: "/reviews",
   NEW_REVIEWS: "/reviews/create",
   TOURTYPE: "/tour-type",
@@ -20,5 +24,5 @@ export const API_ENDPOINTS = {
   FOOD_AND_DRINKS: "/food-and-drinks",
   DESTINATION: "/destinations",
   IMAGES: "/images",
-  ACCESSORY_PRICING: "/accessories-pricing"
+  ACCESSORY_PRICING: "/accessories-pricing",
 };

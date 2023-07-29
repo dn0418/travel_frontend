@@ -3,9 +3,12 @@
 import { Box, Button, Container, FormControl, InputLabel, MenuItem, Modal, Select, TextField, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
 import { RxCrossCircled } from "react-icons/rx";
 import { toast } from "react-toastify";
-import { TourType } from "../../../../types/tour";
+import swal from "sweetalert";
+import tourClient from "../../../../rest-api/client/tour-client";
+import { TourService, TourType } from "../../../../types/tour";
 import ExpandedSectionTitle from "../../../common/expanded-section-title";
 
 interface PropsType {
@@ -15,15 +18,15 @@ interface PropsType {
 function UpdateTourServices({
   tourDetails
 }: PropsType) {
-  const [includeServices, setIncludeServices] = useState<any[]>([]);
-  const [excludeServices, setExcludeServices] = useState<any[]>([]);
+  const [includeServices, setIncludeServices] = useState<TourService[]>(tourDetails.includesServices || []);
+  const [excludeServices, setExcludeServices] = useState<TourService[]>(tourDetails.excludeServices || []);
 
   const [openModal, setOpenModal] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [inputData, setInputData] = useState({
-    en: "",
-    ru: "",
-    hy: "",
+    text: "",
+    text_ru: "",
+    text_hy: "",
     type: "",
   });
   const theme = useTheme();
@@ -36,40 +39,82 @@ function UpdateTourServices({
     setIsShow(!isShow);
   };
 
-  const handleSubmit = () => {
-    if (!inputData.en || !inputData.type) {
+  const handleSubmit = async () => {
+    if (!inputData.text || !inputData.text_ru || !inputData.text_hy || !inputData.type) {
       toast.warning("Please fill all the fields");
       return;
     }
 
-    if (inputData.type === "include") {
-      setIncludeServices((prev: any) => {
-        const temp = [...prev];
-        temp.push({
-          en: inputData.en,
-          ru: inputData.ru,
-          hy: inputData.hy,
-        });
-        return temp;
-      });
-    } else {
-      setExcludeServices((prev: any) => {
-        const temp = [...prev];
-        temp.push({
-          en: inputData.en,
-          ru: inputData.ru,
-          hy: inputData.hy,
-        });
-        return temp;
-      });
+    const payload = {
+      ...inputData,
+      tourId: tourDetails.id,
     }
-    setInputData({
-      en: '',
-      ru: '',
-      hy: '',
-      type: '',
+
+    try {
+      const res: any = await tourClient.services.create(payload);
+      if (payload.type === "include") {
+        setIncludeServices([...includeServices, res.data]);
+      } else {
+        setExcludeServices([...excludeServices, res.data]);
+      }
+      toast.success("Service added successfully");
+      setInputData({
+        text: "",
+        text_ru: "",
+        text_hy: "",
+        type: "",
+      })
+      setOpenModal(false);
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+
+  const handleDelete = async (service: TourService) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: false,
+          visible: true,
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          closeModal: true
+        }
+      }
     })
-    setOpenModal(false);
+      .then(async (willDelete) => {
+        if (willDelete) {
+          try {
+            await tourClient.services.delete(service.id);
+            toast.success('Service deleted successfully!');
+            if (service.type === "include") {
+              setIncludeServices((prev: TourService[]) => {
+                const temp = JSON.parse(JSON.stringify(prev));
+                const filtered = temp.filter((item: TourService) => item.id !== service.id);
+                return filtered;
+              });
+            } else {
+              setExcludeServices((prev: TourService[]) => {
+                const temp = JSON.parse(JSON.stringify(prev));
+                const filtered = temp.filter((item: TourService) => item.id !== service.id);
+                return filtered;
+              });
+            }
+          } catch (error) {
+            // console.log(error);
+            toast.error('Something went wrong!');
+          }
+        }
+      });
   };
 
   const formStyles = {
@@ -125,18 +170,32 @@ function UpdateTourServices({
             <div>
               {includeServices.map((item, index) => (
                 <p className="flex gap-4 my-6 items-center" key={index}>
+                  <Button
+                    color="error"
+                    className="min-w-fit px-3"
+                    onClick={() => handleDelete(item)}
+                    variant="text">
+                    <BsTrash />
+                  </Button>
                   <AiOutlineCheckCircle className="text-[#00952A]" />
                   <span className="text-sm">
-                    {item.en}
+                    {item.text}
                   </span>
                 </p>
               )
               )}
               {excludeServices.map((item, index) => (
                 <p className="flex gap-4 my-6 items-center" key={index}>
+                  <Button
+                    color="error"
+                    className="min-w-fit px-3"
+                    onClick={() => handleDelete(item)}
+                    variant="text">
+                    <BsTrash />
+                  </Button>
                   <RxCrossCircled className="text-[#FF3500]" />
                   <span className="text-sm">
-                    {item.en}
+                    {item.text}
                   </span>
                 </p>
               )
@@ -165,24 +224,24 @@ function UpdateTourServices({
             sx={formStyles.gridContainer}>
             <TextField
               label='Title'
-              name="en"
+              name="text"
               variant='outlined'
-              value={inputData?.en}
-              onChange={(e) => setInputData({ ...inputData, en: e.target.value })}
+              value={inputData?.text}
+              onChange={(e) => setInputData({ ...inputData, text: e.target.value })}
             />
             <TextField
               label='Title(Ru)'
-              name="ru"
+              name="text_ru"
               variant='outlined'
-              value={inputData?.ru}
-              onChange={(e) => setInputData({ ...inputData, ru: e.target.value })}
+              value={inputData?.text_ru}
+              onChange={(e) => setInputData({ ...inputData, text_ru: e.target.value })}
             />
             <TextField
               label='Title(Hy)'
-              name="hy"
+              name="text_hy"
               variant='outlined'
-              value={inputData?.hy}
-              onChange={(e) => setInputData({ ...inputData, hy: e.target.value })}
+              value={inputData?.text_hy}
+              onChange={(e) => setInputData({ ...inputData, text_hy: e.target.value })}
             />
             <FormControl fullWidth>
               <InputLabel id='demo-simple-select-label'>Service Type</InputLabel>

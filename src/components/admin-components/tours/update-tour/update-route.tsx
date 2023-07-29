@@ -4,7 +4,6 @@ import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { forwardRef, useState } from "react";
 import { toast } from "react-toastify";
 import tourClient from "../../../../rest-api/client/tour-client";
-import { TourType } from "../../../../types/tour";
 
 function hasEmptyString(obj: any) {
   for (const key in obj) {
@@ -15,33 +14,32 @@ function hasEmptyString(obj: any) {
   return false;
 }
 
-
 interface PropsType {
-  handleAddModal: any;
+  handleCancelModal: any;
   setRoutes: any;
-  tourDetails: TourType;
+  route: any;
 }
 
-const CreateNewRoute = forwardRef<HTMLDivElement, PropsType>(({ handleAddModal, setRoutes, tourDetails }, ref) => {
+const UpdateTourRoute = forwardRef<HTMLDivElement, PropsType>(({ handleCancelModal, setRoutes, route }, ref) => {
   const [routeInput, setRouteInput] = useState({
-    title: "",
-    title_ru: "",
-    title_hy: "",
-    description: "",
-    description_ru: "",
-    description_hy: "",
-    time: "",
-    time_ru: "",
-    time_hy: "",
-    distance: "",
-    distance_ru: "",
-    distance_hy: "",
-    meals: "",
-    meals_ru: "",
-    meals_hy: "",
-    hotel: "",
-    hotel_ru: "",
-    hotel_hy: "",
+    title: route?.title || "",
+    title_ru: route?.title_ru || "",
+    title_hy: route?.title_hy || "",
+    description: route?.description || "",
+    description_ru: route?.description_ru || "",
+    description_hy: route?.description_hy || "",
+    time: route?.time || "",
+    time_ru: route?.time_ru || "",
+    time_hy: route?.time_hy || "",
+    distance: route?.distance || "",
+    distance_ru: route?.distance_ru || "",
+    distance_hy: route?.distance_hy || "",
+    meals: route?.meals || "",
+    meals_ru: route?.meals_ru || "",
+    meals_hy: route?.meals_hy || "",
+    hotel: route?.hotel || "",
+    hotel_ru: route?.hotel_ru || "",
+    hotel_hy: route?.hotel_hy || "",
   });
   const theme = useTheme();
 
@@ -61,17 +59,18 @@ const CreateNewRoute = forwardRef<HTMLDivElement, PropsType>(({ handleAddModal, 
       return;
     }
     try {
-      const res: any = await tourClient.routes.create({
-        ...routeInput,
-        tourId: tourDetails?.id,
-      });
-      setRoutes((previewData: any) => {
-        const temp = JSON.parse(JSON.stringify(previewData));
-        temp.push(res.data);
+      const res: any = await tourClient.routes.update(route.id, routeInput);
+      toast.success(res.message);
+      setRoutes((prev: any) => {
+        const temp = JSON.parse(JSON.stringify(prev));
+        const index = temp.findIndex((item: any) => item.id === route.id);
+        temp[index] = {
+          ...routeInput,
+          id: route.id,
+        };
         return temp;
       })
-      toast.success(res.message);
-      handleAddModal();
+      handleCancelModal();
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -119,7 +118,7 @@ const CreateNewRoute = forwardRef<HTMLDivElement, PropsType>(({ handleAddModal, 
     <Box tabIndex={-1} ref={ref} sx={formStyles.modalContainer}>
       <Typography
         sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-        Create New Route
+        Update Tour Route
       </Typography>
       <Box
         sx={formStyles.gridContainer}>
@@ -257,7 +256,7 @@ const CreateNewRoute = forwardRef<HTMLDivElement, PropsType>(({ handleAddModal, 
         />
         <div style={formStyles.buttonContainer}>
           <Button
-            onClick={handleAddModal}
+            onClick={handleCancelModal}
             color="secondary"
             variant="outlined">
             Cancle
@@ -265,7 +264,7 @@ const CreateNewRoute = forwardRef<HTMLDivElement, PropsType>(({ handleAddModal, 
           <Button
             onClick={handleSubmit}
             variant="contained">
-            Create
+            Update
           </Button>
         </div>
       </Box>
@@ -273,7 +272,7 @@ const CreateNewRoute = forwardRef<HTMLDivElement, PropsType>(({ handleAddModal, 
   );
 });
 
-CreateNewRoute.displayName = 'CreateNewRoute';
+UpdateTourRoute.displayName = 'UpdateTourRoute';
 
 
-export default CreateNewRoute;
+export default UpdateTourRoute;
