@@ -50,7 +50,7 @@ function SeeThumbnailSection({ thing }: { thing: ThingToSeeType }) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: images.length > 3 ? 4 : images.length,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow onClick={undefined} />,
     prevArrow: <PrevArrow currentSlide={currentSlide} onClick={undefined} />,
@@ -66,7 +66,7 @@ function SeeThumbnailSection({ thing }: { thing: ThingToSeeType }) {
         className="rounded-lg"
         alt="tour-details" />
       {
-        images.length > 3 ? <Slider
+        images.length > 4 ? <Slider
           className='flex mt-5'
           afterChange={(e) => setCurrentSlide(e)}
           {...settings}>
@@ -87,7 +87,7 @@ function SeeThumbnailSection({ thing }: { thing: ThingToSeeType }) {
               <Image
                 key={i}
                 src={img.url}
-                height={100}
+                height={150}
                 width={300}
                 layout="responsive"
                 className="rounded-lg"

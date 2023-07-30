@@ -53,8 +53,8 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
     longDescription: hotelDetails?.longDescription || '',
     longDescription_ru: hotelDetails?.longDescription_ru || '',
     longDescription_hy: hotelDetails?.longDescription_hy || '',
-    lat: hotelDetails?.lat || 0,
-    lng: hotelDetails?.lng || 0,
+    lat: hotelDetails?.lat || null,
+    lng: hotelDetails?.lng || null,
     type: hotelDetails?.type.id.toString() || '',
   });
   const router = useRouter();
@@ -175,6 +175,10 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
     const error = checkInputValidation();
     if (error) {
       toast.error(error);
+      return;
+    }
+    if (!inputData.lat || !inputData.lng) {
+      toast.error('Please select a location');
       return;
     }
     setIsLoading(true);

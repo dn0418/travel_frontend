@@ -53,6 +53,8 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     entrance: thingTodo?.entrance || "",
     entrance_ru: thingTodo?.entrance_ru || "",
     entrance_hy: thingTodo?.entrance_hy || "",
+    lat: thingTodo?.lat || null,
+    lng: thingTodo?.lng || null,
   });
   const router = useRouter();
 
@@ -173,6 +175,10 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     const error = checkInputValidation();
     if (error) {
       toast.error(error);
+      return;
+    }
+    if (!inputData.lat || !inputData.lng) {
+      toast.error('Please select a location');
       return;
     }
     setIsLoading(true);

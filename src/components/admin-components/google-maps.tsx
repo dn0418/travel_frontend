@@ -1,16 +1,12 @@
 import { GoogleMap, MarkerF } from '@react-google-maps/api';
 import React from 'react';
-import { HotelInputType } from '../../../../types/input-type';
-
-type LatLngLiteral = google.maps.LatLngLiteral;
 
 interface PropsType {
   setState: any;
-  state: HotelInputType;
+  state: any;
 }
 
 const AdminGoogleMap: React.FC<PropsType> = ({ state, setState }) => {
-
 
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     const lat = e.latLng?.lat();
@@ -31,19 +27,22 @@ const AdminGoogleMap: React.FC<PropsType> = ({ state, setState }) => {
       <GoogleMap
         mapContainerStyle={{ width: '100%', height: '400px' }}
         center={{
-          lat: state?.lat,
-          lng: state?.lng,
+          lat: state?.lat || 40.19983083120599,
+          lng: state?.lng || 44.47267456326713,
         }}
         zoom={12}
         onClick={handleMapClick}
       >
-        <MarkerF
-          position={{
-            lat: state?.lat,
-            lng: state?.lng,
-          }}
-        >
-        </MarkerF>
+        {
+          state?.lat && state?.lng &&
+          <MarkerF
+            position={{
+              lat: state?.lat,
+              lng: state?.lng,
+            }}
+          >
+          </MarkerF>
+        }
       </GoogleMap>
     </div>
   );

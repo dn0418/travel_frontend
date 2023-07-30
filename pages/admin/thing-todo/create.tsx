@@ -47,6 +47,8 @@ const CreateThingTodo: NextPageWithLayout = () => {
     entrance: "",
     entrance_ru: "",
     entrance_hy: "",
+    lat: null,
+    lng: null,
   });
   const router = useRouter();
 
@@ -151,6 +153,10 @@ const CreateThingTodo: NextPageWithLayout = () => {
     const error = checkInputValidation();
     if (error) {
       toast.error(error);
+      return;
+    }
+    if (!inputData.lat || !inputData.lng) {
+      toast.error('Please select a location');
       return;
     }
     setIsLoading(true);

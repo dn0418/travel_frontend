@@ -6,7 +6,7 @@ import { HotelInputType } from "../../../../types/input-type";
 import { HotelDataType, HotelPricingTable, HotelTypes } from "../../../../types/services";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
-import AdminGoogleMap from "./google-maps";
+import AdminGoogleMap from "../../google-maps";
 import UpdateHotelPricing from "./update-hotel-pricing";
 
 interface PropsType {
