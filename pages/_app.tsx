@@ -4,8 +4,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import ChatIcon from "../src/components/call-back/chat";
@@ -15,6 +15,8 @@ import "../src/styles/_app.scss";
 import defaultTheme from "../src/themes/defaultTheme";
 import { NextPageWithLayout } from "../src/types/page-props";
 import createEmotionCache from "../src/utils/createEmotionCache";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -32,19 +34,24 @@ function MyApp(props: MyAppProps) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <QueryProvider pageProps={pageProps}>
-      <GlobalContextProvider>
-        <Head>
-          <meta name='viewport' content='initial-scale=1, width=device-width' />
-        </Head>
-        <ThemeProvider theme={defaultTheme}>
-          <CssBaseline />
-          <ChatIcon />
-          {getLayout(<Component {...pageProps} />)}
-        </ThemeProvider>
-        <ToastContainer />
-      </GlobalContextProvider>
-    </QueryProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <QueryProvider pageProps={pageProps}>
+        <GlobalContextProvider>
+          <Head>
+            <meta
+              name="viewport"
+              content="initial-scale=1, width=device-width"
+            />
+          </Head>
+          <ThemeProvider theme={defaultTheme}>
+            <CssBaseline />
+            <ChatIcon />
+            {getLayout(<Component {...pageProps} />)}
+          </ThemeProvider>
+          <ToastContainer />
+        </GlobalContextProvider>
+      </QueryProvider>
+    </LocalizationProvider>
   );
 }
 

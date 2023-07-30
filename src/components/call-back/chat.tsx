@@ -7,7 +7,7 @@ import {
   Modal,
   Select,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
@@ -22,13 +22,13 @@ const initialState = {
   country: "",
   timezone: "Asia/Yerevan",
   firstName: "",
-  email: ""
-}
+  email: "",
+};
 
 function ChatIcon() {
   const [openContactModal, setOpenContactModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [inputData, setInputData] = useState(initialState)
+  const [inputData, setInputData] = useState(initialState);
   const theme = useTheme();
 
   const handleChangeInput = (name: string, value: string) => {
@@ -36,8 +36,8 @@ function ChatIcon() {
       const temp = JSON.parse(JSON.stringify(prev));
       temp[name] = value;
       return temp;
-    })
-  }
+    });
+  };
 
   const handleChangeModal = () => {
     setOpenContactModal(!openContactModal);
@@ -54,14 +54,14 @@ function ChatIcon() {
       const res = await client.callBack.newCallBack(inputData);
       toast.success("Your request has been successfully sent");
       setInputData(initialState);
-      handleChangeModal()
+      handleChangeModal();
     } catch (error) {
       toast.error("Something went wrong");
-      console.log(error)
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   const formStyles = {
     modalContainer: {
@@ -72,7 +72,7 @@ function ChatIcon() {
       width: "75%",
       bgcolor: "background.paper",
       boxShadow: 24,
-      px: '12%',
+      px: "12%",
       py: 5,
       borderRadius: "12px",
       overflowY: "scroll",
@@ -91,7 +91,7 @@ function ChatIcon() {
       [theme.breakpoints.down("md")]: {
         gridTemplateColumns: "repeat(1, 1fr)",
         gap: "8px",
-        mt: "12px"
+        mt: "12px",
       },
     },
     noteArea: {
@@ -104,59 +104,66 @@ function ChatIcon() {
       display: "flex",
       justifyContent: "flex-end",
       gap: "16px",
-    }
+    },
   };
 
   return (
     <>
-      <div className='fixed chat-area-global bottom-10 right-5 md:right-10 md:bottom-16 w-10 h-10 md:w-16 md:h-16 rounded-full bg-[#6F7531] text-white z-50 transition-opacity duration-300 opacity-100'>
-        <div className='w-full h-full flex justify-center items-center'>
+      <div className="fixed chat-area-global bottom-10 right-5 md:right-10 md:bottom-16 w-10 h-10 md:w-16 md:h-16 rounded-full bg-[#6F7531] text-white z-50 transition-opacity duration-300 opacity-100">
+        <div className="w-full h-full flex justify-center items-center">
           <Button
-            className='outline-none w-full h-full rounded-full border-none cursor-pointer bg-transparent text-white '
+            className="outline-none w-full h-full rounded-full border-none cursor-pointer bg-transparent text-white "
             onClick={handleChangeModal}
-            aria-label='Back to top'>
-            <BsChatDots className='text-xl md:text-3xl' />
+            aria-label="Back to top"
+          >
+            <BsChatDots className="text-xl md:text-3xl" />
           </Button>
         </div>
       </div>
       <Modal
         open={openContactModal}
         onClose={handleChangeModal}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'>
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={formStyles.modalContainer}>
           <Typography
-            sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
+            sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
+          >
             Call Back
           </Typography>
-          <Box
-            sx={formStyles.gridContainer}>
+          <Box sx={formStyles.gridContainer}>
             <TextField
-              onChange={(e) => handleChangeInput('firstName', e.target.value)}
-              label='First Name'
-              variant='outlined' />
+              onChange={(e) => handleChangeInput("firstName", e.target.value)}
+              label="First Name"
+              variant="outlined"
+            />
             <TextField
-              label='Last Name'
-              onChange={(e) => handleChangeInput('lastName', e.target.value)}
-              variant='outlined' />
+              label="Last Name"
+              onChange={(e) => handleChangeInput("lastName", e.target.value)}
+              variant="outlined"
+            />
             <TextField
-              label='Contact number'
-              onChange={(e) => handleChangeInput('contact', e.target.value)}
-              variant='outlined' />
+              label="Contact number"
+              onChange={(e) => handleChangeInput("contact", e.target.value)}
+              variant="outlined"
+            />
             <TextField
-              label='Email'
-              type='email'
-              onChange={(e) => handleChangeInput('email', e.target.value)}
-              variant='outlined' />
+              label="Email"
+              type="email"
+              onChange={(e) => handleChangeInput("email", e.target.value)}
+              variant="outlined"
+            />
             <PreparedContact handleChangeInput={handleChangeInput} />
 
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>Country</InputLabel>
+              <InputLabel id="demo-simple-select-label">Country</InputLabel>
               <Select
-                labelId='demo-simple-select-label'
+                labelId="demo-simple-select-label"
                 value={inputData?.country}
-                label='Country'
-                onChange={(e) => handleChangeInput('country', e.target.value)}>
+                label="Country"
+                onChange={(e) => handleChangeInput("country", e.target.value)}
+              >
                 {countries.map((country) => (
                   <MenuItem key={country.code} value={country.code}>
                     {country.name}
@@ -166,12 +173,15 @@ function ChatIcon() {
             </FormControl>
 
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>Preferred time</InputLabel>
+              <InputLabel id="demo-simple-select-label">
+                Preferred time
+              </InputLabel>
               <Select
-                labelId='demo-simple-select-label'
+                labelId="demo-simple-select-label"
                 value={inputData?.timezone}
-                label='Timezone'
-                onChange={(e) => handleChangeInput('timezone', e.target.value)}>
+                label="Timezone"
+                onChange={(e) => handleChangeInput("timezone", e.target.value)}
+              >
                 {timezones.map((country, i) => (
                   <MenuItem key={i} value={country.value}>
                     {country.label}
@@ -182,13 +192,17 @@ function ChatIcon() {
             <TextField
               sx={formStyles.noteArea}
               className="text-area"
-              onChange={(e) => handleChangeInput('note', e.target.value)}
-              label='Add your notes'
+              onChange={(e) => handleChangeInput("note", e.target.value)}
+              label="Add your notes"
             />
             <div></div>
             <div style={formStyles.buttonContainer} className="">
-              <Button variant="outlined">Cancle</Button>
-              <Button disabled={isLoading} onClick={handleSubmit} variant="contained">
+              <Button variant="outlined">Cancel</Button>
+              <Button
+                disabled={isLoading}
+                onClick={handleSubmit}
+                variant="contained"
+              >
                 {isLoading ? "Loading..." : "Submit"}
               </Button>
             </div>
