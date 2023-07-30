@@ -1,6 +1,6 @@
 // @flow strict
 
-import Image from "next/legacy/image";
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import { useRouter } from "next/router";
 import { HotelDataType } from "../../../../types/services";
 
@@ -20,14 +20,25 @@ function HotelDetailsMaps({ hotel }: { hotel: HotelDataType }) {
       }>
       </div>
       <div className="regular-shadow rounded-lg h-[432px] lg:w-[432px] p-4 md:mx-5">
-        <Image
-          src="https://i.ibb.co/CV5BmRc/Mapsicle-Map.png"
-          alt=""
-          width={432}
-          height={432}
-          layout="responsive"
-          priority
-        />
+        {
+          hotel.lat && hotel.lng &&
+          <GoogleMap
+            mapContainerStyle={{ borderRadius: "8px", width: "100%", height: "100%" }}
+            center={{
+              lat: hotel?.lat,
+              lng: hotel?.lng,
+            }}
+            zoom={10}
+          >
+            <MarkerF
+              position={{
+                lat: hotel?.lat,
+                lng: hotel?.lng,
+              }}
+            >
+            </MarkerF>
+          </GoogleMap>
+        }
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
     lastPart: '',
   });
   const theme = useTheme();
-  console.log(hotel)
+  // console.log(hotel)
 
   const closeUpdateModal = () => {
     setUpdateModal(false);

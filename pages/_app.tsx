@@ -1,6 +1,7 @@
 import { EmotionCache } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import { LoadScript } from "@react-google-maps/api";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
@@ -37,11 +38,13 @@ function MyApp(props: MyAppProps) {
         <Head>
           <meta name='viewport' content='initial-scale=1, width=device-width' />
         </Head>
-        <ThemeProvider theme={defaultTheme}>
-          <CssBaseline />
-          <ChatIcon />
-          {getLayout(<Component {...pageProps} />)}
-        </ThemeProvider>
+        <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY || ''}>
+          <ThemeProvider theme={defaultTheme}>
+            <CssBaseline />
+            <ChatIcon />
+            {getLayout(<Component {...pageProps} />)}
+          </ThemeProvider>
+        </LoadScript>
         <ToastContainer />
       </GlobalContextProvider>
     </QueryProvider>

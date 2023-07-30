@@ -209,7 +209,7 @@ const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
       departuresPricing: departuresPricing
     });
 
-    console.log(payload)
+    // console.log(payload)
 
     try {
       const res = await tourClient.tours.create(payload);

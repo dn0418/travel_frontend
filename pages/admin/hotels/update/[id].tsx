@@ -36,7 +36,6 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
     name_ru: hotelDetails?.name_ru || '',
     name_hy: hotelDetails?.name_hy || '',
     thumbnail: hotelDetails?.thumbnail || '',
-    googleMap: hotelDetails?.googleMap || '',
     price: hotelDetails?.price.toString() || '',
     fromAirport: hotelDetails?.fromAirport || false,
     country: hotelDetails?.country || '',
@@ -54,6 +53,8 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
     longDescription: hotelDetails?.longDescription || '',
     longDescription_ru: hotelDetails?.longDescription_ru || '',
     longDescription_hy: hotelDetails?.longDescription_hy || '',
+    lat: hotelDetails?.lat || 0,
+    lng: hotelDetails?.lng || 0,
     type: hotelDetails?.type.id.toString() || '',
   });
   const router = useRouter();
@@ -138,7 +139,6 @@ const UpdateHotel: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPr
     const requiredFields = [
       "name",
       "price",
-      "googleMap",
       "country",
       "city",
       "checkInTime",

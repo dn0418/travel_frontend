@@ -119,7 +119,7 @@ const UpdateCar: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   const handleRemoveImage = async (id: number) => {
     try {
       const res = await client.images.deleteImage(id);
-      console.log(res)
+      // console.log(res)
       setImages(images.filter((image, i) => image.id !== id));
     } catch (error) {
       toast.error('Something went wrong!');

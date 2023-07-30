@@ -42,7 +42,7 @@ function ToursPage({
             style: { display: "none" },
           }}
         >
-          {tabs.map((tab) => (
+          {tabs.map((tab: any) => (
             <Tab key={tab.id} value={tab.value} className="" label={tab.name} />
           ))}
         </Tabs>
@@ -55,8 +55,8 @@ function ToursPage({
               {locale === "ru"
                 ? "Найдите свою потребность"
                 : locale === "hy"
-                ? "Որոնեք ձեր կարիքը"
-                : "Search your Need"}
+                  ? "Որոնեք ձեր կարիքը"
+                  : "Search your Need"}
             </InputLabel>
             <OutlinedInput
               endAdornment={
@@ -68,8 +68,8 @@ function ToursPage({
                 locale === "ru"
                   ? "Найдите свою потребность"
                   : locale === "hy"
-                  ? "Որոնեք ձեր կարիքը"
-                  : "Search your Need"
+                    ? "Որոնեք ձեր կարիքը"
+                    : "Search your Need"
               }
               onChange={(e) => handleSearch(e.target.value)}
             />
@@ -100,8 +100,8 @@ function ToursPage({
                           {locale === "ru"
                             ? "Следующий"
                             : locale === "hy"
-                            ? "Հաջորդը"
-                            : "Next"}
+                              ? "Հաջորդը"
+                              : "Next"}
                         </span>
                       ),
                       previous: (props) => (
@@ -109,8 +109,8 @@ function ToursPage({
                           {locale === "ru"
                             ? "Пред."
                             : locale === "hy"
-                            ? "Նախ"
-                            : "Prev"}
+                              ? "Նախ"
+                              : "Prev"}
                         </span>
                       ),
                     }}

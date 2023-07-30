@@ -2,7 +2,7 @@
 
 import { Button, Rating } from "@mui/material";
 import { useRouter } from "next/router";
-import { BiCalendar, BiCategory, BiHash } from "react-icons/bi";
+import { BiCalendar, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { GiCancel, GiPriceTag } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
@@ -16,8 +16,8 @@ function TourSpecification({ tour }: { tour: TourType }) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
@@ -33,8 +33,8 @@ function TourSpecification({ tour }: { tour: TourType }) {
         {locale === "ru"
           ? tour.title_ru
           : locale === "hy"
-          ? tour.title_hy
-          : tour.title}
+            ? tour.title_hy
+            : tour.title}
       </h3>
       <p className="flex items-center gap-2">
         <IoLocationOutline className="text-base text-[#EDA592]  font-bold" />
@@ -42,14 +42,14 @@ function TourSpecification({ tour }: { tour: TourType }) {
           {(locale === "ru"
             ? tour.destination?.country_hy
             : locale === "hy"
-            ? tour.destination?.name_hy
-            : tour.destination?.name) +
+              ? tour.destination?.name_hy
+              : tour.destination?.name) +
             " - " +
             (locale === "ru"
               ? tour.destination?.country_ru
               : locale === "hy"
-              ? tour.destination?.country_hy
-              : tour.destination?.country)}
+                ? tour.destination?.country_hy
+                : tour.destination?.country)}
         </span>
       </p>
       {tour.reviews.length > 0 && (
@@ -99,11 +99,11 @@ function TourSpecification({ tour }: { tour: TourType }) {
           {locale === "ru"
             ? tour.bestTime_ru
             : locale === "hy"
-            ? tour.bestTime_hy
-            : tour.bestTime}
+              ? tour.bestTime_hy
+              : tour.bestTime}
         </span>
       </p>
-      <p className="flex items-center gap-3">
+      {/* <p className="flex items-center gap-3">
         <BiCategory className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">{localData.type_text}:</span>
         <span className="text-base text-[#5e5e5e] font-medium">
@@ -113,7 +113,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
             ? tour.childList_hy
             : tour.childList}
         </span>
-      </p>
+      </p> */}
       <p className="flex items-center gap-3">
         <GiCancel className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
@@ -125,12 +125,12 @@ function TourSpecification({ tour }: { tour: TourType }) {
             : localData.transportData.no_text}
         </span>
       </p>
-      {tour.date && (
+      {/* {tour.date && (
         <p className="flex items-center gap-4">
           <BiCalendar className="text-base text-[#EDA592]  font-bold" />
           <span className="text-base text-[#5e5e5e]">{tour.date}</span>
         </p>
-      )}
+      )} */}
       <p className="flex items-center gap-4">
         <BsPerson className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
