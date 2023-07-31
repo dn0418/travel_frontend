@@ -10,6 +10,7 @@ import { MdLocalAirport } from "react-icons/md";
 import { TiCancelOutline } from "react-icons/ti";
 import { HotelDataType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
+import HotelModal from "../../../modal/HotelModal";
 
 interface Props {
   hotel: HotelDataType;
@@ -120,12 +121,7 @@ function HotelSpecification({ hotel, metadata }: Props) {
         </span>
       </p>
       <div className="md:mt-8">
-        <Button
-          className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained"
-        >
-          {localData.submit_text}
-        </Button>
+        <HotelModal buttonText={localData.submit_text} />
       </div>
     </div>
   );

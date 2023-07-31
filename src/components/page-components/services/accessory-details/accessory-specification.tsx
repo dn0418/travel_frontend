@@ -8,6 +8,7 @@ import { TiCancelOutline } from "react-icons/ti";
 import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 import AccessoryThumbnailSection from "./thumbnail-section";
+import TourAccessoriesModal from "../../../modal/TourAccessoriesModal";
 
 interface PropsType {
   accessoryDetails: TourAccessoryType;
@@ -24,8 +25,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-        ? localizationData.hy
-        : localizationData.en;
+      ? localizationData.hy
+      : localizationData.en;
 
   return (
     <div className="">
@@ -36,8 +37,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
             {locale === "hy"
               ? accessoryDetails.title_hy
               : locale === "ru"
-                ? accessoryDetails.title_ru
-                : accessoryDetails.title}
+              ? accessoryDetails.title_ru
+              : accessoryDetails.title}
           </h3>
           {accessoryDetails.type && (
             <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
@@ -47,8 +48,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
                 {locale === "hy"
                   ? accessoryDetails.type.name_hy
                   : locale === "ru"
-                    ? accessoryDetails.type.name_ru
-                    : accessoryDetails.type.name}
+                  ? accessoryDetails.type.name_ru
+                  : accessoryDetails.type.name}
               </span>
             </p>
           )}
@@ -83,8 +84,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {locale === "hy"
                 ? accessoryDetails.available_hy
                 : locale === "ru"
-                  ? accessoryDetails.available_ru
-                  : accessoryDetails.available}
+                ? accessoryDetails.available_ru
+                : accessoryDetails.available}
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
@@ -94,8 +95,8 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {locale === "hy"
                 ? accessoryDetails.perPax_hy
                 : locale === "ru"
-                  ? accessoryDetails.perPax_ru
-                  : accessoryDetails.perPax}
+                ? accessoryDetails.perPax_ru
+                : accessoryDetails.perPax}
             </span>
           </p>
 
@@ -116,33 +117,30 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {locale === "hy"
                 ? accessoryDetails.rentFrom_hy
                 : locale === "ru"
-                  ? accessoryDetails.rentFrom_ru
-                  : accessoryDetails.rentFrom}
+                ? accessoryDetails.rentFrom_ru
+                : accessoryDetails.rentFrom}
               {localData.days_title}
             </span>
           </p>
           <div className="md:mt-8">
-            <Button
-              className="px-8 md:px-12 rounded-lg bg-black text-white"
-              variant="contained"
-            >
-              {localData.submit_text}
-            </Button>
+            <TourAccessoriesModal buttonText={localData.submit_text} />
           </div>
         </div>
       </div>
       <div className="tour-details-maps my-5 md:my-8 gap-5">
-        <div dangerouslySetInnerHTML={{
-          __html: (`<p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
-            ${locale === "hy"
-              ? accessoryDetails.longDescription_hy
-              : locale === "ru"
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `<p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
+            ${
+              locale === "hy"
+                ? accessoryDetails.longDescription_hy
+                : locale === "ru"
                 ? accessoryDetails.longDescription_ru
-                : accessoryDetails.longDescription}
-          </p>`)
-        }
-        }>
-        </div>
+                : accessoryDetails.longDescription
+            }
+          </p>`,
+          }}
+        ></div>
       </div>
     </div>
   );
