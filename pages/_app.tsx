@@ -3,6 +3,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { LoadScript } from "@react-google-maps/api";
 import type { AppProps } from "next/app";
+import { Poppins, Rubik } from "next/font/google";
 import Head from "next/head";
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer } from 'react-toastify';
@@ -18,6 +19,20 @@ import { NextPageWithLayout } from "../src/types/page-props";
 import createEmotionCache from "../src/utils/createEmotionCache";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
+
+const roboto = Poppins({
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-poppins'
+})
+
+const rubik = Rubik({
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-rubik'
+})
 
 // Extend the default AppProps
 export interface MyAppProps extends AppProps {
