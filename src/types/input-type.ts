@@ -6,7 +6,6 @@ export interface HotelInputType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  googleMap: string;
   price: string;
   fromAirport: boolean;
   country: string;
@@ -25,6 +24,8 @@ export interface HotelInputType {
   longDescription_ru: string;
   longDescription_hy: string;
   type: string;
+  lat: number | null;
+  lng: number | null;
 }
 
 export interface AccessoriesInputType {
@@ -109,6 +110,8 @@ export interface ThingToDoInputType {
   entrance: string;
   entrance_ru: string;
   entrance_hy: string;
+  lat: number | null;
+  lng: number | null;
 }
 
 export interface FoodAndDrinkInputType {
@@ -141,6 +144,8 @@ export interface FoodAndDrinkInputType {
   entrance: string;
   entrance_ru: string;
   entrance_hy: string;
+  lat: number | null;
+  lng: number | null;
 }
 
 export interface TourInputType {

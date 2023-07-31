@@ -23,11 +23,7 @@ export interface BlogPageProps {
 export interface ToursPageProps {
   handleTabChange: (event: React.SyntheticEvent, newValue: string) => void;
   tabIndex: any;
-  tabs: {
-    id: any;
-    name: string;
-    value: string;
-  }[];
+  tabs: any;
   title: string;
   tours: any;
   handlePageChange: any;

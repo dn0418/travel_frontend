@@ -54,6 +54,8 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     entrance: foodAndDrink?.entrance || "",
     entrance_ru: foodAndDrink?.entrance_ru || "",
     entrance_hy: foodAndDrink?.entrance_hy || "",
+    lat: foodAndDrink?.lat || null,
+    lng: foodAndDrink?.lng || null,
   });
   const router = useRouter();
 
@@ -174,6 +176,10 @@ const CreateThingTodo: NextPageWithLayout<InferGetStaticPropsType<typeof getStat
     const error = checkInputValidation();
     if (error) {
       toast.error(error);
+      return;
+    }
+    if (!inputData.lat || !inputData.lng) {
+      toast.error('Please select a location');
       return;
     }
     setIsLoading(true);

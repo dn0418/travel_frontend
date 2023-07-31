@@ -6,6 +6,7 @@ import { ThingToDoInputType } from "../../../types/input-type";
 import { thingsSeeTypes } from "../../../utils/data/armenia-data";
 import SunTextEditor from "../../common/SunEditor";
 import SectionTitle from "../../common/section-title";
+import AdminGoogleMap from "../google-maps";
 
 interface PropsType {
   handleImageChange: any;
@@ -106,7 +107,12 @@ function UpdateNewThingToSee({
                 />
               </div>
           }
-          <div className="col-span-2"></div>
+          <div className="col-span-2">
+            <AdminGoogleMap
+              setState={setInputData}
+              state={inputData}
+            />
+          </div>
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Thing To See Type</InputLabel>
             <Select

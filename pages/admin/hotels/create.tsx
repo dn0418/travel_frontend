@@ -33,7 +33,6 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     name_ru: '',
     name_hy: '',
     thumbnail: '',
-    googleMap: '',
     price: '',
     fromAirport: false,
     country: '',
@@ -52,6 +51,8 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     longDescription_ru: '',
     longDescription_hy: '',
     type: '',
+    lat: null,
+    lng: null,
   });
   const router = useRouter();
 
@@ -119,7 +120,6 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     const requiredFields = [
       "name",
       "price",
-      "googleMap",
       "country",
       "city",
       "checkInTime",
@@ -157,6 +157,10 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     const error = checkInputValidation();
     if (error) {
       toast.error(error);
+      return;
+    }
+    if (!inputData.lat || !inputData.lng) {
+      toast.error('Please select a location');
       return;
     }
     setIsLoading(true);

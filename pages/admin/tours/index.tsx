@@ -10,7 +10,6 @@ import { NextPageWithLayout } from "../../../src/types/page-props";
 import { tourTypes } from "../../../src/utils/data/tours-types";
 export { getServerSideProps };
 
-
 const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
   const tours = props?.toursData?.data;
   const meta = props?.toursData?.meta;
@@ -72,9 +71,6 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   return (
     <>
       <ToursDashboard
-        tabIndex={tabIndex}
-        handleTabChange={handleTabChange}
-        tabs={typeItems}
         title={title}
         tours={tours}
         handlePageChange={handlePageChange}

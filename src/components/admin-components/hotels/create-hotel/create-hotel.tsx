@@ -5,6 +5,7 @@ import { HotelInputType } from "../../../../types/input-type";
 import { HotelPricingTable, HotelTypes } from "../../../../types/services";
 import SunTextEditor from "../../../common/SunEditor";
 import SectionTitle from "../../../common/section-title";
+import AdminGoogleMap from "../../google-maps";
 import CreateHotelPricing from "./create-hotel-pricing";
 
 interface PropsType {
@@ -50,8 +51,6 @@ function CreateNewHotel({
   isLoading,
   hotelsTypes
 }: PropsType) {
-
-  // console.log(hotelsTypes)
 
   return (
     <div className="w-full my-8">
@@ -115,18 +114,12 @@ function CreateNewHotel({
               </div>
           }
           <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    freeCancellation: e.target.checked
-                  })}
-                  checked={inputData.freeCancellation}
-                />}
-              label="Free Cancelation"
+            <AdminGoogleMap
+              setState={setInputData}
+              state={inputData}
             />
           </div>
+
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Hotel Type</InputLabel>
             <Select
@@ -150,13 +143,6 @@ function CreateNewHotel({
             className="w-full"
             value={inputData.name}
           />
-          <TextField
-            label='Google maps'
-            onChange={(e: any) => handleInputChange('googleMap', e.target.value)}
-            variant='outlined'
-            className="w-full"
-            value={inputData.googleMap}
-          />
 
           <TextField
             label='Price'
@@ -166,19 +152,29 @@ function CreateNewHotel({
             type="number"
             value={inputData.price}
           />
-          <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    fromAirport: e.target.checked
-                  })}
-                  checked={inputData.fromAirport}
-                />}
-              label="From Airport"
-            />
-          </div>
+          <FormControlLabel
+            control={
+              <Switch
+                onChange={(e: any) => setInputData({
+                  ...inputData,
+                  freeCancellation: e.target.checked
+                })}
+                checked={inputData.freeCancellation}
+              />}
+            label="Free Cancelation"
+          />
+
+          <FormControlLabel
+            control={
+              <Switch
+                onChange={(e: any) => setInputData({
+                  ...inputData,
+                  fromAirport: e.target.checked
+                })}
+                checked={inputData.fromAirport}
+              />}
+            label="From Airport"
+          />
           <TextField
             label='Country'
             onChange={(e: any) => handleInputChange('country', e.target.value)}

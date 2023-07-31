@@ -3,21 +3,16 @@
 import { Button, Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
 import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
-import { ToursPageProps } from "../../../types/page-props";
 import TourAdminCard from "../../admin-cards/tour-admin-card";
 import SectionTitle from "../../common/section-title";
 
 function ToursDashboard({
-  handleTabChange,
-  tabIndex,
-  tabs,
   title,
   tours,
   handlePageChange,
   meta,
   handleSearch
-}: ToursPageProps) {
-  // console.log(meta)
+}: any) {
 
   return (
     <Container className='flex flex-col items-center'>
