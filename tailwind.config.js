@@ -15,9 +15,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ['Poppins', 'sans-serif'],
-      serif: ['Poppins', 'serif'],
-      mono: ['Poppins', 'monospace'],
+      rubik: ['var(--font-rubik)'],
+      poppins: ['var(--font-poppins)'],
     },
   },
   plugins: [],

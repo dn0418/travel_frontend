@@ -23,24 +23,19 @@
 body {
   width: 100vw;
   height: 100vh;
-  font-family: "Rubik", sans-serif;
+  font-family: var(--font-rubik);
 }
 
-p {
-  font-family: "Rubik", sans-serif;
+p,
+td,
+li,
+link {
+  font-family: var(--font-rubik);
 }
 
 a {
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
-}
-
-.font-poppins {
-  font-family: "Poppins", sans-serif;
-}
-
-.font-rubik {
-  font-family: "Rubik", sans-serif;
+  font-family: var(--font-poppins);
 }
 
 h1,
@@ -50,5 +45,5 @@ h4,
 h5,
 h6,
 button {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-poppins);
 }

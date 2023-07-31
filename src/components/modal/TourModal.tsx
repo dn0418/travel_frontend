@@ -3,27 +3,28 @@ import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import AdditionalInfo from "./AdditionalInfo";
-import CommonInput from "./CommonInput";
+import { TourType } from "../../types/tour";
 import CheckBox from "./CheckBox";
+import CommonInput from "./CommonInput";
 
-const initialState = {
-  firstName: "",
-  email: "",
-  startDate: "20-20-2020",
-  endDate: "20-20-2021",
-  checkbox1: false,
-  checkbox2: false,
-};
+
 interface IProps {
   buttonText: string;
-  tourName: string;
+  tour: TourType;
 }
 
-function TourModal({ buttonText, tourName }: IProps) {
+function TourModal({ buttonText, tour }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const [inputData, setInputData] = useState(initialState);
+  const [inputData, setInputData] = useState({
+    firstName: "",
+    email: "",
+    startDate: tour.startDate || '',
+    endDate: tour.endDate || '',
+    checkbox1: false,
+    checkbox2: false,
+    adult: 0,
+  });
   const theme = useTheme();
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
@@ -43,8 +44,11 @@ function TourModal({ buttonText, tourName }: IProps) {
       toast.error("First name, email and country are required");
       return;
     }
+    try {
+      console.log(inputData);
+    } catch (error) {
 
-    console.log(inputData);
+    }
     setOpenContactModal(false);
   };
 
@@ -115,22 +119,20 @@ function TourModal({ buttonText, tourName }: IProps) {
           </Typography>
           <Box sx={formStyles.gridContainer}>
             <CommonInput handleChangeInput={handleChangeInput} />
-
             <TextField
               label="Adult"
-              type="tel"
+              type="number"
               onChange={(e) => handleChangeInput("adult", e.target.value)}
+              value={inputData.adult}
               variant="outlined"
-              inputProps={{ maxLength: 1 }}
               required
             />
             <TextField
               label="Child"
-              type="tel"
+              type="number"
               onChange={(e) => handleChangeInput("child", e.target.value)}
               maxRows={1}
               variant="outlined"
-              inputProps={{ maxLength: 1 }}
               required
             />
             <TextField
@@ -138,13 +140,16 @@ function TourModal({ buttonText, tourName }: IProps) {
               type="text"
               onChange={(e) => handleChangeInput("tourName", e.target.value)}
               variant="outlined"
-              value={tourName}
+              value={tour.title}
               disabled
             />
 
-            <AdditionalInfo
-              css={formStyles.noteArea}
-              handleChangeInput={handleChangeInput}
+            <TextField
+              sx={formStyles.noteArea}
+              onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
+              label="Additional Information"
+              multiline
+              rows={4}
             />
           </Box>
 

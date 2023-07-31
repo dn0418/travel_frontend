@@ -1,7 +1,6 @@
 import { TextField } from "@mui/material";
 import { DateField } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import React from "react";
 
 export default function CommonInput({
   handleChangeInput,
@@ -36,7 +35,6 @@ export default function CommonInput({
         variant="outlined"
         required
       />
-
       <DateField label="Start Date" defaultValue={dayjs("2022-04-17")} />
       <DateField label="End Date" defaultValue={dayjs("2022-04-17")} />
     </>

@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiCalendar, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
@@ -8,12 +8,11 @@ import { GiCancel, GiPriceTag } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
 import { ReviewTypes } from "../../../types";
 import { TourType } from "../../../types/tour";
+import { formatDate } from "../../../utils/formate-date";
 import { localizationData } from "../../../utils/locales";
-import { useState } from "react";
 import TourModal from "../../modal/TourModal";
 
 function TourSpecification({ tour }: { tour: TourType }) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -128,12 +127,12 @@ function TourSpecification({ tour }: { tour: TourType }) {
             : localData.transportData.no_text}
         </span>
       </p>
-      {/* {tour.date && (
+      {tour.startDate && (
         <p className="flex items-center gap-4">
           <BiCalendar className="text-base text-[#EDA592]  font-bold" />
-          <span className="text-base text-[#5e5e5e]">{tour.date}</span>
+          <span className="text-base text-[#5e5e5e]">{formatDate(tour.startDate)}</span>
         </p>
-      )} */}
+      )}
       <p className="flex items-center gap-4">
         <BsPerson className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
@@ -141,7 +140,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
         </span>
       </p>
       <div className="md:mt-8">
-        <TourModal buttonText={localData.submit_text} tourName={tour.title} />
+        <TourModal buttonText={localData.submit_text} tour={tour} />
       </div>
     </div>
   );

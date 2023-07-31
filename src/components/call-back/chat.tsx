@@ -191,7 +191,8 @@ function ChatIcon() {
             </FormControl>
             <TextField
               sx={formStyles.noteArea}
-              className="text-area"
+              multiline
+              rows={4}
               onChange={(e) => handleChangeInput("note", e.target.value)}
               label="Add your notes"
             />

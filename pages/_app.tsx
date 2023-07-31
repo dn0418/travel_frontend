@@ -2,6 +2,9 @@ import { EmotionCache } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LoadScript } from "@react-google-maps/api";
 import type { AppProps } from "next/app";
 import { Poppins, Rubik } from "next/font/google";
 import Head from "next/head";
@@ -17,12 +20,10 @@ import "../src/styles/_app.scss";
 import defaultTheme from "../src/themes/defaultTheme";
 import { NextPageWithLayout } from "../src/types/page-props";
 import createEmotionCache from "../src/utils/createEmotionCache";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-const roboto = Poppins({
+const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
@@ -50,24 +51,28 @@ function MyApp(props: MyAppProps) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <QueryProvider pageProps={pageProps}>
-        <GlobalContextProvider>
-          <Head>
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
-          <ThemeProvider theme={defaultTheme}>
-            <CssBaseline />
-            <ChatIcon />
-            {getLayout(<Component {...pageProps} />)}
-          </ThemeProvider>
-          <ToastContainer />
-        </GlobalContextProvider>
-      </QueryProvider>
-    </LocalizationProvider>
+    <div className={`${poppins.variable} ${rubik.variable}`}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <QueryProvider pageProps={pageProps}>
+          <GlobalContextProvider>
+            <Head>
+              <meta
+                name="viewport"
+                content="initial-scale=1, width=device-width"
+              />
+            </Head>
+            <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY || ''}>
+              <ThemeProvider theme={defaultTheme}>
+                <CssBaseline />
+                <ChatIcon />
+                {getLayout(<Component {...pageProps} />)}
+              </ThemeProvider>
+            </LoadScript>
+            <ToastContainer />
+          </GlobalContextProvider>
+        </QueryProvider>
+      </LocalizationProvider>
+    </div>
   );
 }
 

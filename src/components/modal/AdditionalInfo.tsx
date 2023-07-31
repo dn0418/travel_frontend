@@ -11,9 +11,10 @@ const AdditionalInfo = ({
     <>
       <TextField
         sx={css}
-        className="text-area"
         onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
         label="Additional Information"
+        multiline
+        rows={4}
       />
     </>
   );
