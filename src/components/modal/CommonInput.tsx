@@ -38,11 +38,7 @@ export default function CommonInput({
       />
 
       <DateField label="Start Date" defaultValue={dayjs("2022-04-17")} />
-      <DateField
-        label="End Date"
-        defaultValue={dayjs("2022-04-17")}
-        onChange={(newValue) => console.log(newValue)}
-      />
+      <DateField label="End Date" defaultValue={dayjs("2022-04-17")} />
     </>
   );
 }

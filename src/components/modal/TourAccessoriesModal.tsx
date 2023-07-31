@@ -17,10 +17,9 @@ const initialState = {
 };
 interface IProps {
   buttonText: string;
-  tourName: string;
 }
 
-function TourModal({ buttonText, tourName }: IProps) {
+function TourAccessoriesModal({ buttonText }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
   const [inputData, setInputData] = useState(initialState);
@@ -46,6 +45,8 @@ function TourModal({ buttonText, tourName }: IProps) {
 
     console.log(inputData);
     setOpenContactModal(false);
+    inputData.checkbox1 = false;
+    inputData.checkbox2 = false;
   };
 
   const formStyles = {
@@ -111,36 +112,10 @@ function TourModal({ buttonText, tourName }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            Tour Page
+            Tour Accessories
           </Typography>
           <Box sx={formStyles.gridContainer}>
             <CommonInput handleChangeInput={handleChangeInput} />
-
-            <TextField
-              label="Adult"
-              type="tel"
-              onChange={(e) => handleChangeInput("adult", e.target.value)}
-              variant="outlined"
-              inputProps={{ maxLength: 1 }}
-              required
-            />
-            <TextField
-              label="Child"
-              type="tel"
-              onChange={(e) => handleChangeInput("child", e.target.value)}
-              maxRows={1}
-              variant="outlined"
-              inputProps={{ maxLength: 1 }}
-              required
-            />
-            <TextField
-              label="Tour Name"
-              type="text"
-              onChange={(e) => handleChangeInput("tourName", e.target.value)}
-              variant="outlined"
-              value={tourName}
-              disabled
-            />
 
             <AdditionalInfo
               css={formStyles.noteArea}
@@ -179,4 +154,4 @@ function TourModal({ buttonText, tourName }: IProps) {
   );
 }
 
-export default TourModal;
+export default TourAccessoriesModal;

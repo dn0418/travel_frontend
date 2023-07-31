@@ -17,10 +17,9 @@ const initialState = {
 };
 interface IProps {
   buttonText: string;
-  tourName: string;
 }
 
-function TourModal({ buttonText, tourName }: IProps) {
+function HotelModal({ buttonText }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
   const [inputData, setInputData] = useState(initialState);
@@ -111,35 +110,25 @@ function TourModal({ buttonText, tourName }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            Tour Page
+            Hotel Page
           </Typography>
           <Box sx={formStyles.gridContainer}>
             <CommonInput handleChangeInput={handleChangeInput} />
 
             <TextField
-              label="Adult"
-              type="tel"
-              onChange={(e) => handleChangeInput("adult", e.target.value)}
-              variant="outlined"
-              inputProps={{ maxLength: 1 }}
-              required
-            />
-            <TextField
-              label="Child"
-              type="tel"
-              onChange={(e) => handleChangeInput("child", e.target.value)}
-              maxRows={1}
-              variant="outlined"
-              inputProps={{ maxLength: 1 }}
-              required
-            />
-            <TextField
-              label="Tour Name"
+              label="Room type"
               type="text"
-              onChange={(e) => handleChangeInput("tourName", e.target.value)}
+              onChange={(e) => handleChangeInput("roomType", e.target.value)}
               variant="outlined"
-              value={tourName}
-              disabled
+              required
+            />
+            <TextField
+              label="Quantity"
+              type="tel"
+              inputProps={{ maxLength: 1 }}
+              onChange={(e) => handleChangeInput("quantity", e.target.value)}
+              variant="outlined"
+              required
             />
 
             <AdditionalInfo
@@ -179,4 +168,4 @@ function TourModal({ buttonText, tourName }: IProps) {
   );
 }
 
-export default TourModal;
+export default HotelModal;
