@@ -19,8 +19,11 @@ export interface TourType {
   isFixedDate: boolean;
   startDate: string;
   endDate: string;
+  date: string;
   mainList: string;
   childList: string;
+  childList_ru: string;
+  childList_hy: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;
@@ -113,8 +116,6 @@ export interface TourRouteType {
   hotel_ru: string;
   hotel_hy: string;
 }
-
-
 
 export interface UpdateTourPropsType {
   uploadThumbnail: any;

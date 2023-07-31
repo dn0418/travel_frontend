@@ -9,8 +9,11 @@ import { IoLocationOutline } from "react-icons/io5";
 import { ReviewTypes } from "../../../types";
 import { TourType } from "../../../types/tour";
 import { localizationData } from "../../../utils/locales";
+import { useState } from "react";
+import TourModal from "../../modal/TourModal";
 
 function TourSpecification({ tour }: { tour: TourType }) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -138,12 +141,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
         </span>
       </p>
       <div className="md:mt-8">
-        <Button
-          className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained"
-        >
-          {localData.submit_text}
-        </Button>
+        <TourModal buttonText={localData.submit_text} tourName={tour.title} />
       </div>
     </div>
   );
