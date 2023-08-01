@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { TourType } from "../../types/tour";
 import CheckBox from "./CheckBox";
 import CommonInput from "./CommonInput";
+import { InputData } from "../../types/modal.type";
 
 
 interface IProps {
@@ -16,14 +17,18 @@ interface IProps {
 function TourModal({ buttonText, tour }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const [inputData, setInputData] = useState({
+  const [inputData, setInputData] = useState<InputData>({
     firstName: "",
+    lastName:"",
     email: "",
+    telephone:"",
     startDate: tour.startDate || '',
     endDate: tour.endDate || '',
     checkbox1: false,
     checkbox2: false,
     adult: 0,
+    child:0,
+    additionalInfo:""
   });
   const theme = useTheme();
 
@@ -40,8 +45,28 @@ function TourModal({ buttonText, tour }: IProps) {
   };
 
   const handleSubmit = async () => {
-    if (!inputData.email) {
-      toast.error("First name, email and country are required");
+   
+    if(inputData.child!  > 6){
+      toast.error("child should be less than 6")
+      return;
+    }
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "telephone",
+      "startDate",
+      "endDate",
+      "adult",
+      "child", 
+    ];
+
+    const missingFields = requiredFields.filter((field:string) => !inputData[field]);
+  console.log(missingFields)
+    if(missingFields.length > 0){
+      toast.error(
+        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""} are required`
+      )
       return;
     }
     try {
@@ -118,7 +143,7 @@ function TourModal({ buttonText, tour }: IProps) {
             Tour Page
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput} />
+            <CommonInput handleChangeInput={handleChangeInput}  inputData={inputData}/>
             <TextField
               label="Adult"
               type="number"
@@ -133,6 +158,7 @@ function TourModal({ buttonText, tour }: IProps) {
               onChange={(e) => handleChangeInput("child", e.target.value)}
               maxRows={1}
               variant="outlined"
+              value={inputData.child}
               required
             />
             <TextField
@@ -149,6 +175,7 @@ function TourModal({ buttonText, tour }: IProps) {
               onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
               label="Additional Information"
               multiline
+              value={inputData.additionalInfo}
               rows={4}
             />
           </Box>

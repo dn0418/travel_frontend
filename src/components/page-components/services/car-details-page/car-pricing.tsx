@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CarWithOutType } from '../../../../types/car-type';
 import { localizationData } from '../../../../utils/locales';
+import CarModel from '../../../modal/CarModal';
 
 interface Props {
   car: CarWithOutType
@@ -68,11 +69,8 @@ export default function CarPricingTable({ car }: Props) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-          <Link href="/ride-plan">
-            <Button className="bg-black text-white" variant='contained'>
-              {localData.send_request}
-            </Button>
-          </Link>
+      
+        <CarModel buttonText= {localData.send_request} car={car}/>  
         </div>
       </div>
     </Container>

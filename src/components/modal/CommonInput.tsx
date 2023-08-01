@@ -1,12 +1,26 @@
-import { TextField } from "@mui/material";
-import { DateField } from "@mui/x-date-pickers";
-import dayjs from "dayjs";
+import { TextField, formLabelClasses } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from "dayjs";
 
+
+interface IProps {
+  handleChangeInput: (fieldName: string, value: string) => void; 
+  inputData:{
+    firstName: string,
+    lastName:string
+    email: string,
+    telephone:string,
+    startDate: string,
+    endDate: string,
+   
+  }
+}
 export default function CommonInput({
   handleChangeInput,
-}: {
-  handleChangeInput: (fieldName: string, value: string) => void;
-}) {
+  inputData
+}: IProps) {
+
+  
   return (
     <>
       <TextField
@@ -14,17 +28,21 @@ export default function CommonInput({
         label="First Name"
         variant="outlined"
         aria-required
+        value={inputData.firstName}
+        required
       />
       <TextField
         label="Last Name"
         onChange={(e) => handleChangeInput("lastName", e.target.value)}
         variant="outlined"
+        value={inputData.lastName}
         required
       />
       <TextField
         label="Email Address"
         onChange={(e) => handleChangeInput("email", e.target.value)}
         variant="outlined"
+        value={inputData.email}
         required
       />
       <TextField
@@ -33,10 +51,25 @@ export default function CommonInput({
         inputProps={{ maxLength: 11 }}
         onChange={(e) => handleChangeInput("telephone", e.target.value)}
         variant="outlined"
+        value={inputData.telephone}
         required
       />
-      <DateField label="Start Date" defaultValue={dayjs("2022-04-17")} />
-      <DateField label="End Date" defaultValue={dayjs("2022-04-17")} />
+      <DatePicker 
+         label="Start Date" 
+      value={dayjs(inputData?.startDate)}
+       views={["day", "month", "year"]} 
+         onChange={(value) => handleChangeInput('startDate',value?.toDate().toLocaleDateString()!)}
+        format="DD/MM/YYYY"
+         />
+      <DatePicker
+      label="End Date" 
+      value={dayjs(inputData?.startDate)}
+       views={["day", "month", "year"]}
+       onChange={(value) => handleChangeInput('endDate',value?.toDate().toLocaleDateString()!)} 
+       
+        format="DD/MM/YYYY"
+       />
+      
     </>
   );
 }

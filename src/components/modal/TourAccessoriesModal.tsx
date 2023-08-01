@@ -2,27 +2,31 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
-
-import AdditionalInfo from "./AdditionalInfo";
 import CommonInput from "./CommonInput";
 import CheckBox from "./CheckBox";
+import { TourAccessoryType } from "../../types/services";
+import { InputData } from "../../types/modal.type";
 
-const initialState = {
-  firstName: "",
-  email: "",
-  startDate: "20-20-2020",
-  endDate: "20-20-2021",
-  checkbox1: false,
-  checkbox2: false,
-};
+
 interface IProps {
   buttonText: string;
+  accessoryDetails:TourAccessoryType
 }
 
-function TourAccessoriesModal({ buttonText }: IProps) {
+function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const [inputData, setInputData] = useState(initialState);
+  const [inputData, setInputData] = useState<InputData>({
+    firstName: "",
+    lastName:"",
+    telephone:"",
+    email: "",
+    startDate: accessoryDetails?.startDate || "",
+    endDate: accessoryDetails?.startDate || "",
+    checkbox1: false,
+    checkbox2: false,
+    additionalInfo:""
+  });
   const theme = useTheme();
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
@@ -38,15 +42,29 @@ function TourAccessoriesModal({ buttonText }: IProps) {
   };
 
   const handleSubmit = async () => {
-    if (!inputData.email) {
-      toast.error("First name, email and country are required");
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "telephone",
+      "startDate",
+      "endDate",
+    ];
+
+    const missingFields = requiredFields.filter((field:string) => !inputData[field]);
+  console.log(missingFields)
+    if(missingFields.length > 0){
+      toast.error(
+        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""} are required`
+      )
       return;
     }
+    try {
+      console.log(inputData);
+    } catch (error) {
 
-    console.log(inputData);
+    }
     setOpenContactModal(false);
-    inputData.checkbox1 = false;
-    inputData.checkbox2 = false;
   };
 
   const formStyles = {
@@ -115,11 +133,14 @@ function TourAccessoriesModal({ buttonText }: IProps) {
             Tour Accessories
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput} />
+            <CommonInput handleChangeInput={handleChangeInput} inputData={inputData} />
 
-            <AdditionalInfo
-              css={formStyles.noteArea}
-              handleChangeInput={handleChangeInput}
+            <TextField
+              sx={formStyles.noteArea}
+              onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
+              label="Additional Information"
+              multiline
+              rows={4}
             />
           </Box>
 

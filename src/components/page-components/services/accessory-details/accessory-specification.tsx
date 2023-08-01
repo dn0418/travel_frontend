@@ -123,7 +123,7 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
             </span>
           </p>
           <div className="md:mt-8">
-            <TourAccessoriesModal buttonText={localData.submit_text} />
+            <TourAccessoriesModal buttonText={localData.submit_text} accessoryDetails={accessoryDetails} />
           </div>
         </div>
       </div>

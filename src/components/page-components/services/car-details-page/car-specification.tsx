@@ -108,7 +108,7 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
             <span>{car.seatNo}</span>
           </p>
           <div className="md:mt-8">
-            <CarModel buttonText={localData.submit_text} />
+            <CarModel buttonText={localData.submit_text} car={car} />
           </div>
         </div>
       </div>

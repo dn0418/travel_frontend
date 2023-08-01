@@ -2,27 +2,32 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
-
-import AdditionalInfo from "./AdditionalInfo";
 import CommonInput from "./CommonInput";
 import CheckBox from "./CheckBox";
+import { CarWithOutType } from "../../types/car-type";
+import { InputData } from "../../types/modal.type";
 
-const initialState = {
-  firstName: "",
-  email: "",
-  startDate: "20-20-2020",
-  endDate: "20-20-2021",
-  checkbox1: false,
-  checkbox2: false,
-};
+
 interface IProps {
   buttonText: string;
+  car:CarWithOutType
 }
 
-function CarModel({ buttonText }: IProps) {
+function CarModel({ buttonText, car }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const [inputData, setInputData] = useState(initialState);
+  const [inputData, setInputData] = useState<InputData>({
+    firstName: "",
+    lastName:"",
+    telephone:"",
+    email: "",
+    startDate: car.startDate || "" ,
+    endDate:car.endDate || "",
+    carType:"",
+    additionalInfo:"",
+    checkbox1: false,
+    checkbox2: false,
+  });
   const theme = useTheme();
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
@@ -38,12 +43,29 @@ function CarModel({ buttonText }: IProps) {
   };
 
   const handleSubmit = async () => {
-    if (!inputData.email) {
-      toast.error("First name, email and country are required");
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "telephone",
+      "startDate",
+      "endDate",
+      "carType"
+    ];
+
+    const missingFields = requiredFields.filter((field:string) => !inputData[field]);
+ 
+    if(missingFields.length > 0){
+      toast.error(
+        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""} are required`
+      )
       return;
     }
+    try {
+      console.log(inputData);
+    } catch (error) {
 
-    console.log(inputData);
+    }
     setOpenContactModal(false);
   };
 
@@ -113,7 +135,7 @@ function CarModel({ buttonText }: IProps) {
             Rent A Car
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput} />
+            <CommonInput handleChangeInput={handleChangeInput} inputData={inputData} />
 
             <TextField
               label="Car type"
@@ -123,9 +145,12 @@ function CarModel({ buttonText }: IProps) {
               required
             />
 
-            <AdditionalInfo
-              css={formStyles.noteArea}
-              handleChangeInput={handleChangeInput}
+            <TextField
+              sx={formStyles.noteArea}
+              onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
+              label="Additional Information"
+              multiline
+              rows={4}
             />
           </Box>
 
