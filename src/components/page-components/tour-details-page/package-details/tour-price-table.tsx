@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { TourType } from "../../../../types/tour";
 import { localizationData } from "../../../../utils/locales";
+import TourModal from "../../../modal/TourModal";
 
 const individualColumnsData = {
   en: ["2-3 pax", "4-6 pax", "7-18 pax", "20 more"],
@@ -110,11 +111,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-          <Link href="/ride-plan">
-            <Button className="bg-black text-white" variant="contained">
-              {localData.send_request}
-            </Button>
-          </Link>
+          <TourModal buttonText={localData.send_request} tour={tour} />
         </div>
       </div>
     </Container>

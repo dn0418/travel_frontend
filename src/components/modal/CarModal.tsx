@@ -2,28 +2,42 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
-
-import AdditionalInfo from "./AdditionalInfo";
 import CommonInput from "./CommonInput";
 import CheckBox from "./CheckBox";
+import { CarWithOutType } from "../../types/car-type";
+import { InputData } from "../../types/modal.type";
+import { useRouter } from "next/router";
+import { localizationData } from "../../utils/locales";
 
-const initialState = {
-  firstName: "",
-  email: "",
-  startDate: "20-20-2020",
-  endDate: "20-20-2021",
-  checkbox1: false,
-  checkbox2: false,
-};
 interface IProps {
   buttonText: string;
+  car: CarWithOutType;
 }
 
-function CarModel({ buttonText }: IProps) {
+function CarModel({ buttonText, car }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const [inputData, setInputData] = useState(initialState);
+  const [inputData, setInputData] = useState<InputData>({
+    firstName: "",
+    lastName: "",
+    telephone: "",
+    email: "",
+    startDate: car.startDate || "",
+    endDate: car.endDate || "",
+    carType: "",
+    additionalInfo: "",
+    checkbox1: false,
+    checkbox2: false,
+  });
   const theme = useTheme();
+
+  const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+      ? localizationData.hy
+      : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -38,12 +52,31 @@ function CarModel({ buttonText }: IProps) {
   };
 
   const handleSubmit = async () => {
-    if (!inputData.email) {
-      toast.error("First name, email and country are required");
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "telephone",
+      "startDate",
+      "endDate",
+      "carType",
+    ];
+
+    const missingFields = requiredFields.filter(
+      (field: string) => !inputData[field]
+    );
+
+    if (missingFields.length > 0) {
+      toast.error(
+        `${missingFields.join(", ")} field${
+          missingFields.length > 1 ? "s" : ""
+        } are required`
+      );
       return;
     }
-
-    console.log(inputData);
+    try {
+      console.log(inputData);
+    } catch (error) {}
     setOpenContactModal(false);
   };
 
@@ -110,48 +143,57 @@ function CarModel({ buttonText }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            Rent A Car
+            {localData.rent_text + localData.car_text}
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput} />
+            <CommonInput
+              handleChangeInput={handleChangeInput}
+              inputData={inputData}
+              localData={localData}
+            />
 
             <TextField
-              label="Car type"
+              label={localData.car_text + " " + localData.type_text}
               type="text"
               onChange={(e) => handleChangeInput("carType", e.target.value)}
               variant="outlined"
               required
             />
 
-            <AdditionalInfo
-              css={formStyles.noteArea}
-              handleChangeInput={handleChangeInput}
+            <TextField
+              sx={formStyles.noteArea}
+              onChange={(e) =>
+                handleChangeInput("additionalInfo", e.target.value)
+              }
+              label={localData.additional_info_text}
+              multiline
+              rows={4}
             />
           </Box>
 
           <CheckBox
             fieldName={"checkbox1"}
-            labelName={"I'm not robot"}
+            labelName={localData.iam_not_robot_text}
             handleChangeInput={handleChangeInput}
           />
           <br />
 
           <CheckBox
             fieldName={"checkbox2"}
-            labelName={"I agree with the booking terms of this site"}
+            labelName={localData.agree_with_terms_text}
             handleChangeInput={handleChangeInput}
           />
 
           <div style={formStyles.buttonContainer}>
             <Button variant="outlined" onClick={handleChangeModal}>
-              Cancel
+              {localData.cancel_text}
             </Button>
             <Button
               disabled={!inputData.checkbox1 || !inputData.checkbox2}
               onClick={handleSubmit}
               variant="contained"
             >
-              Submit
+              {localData.submit_text}
             </Button>
           </div>
         </Box>

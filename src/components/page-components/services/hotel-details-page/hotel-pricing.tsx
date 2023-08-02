@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { HotelDataType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
+import HotelModal from "../../../modal/HotelModal";
 
 interface Props {
   hotel: HotelDataType;
@@ -61,11 +62,7 @@ export default function HotelPricingTable({ hotel }: Props) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-          <Link href="/ride-plan">
-            <Button className="bg-black text-white" variant="contained">
-              {localData.send_request}
-            </Button>
-          </Link>
+          <HotelModal buttonText={localData.send_request} hotel={hotel} />
         </div>
       </div>
     </Container>

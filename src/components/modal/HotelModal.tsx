@@ -2,28 +2,43 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
-
-import AdditionalInfo from "./AdditionalInfo";
 import CommonInput from "./CommonInput";
 import CheckBox from "./CheckBox";
+import { HotelDataType } from "../../types/services";
+import { InputData } from "../../types/modal.type";
+import { useRouter } from "next/router";
+import { localizationData } from "../../utils/locales";
 
-const initialState = {
-  firstName: "",
-  email: "",
-  startDate: "20-20-2020",
-  endDate: "20-20-2021",
-  checkbox1: false,
-  checkbox2: false,
-};
 interface IProps {
   buttonText: string;
+  hotel: HotelDataType;
 }
 
-function HotelModal({ buttonText }: IProps) {
+function HotelModal({ buttonText, hotel }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
-  const [inputData, setInputData] = useState(initialState);
+  const [inputData, setInputData] = useState<InputData>({
+    firstName: "",
+    lastName: "",
+    telephone: "",
+    email: "",
+    startDate: hotel?.startDate || "",
+    endDate: hotel?.endDate || "",
+    roomType: "",
+    quantity: 0,
+    additionalInfo: "",
+    checkbox1: false,
+    checkbox2: false,
+  });
   const theme = useTheme();
+
+  const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+      ? localizationData.hy
+      : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -38,12 +53,31 @@ function HotelModal({ buttonText }: IProps) {
   };
 
   const handleSubmit = async () => {
-    if (!inputData.email) {
-      toast.error("First name, email and country are required");
+    const requiredFields = [
+      "firstName",
+      "lastName",
+      "email",
+      "telephone",
+      "startDate",
+      "endDate",
+      "roomType",
+      "quantity",
+    ];
+
+    const missingFields = requiredFields.filter(
+      (field: string) => !inputData[field]
+    );
+    if (missingFields.length > 0) {
+      toast.error(
+        `${missingFields.join(", ")} field${
+          missingFields.length > 1 ? "s" : ""
+        } are required`
+      );
       return;
     }
-
-    console.log(inputData);
+    try {
+      console.log(inputData);
+    } catch (error) {}
     setOpenContactModal(false);
   };
 
@@ -110,20 +144,24 @@ function HotelModal({ buttonText }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            Hotel Page
+            {localData.hotel_page_text}
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput} />
+            <CommonInput
+              handleChangeInput={handleChangeInput}
+              inputData={inputData}
+              localData={localData}
+            />
 
             <TextField
-              label="Room type"
+              label={localData.room_text + " " + localData.type_text}
               type="text"
               onChange={(e) => handleChangeInput("roomType", e.target.value)}
               variant="outlined"
               required
             />
             <TextField
-              label="Quantity"
+              label={localData.quantity_text}
               type="tel"
               inputProps={{ maxLength: 1 }}
               onChange={(e) => handleChangeInput("quantity", e.target.value)}
@@ -131,35 +169,40 @@ function HotelModal({ buttonText }: IProps) {
               required
             />
 
-            <AdditionalInfo
-              css={formStyles.noteArea}
-              handleChangeInput={handleChangeInput}
+            <TextField
+              sx={formStyles.noteArea}
+              onChange={(e) =>
+                handleChangeInput("additionalInfo", e.target.value)
+              }
+              label={localData.additional_info_text}
+              multiline
+              rows={4}
             />
           </Box>
 
           <CheckBox
             fieldName={"checkbox1"}
-            labelName={"I'm not robot"}
+            labelName={localData.iam_not_robot_text}
             handleChangeInput={handleChangeInput}
           />
           <br />
 
           <CheckBox
             fieldName={"checkbox2"}
-            labelName={"I agree with the booking terms of this site"}
+            labelName={localData.agree_with_terms_text}
             handleChangeInput={handleChangeInput}
           />
 
           <div style={formStyles.buttonContainer}>
             <Button variant="outlined" onClick={handleChangeModal}>
-              Cancel
+              {localData.cancel_text}
             </Button>
             <Button
               disabled={!inputData.checkbox1 || !inputData.checkbox2}
               onClick={handleSubmit}
               variant="contained"
             >
-              Submit
+              {localData.submit_text}
             </Button>
           </div>
         </Box>

@@ -79,6 +79,22 @@ export interface LocaleDataItems {
   individual_tour_title: string;
   departure_tour_title: string;
   price_per_pax_title: string;
+  firstName: string;
+  lastName: string;
+  startDate: string;
+  endDate: string;
+  telephone_text: string;
+  additional_info_text: string;
+  iam_not_robot_text: string;
+  agree_with_terms_text: string;
+  tour_name_text: string;
+  tour_page_text: string;
+  room_text: string;
+  hotel_page_text: string;
+  quantity_text: string;
+  tour_accessories_text: string;
+  car_text: string;
+  rent_text: string;
 }
 
 export interface LocaleDataType {

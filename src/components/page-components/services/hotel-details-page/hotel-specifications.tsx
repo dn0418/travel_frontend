@@ -29,6 +29,8 @@ function HotelSpecification({ hotel, metadata }: Props) {
       ? localizationData.hy
       : localizationData.en;
 
+    
+
   return (
     <div className="px-4 md:px-12">
       <h3 className="text-[#000000] text-xl font-semibold mt-0">
@@ -121,7 +123,7 @@ function HotelSpecification({ hotel, metadata }: Props) {
         </span>
       </p>
       <div className="md:mt-8">
-        <HotelModal buttonText={localData.submit_text} />
+        <HotelModal buttonText={localData.submit_text} hotel={hotel} />
       </div>
     </div>
   );

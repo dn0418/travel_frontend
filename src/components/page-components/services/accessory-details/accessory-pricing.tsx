@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
+import TourAccessoriesModal from "../../../modal/TourAccessoriesModal";
 
 interface Props {
   accessoryDetails: TourAccessoryType;
@@ -55,12 +56,8 @@ export default function AccessoryPricingTable({ accessoryDetails }: Props) {
             </TableBody>
           </Table>
         </TableContainer>
-        <div className="flex mt-5 justify-end">
-          <Link href="/ride-plan">
-            <Button className="bg-black text-white" variant="contained">
-              {localData.send_request}
-            </Button>
-          </Link>
+        <div className="flex mt-5 justify-end"> 
+        <TourAccessoriesModal  buttonText= {localData.send_request} accessoryDetails={accessoryDetails}/>    
         </div>
       </div>
     </Container>
