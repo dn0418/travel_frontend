@@ -42,8 +42,6 @@ export interface CarWithOutType {
   totalReview: number;
   rating: number;
   images: ImageType[];
-  startDate:string,
-  endDate:string
 }
 
 

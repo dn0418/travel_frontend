@@ -1,11 +1,10 @@
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { HotelDataType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
@@ -22,8 +21,8 @@ export default function HotelPricingTable({ hotel }: Props) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Container className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb]">
@@ -51,8 +50,8 @@ export default function HotelPricingTable({ hotel }: Props) {
                     {locale === "ru"
                       ? row.name_ru
                       : locale === "hy"
-                      ? row.name_hy
-                      : row.name}
+                        ? row.name_hy
+                        : row.name}
                   </TableCell>
                   <TableCell align="center">{row.firstPart}</TableCell>
                   <TableCell align="center">{row.lastPart} AMD</TableCell>
@@ -62,7 +61,7 @@ export default function HotelPricingTable({ hotel }: Props) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-          <HotelModal buttonText={localData.send_request} hotel={hotel} />
+          <HotelModal buttonText={localData.send_request} />
         </div>
       </div>
     </Container>

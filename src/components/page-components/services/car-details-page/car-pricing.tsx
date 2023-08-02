@@ -1,11 +1,10 @@
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CarWithOutType } from '../../../../types/car-type';
 import { localizationData } from '../../../../utils/locales';
@@ -69,8 +68,7 @@ export default function CarPricingTable({ car }: Props) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-      
-        <CarModel buttonText= {localData.send_request} car={car}/>  
+          <CarModel buttonText={localData.send_request} type='Car Without Driver' />
         </div>
       </div>
     </Container>

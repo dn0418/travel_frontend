@@ -1,20 +1,18 @@
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import CommonInput from "./CommonInput";
-import CheckBox from "./CheckBox";
-import { TourAccessoryType } from "../../types/services";
 import { InputData } from "../../types/modal.type";
-import { useRouter } from "next/router";
 import { localizationData } from "../../utils/locales";
+import CheckBox from "./CheckBox";
+import CommonInput from "./CommonInput";
 
 interface IProps {
   buttonText: string;
-  accessoryDetails: TourAccessoryType;
 }
 
-function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
+function TourAccessoriesModal({ buttonText }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
   const [inputData, setInputData] = useState<InputData>({
@@ -22,8 +20,8 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
     lastName: "",
     telephone: "",
     email: "",
-    startDate: accessoryDetails?.startDate || "",
-    endDate: accessoryDetails?.startDate || "",
+    startDate: "",
+    endDate: "",
     checkbox1: false,
     checkbox2: false,
     additionalInfo: "",
@@ -35,8 +33,8 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -66,15 +64,14 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
     console.log(missingFields);
     if (missingFields.length > 0) {
       toast.error(
-        `${missingFields.join(", ")} field${
-          missingFields.length > 1 ? "s" : ""
+        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""
         } are required`
       );
       return;
     }
     try {
       console.log(inputData);
-    } catch (error) {}
+    } catch (error) { }
     setOpenContactModal(false);
   };
 

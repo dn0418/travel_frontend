@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
@@ -26,10 +26,10 @@ function HotelSpecification({ hotel, metadata }: Props) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
-    
+
 
   return (
     <div className="px-4 md:px-12">
@@ -37,8 +37,8 @@ function HotelSpecification({ hotel, metadata }: Props) {
         {locale === "ru"
           ? hotel.name_ru
           : locale === "hy"
-          ? hotel.name_hy
-          : hotel.name}
+            ? hotel.name_hy
+            : hotel.name}
       </h3>
       <p className="flex items-center gap-2">
         <IoLocationOutline className="text-base text-[#EDA592]  font-bold" />
@@ -46,14 +46,14 @@ function HotelSpecification({ hotel, metadata }: Props) {
           {(locale === "ru"
             ? hotel.country_ru
             : locale === "hy"
-            ? hotel.country_hy
-            : hotel.country) +
+              ? hotel.country_hy
+              : hotel.country) +
             "-" +
             (locale === "ru"
               ? hotel.city_ru
               : locale === "hy"
-              ? hotel.city_hy
-              : hotel.city)}
+                ? hotel.city_hy
+                : hotel.city)}
         </span>
       </p>
       {metadata.total > 0 && (
@@ -123,7 +123,7 @@ function HotelSpecification({ hotel, metadata }: Props) {
         </span>
       </p>
       <div className="md:mt-8">
-        <HotelModal buttonText={localData.submit_text} hotel={hotel} />
+        <HotelModal buttonText={localData.submit_text} />
       </div>
     </div>
   );

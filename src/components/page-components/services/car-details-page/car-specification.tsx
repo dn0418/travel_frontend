@@ -1,12 +1,12 @@
 // @flow strict
 
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
 import { CarWithOutType } from "../../../../types/car-type";
 import { localizationData } from "../../../../utils/locales";
-import CarThumbnailSection from "./thumbnail-section";
 import CarModel from "../../../modal/CarModal";
+import CarThumbnailSection from "./thumbnail-section";
 
 function CarSpecification({ car }: { car: CarWithOutType }) {
   const { locale } = useRouter();
@@ -14,8 +14,8 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <div className="">
@@ -26,8 +26,8 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
             {locale === "ru"
               ? car.name_ru
               : locale === "hy"
-              ? car.name_hy
-              : car.name}
+                ? car.name_hy
+                : car.name}
           </h3>
           {car.totalReview > 0 && (
             <p className="flex items-center gap-2">
@@ -76,8 +76,8 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
               {locale === "ru"
                 ? car.pickup_ru
                 : locale === "hy"
-                ? car.pickup_hy
-                : car.pickup}
+                  ? car.pickup_hy
+                  : car.pickup}
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
@@ -89,8 +89,8 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
               {locale === "ru"
                 ? car.fuel_ru
                 : locale === "hy"
-                ? car.fuel_hy
-                : car.fuel}
+                  ? car.fuel_hy
+                  : car.fuel}
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
@@ -108,7 +108,7 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
             <span>{car.seatNo}</span>
           </p>
           <div className="md:mt-8">
-            <CarModel buttonText={localData.submit_text} car={car} />
+            <CarModel buttonText={localData.submit_text} type='Car Without Driver' />
           </div>
         </div>
       </div>
@@ -116,13 +116,12 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
         <div
           dangerouslySetInnerHTML={{
             __html: `<p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
-          ${
-            locale === "ru"
-              ? car.description_ru
-              : locale === "hy"
-              ? car.description_hy
-              : car.description
-          }
+          ${locale === "ru"
+                ? car.description_ru
+                : locale === "hy"
+                  ? car.description_hy
+                  : car.description
+              }
         </p>`,
           }}
         ></div>

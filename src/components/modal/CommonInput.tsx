@@ -1,8 +1,6 @@
-import { TextField, formLabelClasses } from "@mui/material";
+import { TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import dayjs, { Dayjs } from "dayjs";
-import { useRouter } from "next/router";
-import { localizationData } from "../../utils/locales";
+import dayjs from "dayjs";
 import { LocaleDataItems } from "../../utils/locales/types";
 
 interface IProps {
@@ -57,7 +55,7 @@ export default function CommonInput({
       />
       <DatePicker
         label={localData.startDate}
-        value={dayjs(inputData?.startDate)}
+        value={inputData?.startDate ? dayjs(inputData?.startDate) : null}
         views={["day", "month", "year"]}
         onChange={(value) =>
           handleChangeInput("startDate", value?.toDate().toLocaleDateString()!)
@@ -66,7 +64,7 @@ export default function CommonInput({
       />
       <DatePicker
         label={localData.endDate}
-        value={dayjs(inputData?.endDate)}
+        value={inputData?.endDate ? dayjs(inputData?.endDate) : null}
         views={["day", "month", "year"]}
         onChange={(value) =>
           handleChangeInput("endDate", value?.toDate().toLocaleDateString()!)

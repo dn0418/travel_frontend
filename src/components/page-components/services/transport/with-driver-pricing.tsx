@@ -1,18 +1,25 @@
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CarWithDriverType } from '../../../../types/car-type';
+import { localizationData } from '../../../../utils/locales';
+import CarModel from '../../../modal/CarModal';
 
 type Props = { carsWithDriver: CarWithDriverType }
 
 export default function CarWithDriverPricingTable({ carsWithDriver }: Props) {
   const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Container
@@ -61,14 +68,7 @@ export default function CarWithDriverPricingTable({ carsWithDriver }: Props) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-          <Link href="/ride-plan">
-            <Button className='bg-black text-white' variant='contained'>
-              {
-                locale === 'ru' ? 'Послать запрос' :
-                  (locale === 'hy' ? 'Հարցում ուղարկել' : 'Send Request')
-              }
-            </Button>
-          </Link>
+          <CarModel buttonText={localData.send_request} type='Car With Driver' />
         </div>
       </div>
     </Container>

@@ -1,20 +1,19 @@
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import CommonInput from "./CommonInput";
-import CheckBox from "./CheckBox";
-import { CarWithOutType } from "../../types/car-type";
 import { InputData } from "../../types/modal.type";
-import { useRouter } from "next/router";
 import { localizationData } from "../../utils/locales";
+import CheckBox from "./CheckBox";
+import CommonInput from "./CommonInput";
 
 interface IProps {
   buttonText: string;
-  car: CarWithOutType;
+  type: string;
 }
 
-function CarModel({ buttonText, car }: IProps) {
+function CarModel({ buttonText, type }: IProps) {
   const [openContactModal, setOpenContactModal] = useState(false);
 
   const [inputData, setInputData] = useState<InputData>({
@@ -22,9 +21,9 @@ function CarModel({ buttonText, car }: IProps) {
     lastName: "",
     telephone: "",
     email: "",
-    startDate: car.startDate || "",
-    endDate: car.endDate || "",
-    carType: "",
+    startDate: "",
+    endDate: "",
+    carType: type,
     additionalInfo: "",
     checkbox1: false,
     checkbox2: false,
@@ -36,8 +35,8 @@ function CarModel({ buttonText, car }: IProps) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -68,15 +67,14 @@ function CarModel({ buttonText, car }: IProps) {
 
     if (missingFields.length > 0) {
       toast.error(
-        `${missingFields.join(", ")} field${
-          missingFields.length > 1 ? "s" : ""
+        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""
         } are required`
       );
       return;
     }
     try {
       console.log(inputData);
-    } catch (error) {}
+    } catch (error) { }
     setOpenContactModal(false);
   };
 
@@ -154,10 +152,10 @@ function CarModel({ buttonText, car }: IProps) {
 
             <TextField
               label={localData.car_text + " " + localData.type_text}
-              type="text"
-              onChange={(e) => handleChangeInput("carType", e.target.value)}
+              value={inputData.carType}
               variant="outlined"
               required
+              disabled
             />
 
             <TextField

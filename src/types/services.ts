@@ -34,8 +34,6 @@ export interface HotelDataType {
   reviews: ReviewTypes[];
   rating: number;
   pricingTable: HotelPricingTable[]
-  startDate:string,
-  endDate:string
 }
 
 export interface HotelPricingTable {
@@ -88,8 +86,6 @@ export interface TourAccessoryType {
   rating: number | null;
   images: ImageType[];
   pricing: AccessoriesPricingType[];
-  startDate:string,
-  endDate:string
 }
 
 export interface AccessoriesPricingType {
