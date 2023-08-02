@@ -3,12 +3,13 @@ import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+import { useRouter } from "next/router";
+import client from "../../rest-api/client";
+import { InputData } from "../../types/modal.type";
 import { TourType } from "../../types/tour";
+import { localizationData } from "../../utils/locales";
 import CheckBox from "./CheckBox";
 import CommonInput from "./CommonInput";
-import { InputData } from "../../types/modal.type";
-import { useRouter } from "next/router";
-import { localizationData } from "../../utils/locales";
 
 interface IProps {
   buttonText: string;
@@ -16,9 +17,7 @@ interface IProps {
 }
 
 function TourModal({ buttonText, tour }: IProps) {
-  const [openContactModal, setOpenContactModal] = useState(false);
-
-  const [inputData, setInputData] = useState<InputData>({
+  const initialInput = {
     firstName: "",
     lastName: "",
     email: "",
@@ -30,7 +29,9 @@ function TourModal({ buttonText, tour }: IProps) {
     adult: 0,
     child: 0,
     additionalInfo: "",
-  });
+  }
+  const [openContactModal, setOpenContactModal] = useState(false);
+  const [inputData, setInputData] = useState<InputData>(initialInput);
   const theme = useTheme();
 
   const { locale } = useRouter();
@@ -38,8 +39,8 @@ function TourModal({ buttonText, tour }: IProps) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -64,7 +65,6 @@ function TourModal({ buttonText, tour }: IProps) {
       "email",
       "telephone",
       "startDate",
-      "endDate",
       "adult",
       "child",
     ];
@@ -74,16 +74,32 @@ function TourModal({ buttonText, tour }: IProps) {
     );
     if (missingFields.length > 0) {
       toast.error(
-        `${missingFields.join(", ")} field${
-          missingFields.length > 1 ? "s" : ""
+        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""
         } are required`
       );
       return;
     }
+
+    const payload = {
+      firstName: inputData.firstName,
+      lastName: inputData.lastName,
+      email: inputData.email,
+      additionalInfo: inputData.additionalInfo,
+      adult: inputData.adult,
+      child: inputData.child,
+      startDate: inputData.startDate,
+      endDate: inputData.endDate,
+      telephone: inputData.telephone,
+    }
+
     try {
-      console.log(inputData);
-    } catch (error) {}
-    setOpenContactModal(false);
+      const res = await client.requestMail.tourMail(payload);
+      toast.success("Your tour request has been sent successfully");
+      setInputData(initialInput);
+      setOpenContactModal(false);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const formStyles = {
@@ -149,7 +165,7 @@ function TourModal({ buttonText, tour }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            {localData.tour_page_text}
+            {localData.tour_modal_title}
           </Typography>
           <Box sx={formStyles.gridContainer}>
             <CommonInput

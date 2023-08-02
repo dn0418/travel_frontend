@@ -25,4 +25,5 @@ export const API_ENDPOINTS = {
   DESTINATION: "/destinations",
   IMAGES: "/images",
   ACCESSORY_PRICING: "/accessories-pricing",
+  MAIL_REQUEST: "/mail",
 };

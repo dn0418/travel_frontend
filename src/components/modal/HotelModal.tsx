@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import client from "../../rest-api/client";
 import { InputData } from "../../types/modal.type";
 import { localizationData } from "../../utils/locales";
 import CheckBox from "./CheckBox";
@@ -13,9 +14,7 @@ interface IProps {
 }
 
 function HotelModal({ buttonText }: IProps) {
-  const [openContactModal, setOpenContactModal] = useState(false);
-
-  const [inputData, setInputData] = useState<InputData>({
+  const initialInput = {
     firstName: "",
     lastName: "",
     telephone: "",
@@ -27,7 +26,9 @@ function HotelModal({ buttonText }: IProps) {
     additionalInfo: "",
     checkbox1: false,
     checkbox2: false,
-  });
+  }
+  const [openContactModal, setOpenContactModal] = useState(false);
+  const [inputData, setInputData] = useState<InputData>(initialInput);
   const theme = useTheme();
 
   const { locale } = useRouter();
@@ -72,10 +73,27 @@ function HotelModal({ buttonText }: IProps) {
       );
       return;
     }
+
+    const payload = {
+      firstName: inputData.firstName,
+      lastName: inputData.lastName,
+      email: inputData.email,
+      additionalInfo: inputData.additionalInfo,
+      roomType: inputData.roomType,
+      quantity: inputData.quantity,
+      startDate: inputData.startDate,
+      endDate: inputData.endDate,
+      telephone: inputData.telephone,
+    }
+
     try {
-      console.log(inputData);
-    } catch (error) { }
-    setOpenContactModal(false);
+      const res = await client.requestMail.hotelMail(payload);
+      toast.success("Your hotel request has been sent successfully");
+      setInputData(initialInput);
+      setOpenContactModal(false);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const formStyles = {
@@ -141,7 +159,7 @@ function HotelModal({ buttonText }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            {localData.hotel_page_text}
+            {localData.hotel_modal_title}
           </Typography>
           <Box sx={formStyles.gridContainer}>
             <CommonInput

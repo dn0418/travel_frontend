@@ -88,9 +88,9 @@ export interface LocaleDataItems {
   iam_not_robot_text: string;
   agree_with_terms_text: string;
   tour_name_text: string;
-  tour_page_text: string;
+  tour_modal_title: string;
   room_text: string;
-  hotel_page_text: string;
+  hotel_modal_title: string;
   quantity_text: string;
   tour_accessories_text: string;
   car_text: string;

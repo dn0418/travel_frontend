@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import client from "../../rest-api/client";
 import { InputData } from "../../types/modal.type";
 import { localizationData } from "../../utils/locales";
 import CheckBox from "./CheckBox";
@@ -14,9 +15,7 @@ interface IProps {
 }
 
 function CarModel({ buttonText, type }: IProps) {
-  const [openContactModal, setOpenContactModal] = useState(false);
-
-  const [inputData, setInputData] = useState<InputData>({
+  const initialInput = {
     firstName: "",
     lastName: "",
     telephone: "",
@@ -27,7 +26,9 @@ function CarModel({ buttonText, type }: IProps) {
     additionalInfo: "",
     checkbox1: false,
     checkbox2: false,
-  });
+  }
+  const [openContactModal, setOpenContactModal] = useState(false);
+  const [inputData, setInputData] = useState<InputData>(initialInput);
   const theme = useTheme();
 
   const { locale } = useRouter();
@@ -72,10 +73,26 @@ function CarModel({ buttonText, type }: IProps) {
       );
       return;
     }
+
+    const payload = {
+      firstName: inputData.firstName,
+      lastName: inputData.lastName,
+      email: inputData.email,
+      additionalInfo: inputData.additionalInfo,
+      carType: inputData.carType,
+      startDate: inputData.startDate,
+      endDate: inputData.endDate,
+      telephone: inputData.telephone,
+    }
+
     try {
-      console.log(inputData);
-    } catch (error) { }
-    setOpenContactModal(false);
+      const res = await client.requestMail.carMail(payload);
+      toast.success("Your transport request has been sent successfully");
+      setInputData(initialInput);
+      setOpenContactModal(false);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const formStyles = {

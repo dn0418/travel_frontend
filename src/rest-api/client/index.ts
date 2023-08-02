@@ -49,6 +49,14 @@ class Client {
   fileUploads = {
     upload: (data: any) => HttpClient.post(API_ENDPOINTS.FILEUPLOADS, data),
   };
+
+  requestMail = {
+    tourMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/tour`, data),
+    hotelMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/hotel`, data),
+    carMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/car`, data),
+    accessoriesMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/accessories`, data),
+    miceMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/mice`, data),
+  }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

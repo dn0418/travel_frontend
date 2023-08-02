@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import client from "../../rest-api/client";
 import { InputData } from "../../types/modal.type";
 import { localizationData } from "../../utils/locales";
 import CheckBox from "./CheckBox";
@@ -13,9 +14,7 @@ interface IProps {
 }
 
 function TourAccessoriesModal({ buttonText }: IProps) {
-  const [openContactModal, setOpenContactModal] = useState(false);
-
-  const [inputData, setInputData] = useState<InputData>({
+  const initialInput = {
     firstName: "",
     lastName: "",
     telephone: "",
@@ -25,7 +24,9 @@ function TourAccessoriesModal({ buttonText }: IProps) {
     checkbox1: false,
     checkbox2: false,
     additionalInfo: "",
-  });
+  }
+  const [openContactModal, setOpenContactModal] = useState(false);
+  const [inputData, setInputData] = useState<InputData>(initialInput);
   const theme = useTheme();
 
   const { locale } = useRouter();
@@ -69,10 +70,25 @@ function TourAccessoriesModal({ buttonText }: IProps) {
       );
       return;
     }
+
+    const payload = {
+      firstName: inputData.firstName,
+      lastName: inputData.lastName,
+      email: inputData.email,
+      additionalInfo: inputData.additionalInfo,
+      startDate: inputData.startDate,
+      endDate: inputData.endDate,
+      telephone: inputData.telephone,
+    }
+
     try {
-      console.log(inputData);
-    } catch (error) { }
-    setOpenContactModal(false);
+      const res = await client.requestMail.accessoriesMail(payload);
+      toast.success("Your tour accesories request has been sent successfully");
+      setInputData(initialInput);
+      setOpenContactModal(false);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const formStyles = {
