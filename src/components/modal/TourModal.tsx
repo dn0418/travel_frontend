@@ -7,7 +7,8 @@ import { TourType } from "../../types/tour";
 import CheckBox from "./CheckBox";
 import CommonInput from "./CommonInput";
 import { InputData } from "../../types/modal.type";
-
+import { useRouter } from "next/router";
+import { localizationData } from "../../utils/locales";
 
 interface IProps {
   buttonText: string;
@@ -19,18 +20,26 @@ function TourModal({ buttonText, tour }: IProps) {
 
   const [inputData, setInputData] = useState<InputData>({
     firstName: "",
-    lastName:"",
+    lastName: "",
     email: "",
-    telephone:"",
-    startDate: tour.startDate || '',
-    endDate: tour.endDate || '',
+    telephone: "",
+    startDate: tour.startDate || "",
+    endDate: tour.endDate || "",
     checkbox1: false,
     checkbox2: false,
     adult: 0,
-    child:0,
-    additionalInfo:""
+    child: 0,
+    additionalInfo: "",
   });
   const theme = useTheme();
+
+  const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+      ? localizationData.hy
+      : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -45,9 +54,8 @@ function TourModal({ buttonText, tour }: IProps) {
   };
 
   const handleSubmit = async () => {
-   
-    if(inputData.child!  > 6){
-      toast.error("child should be less than 6")
+    if (inputData.child! > 6) {
+      toast.error("child should be less than 6");
       return;
     }
     const requiredFields = [
@@ -58,22 +66,23 @@ function TourModal({ buttonText, tour }: IProps) {
       "startDate",
       "endDate",
       "adult",
-      "child", 
+      "child",
     ];
 
-    const missingFields = requiredFields.filter((field:string) => !inputData[field]);
-  console.log(missingFields)
-    if(missingFields.length > 0){
+    const missingFields = requiredFields.filter(
+      (field: string) => !inputData[field]
+    );
+    if (missingFields.length > 0) {
       toast.error(
-        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""} are required`
-      )
+        `${missingFields.join(", ")} field${
+          missingFields.length > 1 ? "s" : ""
+        } are required`
+      );
       return;
     }
     try {
       console.log(inputData);
-    } catch (error) {
-
-    }
+    } catch (error) {}
     setOpenContactModal(false);
   };
 
@@ -140,12 +149,16 @@ function TourModal({ buttonText, tour }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            Tour Page
+            {localData.tour_page_text}
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput}  inputData={inputData}/>
+            <CommonInput
+              handleChangeInput={handleChangeInput}
+              inputData={inputData}
+              localData={localData}
+            />
             <TextField
-              label="Adult"
+              label={localData.adult_text}
               type="number"
               onChange={(e) => handleChangeInput("adult", e.target.value)}
               value={inputData.adult}
@@ -153,7 +166,7 @@ function TourModal({ buttonText, tour }: IProps) {
               required
             />
             <TextField
-              label="Child"
+              label={localData.child_text}
               type="number"
               onChange={(e) => handleChangeInput("child", e.target.value)}
               maxRows={1}
@@ -162,7 +175,7 @@ function TourModal({ buttonText, tour }: IProps) {
               required
             />
             <TextField
-              label="Tour Name"
+              label={localData.tour_name_text}
               type="text"
               onChange={(e) => handleChangeInput("tourName", e.target.value)}
               variant="outlined"
@@ -172,8 +185,10 @@ function TourModal({ buttonText, tour }: IProps) {
 
             <TextField
               sx={formStyles.noteArea}
-              onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
-              label="Additional Information"
+              onChange={(e) =>
+                handleChangeInput("additionalInfo", e.target.value)
+              }
+              label={localData.additional_info_text}
               multiline
               value={inputData.additionalInfo}
               rows={4}
@@ -182,27 +197,27 @@ function TourModal({ buttonText, tour }: IProps) {
 
           <CheckBox
             fieldName={"checkbox1"}
-            labelName={"I'm not robot"}
+            labelName={localData.iam_not_robot_text}
             handleChangeInput={handleChangeInput}
           />
           <br />
 
           <CheckBox
             fieldName={"checkbox2"}
-            labelName={"I agree with the booking terms of this site"}
+            labelName={localData.agree_with_terms_text}
             handleChangeInput={handleChangeInput}
           />
 
           <div style={formStyles.buttonContainer}>
             <Button variant="outlined" onClick={handleChangeModal}>
-              Cancel
+              {localData.cancel_text}
             </Button>
             <Button
               disabled={!inputData.checkbox1 || !inputData.checkbox2}
               onClick={handleSubmit}
               variant="contained"
             >
-              Submit
+              {localData.submit_text}
             </Button>
           </div>
         </Box>

@@ -6,11 +6,12 @@ import CommonInput from "./CommonInput";
 import CheckBox from "./CheckBox";
 import { TourAccessoryType } from "../../types/services";
 import { InputData } from "../../types/modal.type";
-
+import { useRouter } from "next/router";
+import { localizationData } from "../../utils/locales";
 
 interface IProps {
   buttonText: string;
-  accessoryDetails:TourAccessoryType
+  accessoryDetails: TourAccessoryType;
 }
 
 function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
@@ -18,16 +19,24 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
 
   const [inputData, setInputData] = useState<InputData>({
     firstName: "",
-    lastName:"",
-    telephone:"",
+    lastName: "",
+    telephone: "",
     email: "",
     startDate: accessoryDetails?.startDate || "",
     endDate: accessoryDetails?.startDate || "",
     checkbox1: false,
     checkbox2: false,
-    additionalInfo:""
+    additionalInfo: "",
   });
   const theme = useTheme();
+
+  const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+      ? localizationData.hy
+      : localizationData.en;
 
   const handleChangeInput = (name: string, value: string | boolean): void => {
     setInputData((prev) => {
@@ -51,19 +60,21 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
       "endDate",
     ];
 
-    const missingFields = requiredFields.filter((field:string) => !inputData[field]);
-  console.log(missingFields)
-    if(missingFields.length > 0){
+    const missingFields = requiredFields.filter(
+      (field: string) => !inputData[field]
+    );
+    console.log(missingFields);
+    if (missingFields.length > 0) {
       toast.error(
-        `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""} are required`
-      )
+        `${missingFields.join(", ")} field${
+          missingFields.length > 1 ? "s" : ""
+        } are required`
+      );
       return;
     }
     try {
       console.log(inputData);
-    } catch (error) {
-
-    }
+    } catch (error) {}
     setOpenContactModal(false);
   };
 
@@ -130,15 +141,21 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            Tour Accessories
+            {localData.tour_accessories_text}
           </Typography>
           <Box sx={formStyles.gridContainer}>
-            <CommonInput handleChangeInput={handleChangeInput} inputData={inputData} />
+            <CommonInput
+              handleChangeInput={handleChangeInput}
+              inputData={inputData}
+              localData={localData}
+            />
 
             <TextField
               sx={formStyles.noteArea}
-              onChange={(e) => handleChangeInput("additionalInfo", e.target.value)}
-              label="Additional Information"
+              onChange={(e) =>
+                handleChangeInput("additionalInfo", e.target.value)
+              }
+              label={localData.additional_info_text}
               multiline
               rows={4}
             />
@@ -146,27 +163,27 @@ function TourAccessoriesModal({ buttonText, accessoryDetails }: IProps) {
 
           <CheckBox
             fieldName={"checkbox1"}
-            labelName={"I'm not robot"}
+            labelName={localData.iam_not_robot_text}
             handleChangeInput={handleChangeInput}
           />
           <br />
 
           <CheckBox
             fieldName={"checkbox2"}
-            labelName={"I agree with the booking terms of this site"}
+            labelName={localData.agree_with_terms_text}
             handleChangeInput={handleChangeInput}
           />
 
           <div style={formStyles.buttonContainer}>
             <Button variant="outlined" onClick={handleChangeModal}>
-              Cancel
+              {localData.cancel_text}
             </Button>
             <Button
               disabled={!inputData.checkbox1 || !inputData.checkbox2}
               onClick={handleSubmit}
               variant="contained"
             >
-              Submit
+              {localData.submit_text}
             </Button>
           </div>
         </Box>

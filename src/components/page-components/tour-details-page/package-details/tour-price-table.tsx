@@ -111,10 +111,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-       
-       <TourModal  buttonText={localData.send_request} tour={tour}/>
-
-        
+          <TourModal buttonText={localData.send_request} tour={tour} />
         </div>
       </div>
     </Container>

@@ -62,10 +62,7 @@ export default function HotelPricingTable({ hotel }: Props) {
           </Table>
         </TableContainer>
         <div className="flex mt-5 justify-end">
-       
-        <HotelModal buttonText=  {localData.send_request} hotel={hotel}/>
-
-         
+          <HotelModal buttonText={localData.send_request} hotel={hotel} />
         </div>
       </div>
     </Container>
