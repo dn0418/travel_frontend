@@ -1,11 +1,11 @@
 // @flow strict
-
 import { Button, Rating } from '@mui/material';
 import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BiCalendar } from 'react-icons/bi';
 import { TourType } from '../../types/tour';
+import { formatDate } from '../../utils/formate-date';
 import { localizationData } from '../../utils/locales';
 
 function TourCard({ tour }: { tour: TourType }) {
@@ -55,26 +55,43 @@ function TourCard({ tour }: { tour: TourType }) {
           }
         </div>
         <p className="my-2 text-[#5E5E5E] text-sm">
-          {tour.dayLength + (locale === 'ru' ? 'Дни' :
-            (locale === 'hy' ? 'Օրեր' : 'Days')) + ' ' + tour.nightLength +
+          {tour.dayLength + ' ' + (locale === 'ru' ? 'Дни' :
+            (locale === 'hy' ? 'Օրեր' : 'Days')) + ' ' + tour.nightLength + ' ' +
             (locale === 'ru' ? 'Ночи' : (locale === 'hy' ? 'Գիշերներ' : 'Nights'))}
         </p>
 
-        <p className="my-2 flex items-center gap-2">
-          <BiCalendar className="text-[#5a5a5a] text-sm" />
-          <span className="text-[#5e5e5e] text-sm">
-            {
-              locale === 'ru' ? 'Лучшее время:' :
-                (locale === 'hy' ? 'Լավագույն ժամանակ:' : 'Best Time:')
-            }
-          </span>
-          <span className="text-[#5e5e5e] text-sm font-medium">
-            {
-              locale === 'ru' ? tour.bestTime_ru :
-                (locale === 'hy' ? tour.bestTime_hy : tour.bestTime)
-            }
-          </span>
-        </p>
+        {
+          (tour.isFixedDate && tour.startDate && tour.endDate) ?
+            <>
+              <p className="my-2 flex items-center gap-2">
+                <BiCalendar className="text-[#5a5a5a] text-sm" />
+                <span className="text-[#5e5e5e] text-sm font-medium">
+                  {formatDate(tour.startDate)}
+                </span>
+              </p>
+              <p className="my-2 flex items-center gap-2">
+                <BiCalendar className="text-[#5a5a5a] text-sm" />
+                <span className="text-[#5e5e5e] text-sm font-medium">
+                  {formatDate(tour.endDate)}
+                </span>
+              </p>
+            </>
+            : <p className="my-2 flex items-center gap-2">
+              <BiCalendar className="text-[#5a5a5a] text-sm" />
+              <span className="text-[#5e5e5e] text-sm">
+                {
+                  locale === 'ru' ? 'Лучшее время:' :
+                    (locale === 'hy' ? 'Լավագույն ժամանակ:' : 'Best Time:')
+                }
+              </span>
+              <span className="text-[#5e5e5e] text-sm font-medium">
+                {
+                  locale === 'ru' ? tour.bestTime_ru :
+                    (locale === 'hy' ? tour.bestTime_hy : tour.bestTime)
+                }
+              </span>
+            </p>
+        }
 
         <p className="text-sm line-clamp-3 text-[#5e5e5e] my-3">
           {

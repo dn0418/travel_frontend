@@ -7,15 +7,19 @@ class TourClient {
   };
 
   tours = {
-    all: () => HttpClient.get(API_ENDPOINTS.TOURS),
+    all: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}?lan=${language}`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),
     sortedTour: (
-      page: number,
-      type: any,
-      search: any,
-      month: any,
-      destination: any,
-      days: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}&month=${month}&destination=${destination}&days=${days}`),
+      page?: number,
+      type?: any,
+      search?: any,
+      month?: any,
+      destination?: any,
+      days?: any,
+      language?: any) =>
+      HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}&month=${month}&destination=${destination}&days=${days}&lan=${language}`),
+    oneDayTour: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/one-day?lan=${language}`),
+    fixedDateTour: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/fixed-date?lan=${language}`),
     deleteById: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOURS}/delete/${id}`),
     create: (data: any) => HttpClient.post(`${API_ENDPOINTS.TOURS}/create`, data),
     update: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.TOURS}/update/${id}`, data),

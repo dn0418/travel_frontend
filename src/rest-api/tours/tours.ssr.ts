@@ -4,7 +4,7 @@ import tourClient from "../client/tour-client";
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { query } = context;
+  const { query, locale } = context;
   const page = query["page"] || 1;
   const type = query["type"] || "";
   const search = query["search"] || "";
@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (
   const destination = query["destination"] || "";
   const days = query["days"] || "";
 
-  const tours = await tourClient.tours?.sortedTour(+page, type, search, month, destination, days);
+  const tours = await tourClient.tours?.sortedTour(+page, type, search, month, destination, days, locale);
 
   return {
     props: {

@@ -12,14 +12,15 @@ import { localizationData } from "../../../utils/locales";
 import CustomSelectInput from "../../common/select";
 
 function SearchFilterSection({ destinations, typeItems }: { destinations: TourDestinationType[], typeItems: any }) {
-  const [filterData, setFilterData] = useState({
-    tourType: '',
-    destination: '',
-    days: ''
-  });
-  const [startDate, setStartDate] = useState<null | Date>(null);
   const router = useRouter()
   const { pathname, query, locale } = router;
+  const [filterData, setFilterData] = useState({
+    tourType: query['type'] as string || '',
+    destination: query['destination'] as string || '',
+    days: query['days'] as string || '',
+  });
+
+  const [startDate, setStartDate] = useState<null | Date>(null);
 
   const localData = locale === "ru" ? localizationData.ru :
     (locale === 'hy' ? localizationData.hy : localizationData.en);
@@ -99,6 +100,7 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: TourDe
             type="number"
             placeholder={localData.days_title}
             onChange={handleChangeFilterData}
+            value={filterData?.days}
           />
         </div>
 

@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await tourClient.tours.all();
+  const { data }: any = await tourClient.tours.all('en');
 
   const paths = data?.map((item: TourType) => {
     return {
@@ -25,12 +25,12 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { id } = params!; //* we know it's required because of getStaticPaths
 
   try {
     const tourDetails = await tourClient.tours.getByID(id);
-    const toursData = await tourClient.tours.all();
+    const toursData = await tourClient.tours.all(locale);
     const reviews = await tourClient.reviews.tourReview(id);
     const destinationData = await tourClient.tourDestination.all();
 

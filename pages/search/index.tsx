@@ -46,13 +46,6 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
   }
 
   useEffect(() => {
-    const findCurrentTab = typeItems.find((tab: { value: string }) => tab.value === query["type"]);
-    if (findCurrentTab) {
-      // console.log(findCurrentTab.value);
-    }
-  }, [query, typeItems]);
-
-  useEffect(() => {
     if (locale && locale === 'ru') {
       setTypeItems(tourTypes.ru);
     } else if (locale && locale === 'hy') {

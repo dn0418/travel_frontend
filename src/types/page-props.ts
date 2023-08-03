@@ -12,6 +12,8 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
 export interface HomePageProps {
   reviews: ReviewTypes[];
   tours: TourType[];
+  fixedDateTour: TourType[];
+  oneDayTour: TourType[];
   destinations: TourDestinationType[];
 }
 
