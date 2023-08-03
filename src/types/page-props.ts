@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
 import { AirportTransportType, CarWithDriverType, CarWithOutType } from "./car-type";
 import { FoodAndDrinksType, PaginationType, ReviewTypes, ThingToSeeType } from "./index";
-import { TourAccessoryType } from "./services";
+import { MiceTypes, TourAccessoryType } from "./services";
 import { TourDestinationType, TourType } from "./tour";
 
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
@@ -98,6 +98,13 @@ export interface FoodAndDrinkPageProps {
 
 export interface AccessoriesPageProps {
   accessories: TourAccessoryType[];
+  handleSearch: any;
+  handlePageChange: any;
+  metaData: any;
+}
+
+export interface MicePageProps {
+  mices: MiceTypes[];
   handleSearch: any;
   handlePageChange: any;
   metaData: any;

@@ -18,6 +18,7 @@ export interface LocaleDataItems {
   home_plan_title: string;
   tour_type_title: string;
   destination_title: string;
+  mice_page_title: string;
   days_title: string;
   date_title: string;
   search_text: string;
@@ -95,6 +96,7 @@ export interface LocaleDataItems {
   tour_accessories_text: string;
   car_text: string;
   rent_text: string;
+  see_more_text: string;
 }
 
 export interface LocaleDataType {

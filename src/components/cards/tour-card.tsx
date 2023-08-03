@@ -6,9 +6,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BiCalendar } from 'react-icons/bi';
 import { TourType } from '../../types/tour';
+import { localizationData } from '../../utils/locales';
 
 function TourCard({ tour }: { tour: TourType }) {
   const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <div className="bg-white p-3">
@@ -88,10 +95,7 @@ function TourCard({ tour }: { tour: TourType }) {
             <Button
               className="rounded-lg bg-black text-white"
               variant='contained'>
-              {
-                locale === 'ru' ? 'Узнать больше' :
-                  (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
-              }
+              {localData.see_more_text}
             </Button>
           </Link>
         </div>

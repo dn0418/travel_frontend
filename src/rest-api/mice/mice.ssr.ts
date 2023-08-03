@@ -8,11 +8,11 @@ export const getServerSideProps: GetServerSideProps = async (
   const page = query["page"] || 1;
   const search = query["search"] || "";
 
-  const accessories = await serviceClient.accessories.all(page, search, locale);
+  const miceData = await serviceClient.mice.filtered(page, search, locale);
 
   return {
     props: {
-      accessoriesData: accessories
+      miceData: miceData
     },
   };
 };

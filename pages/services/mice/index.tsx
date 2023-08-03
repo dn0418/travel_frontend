@@ -3,14 +3,14 @@
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import TourAccessoriesUI from "../../../src/components/page-components/services/tour-accessories";
-import { getServerSideProps } from "../../../src/rest-api/accessories/accessories.ssr";
+import MiceUI from "../../../src/components/page-components/services/mice";
+import { getServerSideProps } from "../../../src/rest-api/mice/mice.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getServerSideProps };
 
-const TourAccessories: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const accessories = props.accessoriesData?.data || [];
-  const metaData = props.accessoriesData?.meta || {};
+const Mice: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const mices = props.miceData?.data || [];
+  const metaData = props.miceData?.meta || {};
   const router = useRouter();
   const params = router.query;
 
@@ -18,7 +18,7 @@ const TourAccessories: NextPageWithLayout<InferGetServerSidePropsType<typeof get
     params['page'] = value.toString();
 
     router.push({
-      pathname: '/services/tour-accessories',
+      pathname: '/services/mice',
       query: params,
     });
   }
@@ -32,15 +32,15 @@ const TourAccessories: NextPageWithLayout<InferGetServerSidePropsType<typeof get
     params['page'] = '1';
 
     router.push({
-      pathname: '/services/tour-accessories',
+      pathname: '/services/mice',
       query: params,
     });
   }
 
   return (
     <>
-      <TourAccessoriesUI
-        accessories={accessories}
+      <MiceUI
+        mices={mices}
         handleSearch={handleSearch}
         handlePageChange={handlePageChange}
         metaData={metaData}
@@ -49,8 +49,8 @@ const TourAccessories: NextPageWithLayout<InferGetServerSidePropsType<typeof get
   );
 };
 
-TourAccessories.getLayout = function getLayout(page) {
+Mice.getLayout = function getLayout(page) {
   return <GeneralLayout>{page}</GeneralLayout>;
 };
 
-export default TourAccessories;
+export default Mice;

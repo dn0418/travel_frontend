@@ -2,34 +2,32 @@
 
 import { InferGetStaticPropsType } from "next";
 import GeneralLayout from "../../../src/components/layouts/_general";
-import AccessoryDetailsUI from "../../../src/components/page-components/services/accessory-details";
+import MiceDetailsUI from "../../../src/components/page-components/services/mice-details";
 import {
   getStaticPaths,
   getStaticProps
-} from "../../../src/rest-api/accessories/accessory-details";
+} from "../../../src/rest-api/mice/mice-details.ssr";
 import { NextPageWithLayout } from "../../../src/types/page-props";
 export { getStaticPaths, getStaticProps };
 
-const AccessoryDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const accessoryDetails = props.accessoryDetails?.data;
-  const accessories = props?.accessoriesData?.data;
+const MiceDetails: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+  const miceDetails = props.miceDetails?.data;
   const reviews = props?.reviews?.data;
   const metadata = props?.reviews?.meta;
 
   return (
     <>
-      <AccessoryDetailsUI
-        accessories={accessories}
+      <MiceDetailsUI
         reviews={reviews}
-        accessoryDetails={accessoryDetails}
+        miceDetails={miceDetails}
         metadata={metadata}
       />
     </>
   );
 };
 
-AccessoryDetails.getLayout = function getLayout(page) {
+MiceDetails.getLayout = function getLayout(page) {
   return <GeneralLayout>{page}</GeneralLayout>;
 };
 
-export default AccessoryDetails;
+export default MiceDetails;

@@ -87,6 +87,8 @@ export const localizationData: LocaleDataType = {
     tour_accessories_text: " Tour Accessories",
     car_text: "Car",
     rent_text: "Rent A ",
+    see_more_text: "See More",
+    mice_page_title: "Mice",
   },
   ru: {
     transportData: transportRuLocalization,
@@ -169,6 +171,8 @@ export const localizationData: LocaleDataType = {
     tour_accessories_text: "Аксессуары для тура",
     car_text: "машина",
     rent_text: "Арендовать A ",
+    see_more_text: "показать еще",
+    mice_page_title: "Mice"
   },
   hy: {
     transportData: transportHyLocalization,
@@ -252,6 +256,8 @@ export const localizationData: LocaleDataType = {
     tour_accessories_text: "Տուրի պարագաներ",
     car_text: "մեքենա",
     rent_text: "Վարձակալություն Ա ",
+    see_more_text: "see more",
+    mice_page_title: "Mice"
   },
   // Add other language translations here if needed.
 };

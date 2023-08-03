@@ -102,3 +102,35 @@ export interface AccessoryTypes {
   name_ru: string;
   name_hy: string;
 }
+
+export interface MiceTypes {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  isRu: boolean;
+  isHy: boolean;
+  name: string;
+  name_ru: string;
+  name_hy: string;
+  thumbnail: string;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  comportable: string;
+  comportable_ru: string;
+  comportable_hy: string;
+  activities: string;
+  activities_ru: string;
+  activities_hy: string;
+  extra: string;
+  extra_ru: string;
+  extra_hy: string;
+  access24: boolean;
+  freeCancellation: boolean;
+  reviews: ReviewTypes[];
+  images: ImageType[];
+  rating: number;
+}

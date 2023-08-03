@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FoodAndDrinksType } from '../../types';
+import { localizationData } from '../../utils/locales';
 
 interface FoodAndDrinkCardProps {
   foodDrink: FoodAndDrinksType;
@@ -14,6 +15,12 @@ interface FoodAndDrinkCardProps {
 function FoodAndDrinkCard({ foodDrink, findTab }: FoodAndDrinkCardProps) {
   const { locale } = useRouter();
   const findType = findTab(foodDrink?.type)
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -78,10 +85,7 @@ function FoodAndDrinkCard({ foodDrink, findTab }: FoodAndDrinkCardProps) {
           <div className="flex justify-end items-end">
             <Link href={`/armenia/food-and-drink/${foodDrink.id}`}>
               <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {
-                  locale === 'ru' ? 'Узнать больше' :
-                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
-                }
+                {localData.see_more_text}
               </Button>
             </Link>
           </div>

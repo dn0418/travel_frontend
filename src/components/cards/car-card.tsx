@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { CarWithOutType } from '../../types/car-type';
+import { localizationData } from '../../utils/locales';
 
 interface TransportCardProps {
   car: CarWithOutType;
@@ -12,6 +13,13 @@ interface TransportCardProps {
 
 function TransportCard({ car }: TransportCardProps) {
   const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
+
   // console.log(car)
 
   return (
@@ -73,10 +81,7 @@ function TransportCard({ car }: TransportCardProps) {
           <div className="flex justify-end items-center">
             <Link href={`/services/transport/${car.id}`}>
               <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {
-                  locale === 'ru' ? 'Узнать больше' :
-                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
-                }
+                {localData.see_more_text}
               </Button>
             </Link>
           </div>

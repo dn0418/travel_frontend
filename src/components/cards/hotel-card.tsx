@@ -6,10 +6,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { HotelDataType } from '../../types/services';
+import { localizationData } from '../../utils/locales';
 
 
 function HotelCard({ hotel }: { hotel: HotelDataType }) {
   const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -78,10 +85,7 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
           <div className="flex justify-end items-center">
             <Link href={`/services/hotels/${hotel.id}`}>
               <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {
-                  locale === 'ru' ? 'Узнать больше' :
-                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
-                }
+                {localData.see_more_text}
               </Button>
             </Link>
           </div>

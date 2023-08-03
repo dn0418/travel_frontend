@@ -26,4 +26,5 @@ export const API_ENDPOINTS = {
   IMAGES: "/images",
   ACCESSORY_PRICING: "/accessories-pricing",
   MAIL_REQUEST: "/mail",
+  MICE: "/mice",
 };

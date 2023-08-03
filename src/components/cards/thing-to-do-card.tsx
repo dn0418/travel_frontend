@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ThingToSeeType } from '../../types';
+import { localizationData } from '../../utils/locales';
 
 interface ThingToSeeCardProps {
   thing: ThingToSeeType;
@@ -14,6 +15,12 @@ interface ThingToSeeCardProps {
 function ThingToDoCard({ thing, findTab }: ThingToSeeCardProps) {
   const { locale } = useRouter();
   const findType = findTab(thing?.type)
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Card className="regular-shadow rounded-lg">
@@ -73,10 +80,7 @@ function ThingToDoCard({ thing, findTab }: ThingToSeeCardProps) {
           <div className="flex justify-end items-end">
             <Link href={`/armenia/thing-to-do/${thing.id}`}>
               <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {
-                  locale === 'ru' ? 'Узнать больше' :
-                    (locale === 'hy' ? 'Տեսնել ավելին' : 'See More')
-                }
+                {localData.see_more_text}
               </Button>
             </Link>
           </div>

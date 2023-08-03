@@ -6,6 +6,7 @@ class ServiceClient {
     hotelReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/hotel/${id}`),
     accessoryReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/accessory/${id}`),
     carReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/car/${id}`),
+    miceReview: (id: any) => HttpClient.get(`${API_ENDPOINTS.REVIEWS}/mice/${id}`),
   };
 
   carWithoutDriver = {
@@ -41,8 +42,8 @@ class ServiceClient {
   }
 
   accessories = {
-    all: (page?: any, search?: any) => HttpClient.get(
-      `${API_ENDPOINTS.TOUR_ACCESSORIES}?page=${page}&search=${search}`
+    all: (page?: any, search?: any, locale?: any) => HttpClient.get(
+      `${API_ENDPOINTS.TOUR_ACCESSORIES}?page=${page}&search=${search}&lan=${locale}`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOUR_ACCESSORIES}/${id}`),
     deleteByID: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOUR_ACCESSORIES}/delete/${id}`),
@@ -91,6 +92,21 @@ class ServiceClient {
     createNewPrice: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELS}/pricing/create`, data),
     updateHotelPrice: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELS}/pricing/update/${id}`, data),
     deleteHotelPrice: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELS}/pricing/delete/${id}`),
+  };
+
+  mice = {
+    all: () => HttpClient.get(API_ENDPOINTS.MICE),
+    filtered: (
+      page: any,
+      search: any,
+      locale: any,
+    ) => HttpClient.get(
+      `${API_ENDPOINTS.MICE}?page=${page}&search=${search}&lan=${locale}`),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.MICE}/${id}`),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.MICE}/delete/${id}`),
+    create: (data: any) => HttpClient.post(`${API_ENDPOINTS.MICE}/create`, data),
+    newImage: (data: any) => HttpClient.post(`${API_ENDPOINTS.MICE}/image/create`, data),
+    update: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.MICE}/update/${id}`, data),
   };
 
   hotelType = {
