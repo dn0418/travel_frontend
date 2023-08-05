@@ -1,14 +1,27 @@
 // @flow strict
 
+import { InferGetServerSidePropsType } from "next";
+import DashboardUI from "../../src/components/admin-components/dashboard";
 import DashboardLayout from "../../src/components/layouts/dashboard-layout";
+import { getServerSideProps } from "../../src/rest-api/admin/dashboard.ssr";
 import { NextPageWithLayout } from "../../src/types/page-props";
+export { getServerSideProps };
 
+const Dashboard: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
+  const currencyData = props.currencyData?.data || [];
 
-const Dashboard: NextPageWithLayout = () => {
+  const findRate = (code: string) => {
+    const rate = currencyData.find((item: any) => item.code === code);
+    if (rate) {
+      return rate.rate;
+    }
+    return 1;
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1>Welcome to Dashboard</h1>
-    </div>
+    <>
+      <DashboardUI findRate={findRate} />
+    </>
   );
 };
 
