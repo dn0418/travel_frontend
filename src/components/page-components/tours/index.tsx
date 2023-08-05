@@ -15,6 +15,7 @@ import {
 import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { ToursPageProps } from "../../../types/page-props";
+import { localizationData } from "../../../utils/locales";
 import TourCard from "../../cards/tour-card";
 import SectionTitle from "../../common/section-title";
 
@@ -29,8 +30,12 @@ function ToursPage({
   handleSearch,
 }: ToursPageProps) {
   const { locale } = useRouter();
-  // console.log(meta)
-
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
   return (
     <Container className="my-8 flex flex-col items-center">
       <div className="w-full  text-center py-3 px-6 regular-shadow rounded-lg">
@@ -52,11 +57,7 @@ function ToursPage({
           <SectionTitle title={title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">
             <InputLabel>
-              {locale === "ru"
-                ? "Найдите свою потребность"
-                : locale === "hy"
-                  ? "Որոնեք ձեր կարիքը"
-                  : "Search your Need"}
+              {localData.search_your_need}
             </InputLabel>
             <OutlinedInput
               endAdornment={
@@ -64,13 +65,7 @@ function ToursPage({
                   <BiSearch className="text-[#EDA592]" />
                 </InputAdornment>
               }
-              label={
-                locale === "ru"
-                  ? "Найдите свою потребность"
-                  : locale === "hy"
-                    ? "Որոնեք ձեր կարիքը"
-                    : "Search your Need"
-              }
+              label={localData.search_your_need}
               onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>
@@ -97,20 +92,12 @@ function ToursPage({
                     components={{
                       next: (props) => (
                         <span className="border-0 p-0 bg-transparent text-[#EDA592]">
-                          {locale === "ru"
-                            ? "Следующий"
-                            : locale === "hy"
-                              ? "Հաջորդը"
-                              : "Next"}
+                          {localData.next_text}
                         </span>
                       ),
                       previous: (props) => (
                         <span className="border-0 p-0 bg-transparent text-[#EDA592]">
-                          {locale === "ru"
-                            ? "Пред."
-                            : locale === "hy"
-                              ? "Նախ"
-                              : "Prev"}
+                          {localData.prev_text}
                         </span>
                       ),
                     }}

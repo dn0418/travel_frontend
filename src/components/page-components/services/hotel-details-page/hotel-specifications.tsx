@@ -8,6 +8,7 @@ import { IoMdPricetags } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdLocalAirport } from "react-icons/md";
 import { TiCancelOutline } from "react-icons/ti";
+import { useGlobalContext } from "../../../../context/global-context";
 import { HotelDataType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 import HotelModal from "../../../modal/HotelModal";
@@ -21,6 +22,8 @@ interface Props {
 }
 
 function HotelSpecification({ hotel, metadata }: Props) {
+  const { convertCurrency } = useGlobalContext();
+
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -82,7 +85,7 @@ function HotelSpecification({ hotel, metadata }: Props) {
         <IoMdPricetags className="text-base text-[#EDA592]  font-bold" />
         <span className="text-sm text-[#5e5e5e]">{localData.start_from}</span>
         <span className="text-base text-[#000000] font-bold">
-          $ {hotel.price}
+          {convertCurrency(hotel.price)}
         </span>
       </p>
       {hotel.fromAirport && (

@@ -165,7 +165,7 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
                   defaultValue=''
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}>
-                  <MenuItem value='dollar'>$ Dollar</MenuItem>
+                  <MenuItem value='usd'>$ Dollar</MenuItem>
                   <MenuItem value='ruble'>₽ Ruble</MenuItem>
                   <MenuItem value='amd'>֏AMD</MenuItem>
                 </Select>

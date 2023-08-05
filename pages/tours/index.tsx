@@ -82,7 +82,7 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
   }, [locale])
 
   return (
-    <div>
+    <>
       <ToursPage
         tabIndex={tabIndex}
         handleTabChange={handleTabChange}
@@ -93,7 +93,7 @@ const Tours: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSide
         handleSearch={handleSearch}
         meta={meta}
       />
-    </div>
+    </>
   );
 };
 

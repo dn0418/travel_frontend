@@ -4,11 +4,13 @@ import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BiCalendar } from 'react-icons/bi';
+import { useGlobalContext } from '../../context/global-context';
 import { TourType } from '../../types/tour';
 import { formatDate } from '../../utils/formate-date';
 import { localizationData } from '../../utils/locales';
 
 function TourCard({ tour }: { tour: TourType }) {
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -106,7 +108,7 @@ function TourCard({ tour }: { tour: TourType }) {
                 locale === 'ru' ? 'Начать с' : (locale === 'hy' ? 'Սկսել' : 'Start From')
               }
             </p>
-            <p className="text-base font-semibold my-2">${tour.price}</p>
+            <p className="text-base font-semibold my-2">{convertCurrency(tour.price)}</p>
           </div>
           <Link href={`/tour-details/${tour.id}`}>
             <Button

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
 import { IoMdPricetags } from "react-icons/io";
 import { TiCancelOutline } from "react-icons/ti";
+import { useGlobalContext } from "../../../../context/global-context";
 import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 import TourAccessoriesModal from "../../../modal/TourAccessoriesModal";
@@ -19,6 +20,7 @@ interface PropsType {
 }
 
 function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
 
   const localData =
@@ -74,7 +76,7 @@ function AccessorySpecification({ accessoryDetails, metadata }: PropsType) {
               {localData.start_from}
             </span>
             <span className="text-base text-[#000000] font-bold">
-              $ {accessoryDetails.price}
+              {convertCurrency(accessoryDetails.price)}
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">

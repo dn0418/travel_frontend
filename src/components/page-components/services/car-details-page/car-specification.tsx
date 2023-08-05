@@ -3,12 +3,14 @@
 import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
+import { useGlobalContext } from "../../../../context/global-context";
 import { CarWithOutType } from "../../../../types/car-type";
 import { localizationData } from "../../../../utils/locales";
 import CarModel from "../../../modal/CarModal";
 import CarThumbnailSection from "./thumbnail-section";
 
 function CarSpecification({ car }: { car: CarWithOutType }) {
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -55,7 +57,7 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
               {localData.start_from}
             </span>
             <span className="text-base text-[#000000] font-bold">
-              ${car.price}
+              {convertCurrency(car.price)}
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">

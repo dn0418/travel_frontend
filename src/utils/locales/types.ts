@@ -104,3 +104,9 @@ export interface LocaleDataType {
   ru: LocaleDataItems;
   hy: LocaleDataItems;
 }
+
+
+export interface LocaleTourDataType {
+  day_text: string;
+  night_text: string;
+}

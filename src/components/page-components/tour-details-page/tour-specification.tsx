@@ -6,6 +6,7 @@ import { BiCalendar, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { GiCancel, GiPriceTag } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
+import { useGlobalContext } from "../../../context/global-context";
 import { ReviewTypes } from "../../../types";
 import { TourType } from "../../../types/tour";
 import { formatDate } from "../../../utils/formate-date";
@@ -13,6 +14,7 @@ import { localizationData } from "../../../utils/locales";
 import TourModal from "../../modal/TourModal";
 
 function TourSpecification({ tour }: { tour: TourType }) {
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -79,7 +81,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
         <GiPriceTag className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">{localData.start_from}</span>
         <span className="text-base text-[#000000] font-bold">
-          $ {tour.price}
+          {convertCurrency(tour.price)}
         </span>
       </p>
       <p className="flex items-center gap-3">

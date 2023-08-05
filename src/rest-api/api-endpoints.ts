@@ -27,4 +27,5 @@ export const API_ENDPOINTS = {
   ACCESSORY_PRICING: "/accessories-pricing",
   MAIL_REQUEST: "/mail",
   MICE: "/mice",
+  CURRENCY: "/currency",
 };

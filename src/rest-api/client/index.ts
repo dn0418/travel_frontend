@@ -57,6 +57,11 @@ class Client {
     accessoriesMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/accessories`, data),
     miceMail: (data: any) => HttpClient.post(`${API_ENDPOINTS.MAIL_REQUEST}/mice`, data),
   }
+
+  currency = {
+    all: () => HttpClient.get(API_ENDPOINTS.CURRENCY),
+    update: (data: any) => HttpClient.put(`${API_ENDPOINTS.CURRENCY}/update`, data),
+  }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
