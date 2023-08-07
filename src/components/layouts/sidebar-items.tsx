@@ -68,6 +68,11 @@ const sidebarItems: SidebarItem[] = [
     path: '/admin/food-and-drink',
   },
   {
+    title: 'Mice',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/mice',
+  },
+  {
     title: 'Call Back',
     icon: <BsFillCaretRightFill />,
     path: '/admin/callback',
