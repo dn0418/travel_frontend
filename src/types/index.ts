@@ -75,6 +75,7 @@ export interface AddReviewPyloadType {
   thingToSeeId?: number;
   thingToDoId?: number;
   foodAndDrinkId?: number;
+  miceId?: number;
 }
 
 export interface ThingToSeeType {

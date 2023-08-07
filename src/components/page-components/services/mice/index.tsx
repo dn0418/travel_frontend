@@ -50,10 +50,7 @@ function MiceUI({
             mices.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  {
-                    locale === 'ru' ? 'Данные не найдены!' :
-                      (locale === 'hy' ? 'Տվյալները չեն գտնվել:' : 'Data not found!')
-                  }
+                  {localData.not_found_text}
                 </p>
               </div>
               :

@@ -95,7 +95,7 @@ function MiceReviewSection({ reviews, mice }: PropsType) {
         aria-labelledby='Add review modal'
         aria-describedby='Add a tour review'>
         <CreateNewReview
-          type="accessory"
+          type="mice"
           id={mice.id}
           handleChangeModal={handleChangeModal}
         />

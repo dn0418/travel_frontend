@@ -200,7 +200,7 @@ function CarModel({ buttonText, type }: IProps) {
           />
 
           <div style={formStyles.buttonContainer}>
-            <Button variant="outlined" onClick={handleChangeModal}>
+            <Button color="secondary" variant="outlined" onClick={handleChangeModal}>
               {localData.cancel_text}
             </Button>
             <Button

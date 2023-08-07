@@ -89,6 +89,9 @@ export const localizationData: LocaleDataType = {
     rent_text: "Rent A ",
     see_more_text: "See More",
     mice_page_title: "Mice",
+    not_found_text: "Data not found!",
+    mice_type_text: "Mice Type",
+    mice_request_text: "Mice Request",
   },
   ru: {
     transportData: transportRuLocalization,
@@ -172,7 +175,10 @@ export const localizationData: LocaleDataType = {
     car_text: "машина",
     rent_text: "Арендовать A ",
     see_more_text: "показать еще",
-    mice_page_title: "Mice"
+    mice_page_title: "",
+    not_found_text: "",
+    mice_type_text: "",
+    mice_request_text: "",
   },
   hy: {
     transportData: transportHyLocalization,
@@ -257,7 +263,10 @@ export const localizationData: LocaleDataType = {
     car_text: "մեքենա",
     rent_text: "Վարձակալություն Ա ",
     see_more_text: "see more",
-    mice_page_title: "Mice"
+    mice_page_title: "Mice",
+    not_found_text: "",
+    mice_type_text: "",
+    mice_request_text: "",
   },
   // Add other language translations here if needed.
 };

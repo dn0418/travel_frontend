@@ -2,12 +2,12 @@
 
 import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
+import { AiOutlineTeam } from "react-icons/ai";
 import { BiHash } from "react-icons/bi";
-import { IoMdPricetags } from "react-icons/io";
 import { TiCancelOutline } from "react-icons/ti";
 import { MiceTypes } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
-import TourAccessoriesModal from "../../../modal/TourAccessoriesModal";
+import MiceModal from "../../../modal/mice-modal";
 import MiceThumbnailSection from "./thumbnail-section";
 
 interface PropsType {
@@ -67,7 +67,7 @@ function MiceSpecification({ mice, metadata }: PropsType) {
             </p>
           )}
           <p className="flex items-center gap-2">
-            <IoMdPricetags className="text-base text-[#EDA592]  font-bold" />
+            <AiOutlineTeam className="text-base text-[#EDA592]  font-bold" />
             <span className="text-base font-medium text-[#5e5e5e]">
               Teambuilding activities:
             </span>
@@ -90,17 +90,12 @@ function MiceSpecification({ mice, metadata }: PropsType) {
                   : mice.comportable}
             </span>
           </p>
-          {/* <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+          {mice.access24 && <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
             <BiHash className="text-base text-[#EDA592]  font-bold" />
-            <span className="font-medium">{localData.per_pax_text}:</span>
-            <span>
-              {locale === "hy"
-                ? mice.perPax_hy
-                : locale === "ru"
-                  ? mice.perPax_ru
-                  : mice.perPax}
-            </span>
-          </p> */}
+            <span className="font-medium">
+              24 hour access </span>
+          </p>
+          }
 
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
             <TiCancelOutline className="text-xl text-[#EDA592] font-bold" />
@@ -112,20 +107,8 @@ function MiceSpecification({ mice, metadata }: PropsType) {
                 : `${localData.no_text}`}
             </span>
           </p>
-          {/* <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
-            <BiHash className="text-base text-[#EDA592]  font-bold" />
-            <span className="font-medium">{localData.rent_from_text}:</span>
-            <span>
-              {locale === "hy"
-                ? mice.rentFrom_hy
-                : locale === "ru"
-                  ? mice.rentFrom_ru
-                  : mice.rentFrom}
-              {localData.days_title}
-            </span>
-          </p> */}
           <div className="md:mt-8">
-            <TourAccessoriesModal buttonText={localData.submit_text} />
+            <MiceModal buttonText={localData.send_request} />
           </div>
         </div>
       </div>

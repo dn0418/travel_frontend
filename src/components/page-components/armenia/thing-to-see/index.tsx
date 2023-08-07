@@ -14,9 +14,9 @@ import {
 import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { ThingToSeePageProps } from "../../../../types/page-props";
+import { localizationData } from "../../../../utils/locales";
 import ThingToSeeCard from "../../../cards/thing-to-see-card";
 import SectionTitle from "../../../common/section-title";
-import { localizationData } from "../../../../utils/locales";
 
 function ThingToSeeUI({
   handleTabChange,
@@ -33,8 +33,8 @@ function ThingToSeeUI({
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
 
   return (
     <Container className="my-8 flex flex-col items-center">
@@ -87,11 +87,7 @@ function ThingToSeeUI({
           {things.length === 0 ? (
             <div className="flex justify-center items-center my-5">
               <p className="text-3xl font-medium text-[#000000] py-5">
-                {locale === "ru"
-                  ? "Данные не найдены!"
-                  : locale === "hy"
-                  ? "Տվյալները չեն գտնվել:"
-                  : "Data not found!"}
+                {localData.not_found_text}
               </p>
             </div>
           ) : (
@@ -118,8 +114,8 @@ function ThingToSeeUI({
                           {locale === "ru"
                             ? "Следующий"
                             : locale === "hy"
-                            ? "Հաջորդը"
-                            : "Next"}
+                              ? "Հաջորդը"
+                              : "Next"}
                         </span>
                       ),
                       previous: (props) => (
@@ -127,8 +123,8 @@ function ThingToSeeUI({
                           {locale === "ru"
                             ? "Пред."
                             : locale === "hy"
-                            ? "Նախ"
-                            : "Prev"}
+                              ? "Նախ"
+                              : "Prev"}
                         </span>
                       ),
                     }}

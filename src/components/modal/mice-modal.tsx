@@ -13,7 +13,7 @@ interface IProps {
   buttonText: string;
 }
 
-function TourAccessoriesModal({ buttonText }: IProps) {
+function MiceModal({ buttonText }: IProps) {
   const initialInput = {
     firstName: "",
     lastName: "",
@@ -23,9 +23,10 @@ function TourAccessoriesModal({ buttonText }: IProps) {
     endDate: "",
     checkbox1: false,
     checkbox2: false,
+    miceType: "",
     additionalInfo: "",
   }
-  const [openContactModal, setOpenContactModal] = useState(false);
+  const [openOpenModal, setOpenModal] = useState(false);
   const [inputData, setInputData] = useState<InputData>(initialInput);
   const theme = useTheme();
 
@@ -46,7 +47,7 @@ function TourAccessoriesModal({ buttonText }: IProps) {
   };
 
   const handleChangeModal = () => {
-    setOpenContactModal(!openContactModal);
+    setOpenModal(!openOpenModal);
   };
 
   const handleSubmit = async () => {
@@ -57,12 +58,13 @@ function TourAccessoriesModal({ buttonText }: IProps) {
       "telephone",
       "startDate",
       "endDate",
+      "miceType"
     ];
 
     const missingFields = requiredFields.filter(
       (field: string) => !inputData[field]
     );
-    console.log(missingFields);
+
     if (missingFields.length > 0) {
       toast.error(
         `${missingFields.join(", ")} field${missingFields.length > 1 ? "s" : ""
@@ -75,17 +77,18 @@ function TourAccessoriesModal({ buttonText }: IProps) {
       firstName: inputData.firstName,
       lastName: inputData.lastName,
       email: inputData.email,
-      additionalInfo: inputData.additionalInfo,
+      telephone: inputData.telephone,
       startDate: inputData.startDate,
       endDate: inputData.endDate,
-      telephone: inputData.telephone,
+      miceType: inputData.miceType,
+      additionalInfo: inputData.additionalInfo,
     }
 
     try {
-      const res = await client.requestMail.accessoriesMail(payload);
-      toast.success("Your tour accesories request has been sent successfully");
+      const res = await client.requestMail.miceMail(payload);
+      toast.success("Your Mice request has been sent successfully");
       setInputData(initialInput);
-      setOpenContactModal(false);
+      setOpenModal(false);
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -145,7 +148,7 @@ function TourAccessoriesModal({ buttonText }: IProps) {
         {buttonText}
       </Button>
       <Modal
-        open={openContactModal}
+        open={openOpenModal}
         onClose={handleChangeModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -154,13 +157,22 @@ function TourAccessoriesModal({ buttonText }: IProps) {
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >
-            {localData.tour_accessories_text}
+            {localData.mice_request_text}
           </Typography>
           <Box sx={formStyles.gridContainer}>
             <CommonInput
               handleChangeInput={handleChangeInput}
               inputData={inputData}
               localData={localData}
+            />
+
+            <TextField
+              sx={formStyles.noteArea}
+              onChange={(e) =>
+                handleChangeInput("miceType", e.target.value)
+              }
+              value={inputData.miceType}
+              label={localData.mice_type_text}
             />
 
             <TextField
@@ -205,4 +217,4 @@ function TourAccessoriesModal({ buttonText }: IProps) {
   );
 }
 
-export default TourAccessoriesModal;
+export default MiceModal;

@@ -72,6 +72,12 @@
   }
 }
 
+.MuiButton-containedPrimary.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26) !important;
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
 .expanded-section-title {
   & .MuiAccordion-root {
     background-color: transparent;

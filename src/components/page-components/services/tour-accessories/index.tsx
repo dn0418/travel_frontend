@@ -4,6 +4,7 @@ import { Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagi
 import { useRouter } from "next/router";
 import { BiSearch } from "react-icons/bi";
 import { AccessoriesPageProps } from "../../../../types/page-props";
+import { localizationData } from "../../../../utils/locales";
 import AccessoriesCard from "../../../cards/accessories-card";
 import SectionTitle from "../../../common/section-title";
 
@@ -14,6 +15,12 @@ function TourAccessoriesUI({
   metaData
 }: AccessoriesPageProps) {
   const { locale } = useRouter();
+  const localData =
+    locale === "ru"
+      ? localizationData.ru
+      : locale === "hy"
+        ? localizationData.hy
+        : localizationData.en;
 
 
   return (
@@ -52,10 +59,7 @@ function TourAccessoriesUI({
             accessories.length === 0 ?
               <div className="flex justify-center items-center my-5">
                 <p className="text-3xl font-medium text-[#000000] py-5">
-                  {
-                    locale === 'ru' ? 'Данные не найдены!' :
-                      (locale === 'hy' ? 'Տվյալները չեն գտնվել:' : 'Data not found!')
-                  }
+                  {localData.not_found_text}
                 </p>
               </div>
               :

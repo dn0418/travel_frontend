@@ -86,6 +86,7 @@ export interface LocaleDataItems {
   endDate: string;
   telephone_text: string;
   additional_info_text: string;
+  mice_type_text: string;
   iam_not_robot_text: string;
   agree_with_terms_text: string;
   tour_name_text: string;
@@ -97,6 +98,8 @@ export interface LocaleDataItems {
   car_text: string;
   rent_text: string;
   see_more_text: string;
+  not_found_text: string;
+  mice_request_text: string;
 }
 
 export interface LocaleDataType {

@@ -66,7 +66,7 @@ function MiceThumbnailSection({ mice }: { mice: MiceTypes }) {
         className="rounded-lg"
         alt="tour-details" />
       {
-        images.length > 3 ? <Slider
+        images.length > 4 ? <Slider
           className='flex mt-5'
           afterChange={(e) => setCurrentSlide(e)}
           {...settings}>
