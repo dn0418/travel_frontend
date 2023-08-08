@@ -269,7 +269,7 @@ function RidePlanForm({
           onChange={(e) => handleOnChangeInputData('note', e.target.value)}
         />
         <div className="md:col-span-2 flex justify-end gap-5">
-          <Button variant="outlined">{localData.cancel_text}</Button>
+          <Button color='secondary' variant="outlined">{localData.cancel_text}</Button>
           <Button onClick={handleSubmit} disabled={isLoading} variant="contained">
             {isLoading ? localData.loading_text : localData.submit_text}
           </Button>
