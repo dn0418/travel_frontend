@@ -95,7 +95,7 @@ const UpdateMice: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPro
     formData.append("file", file);
 
     try {
-      const response = await fetch('http://localhost:5000/file/upload', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/file/upload`, {
         method: 'POST',
         body: formData
       });
