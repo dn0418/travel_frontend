@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   } catch (error) {
     return {
-      notFound: true,
+      props: {},
     };
   }
 };

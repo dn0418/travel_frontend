@@ -199,3 +199,12 @@ export interface RidePlanType {
   destination: RidePlanDestination[];
 }
 
+
+export interface StaticPageType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  code: string;
+  title: string;
+  content: string;
+}

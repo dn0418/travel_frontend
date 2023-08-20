@@ -6,16 +6,19 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
+import { StaticPageType } from "../../../types";
 import { staticPages } from "../../../utils/data/static-pages";
 import SunTextEditor from "../../common/SunEditor";
 
 interface PropsType {
   code: any;
+  pageData: StaticPageType;
 }
 
-const UpdateStaticPage = ({ code }: PropsType) => {
-  const [content, setContent] = useState('');
+const UpdateStaticPage = ({ code, pageData }: PropsType) => {
+  const [content, setContent] = useState(pageData?.content || "");
   const router = useRouter();
+  const [updating, setUpdating] = useState(false);
 
   const findPage = () => {
     const find = staticPages.find(page => page.code === code);
@@ -27,6 +30,7 @@ const UpdateStaticPage = ({ code }: PropsType) => {
       toast.error("Please enter content");
       return;
     }
+    setUpdating(true);
 
     try {
       const res = await client.staticPages.update({
@@ -35,10 +39,12 @@ const UpdateStaticPage = ({ code }: PropsType) => {
         content: content,
       });
       toast.success("Page updated successfully!");
-      router.push("admin/dashboard");
+      router.push("/admin/dashboard");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
+    } finally {
+      setUpdating(false);
     }
   };
 
@@ -58,8 +64,9 @@ const UpdateStaticPage = ({ code }: PropsType) => {
         <div>
           <Button
             onClick={handleSubmit}
+            disabled={updating}
             variant="contained">
-            Update Page
+            {updating ? "Updating..." : "Update Page"}
           </Button>
         </div>
       </Box>

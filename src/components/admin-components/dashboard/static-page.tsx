@@ -30,10 +30,12 @@ function StaticPage() {
                   <TableCell align="left">{page.title}</TableCell>
                   <TableCell align="right">
                     <ButtonGroup className='gap-2' color="secondary" variant="outlined">
-                      <Button>
-                        <AiFillEye size={18} />
-                        <span className="ps-1">View</span>
-                      </Button>
+                      <Link href={`/pages/${page.code}`}>
+                        <Button>
+                          <AiFillEye size={18} />
+                          <span className="ps-1">View</span>
+                        </Button>
+                      </Link>
                       <Link href={`/admin/update-page/${page.code}`}>
                         <Button>
                           <BiEdit size={18} />
