@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (
   const destination = query["destination"] || "";
   const days = query["days"] || "";
 
-  const tours = await tourClient.tours?.sortedTour(+page, type, search, month, destination, days, locale);
+  const tours = await tourClient.tours?.sortedTour(+page, type, search, month, destination, days, locale, '');
 
   return {
     props: {

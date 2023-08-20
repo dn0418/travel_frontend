@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
 import { TourDestinationType } from "../../../types/tour";
-import { tourTypes } from "../../../utils/data/tours-types";
+import { tourFilterData } from "../../../utils/data/homepage-data";
 import { localizationData } from "../../../utils/locales";
 import CustomSelectInput from "../../common/select";
 
@@ -19,7 +19,7 @@ function FilterSection({ destinations }: { destinations: TourDestinationType[] }
     days: ''
   });
   const [startDate, setStartDate] = useState<null | Date>(null);
-  const [typeItems, setTypeItems] = useState(tourTypes.en);
+  const [typeItems, setTypeItems] = useState(tourFilterData.en);
   const router = useRouter()
   const { query, locale } = router;
 
@@ -57,11 +57,11 @@ function FilterSection({ destinations }: { destinations: TourDestinationType[] }
 
   useEffect(() => {
     if (locale && locale === 'ru') {
-      setTypeItems(tourTypes.ru);
+      setTypeItems(tourFilterData.ru);
     } else if (locale && locale === 'hy') {
-      setTypeItems(tourTypes.hy);
+      setTypeItems(tourFilterData.hy);
     } else {
-      setTypeItems(tourTypes.en);
+      setTypeItems(tourFilterData.en);
     }
     setFilterData({
       tourType: '',

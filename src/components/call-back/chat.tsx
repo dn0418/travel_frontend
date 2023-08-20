@@ -126,7 +126,7 @@ function ChatIcon() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={formStyles.modalContainer}>
+        <Box className="call-back-modal-container" sx={formStyles.modalContainer}>
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
           >

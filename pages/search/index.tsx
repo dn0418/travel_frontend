@@ -7,7 +7,7 @@ import GeneralLayout from "../../src/components/layouts/_general";
 import SearchPage from "../../src/components/page-components/search";
 import { getServerSideProps } from "../../src/rest-api/search.ssr";
 import { NextPageWithLayout } from "../../src/types/page-props";
-import { tourTypes } from "../../src/utils/data/tours-types";
+import { tourFilterData } from "../../src/utils/data/homepage-data";
 export { getServerSideProps };
 
 const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (
@@ -16,7 +16,7 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
   const tours = toursData?.data;
   const meta = toursData?.meta;
   const destinations = destinationData?.data;
-  const [typeItems, setTypeItems] = useState(tourTypes.en);
+  const [typeItems, setTypeItems] = useState(tourFilterData.en);
   const router = useRouter()
   const { pathname, query, locale } = router;
 
@@ -47,11 +47,11 @@ const Search: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSid
 
   useEffect(() => {
     if (locale && locale === 'ru') {
-      setTypeItems(tourTypes.ru);
+      setTypeItems(tourFilterData.ru);
     } else if (locale && locale === 'hy') {
-      setTypeItems(tourTypes.hy);
+      setTypeItems(tourFilterData.hy);
     } else {
-      setTypeItems(tourTypes.en);
+      setTypeItems(tourFilterData.en);
     }
   }, [locale])
 
