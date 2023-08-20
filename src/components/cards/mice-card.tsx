@@ -35,7 +35,7 @@ function MiceCard({ mice }: CardProps) {
         <div className="p-3 flex flex-col justify-between">
           <div className="">
             <div className="flex items-center justify-between">
-              <Link href={`/services/tour-accessories/${mice.id}`}>
+              <Link href={`/services/mice/${mice.id}`}>
                 <p className="text-xl font-medium my-2 text-black">
                   {locale === "ru"
                     ? mice.name_ru

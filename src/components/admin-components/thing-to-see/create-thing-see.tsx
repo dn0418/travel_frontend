@@ -258,7 +258,7 @@ function CreateNewThingToSee({
                   checked={inputData.isRu}
                 />
               }
-              label="Is Russian Data Available"
+              label="Should Russian language be available for this tour?"
             />
           </div>
           <TextField
@@ -325,7 +325,7 @@ function CreateNewThingToSee({
                   checked={inputData.isHy}
                 />
               }
-              label="Is Armenian Data Available"
+              label="Should Armenian language be available for this tour?"
             />
           </div>
           <TextField
