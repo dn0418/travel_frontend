@@ -28,4 +28,5 @@ export const API_ENDPOINTS = {
   MAIL_REQUEST: "/mail",
   MICE: "/mice",
   CURRENCY: "/currency",
+  STATIC_PAGES: "/static-pages",
 };

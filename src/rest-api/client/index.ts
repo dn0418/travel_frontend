@@ -62,7 +62,14 @@ class Client {
     all: () => HttpClient.get(API_ENDPOINTS.CURRENCY),
     update: (data: any) => HttpClient.put(`${API_ENDPOINTS.CURRENCY}/update`, data),
   }
+
+  staticPages = {
+    all: () => HttpClient.get(API_ENDPOINTS.STATIC_PAGES),
+    update: (data: any) => HttpClient.put(`${API_ENDPOINTS.STATIC_PAGES}/update`, data),
+    findOne: (code: string) => HttpClient.get(`${API_ENDPOINTS.STATIC_PAGES}/${code}`),
+  }
 }
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default new Client();
