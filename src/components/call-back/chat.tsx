@@ -198,7 +198,12 @@ function ChatIcon() {
             />
             <div></div>
             <div style={formStyles.buttonContainer} className="">
-              <Button variant="outlined">Cancel</Button>
+              <Button
+                color="secondary"
+                onClick={handleChangeModal}
+                variant="outlined">
+                Cancel
+              </Button>
               <Button
                 disabled={isLoading}
                 onClick={handleSubmit}
