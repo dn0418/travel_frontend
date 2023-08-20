@@ -48,7 +48,7 @@ function TourSection({ tours, oneDayTour, fixedDateTour }: PropsType) {
                 </Slider>
                 :
                 <div className="w-full h-full flex justify-center items-center">
-                  <p>No Tour Found!</p>
+                  <p>{localData.not_found_text}</p>
                 </div>
             }
           </Card>
@@ -64,13 +64,14 @@ function TourSection({ tours, oneDayTour, fixedDateTour }: PropsType) {
                   {...settings}>
                   {
                     oneDayTour.map((tour, index) => (
+                      tour.dayLength === 1 &&
                       <TourCard tour={tour} key={index} />
                     ))
                   }
                 </Slider>
                 :
                 <div className="w-full h-full flex justify-center items-center">
-                  <p>No Tour Found!</p>
+                  <p>{localData.not_found_text}</p>
                 </div>
             }
           </Card>
@@ -86,13 +87,14 @@ function TourSection({ tours, oneDayTour, fixedDateTour }: PropsType) {
                   {...settings}>
                   {
                     fixedDateTour.map((tour, index) => (
+                      (tour.startDate && tour.endDate) &&
                       <TourCard tour={tour} key={index} />
                     ))
                   }
                 </Slider>
                 :
                 <div className="w-full h-full flex justify-center items-center">
-                  <p>No Tour Found!</p>
+                  <p>{localData.not_found_text}</p>
                 </div>
             }
           </Card>

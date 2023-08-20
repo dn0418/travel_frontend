@@ -1,6 +1,7 @@
 // @flow strict
 
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
+import Link from "next/link";
 import { BsCheckCircleFill } from 'react-icons/bs';
 
 
@@ -14,6 +15,11 @@ function RideSuccess() {
       <p className="text-[#7C8691] my-2  font-poppins">
         Your ride-plan request was successfully submitted.
       </p>
+      <div className="flex justify-center items-center my-5">
+        <Link href="/">
+          <Button variant="contained" color="primary">Go To Home</Button>
+        </Link>
+      </div>
     </Container>
   );
 };

@@ -79,7 +79,7 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
             </div>
 
             <p className="my-2 text-[#5E5E5E] text-sm">
-              Available: {accessory.available}
+              {accessory.available}
               {(locale === "ru"
                 ? "Доступный:"
                 : locale === "hy"
