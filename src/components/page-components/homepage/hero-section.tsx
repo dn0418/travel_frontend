@@ -1,6 +1,6 @@
 // @flow strict
 import Image from "next/legacy/image";
-import heroImage from "/public/hero_bus.gif";
+import heroImage from "/public/home_bus.gif";
 
 function HeroSection() {
   return (
