@@ -9,10 +9,12 @@ export const getServerSideProps: GetServerSideProps = async (
   const limit = query["limit"] || 12;
 
   const reviews = await client.reviews?.all(page, limit);
+  const staticPages = await client.staticPages?.all();
 
   return {
     props: {
-      reviewsData: reviews
+      reviewsData: reviews,
+      staticPagesData: staticPages
     },
   };
 };

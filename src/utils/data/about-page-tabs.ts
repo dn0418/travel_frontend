@@ -1,6 +1,6 @@
 export const aboutPageTabs = {
   en: [
-    { value: 'who-are-you', label: 'Who are you' },
+    { value: 'who_we_are', label: 'Who we are?' },
     { value: 'how-to-book-a-tour', label: 'How to book a tour' },
     { value: 'vacancy', label: 'Vacancy' },
     { value: 'review', label: 'Review' }

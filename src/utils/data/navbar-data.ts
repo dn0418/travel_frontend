@@ -126,8 +126,8 @@ export const navData: NavTypes = {
       children: [
         {
           id: 1,
-          title: "Who are  you",
-          route: "/about-us?tab=who-are-you",
+          title: "Who we are?",
+          route: "/about-us?tab=who_we_are",
         },
         {
           id: 2,

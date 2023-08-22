@@ -117,6 +117,7 @@ export interface AboutUsUIProps {
   tabIndex: any;
   reviews: ReviewTypes[];
   reviewsPagination: PaginationType;
+  findStaticPage: any;
 }
 
 
