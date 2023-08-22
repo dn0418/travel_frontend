@@ -164,8 +164,8 @@ export const tourFilterData = {
     value: 'velo_and_moto_tours',
   },
   {
-    name: 'Academic tours',
-    value: 'academic_tours',
+    name: 'Science tours',
+    value: 'science_tours',
   },
   {
     name: 'Hiking and trekking tours',

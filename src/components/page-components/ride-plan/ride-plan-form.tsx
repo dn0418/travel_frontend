@@ -1,15 +1,13 @@
 // @flow strict
 
-import { Button, Divider, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, Radio, TextField } from '@mui/material';
+import { Button, Divider, FormControl, InputAdornment, InputLabel, OutlinedInput, Radio, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useRouter } from 'next/router';
-import { AiOutlinePlus } from 'react-icons/ai';
 import { FaBicycle, FaCarSide, FaHiking } from 'react-icons/fa';
-import { FiMinus } from 'react-icons/fi';
 import { RiMotorbikeFill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { TiLocation } from 'react-icons/ti';
@@ -27,8 +25,6 @@ function RidePlanForm({
   changeDestinationCount,
   handleRemoveDestination,
   handleSubmit,
-  incrementCount,
-  decrementCount,
   isLoading
 }: any) {
   const { locale } = useRouter()
@@ -98,25 +94,6 @@ function RidePlanForm({
               value={inputData?.adult}
               className='rounded-tr-none rounded-br-none border-r-0'
               onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <div
-                    className="flex flex-col border border-[#8c8c8ca2] border-solid
-                     rounded-[4px] px-1">
-                    <IconButton
-                      onClick={() => incrementCount('adult')}
-                      className="p-1 w-fit" aria-label="Increment Button">
-                      <AiOutlinePlus className="text-sm text-[#EDA592]" />
-                    </IconButton>
-                    <Divider />
-                    <IconButton
-                      onClick={() => decrementCount('adult')}
-                      className="p-1 w-fit" aria-label="Decrement Button">
-                      <FiMinus className="text-sm text-[#EDA592]" />
-                    </IconButton>
-                  </div>
-                </InputAdornment>
-              }
               label={localData.adult_text}
             />
           </FormControl>
@@ -128,25 +105,6 @@ function RidePlanForm({
               name='child'
               value={inputData?.child}
               onChange={(e) => handleOnChangeInputData(e.target.name, e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <div
-                    className="flex flex-col border border-[#8c8c8ca2] border-solid
-                     rounded-[4px] px-1">
-                    <IconButton
-                      onClick={() => incrementCount('child')}
-                      className="p-1 w-fit" aria-label="Increment Button">
-                      <AiOutlinePlus className="text-sm text-[#EDA592]" />
-                    </IconButton>
-                    <Divider />
-                    <IconButton
-                      onClick={() => decrementCount('child')}
-                      className="p-1 w-fit" aria-label="Decrement Button">
-                      <FiMinus className="text-sm text-[#EDA592]" />
-                    </IconButton>
-                  </div>
-                </InputAdornment>
-              }
               label={localData.child_text}
             />
           </FormControl>
@@ -268,8 +226,7 @@ function RidePlanForm({
           minRows={4}
           onChange={(e) => handleOnChangeInputData('note', e.target.value)}
         />
-        <div className="md:col-span-2 flex justify-end gap-5">
-          <Button color='secondary' variant="outlined">{localData.cancel_text}</Button>
+        <div className="md:col-span-2 flex justify-start gap-5">
           <Button onClick={handleSubmit} disabled={isLoading} variant="contained">
             {isLoading ? localData.loading_text : localData.submit_text}
           </Button>

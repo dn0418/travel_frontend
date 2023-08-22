@@ -34,11 +34,6 @@ export const navData: NavTypes = {
           route: "/tours?type=classic_tours",
         },
         {
-          id: 5,
-          title: "Fixed date Tour",
-          route: "/tours?type=fixed_date_tour",
-        },
-        {
           id: 6,
           title: "Themed Tours",
           route: "/tours?type=themed_tours",
@@ -174,11 +169,6 @@ export const navData: NavTypes = {
           route: "/tours?type=classic_tours",
         },
         {
-          id: 5,
-          title: "Туры на определенную дату",
-          route: "/tours?type=fixed_date_tour",
-        },
-        {
           id: 6,
           title: "Тематические туры",
           route: "/tours?type=themed_tours",
@@ -312,11 +302,6 @@ export const navData: NavTypes = {
           id: 4,
           title: "Կլասսիկական տուրեր",
           route: "/tours?type=classic_tours",
-        },
-        {
-          id: 5,
-          title: "Օրականագործության տուր",
-          route: "/tours?type=fixed_date_tour",
         },
         {
           id: 6,

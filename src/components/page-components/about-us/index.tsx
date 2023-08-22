@@ -70,7 +70,7 @@ function AboutUsUI({
             </div>
         }
       </div>
-      <div hidden={tabIndex !== "how-to-book-a-tour"} className='w-full my-4 md:my-8'>
+      <div hidden={tabIndex !== "how_to_book_a_tour"} className='w-full my-4 md:my-8'>
         {
           findStaticPage("how_to_book_a_tour") ?
             <div dangerouslySetInnerHTML={{ __html: findStaticPage("how_to_book_a_tour") }} />

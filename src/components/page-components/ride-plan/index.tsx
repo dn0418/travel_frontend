@@ -1,5 +1,4 @@
 // @flow strict
-
 import { Container } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { useRouter } from "next/router";
@@ -12,14 +11,6 @@ import SectionTitle from "../../common/section-title";
 import RidePlanForm from "./ride-plan-form";
 import RidePlanMap from "./ride-plan-map";
 import RideSuccess from "./success-page";
-
-interface DestinationState {
-  title: string;
-  value: string;
-  url: string;
-  lat: number;
-  lng: number;
-}[]
 
 function RidePlanUI() {
   const [date, setDate] = useState<Dayjs | null>(dayjs(new Date()));
@@ -97,22 +88,6 @@ function RidePlanUI() {
     setDestinationInput(destinationInput.filter((_, i) => i !== index));
   }
 
-  const incrementCount = (name: string) => {
-    setInputData((prevState: any) => {
-      const temp = JSON.parse(JSON.stringify(prevState));
-      temp[name] = parseInt(temp[name]) + 1;
-      return temp;
-    })
-  }
-  const decrementCount = (name: string) => {
-    setInputData((prevState: any) => {
-      const temp = JSON.parse(JSON.stringify(prevState));
-      if (parseInt(temp[name]) <= 0) return temp;
-      temp[name] = parseInt(temp[name]) - 1;
-      return temp;
-    })
-  }
-
   const handleSubmit = async () => {
     if (!inputData.name || !inputData.email) {
       toast.warning("At Least Name and Email must be provided!")
@@ -171,8 +146,6 @@ function RidePlanUI() {
                 changeDestinationCount={changeDestinationCount}
                 handleRemoveDestination={handleRemoveDestination}
                 handleSubmit={handleSubmit}
-                incrementCount={incrementCount}
-                decrementCount={decrementCount}
                 isLoading={isLoading}
               />
               <RidePlanMap destinationInput={destinationInput} />
