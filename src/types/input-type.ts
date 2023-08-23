@@ -114,6 +114,38 @@ export interface ThingToDoInputType {
   lng: number | null;
 }
 
+export interface SurroundingInputType {
+  [key: string]: any;
+  isRu: boolean;
+  isHy: boolean;
+  name: string;
+  name_ru: string;
+  name_hy: string;
+  thumbnail: string;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  type: string;
+  fromTbilisi: string;
+  fromTbilisi_ru: string;
+  fromTbilisi_hy: string;
+  date: string;
+  neatestSettlement: string;
+  neatestSettlement_ru: string;
+  neatestSettlement_hy: string;
+  available: string;
+  available_ru: string;
+  available_hy: string;
+  entrance: string;
+  entrance_ru: string;
+  entrance_hy: string;
+  lat: number | null;
+  lng: number | null;
+}
+
 export interface FoodAndDrinkInputType {
   [key: string]: any;
   isRu: boolean;

@@ -76,6 +76,7 @@ export interface AddReviewPyloadType {
   thingToDoId?: number;
   foodAndDrinkId?: number;
   miceId?: number;
+  surroundingId?: number;
 }
 
 export interface ThingToSeeType {
@@ -100,6 +101,43 @@ export interface ThingToSeeType {
   fromYerevan: string;
   fromYerevan_ru: string;
   fromYerevan_hy: string;
+  date: string;
+  neatestSettlement: string;
+  neatestSettlement_ru: string;
+  neatestSettlement_hy: string;
+  available: string;
+  available_ru: string;
+  available_hy: string;
+  entrance: string;
+  entrance_ru: string;
+  entrance_hy: string;
+  reviews: ReviewTypes[]; // You can replace 'any' with a more specific type if possible
+  images: ImageType[];
+  rating: number;
+}
+
+export interface SurroundingType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  isRu: boolean;
+  isHy: boolean;
+  name: string;
+  name_ru: string;
+  name_hy: string;
+  thumbnail: string;
+  lat: number;
+  lng: number;
+  shortDescription: string;
+  shortDescription_ru: string;
+  shortDescription_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  type: string;
+  fromTbilisi: string;
+  fromTbilisi_ru: string;
+  fromTbilisi_hy: string;
   date: string;
   neatestSettlement: string;
   neatestSettlement_ru: string;

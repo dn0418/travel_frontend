@@ -30,11 +30,6 @@ export const staticPages = [
     link: "/armenia/brochure"
   },
   {
-    title: "Todo In Surrounding",
-    code: "todo_in_surrounding",
-    link: "/armenia/todo_in_surrounding"
-  },
-  {
     title: "Travel Blog",
     code: "travel_blog",
     link: "/armenia/travel_blog"

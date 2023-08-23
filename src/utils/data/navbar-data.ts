@@ -105,7 +105,7 @@ export const navData: NavTypes = {
         {
           id: 7,
           title: "Todo In Surrounding",
-          route: "/armenia/todo-in-surrounding",
+          route: "/armenia/surrounding",
         },
         {
           id: 8,
@@ -240,7 +240,7 @@ export const navData: NavTypes = {
         {
           id: 7,
           title: "Что делать в окрестностях",
-          route: "/armenia/todo-in-surrounding",
+          route: "/armenia/surrounding",
         },
         {
           id: 8,
@@ -375,7 +375,7 @@ export const navData: NavTypes = {
         {
           id: 7,
           title: "Անցյալում ի՞նչ արեք",
-          route: "/armenia/todo-in-surrounding",
+          route: "/armenia/surrounding",
         },
         {
           id: 8,

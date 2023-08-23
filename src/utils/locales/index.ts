@@ -45,6 +45,7 @@ export const localizationData: LocaleDataType = {
     people_text: "People",
     start_from: "Start From",
     from_yerevan_text: "From Yerevan:",
+    from_tbilisi_text: "From Tbilisi/Tehran:",
     per_pax_text: "Per pax",
     rent_from_text: "Rent from",
     available_text: "Available",
@@ -179,6 +180,7 @@ export const localizationData: LocaleDataType = {
     not_found_text: "",
     mice_type_text: "",
     mice_request_text: "",
+    from_tbilisi_text: "",
   },
   hy: {
     transportData: transportHyLocalization,
@@ -267,6 +269,7 @@ export const localizationData: LocaleDataType = {
     not_found_text: "",
     mice_type_text: "",
     mice_request_text: "",
+    from_tbilisi_text: "",
   },
   // Add other language translations here if needed.
 };

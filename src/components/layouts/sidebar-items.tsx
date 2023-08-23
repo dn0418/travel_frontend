@@ -68,6 +68,11 @@ const sidebarItems: SidebarItem[] = [
     path: '/admin/food-and-drink',
   },
   {
+    title: 'To Do in Surrounding',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/surrounding',
+  },
+  {
     title: 'Mice',
     icon: <BsFillCaretRightFill />,
     path: '/admin/mice',

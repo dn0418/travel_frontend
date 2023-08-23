@@ -29,4 +29,5 @@ export const API_ENDPOINTS = {
   MICE: "/mice",
   CURRENCY: "/currency",
   STATIC_PAGES: "/static-pages",
+  SURROUNDING: "/surrounding",
 };

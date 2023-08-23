@@ -9,6 +9,8 @@ class ArmeniaClient {
       HttpClient.get(`${API_ENDPOINTS.REVIEWS}/food-and-drink/${id}`),
     thingToDoReview: (id: any) =>
       HttpClient.get(`${API_ENDPOINTS.REVIEWS}/thing-to-do/${id}`),
+    surroundingReview: (id: any) =>
+      HttpClient.get(`${API_ENDPOINTS.REVIEWS}/surrounding/${id}`),
   };
 
   thingToSee = {
@@ -37,6 +39,20 @@ class ArmeniaClient {
       `${API_ENDPOINTS.THING_TO_DO}/update/${id}`, data),
     newImage: (data: any) => HttpClient.post(
       `${API_ENDPOINTS.THING_TO_DO}/image/create`, data),
+  };
+
+  surrounding = {
+    all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.SURROUNDING}?page=${page}&type=${type}&search=${search}&lan=${locale}`
+    ),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.SURROUNDING}/${id}`),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.SURROUNDING}/delete/${id}`),
+    createNewThing: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.SURROUNDING}/create`, data),
+    updateThing: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.SURROUNDING}/update/${id}`, data),
+    newImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.SURROUNDING}/image/create`, data),
   };
 
 

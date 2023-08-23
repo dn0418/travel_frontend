@@ -54,6 +54,7 @@ export interface LocaleDataItems {
   people_text: string;
   start_from: string;
   from_yerevan_text: string;
+  from_tbilisi_text: string;
   per_pax_text: string;
   rent_from_text: string;
   available_text: string;

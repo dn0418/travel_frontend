@@ -106,6 +106,8 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
         payload['foodAndDrinkId'] = id;
       } else if (type === 'mice') {
         payload['miceId'] = id;
+      } else if (type === 'surrounding') {
+        payload['surroundingId'] = id;
       }
 
       try {
