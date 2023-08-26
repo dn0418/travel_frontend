@@ -1,4 +1,5 @@
 import cn from "classnames";
+import React from "react";
 
 type SectionProps = {
   className?: any;

@@ -5,7 +5,7 @@ import { NextPageWithLayout } from "../../../src/types/page-props";
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import TransportDashboard from "../../../src/components/admin-components/transport";
 import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";
 export { getServerSideProps };

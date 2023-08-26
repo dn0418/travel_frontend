@@ -2,6 +2,7 @@
 
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { toast } from 'react-toastify';
 import swal from 'sweetalert';
 import AdminRidePlan from '../../../src/components/admin-components/ride-plan';

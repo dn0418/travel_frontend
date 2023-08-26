@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import CreateNewAccessory from '../../../src/components/admin-components/accessories/create-accessory/create-accessory';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';

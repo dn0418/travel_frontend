@@ -1,7 +1,7 @@
 // @flow strict
 
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import CreateNewMice from '../../../src/components/admin-components/mice/create-mice';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';

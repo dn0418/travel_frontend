@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ToursDashboard from "../../../src/components/admin-components/tours";
 import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
 import { getServerSideProps } from "../../../src/rest-api/tours/tours.ssr";

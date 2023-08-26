@@ -55,6 +55,20 @@ class ArmeniaClient {
       `${API_ENDPOINTS.SURROUNDING}/image/create`, data),
   };
 
+  events = {
+    all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.EVENTS}?page=${page}&type=${type}&search=${search}&lan=${locale}`
+    ),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.EVENTS}/${id}`),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.EVENTS}/delete/${id}`),
+    createNewEvent: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.EVENTS}/create`, data),
+    updateEvent: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.EVENTS}/update/${id}`, data),
+    newImage: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.EVENTS}/image/create`, data),
+  };
+
 
   foodAndDrinks = {
     all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(

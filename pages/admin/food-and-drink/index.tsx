@@ -2,6 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
+import React from "react";
 import FoodAndDrinksDashboard from "../../../src/components/admin-components/food-and-drink";
 import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
 import { getServerSideProps } from "../../../src/rest-api/armenia/food-and-drinks/index.ssr";

@@ -8,7 +8,7 @@ interface PropsType {
 
 const AdminGoogleMap: React.FC<PropsType> = ({ state, setState }) => {
 
-  const handleMapClick = (e: google.maps.MapMouseEvent) => {
+  const handleMapClick = (e: any) => {
     const lat = e.latLng?.lat();
     const lng = e.latLng?.lng();
     if (lat && lng) {

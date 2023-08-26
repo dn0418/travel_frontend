@@ -2,7 +2,7 @@
 
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import UpdateAdminAccessory from '../../../../src/components/admin-components/accessories/update-accessory/update-accessory';
 import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';

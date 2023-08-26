@@ -2,6 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
+import React from "react";
 import HotelDashboard from "../../../src/components/admin-components/hotels";
 import DashboardLayout from "../../../src/components/layouts/dashboard-layout";
 import { getServerSideProps } from "../../../src/rest-api/hotels/hotels.ssr";

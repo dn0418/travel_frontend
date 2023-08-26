@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRoad } from "react-icons/fa";
 import { GiChurch, GiColombianStatue, GiModernCity } from "react-icons/gi";
 import { MdNaturePeople } from "react-icons/md";

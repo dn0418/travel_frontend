@@ -2,6 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
+import React from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import MiceUI from "../../../src/components/page-components/services/mice";
 import { getServerSideProps } from "../../../src/rest-api/mice/mice.ssr";

@@ -2,20 +2,20 @@ import { Button, Collapse, Divider, List, ListItemButton, ListItemIcon, ListItem
 import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AiFillCaretRight } from 'react-icons/ai';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 import { MdDashboard, MdExpandLess, MdExpandMore } from 'react-icons/md';
 import logo from '/public/Logo.png';
 
-interface SidebarItem {
+interface SidebarItemTypes {
   title: string;
-  icon?: JSX.Element;
+  icon?: React.ReactElement;
   path: string;
-  subItems?: SidebarItem[];
+  subItems?: SidebarItemTypes[];
 }
 
-const sidebarItems: SidebarItem[] = [
+const sidebarItems: SidebarItemTypes[] = [
   {
     title: 'Dashboard',
     icon: <MdDashboard />,
@@ -89,7 +89,7 @@ const sidebarItems: SidebarItem[] = [
   },
 ];
 
-function SidebarItem({ title, icon, path, subItems }: SidebarItem) {
+function SidebarItem({ title, icon, path, subItems }: SidebarItemTypes) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 

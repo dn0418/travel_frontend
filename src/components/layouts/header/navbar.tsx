@@ -16,7 +16,7 @@ import classNames from "classnames";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { useGlobalContext } from "../../../context/global-context";
 import { NavDataTypes, NavLinkTypes } from "../../../types";

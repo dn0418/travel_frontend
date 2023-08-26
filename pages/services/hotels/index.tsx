@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import HotelsUI from "../../../src/components/page-components/services/hotels";
 import { getServerSideProps } from "../../../src/rest-api/hotels/hotels.ssr";

@@ -8,12 +8,13 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
+import React from "react";
 import defaultTheme from "../src/themes/defaultTheme";
 import createEmotionCache from "../src/utils/createEmotionCache";
 import { MyAppProps } from "./_app";
 
 interface MyDocumentProps extends DocumentProps {
-  emotionStyleTags: JSX.Element[];
+  emotionStyleTags: React.ReactElement[];
 }
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
@@ -51,9 +52,9 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
       enhanceApp: (
         App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>,
       ) =>
-        (function EnhanceApp(props) {
-          return <App emotionCache={cache} {...props} />;
-        }),
+      (function EnhanceApp(props) {
+        return <App emotionCache={cache} {...props} />;
+      }),
     });
 
   const initialProps = await Document.getInitialProps(ctx);

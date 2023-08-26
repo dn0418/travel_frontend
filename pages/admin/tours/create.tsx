@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import CreateNewTour from '../../../src/components/admin-components/tours/create-tour/create-tour';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';

@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaShoppingBag } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
 import { IoLogoGameControllerB } from "react-icons/io";

@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import TransportUI from "../../../src/components/page-components/services/transport";
 import { getServerSideProps } from "../../../src/rest-api/cars/cars.ssr";

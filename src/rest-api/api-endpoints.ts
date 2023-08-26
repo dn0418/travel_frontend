@@ -30,4 +30,5 @@ export const API_ENDPOINTS = {
   CURRENCY: "/currency",
   STATIC_PAGES: "/static-pages",
   SURROUNDING: "/surrounding",
+  EVENTS: "/events",
 };

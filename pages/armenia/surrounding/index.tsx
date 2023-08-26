@@ -2,6 +2,7 @@
 
 import { InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
+import React from "react";
 import GeneralLayout from "../../../src/components/layouts/_general";
 import SurroundingUI from "../../../src/components/page-components/armenia/surrounding";
 import { getServerSideProps } from "../../../src/rest-api/armenia/surrounding/surrounding.ssr";

@@ -1,7 +1,7 @@
 // @flow strict
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import UpdateAdminFoodDrink from '../../../../src/components/admin-components/food-and-drink/update-food-drink';
 import DashboardLayout from '../../../../src/components/layouts/dashboard-layout';

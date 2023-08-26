@@ -17,7 +17,7 @@ function NotFound() {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default NotFound;

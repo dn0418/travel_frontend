@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { NavDataTypes, NavLinkTypes } from "../../../types";
 import logo from "/public/Logo.png";

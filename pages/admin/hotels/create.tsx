@@ -2,7 +2,7 @@
 
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import CreateNewHotel from '../../../src/components/admin-components/hotels/create-hotel/create-hotel';
 import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
