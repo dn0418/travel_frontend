@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import type { ReactElement, ReactNode } from "react";
 import React from "react";
+import { EventType } from "./armenia";
 import { AirportTransportType, CarWithDriverType, CarWithOutType } from "./car-type";
 import { FoodAndDrinksType, PaginationType, ReviewTypes, SurroundingType, ThingToSeeType } from "./index";
 import { MiceTypes, TourAccessoryType } from "./services";
@@ -82,6 +83,13 @@ export interface ThingToSeePageProps {
 
 export interface SurroundingPageProps {
   surroundings: SurroundingType[];
+  handleSearch: any;
+  handlePageChange: any;
+  metaData: any;
+}
+
+export interface EventsPageProps {
+  events: EventType[];
   handleSearch: any;
   handlePageChange: any;
   metaData: any;
