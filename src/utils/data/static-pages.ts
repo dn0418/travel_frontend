@@ -20,11 +20,6 @@ export const staticPages = [
     link: "/armenia/useful_to_know"
   },
   {
-    title: "Events",
-    code: "events",
-    link: "/armenia/events"
-  },
-  {
     title: "Brochure",
     code: "brochure",
     link: "/armenia/brochure"

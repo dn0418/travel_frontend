@@ -73,6 +73,11 @@ const sidebarItems: SidebarItemTypes[] = [
     path: '/admin/surrounding',
   },
   {
+    title: 'Events',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/events',
+  },
+  {
     title: 'Mice',
     icon: <BsFillCaretRightFill />,
     path: '/admin/mice',
