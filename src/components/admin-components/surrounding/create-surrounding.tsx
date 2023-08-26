@@ -260,6 +260,13 @@ function CreateNewSurrounding({
             value={inputData.name_ru}
           />
           <TextField
+            label='Type(Ru)'
+            onChange={(e: any) => handleInputChange('type_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.type_ru}
+          />
+          <TextField
             label='From Tbilisi/Tehran(ru)'
             onChange={(e: any) => handleInputChange('fromTbilisi_ru', e.target.value)}
             variant='outlined'
@@ -325,6 +332,13 @@ function CreateNewSurrounding({
             variant='outlined'
             className="w-full"
             value={inputData.name_hy}
+          />
+          <TextField
+            label='Type(Hy)'
+            onChange={(e: any) => handleInputChange('type_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.type_hy}
           />
           <TextField
             label='From Tbilisi/Tehran(hy)'

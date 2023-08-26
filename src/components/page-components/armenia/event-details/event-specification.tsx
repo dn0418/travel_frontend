@@ -10,6 +10,7 @@ import {
   MdPayment,
 } from "react-icons/md";
 import { EventType } from "../../../../types/armenia";
+import { formatDate } from "../../../../utils/formate-date";
 import { localizationData } from "../../../../utils/locales";
 
 function EventSpecification({ event }: { event: EventType }) {
@@ -45,7 +46,9 @@ function EventSpecification({ event }: { event: EventType }) {
         <BiCategory className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">{localData.type_text}:</span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {event.type}
+          {
+            locale === 'ru' ? event?.type_ru : (locale === 'hy' ? event?.type_hy : event?.type)
+          }
         </span>
       </p>
 
@@ -55,7 +58,7 @@ function EventSpecification({ event }: { event: EventType }) {
           {localData.date_title}:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {event.date}
+          {formatDate(event.date)}
         </span>
       </p>
 

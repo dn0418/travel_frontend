@@ -129,6 +129,8 @@ export interface SurroundingInputType {
   description_ru: string;
   description_hy: string;
   type: string;
+  type_ru: string;
+  type_hy: string;
   fromTbilisi: string;
   fromTbilisi_ru: string;
   fromTbilisi_hy: string;

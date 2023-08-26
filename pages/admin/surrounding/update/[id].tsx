@@ -40,6 +40,8 @@ const Update: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>>
     description_ru: surrounding?.description_ru || "",
     description_hy: surrounding?.description_hy || "",
     type: surrounding?.type || "",
+    type_ru: surrounding?.type_ru || "",
+    type_hy: surrounding?.type_hy || "",
     fromTbilisi: surrounding?.fromTbilisi || "",
     fromTbilisi_ru: surrounding?.fromTbilisi_ru || "",
     fromTbilisi_hy: surrounding?.fromTbilisi_hy || "",
@@ -149,11 +151,11 @@ const Update: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>>
     ];
 
     if (inputData.isRu) {
-      requiredFields.push("name_ru", "shortDescription_ru", "description_ru", "fromTbilisi_ru", "available_ru", "neatestSettlement_ru", "entrance_ru");
+      requiredFields.push("name_ru", "shortDescription_ru", "description_ru", "fromTbilisi_ru", "available_ru", "neatestSettlement_ru", "entrance_ru", "type_ru");
     }
 
     if (inputData.isHy) {
-      requiredFields.push("name_hy", "shortDescription_hy", "description_hy", "fromTbilisi_hy", "available_hy", "neatestSettlement_hy", "entrance_hy");
+      requiredFields.push("name_hy", "shortDescription_hy", "description_hy", "fromTbilisi_hy", "available_hy", "neatestSettlement_hy", "entrance_hy", "type_hy");
     }
 
     const missingFields = requiredFields.filter((field) => !inputData[field]);

@@ -10,6 +10,7 @@ import {
   MdPayment,
 } from "react-icons/md";
 import { ReviewTypes, SurroundingType } from "../../../../types";
+import { formatDate } from "../../../../utils/formate-date";
 import { localizationData } from "../../../../utils/locales";
 
 function SurroundingSpecification({ surrounding }: { surrounding: SurroundingType }) {
@@ -60,7 +61,7 @@ function SurroundingSpecification({ surrounding }: { surrounding: SurroundingTyp
         <span className="text-base text-[#5e5e5e]">
           {localData.from_tbilisi_text}
         </span>
-        <span className="text-base text-[#000000] font-bold">
+        <span className="text-base text-[#5e5e5e] font-medium">
           {locale === "ru"
             ? surrounding.fromTbilisi_ru
             : locale === "hy"
@@ -73,7 +74,9 @@ function SurroundingSpecification({ surrounding }: { surrounding: SurroundingTyp
         <BiCategory className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">{localData.type_text}:</span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {surrounding.type}
+          {
+            locale === 'ru' ? surrounding?.type_ru : (locale === 'hy' ? surrounding?.type_hy : surrounding?.type)
+          }
         </span>
       </p>
 
@@ -83,7 +86,7 @@ function SurroundingSpecification({ surrounding }: { surrounding: SurroundingTyp
           {localData.date_title}:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {surrounding.date}
+          {formatDate(surrounding.date)}
         </span>
       </p>
 

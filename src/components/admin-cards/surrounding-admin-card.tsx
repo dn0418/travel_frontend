@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import swal from 'sweetalert';
 import armeniaClient from '../../rest-api/client/armenia-client';
 import { SurroundingType } from '../../types';
+import { formatDate } from '../../utils/formate-date';
 
 function SurroundingAdminCard({ surrounding }: { surrounding: SurroundingType }) {
   const router = useRouter();
@@ -87,7 +88,7 @@ function SurroundingAdminCard({ surrounding }: { surrounding: SurroundingType })
             Type: {surrounding.type}
           </p>
           <p className="mt-0 text-[#5E5E5E] text-sm">
-            Date: {surrounding.date}
+            Date: {formatDate(surrounding.date)}
           </p>
 
           <p className="text-sm  text-[#5e5e5e]  line-clamp-3 mt-6">

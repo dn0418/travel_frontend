@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SurroundingType } from '../../types';
+import { formatDate } from '../../utils/formate-date';
 import { localizationData } from '../../utils/locales';
 
 interface SurroundingCardProps {
@@ -60,12 +61,12 @@ function SurroundingCard({ surrounding }: SurroundingCardProps) {
           <p className="mt-0 text-[#5E5E5E] text-sm">
             {
               ((locale === 'ru' ? 'тип:' : (locale === 'hy' ? 'տիպ:' : 'Type:'))
-                + ' ' + surrounding?.type)
+                + ' ' + (locale === 'ru' ? surrounding?.type_ru : (locale === 'hy' ? surrounding?.type_hy : surrounding?.type)))
             }
           </p>
           <p className="mt-0 text-[#5E5E5E] text-sm">
             {(locale === 'ru' ? 'Дата:' :
-              (locale === 'hy' ? 'Ամսաթիվ:' : 'Date:')) + ' ' + surrounding.date}
+              (locale === 'hy' ? 'Ամսաթիվ:' : 'Date:')) + ' ' + formatDate(surrounding.date)}
           </p>
 
           <p className="text-sm  text-[#5e5e5e]  line-clamp-3 mt-6">
