@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Slider, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { ImageType } from "../../../../types";
@@ -155,28 +155,28 @@ function UpdateAdminHotel({
             type="number"
             value={inputData.price}
           />
-          <FormControlLabel
-            control={
-              <Switch
-                onChange={(e: any) => setInputData({
-                  ...inputData,
-                  freeCancellation: e.target.checked
-                })}
-                checked={inputData.freeCancellation}
-              />}
-            label="Free Cancelation"
+          <Box>
+            <Typography id="input-slider">
+              Score
+            </Typography>
+            <Slider
+              value={inputData.score}
+              aria-label="Volume"
+              onChange={(e, f) => handleInputChange("score", f.toString())} />
+          </Box>
+          <TextField
+            label='Free Cancelation'
+            onChange={(e: any) => handleInputChange('freeCancellation', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation}
           />
-
-          <FormControlLabel
-            control={
-              <Switch
-                onChange={(e: any) => setInputData({
-                  ...inputData,
-                  fromAirport: e.target.checked
-                })}
-                checked={inputData.fromAirport}
-              />}
-            label="From Airport"
+          <TextField
+            label='From Airport'
+            onChange={(e: any) => handleInputChange('fromAirport', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.fromAirport}
           />
           <TextField
             label='Country'
@@ -324,6 +324,20 @@ function UpdateAdminHotel({
             value={inputData.city_ru}
           />
           <TextField
+            label='Free Cancelation(ru)'
+            onChange={(e: any) => handleInputChange('freeCancellation_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_ru}
+          />
+          <TextField
+            label='From Airport(ru)'
+            onChange={(e: any) => handleInputChange('fromAirport_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.fromAirport_ru}
+          />
+          <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
@@ -375,6 +389,20 @@ function UpdateAdminHotel({
             variant='outlined'
             className="w-full"
             value={inputData.city_hy}
+          />
+          <TextField
+            label='Free Cancelation(hy)'
+            onChange={(e: any) => handleInputChange('freeCancellation_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_hy}
+          />
+          <TextField
+            label='From Airport(hy)'
+            onChange={(e: any) => handleInputChange('fromAirport_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.fromAirport_hy}
           />
           <TextField
             label='Short Description(hy)'

@@ -22,8 +22,6 @@ interface PropsType {
 
 function HotelDetailsPage({ hotel, allHotel, reviews, metadata }: PropsType) {
 
-  // console.log(hotel)
-
   return (
     <div className="flex flex-col my-8 tour-details-page">
       <Container>

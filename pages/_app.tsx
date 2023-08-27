@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import ChatIcon from "../src/components/call-back/chat";
+import Loader from "../src/components/common/loader";
 import { GlobalContextProvider } from "../src/context/global-context";
 import QueryProvider from "../src/rest-api/query-provider";
 import "../src/styles/_app.scss";
@@ -61,7 +62,9 @@ function MyApp(props: MyAppProps) {
                 content="initial-scale=1, width=device-width"
               />
             </Head>
-            <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY || ''}>
+            <LoadScript
+              loadingElement={<Loader />}
+              googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_APIKEY || ''}>
               <ThemeProvider theme={defaultTheme}>
                 <CssBaseline />
                 <ChatIcon />

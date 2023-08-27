@@ -32,8 +32,6 @@ function HotelSpecification({ hotel, metadata }: Props) {
         ? localizationData.hy
         : localizationData.en;
 
-
-
   return (
     <div className="px-4 md:px-12">
       <h3 className="text-[#000000] text-xl font-semibold mt-0">
@@ -88,14 +86,16 @@ function HotelSpecification({ hotel, metadata }: Props) {
           {convertCurrency(hotel.price)}
         </span>
       </p>
-      {hotel.fromAirport && (
-        <p className="flex items-center gap-4">
-          <MdLocalAirport className="text-base text-[#EDA592]  font-bold" />
-          <span className="text-base text-[#5e5e5e]">
-            {localData.from_airport_text}
-          </span>
-        </p>
-      )}
+      <p className="flex items-center gap-4">
+        <MdLocalAirport className="text-base text-[#EDA592]  font-bold" />
+        <span className="text-base text-[#5e5e5e]">
+          {localData.from_airport_text + " " + (
+            (
+              locale === "ru" ? hotel.fromAirport_ru : (locale === "hy" ? hotel.fromAirport_hy : hotel.fromAirport)
+            )
+          )}
+        </span>
+      </p>
 
       {hotel.type && (
         <p className="flex items-center gap-4">
@@ -108,11 +108,14 @@ function HotelSpecification({ hotel, metadata }: Props) {
       <p className="flex items-center gap-4">
         <TiCancelOutline className="text-xl text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          {localData.free_cancelation + " " + hotel.freeCancellation
-            ? localData.transportData.yes_text
-            : localData.transportData.no_text}
+          {localData.free_cancelation + " " + (
+            (
+              locale === "ru" ? hotel.freeCancellation_ru : (locale === "hy" ? hotel.freeCancellation_hy : hotel.freeCancellation)
+            )
+          )}
         </span>
       </p>
+
       <p className="flex items-center gap-4">
         <BsClock className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">

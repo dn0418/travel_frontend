@@ -1,14 +1,14 @@
 // @flow strict
 
 import { Button, Container } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Slider from "react-slick";
 import { HotelDataType } from "../../../../types/services";
+import { localizationData } from "../../../../utils/locales";
 import HotelCard from "../../../cards/hotel-card";
 import SectionTitle from "../../../common/section-title";
-import { useRouter } from "next/router";
-import { localizationData } from "../../../../utils/locales";
 
 export function NextArrow(props: { onClick: any }) {
   const { onClick } = props;
@@ -54,8 +54,8 @@ function RelatedHotels({ hotels }: { hotels: HotelDataType[] }) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {

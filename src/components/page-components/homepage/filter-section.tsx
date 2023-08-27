@@ -28,6 +28,9 @@ function FilterSection({ destinations }: { destinations: TourDestinationType[] }
 
 
   const handleChangeFilterData = (e: any) => {
+    if (e.target.name === 'days' && parseInt(e.target.value) < 0) {
+      return;
+    }
     setFilterData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -120,6 +123,7 @@ function FilterSection({ destinations }: { destinations: TourDestinationType[] }
             type="number"
             placeholder={localData.days_title}
             onChange={handleChangeFilterData}
+            value={filterData?.days}
           />
         </div>
 

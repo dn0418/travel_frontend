@@ -75,7 +75,7 @@ class ServiceClient {
 
 
   hotels = {
-    all: () => HttpClient.get(API_ENDPOINTS.HOTELS),
+    all: () => HttpClient.get(`${API_ENDPOINTS.HOTELS}/related`),
     filtered: (
       page: any,
       type: any,
