@@ -73,7 +73,10 @@ export interface TourAccessoryType {
   perPax: string;
   perPax_ru: string | null;
   perPax_hy: string | null;
-  freeCancellation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
   rentFrom: string;
   rentFrom_ru: string | null;
   rentFrom_hy: string | null;
@@ -134,7 +137,10 @@ export interface MiceTypes {
   extra_ru: string;
   extra_hy: string;
   access24: boolean;
-  freeCancellation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
   reviews: ReviewTypes[];
   images: ImageType[];
   rating: number;

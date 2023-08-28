@@ -119,15 +119,18 @@ function TourSpecification({ tour }: { tour: TourType }) {
             : tour.childList}
         </span>
       </p> */}
-      <p className="flex items-center gap-4">
-        <TiCancelOutline className="text-xl text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">
-          {localData.free_cancelation + " " + (
+      <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+        <TiCancelOutline className="text-base text-[#EDA592]  font-bold" />
+        <span className="font-medium">
+          {localData.free_cancelation}
+        </span>
+        <span>
+          {
             (
               locale === "ru" ? tour.freeCancellation_ru :
                 (locale === "hy" ? tour.freeCancellation_hy : tour.freeCancellation)
             )
-          )}
+          }
         </span>
       </p>
       {tour.startDate && (

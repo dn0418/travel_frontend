@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControlLabel, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, FormControlLabel, Slider, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { PriceWithoutDriverType } from "../../../../types/car-type";
@@ -110,19 +110,23 @@ function CreateNewCar({
                 />
               </div>
           }
-          <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    freeCancellation: e.target.checked
-                  })}
-                  checked={inputData.freeCancellation}
-                />}
-              label="Free Cancelation"
-            />
-          </div>
+          <div className=""></div>
+          <Box>
+            <Typography id="input-slider">
+              Score : {inputData.score}
+            </Typography>
+            <Slider
+              value={inputData.score}
+              aria-label="Volume"
+              onChange={(e, f) => handleInputChange("score", f.toString())} />
+          </Box>
+          <TextField
+            label='Free Cancelation'
+            onChange={(e: any) => handleInputChange('freeCancellation', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation}
+          />
           <TextField
             label='Name'
             onChange={(e: any) => handleInputChange('name', e.target.value)}
@@ -270,6 +274,13 @@ function CreateNewCar({
             className="w-full"
           />
           <TextField
+            label='Free Cancelation(ru)'
+            onChange={(e: any) => handleInputChange('freeCancellation_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_ru}
+          />
+          <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
@@ -316,6 +327,13 @@ function CreateNewCar({
             onChange={(e: any) => handleInputChange('fuel_hy', e.target.value)}
             variant='outlined'
             className="w-full"
+          />
+          <TextField
+            label='Free Cancelation(hy)'
+            onChange={(e: any) => handleInputChange('freeCancellation_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_hy}
           />
           <TextField
             label='Short Description(hy)'

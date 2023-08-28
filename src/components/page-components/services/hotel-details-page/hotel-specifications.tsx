@@ -105,14 +105,16 @@ function HotelSpecification({ hotel, metadata }: Props) {
           </span>
         </p>
       )}
-      <p className="flex items-center gap-4">
-        <TiCancelOutline className="text-xl text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">
-          {localData.free_cancelation + " " + (
-            (
-              locale === "ru" ? hotel.freeCancellation_ru : (locale === "hy" ? hotel.freeCancellation_hy : hotel.freeCancellation)
-            )
-          )}
+      <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
+        <TiCancelOutline className="text-base text-[#EDA592]  font-bold" />
+        <span className="font-medium">
+          {localData.free_cancelation}
+        </span>
+        <span>
+          {
+            locale === "ru" ? hotel.freeCancellation_ru :
+              (locale === "hy" ? hotel.freeCancellation_hy : hotel.freeCancellation)
+          }
         </span>
       </p>
 

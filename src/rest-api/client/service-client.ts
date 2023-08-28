@@ -13,6 +13,9 @@ class ServiceClient {
     all: (page?: any, search?: any) => HttpClient.get(
       `${API_ENDPOINTS.CAR_WITHOUT_DRIVER}?page=${page}&search=${search}`
     ),
+    related: () => HttpClient.get(
+      `${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/related`
+    ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/${id}`),
     create: (data: any) =>
       HttpClient.post(`${API_ENDPOINTS.CAR_WITHOUT_DRIVER}/create`, data),
@@ -44,6 +47,9 @@ class ServiceClient {
   accessories = {
     all: (page?: any, search?: any, locale?: any) => HttpClient.get(
       `${API_ENDPOINTS.TOUR_ACCESSORIES}?page=${page}&search=${search}&lan=${locale}`
+    ),
+    related: () => HttpClient.get(
+      `${API_ENDPOINTS.TOUR_ACCESSORIES}/related`
     ),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOUR_ACCESSORIES}/${id}`),
     deleteByID: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOUR_ACCESSORIES}/delete/${id}`),
@@ -96,6 +102,9 @@ class ServiceClient {
 
   mice = {
     all: () => HttpClient.get(API_ENDPOINTS.MICE),
+    related: () => HttpClient.get(
+      `${API_ENDPOINTS.MICE}/related`
+    ),
     filtered: (
       page: any,
       search: any,

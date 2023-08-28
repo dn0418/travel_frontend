@@ -49,7 +49,10 @@ const UpdateMice: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticPro
     extra_ru: mice?.extra_ru || "",
     extra_hy: mice?.extra_hy || "",
     access24: mice?.access24 || true,
-    freeCancellation: mice?.freeCancellation || true,
+    freeCancellation: mice?.freeCancellation || '',
+    freeCancellation_ru: mice?.freeCancellation_ru || '',
+    freeCancellation_hy: mice?.freeCancellation_hy || '',
+    score: mice?.score || 0,
   });
   const router = useRouter();
 

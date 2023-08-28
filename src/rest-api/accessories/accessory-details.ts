@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await serviceClient.accessories.all(1, '');
+  const { data }: any = await serviceClient.accessories.related();
 
   const paths = data?.map((item: TourAccessoryType) => {
     return {
@@ -27,10 +27,10 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!;
-  const allAccessory = await serviceClient.accessories.all(1, '');
+  const allAccessory = await serviceClient.accessories.related();
 
   try {
-    await serviceClient.accessories.all();
+    await serviceClient.accessories.related();
     const accessoryDetails = await serviceClient.accessories.getByID(id);
     const reviews = await serviceClient.reviews.accessoryReview(id);
     const accessoryTypes = await serviceClient.accessoryType.all();

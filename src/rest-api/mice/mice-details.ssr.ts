@@ -9,7 +9,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await serviceClient.mice.all();
+  const { data }: any = await serviceClient.mice.related();
 
   const paths = data?.map((item: MiceTypes) => {
     return {
@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!;
 
   try {
-    await serviceClient.mice.all();
+    await serviceClient.mice.related();
     const miceDetails = await serviceClient.mice.getByID(id);
     const reviews = await serviceClient.reviews.miceReview(id);
 

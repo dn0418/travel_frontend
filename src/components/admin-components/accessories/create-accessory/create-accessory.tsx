@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Slider, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { AccessoriesInputType } from "../../../../types/input-type";
@@ -112,19 +112,24 @@ function CreateNewAccessory({
                 />
               </div>
           }
-          <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    freeCancellation: e.target.checked
-                  })}
-                  checked={inputData.freeCancellation}
-                />}
-              label="Free Cancelation"
-            />
+          <div>
           </div>
+          <Box>
+            <Typography id="input-slider">
+              Score : {inputData.score}
+            </Typography>
+            <Slider
+              value={inputData.score}
+              aria-label="Volume"
+              onChange={(e, f) => handleInputChange("score", f.toString())} />
+          </Box>
+          <TextField
+            label='Free Cancelation'
+            onChange={(e: any) => handleInputChange('freeCancellation', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation}
+          />
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Accessory Type</InputLabel>
             <Select
@@ -298,6 +303,13 @@ function CreateNewAccessory({
             value={inputData.available_ru}
           />
           <TextField
+            label='Free Cancelation(ru)'
+            onChange={(e: any) => handleInputChange('freeCancellation_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_ru}
+          />
+          <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
@@ -356,6 +368,13 @@ function CreateNewAccessory({
             variant='outlined'
             className="w-full"
             value={inputData.available_hy}
+          />
+          <TextField
+            label='Free Cancelation(hy)'
+            onChange={(e: any) => handleInputChange('freeCancellation_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_hy}
           />
           <TextField
             label='Short Description(hy)'

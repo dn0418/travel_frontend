@@ -21,7 +21,10 @@ export interface CarWithOutType {
   name_ru: string;
   name_hy: string;
   price: number;
-  freeCancellation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
   pickup: string;
   pickup_ru: string;
   pickup_hy: string;

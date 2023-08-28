@@ -3,6 +3,7 @@
 import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiHash } from "react-icons/bi";
+import { TiCancelOutline } from "react-icons/ti";
 import { useGlobalContext } from "../../../../context/global-context";
 import { CarWithOutType } from "../../../../types/car-type";
 import { localizationData } from "../../../../utils/locales";
@@ -61,12 +62,17 @@ function CarSpecification({ car }: { car: CarWithOutType }) {
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">
-            <BiHash className="text-base text-[#EDA592]  font-bold" />
-            <span className="font-medium">{localData.free_cancelation}</span>
+            <TiCancelOutline className="text-base text-[#EDA592]  font-bold" />
+            <span className="font-medium">
+              {localData.free_cancelation}
+            </span>
             <span>
-              {car.freeCancellation
-                ? localData.transportData.yes_text
-                : localData.transportData.no_text}
+              {
+                (
+                  locale === "ru" ? car.freeCancellation_ru :
+                    (locale === "hy" ? car.freeCancellation_hy : car.freeCancellation)
+                )
+              }
             </span>
           </p>
           <p className="flex items-center gap-2 text-base text-[#5e5e5e]">

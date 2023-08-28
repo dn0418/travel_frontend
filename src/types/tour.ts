@@ -33,6 +33,7 @@ export interface TourType {
   freeCancellation: string;
   freeCancellation_ru: string;
   freeCancellation_hy: string;
+  score: number;
   activities: number;
   thumbnail: string;
   locationImg: string;

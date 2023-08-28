@@ -43,7 +43,10 @@ const CreateMice: NextPageWithLayout = () => {
     extra_ru: "",
     extra_hy: "",
     access24: true,
-    freeCancellation: true,
+    freeCancellation: '',
+    freeCancellation_ru: '',
+    freeCancellation_hy: '',
+    score: 0,
   });
   const router = useRouter();
 

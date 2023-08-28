@@ -6,7 +6,6 @@ export interface HotelInputType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  score: number;
   price: string;
   fromAirport: string;
   fromAirport_ru: string;
@@ -20,6 +19,7 @@ export interface HotelInputType {
   freeCancellation?: string;
   freeCancellation_ru: string;
   freeCancellation_hy: string;
+  score: number;
   checkInTime?: string;
   checkOutTime?: string;
   shortDescription: string;
@@ -46,7 +46,10 @@ export interface AccessoriesInputType {
   perPax_ru: string;
   perPax_hy: string;
   type: string;
-  freeCancellation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
   rentFrom: string;
   rentFrom_ru: string;
   rentFrom_hy: string;
@@ -67,7 +70,10 @@ export interface WithoutDriverInputType {
   name_ru: string;
   name_hy: string;
   price: string | number;
-  freeCancellation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
   isRu: boolean;
   isHy: boolean;
   pickup: string;
@@ -245,7 +251,10 @@ export interface MiceInputType {
   extra_ru: string;
   extra_hy: string;
   access24: boolean;
-  freeCancellation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
 }
 
 export interface EventInputType {
