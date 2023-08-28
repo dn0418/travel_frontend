@@ -211,7 +211,10 @@ export interface TourInputType {
   longDescription: string;
   longDescription_ru: string;
   longDescription_hy: string;
-  freeCancelation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
+  score: number;
   activities: string;
   locationImg: string;
   thumbnail: string;

@@ -157,7 +157,7 @@ function UpdateAdminHotel({
           />
           <Box>
             <Typography id="input-slider">
-              Score
+              Score : {inputData.score}
             </Typography>
             <Slider
               value={inputData.score}

@@ -4,8 +4,9 @@ import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiCalendar, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
-import { GiCancel, GiPriceTag } from "react-icons/gi";
+import { GiPriceTag } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
+import { TiCancelOutline } from "react-icons/ti";
 import { useGlobalContext } from "../../../context/global-context";
 import { ReviewTypes } from "../../../types";
 import { TourType } from "../../../types/tour";
@@ -88,10 +89,10 @@ function TourSpecification({ tour }: { tour: TourType }) {
         <BiHash className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
           {tour.dayLength +
-            `${localData.days_title}` +
+            ` ${localData.days_title}` +
             " " +
             tour.nightLength +
-            `${localData.night_text}`}
+            ` ${localData.night_text}`}
         </span>
       </p>
       <p className="flex items-center gap-3">
@@ -118,15 +119,15 @@ function TourSpecification({ tour }: { tour: TourType }) {
             : tour.childList}
         </span>
       </p> */}
-      <p className="flex items-center gap-3">
-        <GiCancel className="text-base text-[#EDA592]  font-bold" />
+      <p className="flex items-center gap-4">
+        <TiCancelOutline className="text-xl text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          {localData.free_cancelation}
-        </span>
-        <span className="text-base text-[#5e5e5e] font-medium">
-          {tour.freeCancelation
-            ? localData.transportData.yes_text
-            : localData.transportData.no_text}
+          {localData.free_cancelation + " " + (
+            (
+              locale === "ru" ? tour.freeCancellation_ru :
+                (locale === "hy" ? tour.freeCancellation_hy : tour.freeCancellation)
+            )
+          )}
         </span>
       </p>
       {tour.startDate && (

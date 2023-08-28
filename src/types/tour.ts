@@ -30,7 +30,9 @@ export interface TourType {
   longDescription: string;
   longDescription_ru: string;
   longDescription_hy: string;
-  freeCancelation: boolean;
+  freeCancellation: string;
+  freeCancellation_ru: string;
+  freeCancellation_hy: string;
   activities: number;
   thumbnail: string;
   locationImg: string;

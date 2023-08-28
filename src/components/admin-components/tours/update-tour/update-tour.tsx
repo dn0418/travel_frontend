@@ -1,4 +1,4 @@
-import { Button, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Slider, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import { UpdateTourPropsType } from "../../../../types/tour";
 import { tourTypes } from "../../../../utils/data/tours-types";
 import SunTextEditor from "../../../common/SunEditor";
@@ -59,19 +59,22 @@ function UpdateAdminTour({
             uploadThumbnail={uploadThumbnail}
             uploading={uploading}
           />
-          <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    freeCancelation: e.target.checked
-                  })}
-                  checked={inputData.freeCancelation}
-                />}
-              label="Free Cancelation"
-            />
-          </div>
+          <Box>
+            <Typography id="input-slider">
+              Score : {inputData.score}
+            </Typography>
+            <Slider
+              value={inputData.score}
+              aria-label="Volume"
+              onChange={(e, f) => handleInputChange("score", f.toString())} />
+          </Box>
+          <TextField
+            label='Free Cancelation'
+            onChange={(e: any) => handleInputChange('freeCancellation', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation}
+          />
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Tour Destination</InputLabel>
             <Select
@@ -276,6 +279,13 @@ function UpdateAdminTour({
             value={inputData.bestTime_ru}
           />
           <TextField
+            label='Free Cancelation(ru)'
+            onChange={(e: any) => handleInputChange('freeCancellation_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_ru}
+          />
+          <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
@@ -320,6 +330,13 @@ function UpdateAdminTour({
             variant='outlined'
             className="w-full"
             value={inputData.bestTime_hy}
+          />
+          <TextField
+            label='Free Cancelation(hy)'
+            onChange={(e: any) => handleInputChange('freeCancellation_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_hy}
           />
           <TextField
             label='Short Description(hy)'

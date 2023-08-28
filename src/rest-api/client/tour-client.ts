@@ -7,7 +7,7 @@ class TourClient {
   };
 
   tours = {
-    all: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}?lan=${language}`),
+    all: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/related`),
     getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/${id}`),
     sortedTour: (
       page?: number,

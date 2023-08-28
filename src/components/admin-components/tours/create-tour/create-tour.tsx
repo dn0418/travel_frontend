@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Switch, Tab, Tabs, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Slider, Switch, Tab, Tabs, TextField, Typography } from "@mui/material";
 import Image from "next/legacy/image";
 import { MdCloudUpload } from "react-icons/md";
 import { CreateTourPropsType } from "../../../../types/tour";
@@ -73,19 +73,22 @@ function CreateNewTour({
           uploading={uploading}
         />
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="col-span-2">
-            <FormControlLabel
-              control={
-                <Switch
-                  onChange={(e: any) => setInputData({
-                    ...inputData,
-                    freeCancelation: e.target.checked
-                  })}
-                  checked={inputData.freeCancelation}
-                />}
-              label="Free Cancelation"
-            />
-          </div>
+          <Box>
+            <Typography id="input-slider">
+              Score : {inputData.score}
+            </Typography>
+            <Slider
+              value={inputData.score}
+              aria-label="Volume"
+              onChange={(e, f) => handleInputChange("score", f.toString())} />
+          </Box>
+          <TextField
+            label='Free Cancelation'
+            onChange={(e: any) => handleInputChange('freeCancellation', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation}
+          />
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Tour Destination</InputLabel>
             <Select
@@ -340,6 +343,13 @@ function CreateNewTour({
             value={inputData.bestTime_ru}
           />
           <TextField
+            label='Free Cancelation(ru)'
+            onChange={(e: any) => handleInputChange('freeCancellation_ru', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_ru}
+          />
+          <TextField
             label='Short Description(ru)'
             onChange={(e: any) => handleInputChange('shortDescription_ru', e.target.value)}
             variant='outlined'
@@ -384,6 +394,13 @@ function CreateNewTour({
             variant='outlined'
             className="w-full"
             value={inputData.bestTime_hy}
+          />
+          <TextField
+            label='Free Cancelation(hy)'
+            onChange={(e: any) => handleInputChange('freeCancellation_hy', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.freeCancellation_hy}
           />
           <TextField
             label='Short Description(hy)'
