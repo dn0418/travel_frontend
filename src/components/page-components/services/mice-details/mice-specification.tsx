@@ -71,7 +71,7 @@ function MiceSpecification({ mice, metadata }: PropsType) {
             <span className="text-base font-medium text-[#5e5e5e]">
               Teambuilding activities:
             </span>
-            <span className="text-base text-[#000000] font-bold">
+            <span className="text-base text-[#5e5e5e] font-medium">
               {locale === "hy"
                 ? mice.activities_hy
                 : locale === "ru"

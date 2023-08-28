@@ -11,6 +11,7 @@ import {
   MdPayment,
 } from "react-icons/md";
 import { FoodAndDrinksType, ReviewTypes } from "../../../../types";
+import { foodAndDrinksTypes } from "../../../../utils/data/armenia-data";
 import { localizationData } from "../../../../utils/locales";
 
 function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
@@ -19,8 +20,17 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
+
+
+  const types = locale === "ru" ? foodAndDrinksTypes.ru :
+    (locale === "hy" ? foodAndDrinksTypes.hy : foodAndDrinksTypes.en)
+
+
+  const getType = (type: string) => {
+    return types.find((item) => item.value === type);
+  };
 
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
@@ -61,19 +71,20 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
         <span className="text-base text-[#5e5e5e]">
           {localData.from_yerevan_text}
         </span>
-        <span className="text-base text-[#000000] font-bold">
+        <span className="text-base text-[#5e5e5e] font-medium">
           {locale === "ru"
             ? thing.fromYerevan_ru
             : locale === "hy"
-            ? thing.fromYerevan_hy
-            : thing.fromYerevan}
+              ? thing.fromYerevan_hy
+              : thing.fromYerevan}
         </span>
       </p>
+
       <p className="flex items-center gap-3">
         <BiCategory className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">{localData.type_text}:</span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {thing.type}
+          {getType(thing.type)?.title}
         </span>
       </p>
 
@@ -86,8 +97,8 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
           {locale === "ru"
             ? thing.address_ru
             : locale === "hy"
-            ? thing.address_hy
-            : thing.address}
+              ? thing.address_hy
+              : thing.address}
         </span>
       </p>
 
@@ -100,8 +111,8 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
           {locale === "ru"
             ? thing.neatestSettlement_ru
             : locale === "hy"
-            ? thing.neatestSettlement_hy
-            : thing.neatestSettlement}
+              ? thing.neatestSettlement_hy
+              : thing.neatestSettlement}
         </span>
       </p>
 
@@ -114,8 +125,8 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
           {locale === "ru"
             ? thing.vegan_ru
             : locale === "hy"
-            ? thing.vegan_hy
-            : thing.vegan}
+              ? thing.vegan_hy
+              : thing.vegan}
         </span>
       </p>
 
@@ -128,8 +139,8 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
           {locale === "ru"
             ? thing.entrance_ru
             : locale === "hy"
-            ? thing.entrance_hy
-            : thing.entrance}
+              ? thing.entrance_hy
+              : thing.entrance}
         </span>
       </p>
 

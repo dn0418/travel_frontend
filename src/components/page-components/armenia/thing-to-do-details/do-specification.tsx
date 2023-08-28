@@ -10,6 +10,7 @@ import {
   MdPayment,
 } from "react-icons/md";
 import { ReviewTypes, ThingToSeeType } from "../../../../types";
+import { thingDoTypes } from "../../../../utils/data/armenia-data";
 import { localizationData } from "../../../../utils/locales";
 
 function DoSpecification({ thing }: { thing: ThingToSeeType }) {
@@ -18,8 +19,16 @@ function DoSpecification({ thing }: { thing: ThingToSeeType }) {
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-      ? localizationData.hy
-      : localizationData.en;
+        ? localizationData.hy
+        : localizationData.en;
+
+  const types = locale === "ru" ? thingDoTypes.ru :
+    (locale === "hy" ? thingDoTypes.hy : thingDoTypes.en)
+
+
+  const getType = (type: string) => {
+    return types.find((item) => item.value === type);
+  };
 
   const getReviewsAvarage = (reviews: ReviewTypes[]) => {
     let sum = 0;
@@ -60,12 +69,12 @@ function DoSpecification({ thing }: { thing: ThingToSeeType }) {
         <span className="text-base text-[#5e5e5e]">
           {localData.from_yerevan_text}
         </span>
-        <span className="text-base text-[#000000] font-bold">
+        <span className="text-base text-[#5e5e5e] font-medium">
           {locale === "ru"
             ? thing.fromYerevan_ru
             : locale === "hy"
-            ? thing.fromYerevan_hy
-            : thing.fromYerevan}
+              ? thing.fromYerevan_hy
+              : thing.fromYerevan}
         </span>
       </p>
 
@@ -73,7 +82,7 @@ function DoSpecification({ thing }: { thing: ThingToSeeType }) {
         <BiCategory className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">{localData.type_text}:</span>
         <span className="text-base text-[#5e5e5e] font-medium">
-          {thing.type}
+          {getType(thing.type)?.title}
         </span>
       </p>
 
@@ -96,8 +105,8 @@ function DoSpecification({ thing }: { thing: ThingToSeeType }) {
           {locale === "ru"
             ? thing.neatestSettlement_ru
             : locale === "hy"
-            ? thing.neatestSettlement_hy
-            : thing.neatestSettlement}
+              ? thing.neatestSettlement_hy
+              : thing.neatestSettlement}
         </span>
       </p>
 
@@ -110,8 +119,8 @@ function DoSpecification({ thing }: { thing: ThingToSeeType }) {
           {locale === "ru"
             ? thing.available_ru
             : locale === "hy"
-            ? thing.available_hy
-            : thing.available}
+              ? thing.available_hy
+              : thing.available}
         </span>
       </p>
 
@@ -124,8 +133,8 @@ function DoSpecification({ thing }: { thing: ThingToSeeType }) {
           {locale === "ru"
             ? thing.entrance_ru
             : locale === "hy"
-            ? thing.entrance_hy
-            : thing.entrance}
+              ? thing.entrance_hy
+              : thing.entrance}
         </span>
       </p>
 
