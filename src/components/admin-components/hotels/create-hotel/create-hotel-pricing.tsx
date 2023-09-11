@@ -15,6 +15,7 @@ import {
   useTheme
 } from '@mui/material';
 import { useState } from 'react';
+import { MdDelete } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { HotelPricingTable } from '../../../../types/services';
 
@@ -57,6 +58,22 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
       return temp;
     })
     handleAddModal();
+    setPriceInput({
+      name: '',
+      name_ru: '',
+      name_hy: '',
+      firstPart: '',
+      lastPart: '',
+    })
+  }
+
+  const handleDeletePrice = (index: number) => {
+    setPricing((previewData: any) => {
+      const temp = JSON.parse(JSON.stringify(previewData));
+      const findIndex = temp.findIndex((item: any, i: number) => i === index);
+      temp.splice(findIndex, 1);
+      return temp;
+    })
   }
 
   const formStyles = {
@@ -113,6 +130,7 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
                 <TableCell className="text-base" align="center">Name(Hy)</TableCell>
                 <TableCell className="text-base" align="center">First Part</TableCell>
                 <TableCell className="text-base" align="center">Last Part</TableCell>
+                <TableCell className="text-base" align="center">Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -124,6 +142,15 @@ function CreateHotelPricing({ pricing, setPricing }: PropsType) {
                     <TableCell align="center">{pricing.name_hy} </TableCell>
                     <TableCell align="center">{pricing.firstPart} </TableCell>
                     <TableCell align="center">{pricing.lastPart} </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        className=' text-white min-w-fit'
+                        onClick={() => handleDeletePrice(index)}
+                        color='warning'
+                        variant='contained'>
+                        <MdDelete size={20} />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))
               }

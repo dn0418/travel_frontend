@@ -25,8 +25,8 @@ function TourCard({ tour }: { tour: TourType }) {
         src={tour.thumbnail}
         alt={tour.title}
         className="rounded-lg"
-        width={600}
-        height={350}
+        height={340}
+        width={560}
         layout="responsive"
         priority
       />

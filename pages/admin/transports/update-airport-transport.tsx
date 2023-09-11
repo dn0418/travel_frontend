@@ -72,7 +72,7 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
   const handleUpdate = async () => {
     setIsLoading(true);
     try {
-      const response = await serviceClient.airportTransport.update(
+      await serviceClient.airportTransport.update(
         airportTransport.id,
         { ...inputData }
       );
@@ -113,8 +113,9 @@ const UpdateAirportTransport: NextPageWithLayout<InferGetServerSidePropsType<typ
           {
             uploading ?
               <div className="w-16 h-16"><CircularProgress /></div> :
-              <div className="flex items-center justify-center flex-col py-8">
+              <div className="flex items-center justify-center flex-col py-5">
                 <MdCloudUpload className="text-2xl" />
+                <p className="my-2">(560 x 340)</p>
                 <p className="my-2">
                   Choose an <span className="text-[#6f7531]">Image</span> to upload.
                 </p>

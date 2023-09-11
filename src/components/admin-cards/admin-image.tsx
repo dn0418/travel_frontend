@@ -51,8 +51,8 @@ function AdminImage({ image, setImages }: { image: ImageType, setImages: any }) 
   return (
     <div className="w-full relative">
       <Image
-        width={1000}
-        height={500}
+        height={340}
+        width={560}
         src={image?.url}
         className="rounded-lg"
         alt="airport transport"

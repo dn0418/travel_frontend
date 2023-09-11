@@ -240,8 +240,8 @@ function CreateNewTour({
                 images.map((image: string, i: number) => (
                   <div key={i} className="w-full relative">
                     <Image
-                      width={1000}
-                      height={500}
+                      height={340}
+                      width={560}
                       src={image}
                       className="rounded-lg"
                       alt="airport transport"
@@ -262,6 +262,7 @@ function CreateNewTour({
                     <div className="w-16 h-16"><CircularProgress /></div> :
                     <div className="flex items-center justify-center flex-col py-8">
                       <MdCloudUpload className="text-2xl" />
+                      <p>(560 x 340) </p>
                       <p className="my-2">
                         Choose an <span className="text-[#6f7531]">Image</span> to upload.
                       </p>

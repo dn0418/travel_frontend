@@ -29,8 +29,8 @@ function TransportCard({ car }: TransportCardProps) {
           src={car.thumbnail}
           alt={car.name}
           className="rounded-lg w-full h-full"
-          width={600}
-          height={350}
+          height={340}
+          width={560}
           layout="responsive"
           priority
         />

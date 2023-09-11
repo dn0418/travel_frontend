@@ -78,8 +78,8 @@ function UpdateWithoutCar({
             inputData.thumbnail ?
               <div className="w-full relative">
                 <Image
-                  width={1000}
-                  height={500}
+                  height={340}
+                  width={560}
                   src={inputData.thumbnail}
                   className="rounded-lg"
                   alt="airport transport"
@@ -100,6 +100,9 @@ function UpdateWithoutCar({
                     <div className="w-24 h-24"><CircularProgress /></div> :
                     <div className="flex items-center justify-center flex-col py-8">
                       <MdCloudUpload className="text-2xl" />
+                      <p className="my-2">
+                        (560 x 340)
+                      </p>
                       <p className="my-2">
                         Choose an <span className="text-[#6f7531] font-bold">Thumbnail</span> to upload.
                       </p>

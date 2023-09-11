@@ -29,8 +29,8 @@ function SurroundingCard({ surrounding }: SurroundingCardProps) {
           src={surrounding.thumbnail}
           alt={surrounding.name}
           className="rounded-lg"
-          width={600}
-          height={350}
+          height={340}
+          width={560}
           layout="responsive"
           priority
         />

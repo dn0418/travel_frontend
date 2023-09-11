@@ -60,8 +60,8 @@ function SeeThumbnailSection({ thing }: { thing: ThingToSeeType }) {
     <div className="thumbnails-section">
       <Image
         src={thumbnail}
-        height={600}
-        width={1000}
+        height={340}
+        width={560}
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />
@@ -74,8 +74,8 @@ function SeeThumbnailSection({ thing }: { thing: ThingToSeeType }) {
             <Image
               key={i}
               src={img.url}
-              height={100}
-              width={200}
+              height={340}
+              width={560}
               layout="responsive"
               className="rounded-lg"
               alt="tour-details" />
@@ -87,8 +87,8 @@ function SeeThumbnailSection({ thing }: { thing: ThingToSeeType }) {
               <Image
                 key={i}
                 src={img.url}
-                height={150}
-                width={300}
+                height={340}
+                width={560}
                 layout="responsive"
                 className="rounded-lg"
                 alt="tour-details" />

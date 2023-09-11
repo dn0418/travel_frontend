@@ -25,8 +25,8 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
           src={hotel.thumbnail}
           alt={hotel.name}
           className="rounded-lg"
-          width={600}
-          height={350}
+          height={340}
+          width={560}
           layout="responsive"
           priority
         />

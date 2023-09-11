@@ -21,14 +21,14 @@ function TourThumbnail({
   uploadLocation }: PropsType) {
 
   return (
-    <div className='grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2 gap-4'>
+    <div className='grid w-full py-5 md:py-8 grid-cols-1 md:grid-cols-2 gap-4 mx-12'>
       <div className="">
         {
           inputData.thumbnail ?
             <div className="w-full relative">
               <Image
-                width={1000}
-                height={480}
+                height={340}
+                width={560}
                 src={inputData.thumbnail}
                 className="rounded-lg"
                 alt="airport transport"
@@ -43,14 +43,15 @@ function TourThumbnail({
             :
             <div
               className="border-2 border-[#0000004d] border-dashed flex items-center
-           justify-center w-full min-h-[220px] relative bg-[#f1f1f1]  rounded-lg">
+           justify-center w-full min-h-[340px] relative bg-[#f1f1f1]  rounded-lg">
               {
                 uploading ?
                   <div className="w-24 h-24"><CircularProgress /></div> :
                   <div className="flex items-center justify-center flex-col py-8">
                     <MdCloudUpload className="text-2xl" />
+                    <p>(560 x 340)</p>
                     <p className="my-2">
-                      Choose an <span className="text-[#6f7531] font-bold">Thumbnail</span> to upload.
+                      Choose a <span className="text-[#6f7531] font-bold">Thumbnail</span> to upload.
                     </p>
                   </div>
               }
@@ -67,10 +68,10 @@ function TourThumbnail({
       <div className="">
         {
           inputData.locationImg ?
-            <div className="w-full relative">
+            <div className="w-[340px]  relative">
               <Image
-                width={1000}
-                height={480}
+                height={340}
+                width={340}
                 src={inputData.locationImg}
                 className="rounded-lg"
                 alt="airport transport"
@@ -85,14 +86,15 @@ function TourThumbnail({
             :
             <div
               className="border-2 border-[#0000004d] border-dashed flex items-center
-           justify-center w-full min-h-[220px] relative bg-[#f1f1f1]  rounded-lg">
+           justify-center w-[340px] min-h-[340px] relative bg-[#f1f1f1]  rounded-lg">
               {
                 uploading ?
                   <div className="w-24 h-24"><CircularProgress /></div> :
                   <div className="flex items-center justify-center flex-col py-8">
                     <MdCloudUpload className="text-2xl" />
+                    <p>(432 x 432)</p>
                     <p className="my-2">
-                      Choose an <span className="text-[#6f7531] font-bold">LocationImg</span> to upload.
+                      Choose a <span className="text-[#6f7531] font-bold">Location Img</span> to upload.
                     </p>
                   </div>
               }

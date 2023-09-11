@@ -60,8 +60,8 @@ function ThumbnailSection({ tour }: { tour: TourType }) {
     <div className="thumbnails-section">
       <Image
         src={thumbnail}
-        height={600}
-        width={1000}
+        height={340}
+        width={560}
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />

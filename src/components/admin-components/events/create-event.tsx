@@ -70,8 +70,8 @@ function CreateNewEvent({
             inputData.thumbnail ?
               <div className="w-full relative">
                 <Image
-                  width={1000}
-                  height={500}
+                  width={560}
+                  height={340}
                   src={inputData.thumbnail}
                   className="rounded-lg"
                   alt="airport transport"
@@ -85,12 +85,15 @@ function CreateNewEvent({
               :
               <div
                 className="border-2 border-[#0000004d] border-dashed flex items-center
-           justify-center w-full min-h-[220px] relative bg-[#f1f1f1]  rounded-lg">
+           justify-center w-full min-h-[340px] relative bg-[#f1f1f1]  rounded-lg">
                 {
                   uploading ?
                     <div className="w-24 h-24"><CircularProgress /></div> :
                     <div className="flex items-center justify-center flex-col py-8">
                       <MdCloudUpload className="text-2xl" />
+                      <p className="my-2">
+                        (560 x 340)
+                      </p>
                       <p className="my-2">
                         Choose an <span className="text-[#6f7531] font-bold">Thumbnail</span> to upload.
                       </p>
@@ -190,8 +193,8 @@ function CreateNewEvent({
                 images.map((image: string, i: number) => (
                   <div key={i} className="w-full relative">
                     <Image
-                      width={1000}
-                      height={500}
+                      width={560}
+                      height={340}
                       src={image}
                       className="rounded-lg"
                       alt="airport transport"
@@ -212,6 +215,9 @@ function CreateNewEvent({
                     <div className="w-16 h-16"><CircularProgress /></div> :
                     <div className="flex items-center justify-center flex-col py-8">
                       <MdCloudUpload className="text-2xl" />
+                      <p className="my-2">
+                        (560 x 340)
+                      </p>
                       <p className="my-2">
                         Choose an <span className="text-[#6f7531]">Image</span> to upload.
                       </p>

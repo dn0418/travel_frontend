@@ -51,14 +51,14 @@ function UpdateAdminTour({
       </div>
 
       <div hidden={currentTab.value !== 'en'}>
+        <TourThumbnail
+          inputData={inputData}
+          setInputData={setInputData}
+          uploadLocation={uploadLocation}
+          uploadThumbnail={uploadThumbnail}
+          uploading={uploading}
+        />
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <TourThumbnail
-            inputData={inputData}
-            setInputData={setInputData}
-            uploadLocation={uploadLocation}
-            uploadThumbnail={uploadThumbnail}
-            uploading={uploading}
-          />
           <TextField
             label='Title'
             onChange={(e: any) => handleInputChange('title', e.target.value)}

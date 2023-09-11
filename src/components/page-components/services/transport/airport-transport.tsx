@@ -27,8 +27,8 @@ function AirportTransport(
           airportTransport?.images.map((image, i) => (
             <Image
               key={i}
-              width={1000}
-              height={500}
+              height={340}
+              width={560}
               src={image?.url}
               className="rounded-lg"
               alt="airport transport"
