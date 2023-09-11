@@ -97,7 +97,7 @@ const UpdateDestination = forwardRef<HTMLDivElement, PropsType>(
         <Box sx={formStyles.modalContainer}>
           <Typography
             sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-            Update Destination
+            Update Location
           </Typography>
           <Box
             sx={formStyles.gridContainer}>

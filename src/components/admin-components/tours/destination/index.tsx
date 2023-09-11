@@ -23,11 +23,11 @@ function AdminDestination({ destinations, handleDelete }: PropsType) {
     <div className='flex justify-center'>
       <div className="w-9/12 my-5 mb-8">
         <div className="flex items-center justify-between">
-          <h2>Tour Destinations</h2>
+          <h2>Tour Locations</h2>
           <Button
             onClick={handleAddModal}
             variant="contained">
-            Create Destination
+            Create Location
           </Button>
         </div>
         <TableContainer component={Paper}>

@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CgCalendarDates } from "react-icons/cg";
 import { FiSearch } from "react-icons/fi";
 import { TourDestinationType } from "../../../types/tour";
 import { localizationData } from "../../../utils/locales";
@@ -105,8 +104,7 @@ function SearchFilterSection({ destinations, typeItems }: { destinations: TourDe
         </div>
 
         <div className='flex justify-center'>
-          <div className="flex items-center gap-2 w-fit">
-            <CgCalendarDates className='text-xl text-[#5E5E5E]' />
+          <div className="flex items-center justify-start gap-2 w-fit">
             <DatePicker
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}

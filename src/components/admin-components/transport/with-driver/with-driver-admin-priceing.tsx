@@ -25,6 +25,8 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
   const [updateModal, setUpdateModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
     duration: '',
+    duration_ru: '',
+    duration_hy: '',
     price: '',
   });
   const theme = useTheme();
@@ -56,7 +58,7 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
       return;
     }
     try {
-      const res = await serviceClient.carWithDriver.createPrice({
+      await serviceClient.carWithDriver.createPrice({
         ...priceInput,
         carId: carsWithDriver?.id,
       });
@@ -95,7 +97,7 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
       .then(async (willDelete) => {
         if (willDelete) {
           try {
-            const res = await serviceClient.carWithDriver.deletePrice(id);
+            await serviceClient.carWithDriver.deletePrice(id);
             toast.success('Price deleted successfully!');
             router.push({
               pathname: pathname
@@ -159,7 +161,6 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
           <Table aria-label="tour pricing table">
             <TableHead>
               <TableRow>
-                <TableCell className="text-base" align="center"></TableCell>
                 <TableCell className="text-base" align="center">Duration</TableCell>
                 <TableCell className="text-base" align="center">Pricing</TableCell>
                 <TableCell className="text-base" align="center">Actions</TableCell>
@@ -169,7 +170,6 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
               {
                 carsWithDriver?.pricing.map((pricing, index) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{index}</TableCell>
                     <TableCell align="center">{pricing.duration}</TableCell>
                     <TableCell align="center">{pricing.price} AMD</TableCell>
                     <TableCell className='flex gap-2 justify-center'>
@@ -214,7 +214,20 @@ export default function WithDriverAdminPricing({ carsWithDriver }: PropsType) {
               name="duration"
               value={priceInput?.duration}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              type='number'
+              variant='outlined'
+            />
+            <TextField
+              label='Duration(ru)'
+              name="duration_ru"
+              value={priceInput?.duration_ru}
+              onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+              variant='outlined'
+            />
+            <TextField
+              label='Duration(hy)'
+              name="duration_hy"
+              value={priceInput?.duration_hy}
+              onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField

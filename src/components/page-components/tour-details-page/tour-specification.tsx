@@ -49,12 +49,12 @@ function TourSpecification({ tour }: { tour: TourType }) {
             : locale === "hy"
               ? tour.destination?.name_hy
               : tour.destination?.name) +
-            " - " +
+            " ( " +
             (locale === "ru"
               ? tour.destination?.country_ru
               : locale === "hy"
                 ? tour.destination?.country_hy
-                : tour.destination?.country)}
+                : tour.destination?.country) + " )"}
         </span>
       </p>
       {tour.reviews.length > 0 && (

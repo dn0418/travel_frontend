@@ -15,6 +15,8 @@ interface PropsType {
 const UpdateWithDriverPricing = forwardRef<HTMLDivElement, PropsType>(({ handleCancelModal, price }, ref) => {
   const [priceInput, setPriceInput] = useState({
     duration: price.duration || '',
+    duration_ru: price.duration_ru || '',
+    duration_hy: price.duration_hy || '',
     price: price.price || '',
   });
   const router = useRouter();
@@ -35,7 +37,7 @@ const UpdateWithDriverPricing = forwardRef<HTMLDivElement, PropsType>(({ handleC
       return;
     }
     try {
-      const res = await serviceClient.carWithDriver.updatePrice(price.id, priceInput);
+      await serviceClient.carWithDriver.updatePrice(price.id, priceInput);
       toast.success("Price updated successfully!");
       handleCancelModal();
       router.push({
@@ -93,14 +95,26 @@ const UpdateWithDriverPricing = forwardRef<HTMLDivElement, PropsType>(({ handleC
       </Typography>
       <Box
         sx={formStyles.gridContainer}>
-
         <TextField
           label='Duration'
           name="duration"
           value={priceInput?.duration}
           onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
           variant='outlined'
-          type='number'
+        />
+        <TextField
+          label='Duration(ru)'
+          name="duration_ru"
+          value={priceInput?.duration_ru}
+          onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+          variant='outlined'
+        />
+        <TextField
+          label='Duration(hy)'
+          name="duration_hy"
+          value={priceInput?.duration_hy}
+          onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
+          variant='outlined'
         />
         <TextField
           label='Price'

@@ -59,6 +59,13 @@ function UpdateAdminTour({
             uploadThumbnail={uploadThumbnail}
             uploading={uploading}
           />
+          <TextField
+            label='Title'
+            onChange={(e: any) => handleInputChange('title', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.title}
+          />
           <Box>
             <Typography id="input-slider">
               Score : {inputData.score}
@@ -76,11 +83,11 @@ function UpdateAdminTour({
             value={inputData.freeCancellation}
           />
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Tour Destination</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Tour Location</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               value={inputData?.destinationId}
-              label='Tour Destination'
+              label='Tour Location'
               name="destinationId"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             >
@@ -123,13 +130,7 @@ function UpdateAdminTour({
               ))}
             </Select>
           </FormControl>
-          <TextField
-            label='Title'
-            onChange={(e: any) => handleInputChange('title', e.target.value)}
-            variant='outlined'
-            className="w-full"
-            value={inputData.title}
-          />
+
           <TextField
             label='Price'
             onChange={(e: any) => handleInputChange('price', e.target.value)}

@@ -151,7 +151,6 @@ function UpdateNewThingToSee({
             variant='outlined'
             className="w-full"
             value={inputData.date}
-            type="date"
           />
           <TextField
             label='Nearest Settlement'

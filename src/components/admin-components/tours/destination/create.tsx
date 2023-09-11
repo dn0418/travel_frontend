@@ -106,7 +106,7 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
       <Box sx={formStyles.modalContainer}>
         <Typography
           sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
-          Create New Destination
+          Create New Location
         </Typography>
         <Box
           sx={formStyles.gridContainer}>

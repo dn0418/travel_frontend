@@ -103,7 +103,7 @@ function TourAdminCard({ tour }: { tour: TourType }) {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <p className="text-sm text-[#5e5e5e] my-2">Start From</p>
-            <p className="text-base font-semibold my-2">${price}</p>
+            <p className="text-base font-semibold my-2">{price}</p>
           </div>
           <div className="flex items-center gap-3">
             <Link href={`/admin/tours/update/${tour.id}`}>

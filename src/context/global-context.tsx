@@ -7,6 +7,7 @@ type ContextValueType = {
   currencyValue: string;
   handleGlobalCurrencyChange: (newValue: string) => void;
   convertCurrency: (amount: number) => string;
+  convertOnlyCurrency: (amount: number) => number;
 };
 
 interface CurrencyRate {
@@ -55,11 +56,30 @@ export const GlobalContextProvider: React.FC<{ children: React.ReactNode }> = ({
     return `֏${amount}`;
   };
 
+  const convertOnlyCurrency = (amount: number) => {
+    if (currencyValue === 'usd') {
+      const findRate = currencyRates.find((rate: CurrencyRate) => rate.code === 'usd');
+      if (findRate) {
+        const total = amount * findRate.rate;
+        return total;
+      }
+    } else if (currencyValue === 'ruble') {
+      const findRate = currencyRates.find((rate: CurrencyRate) => rate.code === 'ruble');
+      if (findRate) {
+        const total = amount * findRate.rate;
+        return total;
+      }
+    }
+
+    return amount;
+  };
+
   // Pass the state and functions through the context
   const contextValue: ContextValueType = {
     currencyValue: currencyValue,
     handleGlobalCurrencyChange: handleGlobalCurrencyChange,
-    convertCurrency: convertCurrency
+    convertCurrency: convertCurrency,
+    convertOnlyCurrency: convertOnlyCurrency
   };
 
   useEffect(() => {

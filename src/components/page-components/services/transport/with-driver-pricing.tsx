@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useRouter } from 'next/router';
+import { useGlobalContext } from '../../../../context/global-context';
 import { CarWithDriverType } from '../../../../types/car-type';
 import { localizationData } from '../../../../utils/locales';
 import CarModel from '../../../modal/CarModal';
@@ -13,6 +14,8 @@ import CarModel from '../../../modal/CarModal';
 type Props = { carsWithDriver: CarWithDriverType }
 
 export default function CarWithDriverPricingTable({ carsWithDriver }: Props) {
+  const { convertCurrency } = useGlobalContext();
+
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -35,7 +38,6 @@ export default function CarWithDriverPricingTable({ carsWithDriver }: Props) {
           <Table aria-label="tour pricing table">
             <TableHead>
               <TableRow>
-                <TableCell className="text-base" align="center"></TableCell>
                 <TableCell className="text-base" align="center">
                   {
                     locale === 'ru' ? 'продолжительность' :
@@ -55,11 +57,14 @@ export default function CarWithDriverPricingTable({ carsWithDriver }: Props) {
               {
                 carsWithDriver?.pricing.map((pricing, index) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{index}</TableCell>
-                    <TableCell align="center">{pricing.duration}</TableCell>
                     <TableCell align="center">
-                      {pricing.price + ' ' + (locale === 'ru' ? 'амд' :
-                        (locale === 'hy' ? 'դրամ' : 'AMD'))}
+                      {
+                        locale === 'ru' ? pricing.duration_ru :
+                          (locale === 'hy' ? pricing.duration_hy : pricing.duration)
+                      }
+                    </TableCell>
+                    <TableCell align="center">
+                      {convertCurrency(pricing.price)}
                     </TableCell>
                   </TableRow>
                 ))

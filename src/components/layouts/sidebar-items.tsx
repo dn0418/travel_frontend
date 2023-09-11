@@ -27,7 +27,7 @@ const sidebarItems: SidebarItemTypes[] = [
     path: '/admin/tours',
     subItems: [
       { title: 'New Tour', path: '/admin/tours/create' },
-      { title: 'Tour Destination', path: '/admin/tours/destination' },
+      { title: 'Locations', path: '/admin/tours/locations' },
     ],
   },
   {

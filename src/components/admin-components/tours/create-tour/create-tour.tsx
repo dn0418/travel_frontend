@@ -73,6 +73,13 @@ function CreateNewTour({
           uploading={uploading}
         />
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <TextField
+            label='Title'
+            onChange={(e: any) => handleInputChange('title', e.target.value)}
+            variant='outlined'
+            className="w-full"
+            value={inputData.title}
+          />
           <Box>
             <Typography id="input-slider">
               Score : {inputData.score}
@@ -90,11 +97,11 @@ function CreateNewTour({
             value={inputData.freeCancellation}
           />
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Tour Destination</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Tour Location</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               value={inputData?.destinationId}
-              label='Tour Destination'
+              label='Tour Location'
               name="destinationId"
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             >
@@ -122,7 +129,7 @@ function CreateNewTour({
             </Select>
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Tour main Type</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Tour child Type</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               value={inputData?.childList}
@@ -137,13 +144,6 @@ function CreateNewTour({
               ))}
             </Select>
           </FormControl>
-          <TextField
-            label='Title'
-            onChange={(e: any) => handleInputChange('title', e.target.value)}
-            variant='outlined'
-            className="w-full"
-            value={inputData.title}
-          />
           <TextField
             label='Price'
             onChange={(e: any) => handleInputChange('price', e.target.value)}
