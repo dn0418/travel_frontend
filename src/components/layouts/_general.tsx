@@ -16,7 +16,7 @@ export default function GeneralLayout({
   return (
     <div className="flex min-h-screen flex-col transition-colors duration-150">
       {header && <Header />}
-      <div className="mt-16 sm:mt-24">{children}</div>
+      <div>{children}</div>
       {footer && <Footer />}
     </div>
   );

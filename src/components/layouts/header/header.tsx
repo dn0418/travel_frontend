@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect } from "react";
@@ -37,7 +36,7 @@ export default function Header(props: Props) {
 
 
   return (
-    <Container sx={{ display: "flex" }} className="header-layout">
+    <div className="header-layout flex">
       <Navbar
         headerItems={headerItems}
         handleDrawerToggle={handleDrawerToggle}
@@ -49,6 +48,6 @@ export default function Header(props: Props) {
         container={container}
         headerItems={headerItems}
       />
-    </Container>
+    </div>
   );
 }

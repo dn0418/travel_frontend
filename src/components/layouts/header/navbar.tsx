@@ -13,7 +13,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -67,7 +67,7 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
   }
 
   return (
-    <>
+    <div>
       <AppBar component='nav' className='py-3 sm:py-5 h-16 sm:h-24 bg-white'>
         <Container>
           <Toolbar className='grid grid-cols-3 justify-between'>
@@ -174,6 +174,17 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
           </Toolbar>
         </Container>
       </AppBar>
-    </>
+      <div className="w-screen m-0 p-0">
+        <Image
+          src='https://s3.ap-southeast-1.amazonaws.com/dgraphy.pics/dev/0048276e-406a-41c3-8727-523de54391fe-header1.png'
+          width={1400}
+          height={236}
+          className="object-cover"
+          alt=""
+          layout="responsive"
+          priority
+        />
+      </div>
+    </div>
   );
 }

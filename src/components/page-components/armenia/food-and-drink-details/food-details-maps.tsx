@@ -26,7 +26,7 @@ function FoodAndSeeDetailsMaps({ thing }: { thing: FoodAndDrinksType }) {
               lat: thing?.lat,
               lng: thing?.lng,
             }}
-            zoom={10}
+            zoom={12}
           >
             <MarkerF
               position={{

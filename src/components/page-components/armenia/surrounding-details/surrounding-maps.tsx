@@ -26,7 +26,7 @@ function SurroundingDetailsMaps({ surrounding }: { surrounding: SurroundingType 
               lat: surrounding?.lat,
               lng: surrounding?.lng,
             }}
-            zoom={10}
+            zoom={12}
           >
             <MarkerF
               position={{

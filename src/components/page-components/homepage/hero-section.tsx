@@ -4,7 +4,7 @@ import heroImage from "/public/home_bus.gif";
 
 function HeroSection() {
   return (
-    <div className='p-0 w-screen h-[360px] md:h-[520px]' area-label='homepage hero-section'>
+    <div className='p-0 -mt-1.5 w-screen h-[360px] md:h-[520px]' area-label='homepage hero-section'>
       <Image
         src={heroImage}
         alt='hero'

@@ -26,7 +26,7 @@ function EventDetailsMaps({ event }: { event: EventType }) {
               lat: event?.lat,
               lng: event?.lng,
             }}
-            zoom={10}
+            zoom={12}
           >
             <MarkerF
               position={{

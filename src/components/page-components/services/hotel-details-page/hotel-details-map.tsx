@@ -28,7 +28,7 @@ function HotelDetailsMaps({ hotel }: { hotel: HotelDataType }) {
               lat: hotel?.lat,
               lng: hotel?.lng,
             }}
-            zoom={10}
+            zoom={12}
           >
             <MarkerF
               position={{
