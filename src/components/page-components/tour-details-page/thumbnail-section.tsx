@@ -45,12 +45,13 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 function ThumbnailSection({ tour }: { tour: TourType }) {
   const { thumbnail, images } = tour;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentImage, setCurrentImage] = useState(thumbnail);
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: images.length > 3 ? 4 : images.length,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow onClick={undefined} />,
     prevArrow: <PrevArrow currentSlide={currentSlide} onClick={undefined} />,
@@ -59,40 +60,44 @@ function ThumbnailSection({ tour }: { tour: TourType }) {
   return (
     <div className="thumbnails-section">
       <Image
-        src={thumbnail}
+        src={currentImage}
         height={340}
         width={560}
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />
+
       {
-        images.length > 3 ? <Slider
-          className='flex mt-5'
-          afterChange={(e) => setCurrentSlide(e)}
-          {...settings}>
-          {images.map((img, i) => (
-            <Image
-              key={i}
-              src={img.url}
-              height={100}
-              width={200}
-              layout="responsive"
-              className="rounded-lg"
-              alt="tour-details"
-              priority
-            />
-          ))}
-        </Slider>
+        images.length > 4 ?
+          <Slider
+            className='flex mt-5'
+            afterChange={(e) => setCurrentSlide(e)}
+            {...settings}>
+            {images.map((img, i) => (
+              <Image
+                key={i}
+                src={img.url}
+                height={340}
+                width={560}
+                layout="responsive"
+                className="rounded-lg"
+                onClick={() => setCurrentImage(img.url)}
+                alt="tour-details"
+                priority
+              />
+            ))}
+          </Slider>
           :
           <div className="grid grid-cols-4 gap-4 mt-5">
             {images.map((img, i) => (
               <Image
                 key={i}
                 src={img.url}
-                height={100}
-                width={300}
+                height={340}
+                width={560}
                 layout="responsive"
                 className="rounded-lg"
+                onClick={() => setCurrentImage(img.url)}
                 alt="tour-details"
                 priority
               />

@@ -9,7 +9,7 @@ function TourDetailsMaps({ tour }: { tour: TourType }) {
 
   return (
     <div className="tour-details-maps my-5 md:my-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div className="" dangerouslySetInnerHTML={{
+      <div className="overflow-hidden" dangerouslySetInnerHTML={{
         __html: `<p className="text-[#5e5e5e]  md:w-3/4 font-rubik">
           ${locale === "ru" ? tour.longDescription_ru :
             (locale === "hy" ? tour.longDescription_hy : tour.longDescription)

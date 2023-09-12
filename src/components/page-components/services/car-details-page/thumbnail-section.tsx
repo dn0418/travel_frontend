@@ -45,6 +45,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 function CarThumbnailSection({ car }: { car: CarWithOutType }) {
   const { thumbnail, images } = car;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentImage, setCurrentImage] = useState(thumbnail);
 
   const settings = {
     dots: false,
@@ -59,14 +60,14 @@ function CarThumbnailSection({ car }: { car: CarWithOutType }) {
   return (
     <div className="thumbnails-section">
       <Image
-        src={thumbnail}
+        src={currentImage}
         height={340}
         width={560}
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />
       {
-        images.length > 3 ? <Slider
+        images.length > 4 ? <Slider
           className='flex mt-5'
           afterChange={(e) => setCurrentSlide(e)}
           {...settings}>
@@ -77,6 +78,7 @@ function CarThumbnailSection({ car }: { car: CarWithOutType }) {
               height={340}
               width={560}
               layout="responsive"
+              onClick={() => setCurrentImage(img.url)}
               className="rounded-lg"
               alt="tour-details" />
           ))}
@@ -90,6 +92,7 @@ function CarThumbnailSection({ car }: { car: CarWithOutType }) {
                 height={340}
                 width={560}
                 layout="responsive"
+                onClick={() => setCurrentImage(img.url)}
                 className="rounded-lg"
                 alt="tour-details" />
             ))}

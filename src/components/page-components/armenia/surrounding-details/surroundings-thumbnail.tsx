@@ -44,6 +44,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 function SurroundingThumbnailSection({ surrounding }: { surrounding: SurroundingType }) {
   const { thumbnail, images } = surrounding;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentImage, setCurrentImage] = useState(thumbnail);
 
   const settings = {
     dots: false,
@@ -58,7 +59,7 @@ function SurroundingThumbnailSection({ surrounding }: { surrounding: Surrounding
   return (
     <div className="thumbnails-section">
       <Image
-        src={thumbnail}
+        src={currentImage}
         height={340}
         width={560}
         layout="responsive"
@@ -77,6 +78,7 @@ function SurroundingThumbnailSection({ surrounding }: { surrounding: Surrounding
               width={560}
               layout="responsive"
               className="rounded-lg"
+              onClick={() => setCurrentImage(img.url)}
               alt="tour-details" />
           ))}
         </Slider>
@@ -90,6 +92,7 @@ function SurroundingThumbnailSection({ surrounding }: { surrounding: Surrounding
                 width={560}
                 layout="responsive"
                 className="rounded-lg"
+                onClick={() => setCurrentImage(img.url)}
                 alt="tour-details" />
             ))}
           </div>

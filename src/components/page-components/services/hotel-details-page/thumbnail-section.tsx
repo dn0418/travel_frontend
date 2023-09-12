@@ -45,6 +45,7 @@ export function PrevArrow(props: { onClick: any; currentSlide: number }) {
 function HotelThumbnailSection({ hotel }: { hotel: HotelDataType }) {
   const { thumbnail, images } = hotel;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentImage, setCurrentImage] = useState(thumbnail);
 
   const settings = {
     dots: false,
@@ -59,14 +60,14 @@ function HotelThumbnailSection({ hotel }: { hotel: HotelDataType }) {
   return (
     <div className="thumbnails-section">
       <Image
-        src={thumbnail}
+        src={currentImage}
         height={340}
         width={560}
         layout="responsive"
         className="rounded-lg"
         alt="tour-details" />
       {
-        images.length > 3 ? <Slider
+        images.length > 4 ? <Slider
           className='flex mt-5'
           afterChange={(e) => setCurrentSlide(e)}
           {...settings}>
@@ -78,6 +79,7 @@ function HotelThumbnailSection({ hotel }: { hotel: HotelDataType }) {
               width={560}
               layout="responsive"
               className="rounded-lg"
+              onClick={() => setCurrentImage(img.url)}
               alt="tour-details" />
           ))}
         </Slider>
@@ -91,6 +93,7 @@ function HotelThumbnailSection({ hotel }: { hotel: HotelDataType }) {
                 width={560}
                 layout="responsive"
                 className="rounded-lg"
+                onClick={() => setCurrentImage(img.url)}
                 alt="tour-details" />
             ))}
           </div>
