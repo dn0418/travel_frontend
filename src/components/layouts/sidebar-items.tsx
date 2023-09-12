@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { AiFillCaretRight } from 'react-icons/ai';
+import { BiLogInCircle } from 'react-icons/bi';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 import { MdDashboard, MdExpandLess, MdExpandMore } from 'react-icons/md';
 import logo from '/public/Logo.png';
@@ -140,6 +141,13 @@ function SidebarItem({ title, icon, path, subItems }: SidebarItemTypes) {
 }
 
 function SidebarItems() {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem('admin');
+    router.reload();
+  };
+
   return (
     <div className="dashboard-layout">
       <Toolbar>
@@ -154,6 +162,13 @@ function SidebarItems() {
           <SidebarItem key={item.title} {...item} />
         ))}
       </List>
+      <Divider className='mt-8' />
+      <div className="my-8 mx-6 flex justify-start">
+        <Button onClick={handleLogout} variant="contained" color="inherit" className='px-8 py-2'>
+          Logout
+          <BiLogInCircle size={20} className='ml-2' />
+        </Button>
+      </div>
     </div>
   );
 }

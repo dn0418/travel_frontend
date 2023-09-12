@@ -1,38 +1,37 @@
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
-import { useRouter } from 'next/router';
 import * as React from 'react';
 import { BiMenu } from 'react-icons/bi';
+import AdminLoginForm from './login';
 import SidebarItems from './sidebar-items';
-
-
 
 const drawerWidth = 260;
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window?: () => Window;
   children?: React.ReactNode;
 }
 
 export default function DashboardLayout(props: Props) {
-  const router = useRouter()
   const { window, children } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const isLogin = localStorage.getItem('admin');
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const container = window !== undefined ? () => window().document.body : undefined;
+
+  if (!isLogin) {
+    return (
+      <AdminLoginForm />
+    )
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>

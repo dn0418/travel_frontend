@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import { BsChatDots } from "react-icons/bs";
+import { MdPhoneEnabled } from "react-icons/md";
 import { toast } from "react-toastify";
 import client from "../../rest-api/client";
 import { countries } from "../../utils/data/countries";
@@ -116,7 +116,7 @@ function ChatIcon() {
             onClick={handleChangeModal}
             aria-label="Back to top"
           >
-            <BsChatDots className="text-xl md:text-3xl" />
+            <MdPhoneEnabled className="text-xl md:text-3xl" />
           </Button>
         </div>
       </div>
@@ -194,7 +194,7 @@ function ChatIcon() {
               multiline
               rows={4}
               onChange={(e) => handleChangeInput("note", e.target.value)}
-              label="Add your notes"
+              label="Write a message"
             />
             <div></div>
             <div style={formStyles.buttonContainer} className="">
