@@ -31,4 +31,5 @@ export const API_ENDPOINTS = {
   STATIC_PAGES: "/static-pages",
   SURROUNDING: "/surrounding",
   EVENTS: "/events",
+  BLOGS: "/blogs",
 };

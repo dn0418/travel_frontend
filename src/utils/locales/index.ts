@@ -89,10 +89,12 @@ export const localizationData: LocaleDataType = {
     car_text: "Car",
     rent_text: "Rent A ",
     see_more_text: "See More",
+    read_more_text: "Read More",
     mice_page_title: "Mice",
     not_found_text: "Data not found!",
     mice_type_text: "Mice Type",
     mice_request_text: "Mice Request",
+    blog_title: "Travel Blog",
   },
   ru: {
     transportData: transportRuLocalization,
@@ -176,11 +178,13 @@ export const localizationData: LocaleDataType = {
     car_text: "машина",
     rent_text: "Арендовать A ",
     see_more_text: "показать еще",
+    read_more_text: "Читать далее",
     mice_page_title: "",
     not_found_text: "",
     mice_type_text: "",
     mice_request_text: "",
     from_tbilisi_text: "",
+    blog_title: "Блог о путешествиях",
   },
   hy: {
     transportData: transportHyLocalization,
@@ -265,11 +269,13 @@ export const localizationData: LocaleDataType = {
     car_text: "մեքենա",
     rent_text: "Վարձակալություն Ա ",
     see_more_text: "see more",
+    read_more_text: "Կարդալ ավելին",
     mice_page_title: "Mice",
     not_found_text: "",
     mice_type_text: "",
     mice_request_text: "",
     from_tbilisi_text: "",
+    blog_title: "Ճամփորդական բլոգ"
   },
   // Add other language translations here if needed.
 };

@@ -110,7 +110,7 @@ export const navData: NavTypes = {
         {
           id: 8,
           title: "Travel Blog",
-          route: "/armenia/travel-blog",
+          route: "/armenia/blogs",
         },
       ],
     },

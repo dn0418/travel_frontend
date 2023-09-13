@@ -79,6 +79,12 @@ const sidebarItems: SidebarItemTypes[] = [
     path: '/admin/events',
   },
   {
+    title: 'Blogs',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/blogs',
+    subItems: [{ title: 'Rubrics', path: '/admin/blogs/rubrics' }],
+  },
+  {
     title: 'Mice',
     icon: <BsFillCaretRightFill />,
     path: '/admin/mice',

@@ -36,3 +36,32 @@ export interface EventType {
   entrance_hy: string;
   images: ImageType[];
 }
+
+export interface BlogType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  title_ru: string;
+  title_hy: string;
+  thumbnail: string;
+  author: string;
+  author_ru: string;
+  author_hy: string;
+  short_description: string;
+  short_description_ru: string;
+  short_description_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  rubric: RubricType
+};
+
+export interface RubricType {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  name_ru: string;
+  name_hy: string;
+}

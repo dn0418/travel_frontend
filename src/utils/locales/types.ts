@@ -99,8 +99,10 @@ export interface LocaleDataItems {
   car_text: string;
   rent_text: string;
   see_more_text: string;
+  read_more_text: string;
   not_found_text: string;
   mice_request_text: string;
+  blog_title: string;
 }
 
 export interface LocaleDataType {

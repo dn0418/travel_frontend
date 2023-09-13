@@ -69,6 +69,17 @@ class ArmeniaClient {
       `${API_ENDPOINTS.EVENTS}/image/create`, data),
   };
 
+  blogs = {
+    all: (page?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.BLOGS}?page=${page}&search=${search}&lan=${locale}`
+    ),
+    getByID: (id: any) => HttpClient.get(`${API_ENDPOINTS.BLOGS}/${id}`),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.BLOGS}/delete/${id}`),
+    createNewBlog: (data: any) => HttpClient.post(
+      `${API_ENDPOINTS.BLOGS}/create`, data),
+    updateBlog: (id: any, data: any) => HttpClient.put(
+      `${API_ENDPOINTS.BLOGS}/update/${id}`, data),
+  };
 
   foodAndDrinks = {
     all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
