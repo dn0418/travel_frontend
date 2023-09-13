@@ -33,6 +33,26 @@ export interface HotelInputType {
   lng: number | null;
 }
 
+export interface BlogInputType {
+  [key: string]: any;
+  isRu?: boolean;
+  isHy?: boolean;
+  title: string;
+  title_ru: string;
+  title_hy: string;
+  thumbnail: string;
+  author: string;
+  author_ru: string;
+  author_hy: string;
+  short_description: string;
+  short_description_ru: string;
+  short_description_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+  rubric: string;
+}
+
 export interface AccessoriesInputType {
   [key: string]: any;
   isRu: boolean;

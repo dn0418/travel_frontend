@@ -81,6 +81,13 @@ class ArmeniaClient {
       `${API_ENDPOINTS.BLOGS}/update/${id}`, data),
   };
 
+  rubrics = {
+    all: () => HttpClient.get(API_ENDPOINTS.RUBRICS),
+    create: (data: any) => HttpClient.post(`${API_ENDPOINTS.RUBRICS}/create`, data),
+    update: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.RUBRICS}/update/${id}`, data),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.RUBRICS}/delete/${id}`),
+  }
+
   foodAndDrinks = {
     all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
       `${API_ENDPOINTS.FOOD_AND_DRINKS}?page=${page}&type=${type}&search=${search}&lan=${locale}`

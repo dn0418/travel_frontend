@@ -32,4 +32,5 @@ export const API_ENDPOINTS = {
   SURROUNDING: "/surrounding",
   EVENTS: "/events",
   BLOGS: "/blogs",
+  RUBRICS: "/rubrics",
 };

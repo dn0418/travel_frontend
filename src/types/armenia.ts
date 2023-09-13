@@ -41,6 +41,8 @@ export interface BlogType {
   id: number;
   createdAt: string;
   updatedAt: string;
+  isRu?: boolean;
+  isHy?: boolean;
   title: string;
   title_ru: string;
   title_hy: string;
