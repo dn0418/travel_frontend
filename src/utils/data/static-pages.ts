@@ -10,11 +10,6 @@ export const staticPages = [
     link: "/about-us?tab=how_to_book_a_tour"
   },
   {
-    title: "Vacancy",
-    code: "vacancy",
-    link: "/about-us?tab=vacancy"
-  },
-  {
     title: "Useful To Know",
     code: "useful_to_know",
     link: "/armenia/useful_to_know"
@@ -23,10 +18,5 @@ export const staticPages = [
     title: "Brochure",
     code: "brochure",
     link: "/armenia/brochure"
-  },
-  {
-    title: "Travel Blog",
-    code: "travel_blog",
-    link: "/armenia/travel_blog"
   }
 ]

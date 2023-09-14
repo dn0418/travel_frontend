@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
 import { StaticPageType } from "../../../types";
 import { staticPages } from "../../../utils/data/static-pages";
-import SunTextEditor from "../../common/SunEditor";
+import SunPostEditor from "../../common/post-editor";
 
 interface PropsType {
   code: any;
@@ -56,7 +56,7 @@ const UpdateStaticPage = ({ code, pageData }: PropsType) => {
       </Typography>
       <Box>
         <div className="my-6">
-          <SunTextEditor
+          <SunPostEditor
             onChange={(text: string) => setContent(text)}
             text={content}
           />

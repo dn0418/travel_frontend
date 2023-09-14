@@ -53,6 +53,18 @@ export interface BlogInputType {
   rubric: string;
 }
 
+export interface VacancyInputType {
+  [key: string]: any;
+  isRu?: boolean;
+  isHy?: boolean;
+  title: string;
+  title_ru: string;
+  title_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+}
+
 export interface AccessoriesInputType {
   [key: string]: any;
   isRu: boolean;

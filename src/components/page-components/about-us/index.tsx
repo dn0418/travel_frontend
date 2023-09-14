@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AboutUsUIProps } from "../../../types/page-props";
 import { aboutPageTabs } from "../../../utils/data/about-page-tabs";
 import { localizationData } from "../../../utils/locales";
+import VacancySection from "./vacancy";
 const ReviewsSection = dynamic(() => import("./reviews-section"));
 
 
@@ -15,7 +16,9 @@ function AboutUsUI({
   tabIndex,
   reviews,
   reviewsPagination,
-  findStaticPage
+  findStaticPage,
+  vacancies,
+  vacanciesPagination
 }: AboutUsUIProps) {
   const [tabItems, setTabItems] = useState(aboutPageTabs.en);
   const { locale } = useRouter();
@@ -35,7 +38,8 @@ function AboutUsUI({
     } else {
       setTabItems(aboutPageTabs.en);
     }
-  }, [locale])
+  }, [locale]);
+
 
   return (
     <Container className='my-8 flex flex-col items-center'>
@@ -82,18 +86,11 @@ function AboutUsUI({
             </div>
         }
       </div>
+
       <div hidden={tabIndex !== "vacancy"} className='w-full my-4 md:my-8'>
-        {
-          findStaticPage("vacancy") ?
-            <div dangerouslySetInnerHTML={{ __html: findStaticPage("vacancy") }} />
-            :
-            <div className="flex justify-center items-center my-5">
-              <p className="text-3xl font-medium text-[#000000] py-5">
-                {localData.not_found_text}
-              </p>
-            </div>
-        }
+        <VacancySection pagination={vacanciesPagination} vacancies={vacancies} />
       </div>
+
       <div hidden={tabIndex !== "review"} className='w-full my-4 md:my-8'>
         <ReviewsSection reviewsPagination={reviewsPagination} reviews={reviews} />
       </div>

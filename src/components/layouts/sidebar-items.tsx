@@ -99,6 +99,11 @@ const sidebarItems: SidebarItemTypes[] = [
     icon: <BsFillCaretRightFill />,
     path: '/admin/ride-plan',
   },
+  {
+    title: 'Vacancy',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/vacancy',
+  },
 ];
 
 function SidebarItem({ title, icon, path, subItems }: SidebarItemTypes) {

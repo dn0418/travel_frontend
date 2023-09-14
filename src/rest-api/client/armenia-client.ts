@@ -88,6 +88,16 @@ class ArmeniaClient {
     delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.RUBRICS}/delete/${id}`),
   }
 
+  vacancy = {
+    all: (page?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.VACANCY}?page=${page}&search=${search}&lan=${locale}`
+    ),
+    create: (data: any) => HttpClient.post(`${API_ENDPOINTS.VACANCY}/create`, data),
+    update: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.VACANCY}/update/${id}`, data),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.VACANCY}/delete/${id}`),
+    findOne: (id: any) => HttpClient.get(`${API_ENDPOINTS.VACANCY}/${id}`),
+  }
+
   foodAndDrinks = {
     all: (page?: any, type?: any, search?: any, locale?: string) => HttpClient.get(
       `${API_ENDPOINTS.FOOD_AND_DRINKS}?page=${page}&type=${type}&search=${search}&lan=${locale}`

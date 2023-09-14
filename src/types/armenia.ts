@@ -67,3 +67,17 @@ export interface RubricType {
   name_ru: string;
   name_hy: string;
 }
+
+export interface VacancyType {
+  isRu?: boolean;
+  isHy?: boolean;
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  title_ru: string;
+  title_hy: string;
+  description: string;
+  description_ru: string;
+  description_hy: string;
+}

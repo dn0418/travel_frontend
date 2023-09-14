@@ -26,7 +26,7 @@ interface PropsType {
   rubrics: RubricType[];
 }
 
-function CreateNewBlog({
+function UpdateAdminBlog({
   currentTab,
   inputData,
   handleTabChange,
@@ -58,7 +58,7 @@ function CreateNewBlog({
             }
           </Tabs>
         </div>
-        <SectionTitle title="Create New Travel Blog" />
+        <SectionTitle title="Update Travel Blog" />
       </div>
       <div hidden={currentTab.value !== 'en'}>
         <div className="mx-5 lg:mx-12 grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -162,7 +162,7 @@ function CreateNewBlog({
             onClick={handleSubmit}
             className="py-3"
             variant="contained">
-            {isLoading ? "Creating..." : "Create Blog"}
+            {isLoading ? "Updating..." : "Update Blog"}
           </Button>
         </div>
       </div>
@@ -264,4 +264,4 @@ function CreateNewBlog({
   );
 };
 
-export default CreateNewBlog;
+export default UpdateAdminBlog;

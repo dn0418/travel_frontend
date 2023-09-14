@@ -11,14 +11,15 @@ import { NextPageWithLayout } from "../../src/types/page-props";
 export { getServerSideProps };
 
 const AboutUs: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const { reviewsData, staticPagesData } = props;
+  const { reviewsData, staticPagesData, vacanciesData } = props;
+  const vacancies = vacanciesData.data;
   const reviews = reviewsData.data;
   const staticPages: StaticPageType[] = staticPagesData.data;
   const reviewsPagination = reviewsData.pagination;
+  const vacanciesPagination = vacanciesData.meta;
   const router = useRouter()
   const tab = router.query["tab"];
   const [tabIndex, setTabIndex] = useState("who-are-you");
-
 
   const findStaticPage = (code: string) => {
     const page = staticPages.find((page: StaticPageType) => page.code === code);
@@ -53,8 +54,10 @@ const AboutUs: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSi
         tabIndex={tabIndex}
         handleTabChange={handleTabChange}
         reviews={reviews}
+        vacancies={vacancies}
         reviewsPagination={reviewsPagination}
         findStaticPage={findStaticPage}
+        vacanciesPagination={vacanciesPagination}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 // import type { CategoryQueryOptions, Product } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import armeniaClient from '../../client/armenia-client';
+import armeniaClient from '../client/armenia-client';
 
 type ParsedQueryParams = {
   id: string;
@@ -8,7 +8,7 @@ type ParsedQueryParams = {
 
 // This function gets called at build time
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const { data }: any = await armeniaClient.blogs.all();
+  const { data }: any = await armeniaClient.vacancy.all();
 
   const paths = data?.map((item: any) => {
     return {
@@ -24,18 +24,16 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params!;
-  const blogs = await armeniaClient.blogs.all(1, '', '');
+  const vacancies = await armeniaClient.vacancy.all(1, '', '');
 
   try {
-    await armeniaClient.blogs.all();
-    const blogDetails = await armeniaClient.blogs.getByID(id);
-    const rubrics = await armeniaClient.rubrics.all();
+    await armeniaClient.vacancy.all();
+    const details = await armeniaClient.vacancy.findOne(id);
 
     return {
       props: {
-        blogDetails: blogDetails,
-        blogsData: blogs,
-        rubrics: rubrics
+        details: details,
+        vacanciesData: vacancies,
       },
       revalidate: 30,
     };
