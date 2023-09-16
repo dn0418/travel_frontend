@@ -19,7 +19,7 @@ function ExpandedSectionTitle({ onchange, title }: Props) {
             expandIcon={<MdExpandMore />}
             aria-controls="tour-reviews"
           >
-            <h3 className="text-[#004C99] text-xl font-normal my-0">{title}</h3>
+            <h3 className="text-[#081000] text-xl font-normal my-0">{title}</h3>
           </AccordionSummary>
         </Accordion>
       </Container>

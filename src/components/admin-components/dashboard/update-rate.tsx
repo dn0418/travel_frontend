@@ -79,7 +79,7 @@ const UpdateCurrency = forwardRef<HTMLDivElement, PropsType>(({ handleCancelModa
   return (
     <Box tabIndex={-1} ref={ref} sx={formStyles.modalContainer}>
       <Typography
-        sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
+        sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
         Update Currency Rate
       </Typography>
       <Box

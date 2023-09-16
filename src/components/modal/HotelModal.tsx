@@ -157,7 +157,7 @@ function HotelModal({ buttonText }: IProps) {
       >
         <Box sx={formStyles.modalContainer}>
           <Typography
-            sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
+            sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}
           >
             {localData.hotel_modal_title}
           </Typography>

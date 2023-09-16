@@ -214,7 +214,7 @@ function UpdateIndividualPricing({ tourDetails }: PropsType) {
         onClose={handleAddModal}>
         <Box sx={formStyles.modalContainer}>
           <Typography
-            sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
+            sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
             Create New Price
           </Typography>
           <Box

@@ -117,7 +117,7 @@ const UpdateTourRoute = forwardRef<HTMLDivElement, PropsType>(({ handleCancelMod
   return (
     <Box tabIndex={-1} ref={ref} sx={formStyles.modalContainer}>
       <Typography
-        sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
+        sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
         Update Tour Route
       </Typography>
       <Box

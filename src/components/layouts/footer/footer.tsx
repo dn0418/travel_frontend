@@ -5,11 +5,12 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { BsTelegram } from "react-icons/bs";
+import { FaTripadvisor, FaVk } from "react-icons/fa";
+import { IoLogoYoutube } from "react-icons/io";
 import {
   IoLogoFacebook,
-  IoLogoInstagram,
-  IoLogoLinkedin,
-  IoLogoTwitter,
+  IoLogoInstagram
 } from "react-icons/io5";
 import { footerData } from "../../../utils/data/footer-data";
 import logo from "/public/Logo.png";
@@ -43,17 +44,23 @@ function Footer() {
               }
             </p>
             <div className='flex items-center gap-8 mt-8'>
-              <Link href='/'>
+              <Link href='https://www.facebook.com/toexpediGon'>
                 <IoLogoFacebook className='text-white text-xl' />
               </Link>
-              <Link href='/'>
-                <IoLogoTwitter className='text-white text-xl' />
-              </Link>
-              <Link href='/'>
-                <IoLogoLinkedin className='text-white text-xl' />
-              </Link>
-              <Link href='/'>
+              <Link href='https://www.instagram.com/2expediGon.com_/'>
                 <IoLogoInstagram className='text-white text-xl' />
+              </Link>
+              <Link href='https://t.me/toexpediGon'>
+                <BsTelegram className='text-white text-xl' />
+              </Link>
+              <Link href='https://www.tripadvisor.com/Attraction_Review-g293932-d23954458-Reviews-2expedition_Tour_Operator-Yerevan.html'>
+                <FaTripadvisor className='text-white text-xl' />
+              </Link>
+              <Link href='https://www.youtube.com/@2expediGon816'>
+                <IoLogoYoutube className='text-white text-xl' />
+              </Link>
+              <Link href='https://vk.com/public214460114'>
+                <FaVk className='text-white text-xl' />
               </Link>
             </div>
           </div>

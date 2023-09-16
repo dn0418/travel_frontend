@@ -156,7 +156,7 @@ function CarModel({ buttonText, type }: IProps) {
       >
         <Box sx={formStyles.modalContainer}>
           <Typography
-            sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}
+            sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}
           >
             {localData.rent_text + localData.car_text}
           </Typography>

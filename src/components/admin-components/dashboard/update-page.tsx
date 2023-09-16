@@ -51,7 +51,7 @@ const UpdateStaticPage = ({ code, pageData }: PropsType) => {
   return (
     <Paper className="p-5 mx-3 my-8">
       <Typography
-        sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
+        sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
         {`Update ${findPage()?.title} Page`}
       </Typography>
       <Box>

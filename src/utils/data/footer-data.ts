@@ -84,17 +84,17 @@ export const footerData: {
       children: [
         {
           id: 1,
-          title: "55 East Birchwood Ave. Brooklyn, New York 11201",
+          title: "Fuchik 2 all, 3/35, Yerevan,0078",
           route: "",
         },
         {
           id: 2,
-          title: "contact@interno.com",
+          title: "info@2expediGon.com",
           route: "",
         },
         {
           id: 3,
-          title: "(123) 456 - 7890",
+          title: "+37494 494 674",
           route: "",
         },
       ],

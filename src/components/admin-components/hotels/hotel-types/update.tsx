@@ -98,7 +98,7 @@ const UpdateHotelType = forwardRef<HTMLDivElement, PropsType>(
       <div className="" ref={ref} tabIndex={0}>
         <Box sx={formStyles.modalContainer}>
           <Typography
-            sx={{ fontSize: "24px", color: "#004C99", fontWeight: 600 }}>
+            sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
             Update Hotel Type
           </Typography>
           <Box
