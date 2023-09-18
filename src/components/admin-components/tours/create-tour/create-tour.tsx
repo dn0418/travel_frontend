@@ -65,6 +65,17 @@ function CreateNewTour({
         </div>
       </div>
       <div hidden={currentTab.value !== 'en'}>
+        <div className="col-span-2">
+          <FormControlLabel
+            control={
+              <Switch
+                onChange={(e: any) => handleInputChange('topSuggested', e.target.checked)}
+                checked={inputData.topSuggested}
+              />
+            }
+            label="Should this tour show as top-suggested?"
+          />
+        </div>
         <TourThumbnail
           inputData={inputData}
           setInputData={setInputData}

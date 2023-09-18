@@ -11,7 +11,7 @@ const RidePlanContact = dynamic(() => import('./ride-plan-contact'));
 const Testimonial = dynamic(() => import('./testimonial'));
 const TourSection = dynamic(() => import('./tours-section'));
 
-function Homepage({ reviews, tours, destinations, oneDayTour, fixedDateTour }: HomePageProps) {
+function Homepage({ reviews, tours, destinations, oneDayTour, fixedDateTour, topSuggestedTour }: HomePageProps) {
 
   return (
     <>
@@ -21,6 +21,7 @@ function Homepage({ reviews, tours, destinations, oneDayTour, fixedDateTour }: H
         tours={tours}
         oneDayTour={oneDayTour}
         fixedDateTour={fixedDateTour}
+        topSuggestedTour={topSuggestedTour}
       />
       <RidePlanContact />
       <Qualities />

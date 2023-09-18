@@ -63,6 +63,7 @@ const CreateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     locationImg: "",
     thumbnail: "",
     destinationId: '',
+    topSuggested: false,
   });
   const router = useRouter();
 

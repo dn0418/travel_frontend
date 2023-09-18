@@ -58,6 +58,7 @@ const UpdateTour: NextPageWithLayout<InferGetServerSidePropsType<typeof getStati
     locationImg: tourDetails?.locationImg || "",
     thumbnail: tourDetails?.thumbnail || "",
     destinationId: tourDetails?.destination.id.toString() || "",
+    topSuggested: tourDetails?.topSuggested || false,
   });
   const router = useRouter();
 

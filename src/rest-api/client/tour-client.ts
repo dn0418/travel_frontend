@@ -21,6 +21,7 @@ class TourClient {
     ) =>
       HttpClient.get(`${API_ENDPOINTS.TOURS}?page=${page}&type=${type}&search=${search}&month=${month}&destination=${destination}&days=${days}&lan=${language}&child=${child}`),
     oneDayTour: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/one-day?lan=${language}`),
+    topSuggested: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/top-suggested?lan=${language}`),
     fixedDateTour: (language: any) => HttpClient.get(`${API_ENDPOINTS.TOURS}/fixed-date?lan=${language}`),
     deleteById: (id: any) => HttpClient.delete(`${API_ENDPOINTS.TOURS}/delete/${id}`),
     create: (data: any) => HttpClient.post(`${API_ENDPOINTS.TOURS}/create`, data),

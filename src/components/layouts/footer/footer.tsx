@@ -31,7 +31,7 @@ function Footer() {
 
   return (
     <footer className=' inset-x-0 bottom-0 bg-black text-white py-6 sm:py-12'>
-      <Container className='grid sm:grid-cols-5 gap-x-5'>
+      <Container className='grid sm:grid-cols-6 gap-x-5'>
         <div className='sm:col-span-2'>
           <div className='bg-white w-fit px-8 py-3 rounded-lg'>
             <Image src={logo} alt='logo' />
@@ -74,7 +74,7 @@ function Footer() {
                   {child?.route ? (
                     <Link
                       className='no-underline text-white hover:text-[#EDA592]'
-                      href='/'>
+                      href={child.route}>
                       <ListItemText primary={child.title} />
                     </Link>
                   ) : (

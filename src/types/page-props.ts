@@ -16,6 +16,7 @@ export interface HomePageProps {
   tours: TourType[];
   fixedDateTour: TourType[];
   oneDayTour: TourType[];
+  topSuggestedTour: TourType[];
   destinations: TourDestinationType[];
 }
 

@@ -17,34 +17,60 @@ export const footerData: {
   },
   en: [
     {
-      id: 1,
+      id: 0,
       title: "Pages",
       children: [
         {
           id: 1,
-          title: "About Us",
-          route: "about-us",
+          title: "Our team",
+          route: "/",
         },
         {
           id: 2,
-          title: "Our Projects",
-          route: "our-projects",
+          title: "To book a tour",
+          route: "/",
         },
         {
           id: 3,
-          title: "Our Team",
-          route: "our-team",
+          title: "Vacancies",
+          route: "/about-us?tab=vacancy",
         },
         {
           id: 4,
-          title: "Contact Us",
-          route: "contact-us",
+          title: "Travel blog",
+          route: "/armenia/blogs",
         },
         {
           id: 5,
-          title: "Services",
-          route: "services",
+          title: "Contact us",
+          route: "/",
         },
+      ],
+    },
+    {
+      id: 1,
+      title: "Link to",
+      children: [
+        {
+          id: 1,
+          title: "Who are we",
+          route: "/",
+        },
+        {
+          id: 2,
+          title: "How to book a tour",
+          route: "/",
+        },
+        {
+          id: 3,
+          title: "Vacancies",
+          route: "/about-us?tab=vacancy",
+        },
+        {
+          id: 4,
+          title: "Travel blog",
+          route: "/armenia/blogs",
+        }
       ],
     },
     {
@@ -53,28 +79,28 @@ export const footerData: {
       children: [
         {
           id: 1,
-          title: "Kitchen",
-          route: "/",
+          title: "Tours",
+          route: "/tours",
         },
         {
           id: 2,
-          title: "Living Area",
-          route: "/",
+          title: "Rent a car",
+          route: "/services/transport",
         },
         {
           id: 3,
-          title: "Bathroom",
-          route: "/",
+          title: "Hotels",
+          route: "/services/hotels",
         },
         {
           id: 4,
-          title: "Dinning Hall",
-          route: "/",
+          title: "Things to see",
+          route: "/armenia/thing-to-see",
         },
         {
           id: 5,
-          title: "Bedroom",
-          route: "/",
+          title: "MICE",
+          route: "/services/mice",
         },
       ],
     },
@@ -102,34 +128,60 @@ export const footerData: {
   ],
   ru: [
     {
-      id: 1,
+      id: 0,
       title: "Страницы",
       children: [
         {
           id: 1,
-          title: "О нас",
-          route: "about-us",
+          title: "Наша команда",
+          route: "/",
         },
         {
           id: 2,
-          title: "Наши проекты",
-          route: "our-projects",
+          title: "Забронировать тур",
+          route: "/",
         },
         {
           id: 3,
-          title: "Наша команда",
-          route: "our-team",
+          title: "Вакансии",
+          route: "/about-us?tab=vacancy",
         },
         {
           id: 4,
-          title: "Свяжитесь с нами",
-          route: "contact-us",
+          title: "Путешествия блог",
+          route: "/armenia/blogs",
         },
         {
           id: 5,
-          title: "Услуги",
-          route: "services",
+          title: "Свяжитесь с нами",
+          route: "/",
         },
+      ],
+    },
+    {
+      id: 1,
+      title: "Ссылки",
+      children: [
+        {
+          id: 1,
+          title: "Кто мы",
+          route: "/",
+        },
+        {
+          id: 2,
+          title: "Как забронировать тур",
+          route: "/",
+        },
+        {
+          id: 3,
+          title: "Вакансии",
+          route: "/about-us?tab=vacancy",
+        },
+        {
+          id: 4,
+          title: "Путешествия блог",
+          route: "/armenia/blogs",
+        }
       ],
     },
     {
@@ -138,28 +190,28 @@ export const footerData: {
       children: [
         {
           id: 1,
-          title: "Кухня",
-          route: "/",
+          title: "Туры",
+          route: "/tours",
         },
         {
           id: 2,
-          title: "Жилая зона",
-          route: "/",
+          title: "Аренда автомобиля",
+          route: "/services/transport",
         },
         {
           id: 3,
-          title: "Ванная комната",
-          route: "/",
+          title: "Отели",
+          route: "/services/hotels",
         },
         {
           id: 4,
-          title: "Столовая",
-          route: "/",
+          title: "Достопримечательности",
+          route: "/armenia/thing-to-see",
         },
         {
           id: 5,
-          title: "Спальня",
-          route: "/",
+          title: "MICE",
+          route: "/services/mice",
         },
       ],
     },
@@ -169,17 +221,17 @@ export const footerData: {
       children: [
         {
           id: 1,
-          title: "55 East Birchwood Ave. Бруклин, Нью-Йорк 11201",
+          title: "Фучик 2, 3/35, Ереван, 0078",
           route: "",
         },
         {
           id: 2,
-          title: "contact@interno.com",
+          title: "info@2expediGon.com",
           route: "",
         },
         {
           id: 3,
-          title: "(123) 456 - 7890",
+          title: "+37494 494 674",
           route: "",
         },
       ],
@@ -187,34 +239,60 @@ export const footerData: {
   ],
   hy: [
     {
-      id: 1,
+      id: 0,
       title: "Էջեր",
       children: [
         {
           id: 1,
-          title: "Մեր մասին",
-          route: "about-us",
+          title: "Մեր թիմ",
+          route: "/",
         },
         {
           id: 2,
-          title: "Մեր նախագծերը",
-          route: "our-projects",
+          title: "Գնել աշխատանք",
+          route: "/",
         },
         {
           id: 3,
-          title: "Մեր թիմը",
-          route: "our-team",
+          title: "Հավաստագրեր",
+          route: "/about-us?tab=vacancy",
         },
         {
           id: 4,
-          title: "Կապ մեզ հետ",
-          route: "contact-us",
+          title: "Ճամփանիշների բլոգ",
+          route: "/armenia/blogs",
         },
         {
           id: 5,
-          title: "Ծառայություններ",
-          route: "services",
+          title: "Կապ մեզ հետ",
+          route: "/",
         },
+      ],
+    },
+    {
+      id: 1,
+      title: "Հղումներ",
+      children: [
+        {
+          id: 1,
+          title: "Մենք ո՞վ ենք",
+          route: "/",
+        },
+        {
+          id: 2,
+          title: "Ինչպես պատվիրել աշխատանք",
+          route: "/",
+        },
+        {
+          id: 3,
+          title: "Հավաստագրեր",
+          route: "/about-us?tab=vacancy",
+        },
+        {
+          id: 4,
+          title: "Ճամփանիշների բլոգ",
+          route: "/armenia/blogs",
+        }
       ],
     },
     {
@@ -223,48 +301,48 @@ export const footerData: {
       children: [
         {
           id: 1,
-          title: "Սրճարան",
-          route: "/",
+          title: "Տուրեր",
+          route: "/tours",
         },
         {
           id: 2,
-          title: "Բնակարանավայր",
-          route: "/",
+          title: "Ավտոմոբիլի վարձավճար",
+          route: "/services/transport",
         },
         {
           id: 3,
-          title: "Լոգարան",
-          route: "/",
+          title: "Հյուրանոցներ",
+          route: "/services/hotels",
         },
         {
           id: 4,
-          title: "Սեղանավայր",
-          route: "/",
+          title: "Դիտելու բաժիններ",
+          route: "/armenia/thing-to-see",
         },
         {
           id: 5,
-          title: "Ննջասեղան",
-          route: "/",
+          title: "MICE",
+          route: "/services/mice",
         },
       ],
     },
     {
       id: 3,
-      title: "Կապ",
+      title: "Կապը",
       children: [
         {
           id: 1,
-          title: "Բրուքլին, Նյու Յորք, Էստ Բիրչվուդ Ավե. 11201",
+          title: "Ֆուչիկ 2, 3/35, Երևան, 0078",
           route: "",
         },
         {
           id: 2,
-          title: "contact@interno.com",
+          title: "info@2expediGon.com",
           route: "",
         },
         {
           id: 3,
-          title: "(123) 456 - 7890",
+          title: "+37494 494 674",
           route: "",
         },
       ],

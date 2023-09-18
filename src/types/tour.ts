@@ -17,6 +17,7 @@ export interface TourType {
   bestTime_ru: string;
   bestTime_hy: string;
   isFixedDate: boolean;
+  topSuggested: boolean;
   startDate: string;
   endDate: string;
   date: string;

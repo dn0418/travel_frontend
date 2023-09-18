@@ -12,9 +12,10 @@ interface PropsType {
   tours: TourType[];
   fixedDateTour: TourType[];
   oneDayTour: TourType[];
+  topSuggestedTour: TourType[];
 }
 
-function TourSection({ tours, oneDayTour, fixedDateTour }: PropsType) {
+function TourSection({ tours, oneDayTour, fixedDateTour, topSuggestedTour }: PropsType) {
   const { locale } = useRouter();
 
   const localData = locale === "ru" ? localizationData.ru :
@@ -37,11 +38,11 @@ function TourSection({ tours, oneDayTour, fixedDateTour }: PropsType) {
             className='p-1 regular-shadow rounded-lg'
           >
             {
-              tours.length > 0 ?
+              topSuggestedTour.length > 0 ?
                 <Slider
                   {...settings}>
                   {
-                    tours.map((tour, index) => (
+                    topSuggestedTour.map((tour, index) => (
                       <TourCard tour={tour} key={index} />
                     ))
                   }

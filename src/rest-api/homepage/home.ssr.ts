@@ -8,6 +8,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 
   const toursData = await tourClient.tours?.all(locale);
   const oneDayTour = await tourClient.tours.oneDayTour(locale);
+  const topSuggestedTour = await tourClient.tours.topSuggested(locale);
   const fixedDateTour = await tourClient.tours.fixedDateTour(locale);
   const destinationData = await tourClient.tourDestination.all();
 
@@ -18,6 +19,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
       destinationData: destinationData,
       oneDayTourData: oneDayTour,
       fixedDateTourData: fixedDateTour,
+      topSuggestedTourData: topSuggestedTour
     },
     revalidate: 120,
   };
