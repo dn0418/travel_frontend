@@ -31,6 +31,22 @@ function RidePlanForm({
   const localData = locale === "ru" ? localizationData.ru :
     (locale === 'hy' ? localizationData.hy : localizationData.en);
 
+
+  const findUnSelected = () => {
+    const filtered = destinationFilterData.filter((destination) => {
+      const find = destinationInput.find((item: any) => item.name === destination.value);
+
+      if (!find) {
+        return true;
+      };
+      return false;
+    });
+
+    return filtered;
+  };
+
+  console.log(findUnSelected())
+
   return (
     <div className="make-ride-plan">
       <div className='grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5'>
@@ -147,11 +163,19 @@ function RidePlanForm({
                   }
                 >
                   {
-                    destinationFilterData.map((item, index) => (
-                      <MenuItem key={index} value={item.value}>
-                        {item.title}
-                      </MenuItem>
-                    ))
+                    (destinationCount.length > 1 && i === destinationCount.length - 1)
+                      ?
+                      findUnSelected().map((item, j) => (
+                        <MenuItem key={j} value={item.value}>
+                          {item.title}
+                        </MenuItem>
+                      ))
+                      :
+                      destinationFilterData.map((item, j) => (
+                        <MenuItem key={j} value={item.value}>
+                          {item.title}
+                        </MenuItem>
+                      ))
                   }
                 </Select>
               </FormControl>

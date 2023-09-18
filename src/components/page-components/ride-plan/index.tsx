@@ -84,8 +84,28 @@ function RidePlanUI() {
   }
 
   const handleRemoveDestination = (index: number) => {
-    setDestinationCount(destinationCount.filter((_, i) => i !== index));
-    setDestinationInput(destinationInput.filter((_, i) => i !== index));
+    setDestinationCount((prev: any) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      if (temp.length === 1) return temp;
+
+      temp.splice(index, 1);
+      return temp;
+    });
+
+    setDestinationInput((prev: any) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      temp.splice(index, 1);
+      if (temp.length === 0) {
+        temp.push({
+          name: '',
+          duration: '',
+          lat: null,
+          lng: null,
+          title: '',
+        });
+      }
+      return temp;
+    });
   }
 
   const handleSubmit = async () => {
