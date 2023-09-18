@@ -1,6 +1,5 @@
 // @flow strict
 
-import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import { useRouter } from "next/router";
 import { SurroundingType } from "../../../../types";
 
@@ -18,25 +17,11 @@ function SurroundingDetailsMaps({ surrounding }: { surrounding: SurroundingType 
       } />
 
       <div className="regular-shadow rounded-lg h-[432px] lg:w-[432px] p-4 md:mx-5">
-        {
-          surrounding.lat && surrounding.lng &&
-          <GoogleMap
-            mapContainerStyle={{ borderRadius: "8px", width: "100%", height: "100%" }}
-            center={{
-              lat: surrounding?.lat,
-              lng: surrounding?.lng,
-            }}
-            zoom={12}
-          >
-            <MarkerF
-              position={{
-                lat: surrounding?.lat,
-                lng: surrounding?.lng,
-              }}
-            >
-            </MarkerF>
-          </GoogleMap>
-        }
+        <div dangerouslySetInnerHTML={
+          {
+            __html: `${surrounding.maps}`
+          }
+        } />
       </div>
     </div>
   );

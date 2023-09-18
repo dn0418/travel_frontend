@@ -56,8 +56,7 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
     longDescription_ru: '',
     longDescription_hy: '',
     type: '',
-    lat: null,
-    lng: null,
+    maps: '',
   });
   const router = useRouter();
 
@@ -164,10 +163,7 @@ const CreateHotel: NextPageWithLayout<InferGetServerSidePropsType<typeof getServ
       toast.error(error);
       return;
     }
-    if (!inputData.lat || !inputData.lng) {
-      toast.error('Please select a location');
-      return;
-    }
+
     setIsLoading(true);
 
     const payload = JSON.stringify({

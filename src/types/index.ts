@@ -89,8 +89,7 @@ export interface ThingToSeeType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  lat: number;
-  lng: number;
+  maps: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;
@@ -126,8 +125,7 @@ export interface SurroundingType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  lat: number;
-  lng: number;
+  maps: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;
@@ -165,8 +163,7 @@ export interface FoodAndDrinksType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  lat: number;
-  lng: number;
+  maps: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;

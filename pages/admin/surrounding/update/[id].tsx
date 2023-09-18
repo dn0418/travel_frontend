@@ -55,8 +55,7 @@ const Update: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>>
     entrance: surrounding?.entrance || "",
     entrance_ru: surrounding?.entrance_ru || "",
     entrance_hy: surrounding?.entrance_hy || "",
-    lat: surrounding?.lat || null,
-    lng: surrounding?.lng || null,
+    maps: surrounding?.maps || "",
   });
   const router = useRouter();
 
@@ -179,10 +178,7 @@ const Update: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>>
       toast.error(error);
       return;
     }
-    if (!inputData.lat || !inputData.lng) {
-      toast.error('Please select a location');
-      return;
-    }
+
     setIsLoading(true);
 
     try {

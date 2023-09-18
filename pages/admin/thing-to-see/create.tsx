@@ -47,8 +47,7 @@ const CreateThingToSee: NextPageWithLayout = () => {
     entrance: "",
     entrance_ru: "",
     entrance_hy: "",
-    lat: null,
-    lng: null,
+    maps: "",
   });
   const router = useRouter();
 
@@ -155,10 +154,7 @@ const CreateThingToSee: NextPageWithLayout = () => {
       toast.error(error);
       return;
     }
-    if (!inputData.lat || !inputData.lng) {
-      toast.error('Please select a location');
-      return;
-    }
+
     setIsLoading(true);
 
     const payload = JSON.stringify({

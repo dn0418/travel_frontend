@@ -1,6 +1,5 @@
 // @flow strict
 
-import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import { useRouter } from "next/router";
 import { FoodAndDrinksType } from "../../../../types";
 
@@ -18,25 +17,11 @@ function FoodAndSeeDetailsMaps({ thing }: { thing: FoodAndDrinksType }) {
       } />
 
       <div className="regular-shadow rounded-lg h-[432px] lg:w-[432px] p-4 md:mx-5">
-        {
-          thing.lat && thing.lng &&
-          <GoogleMap
-            mapContainerStyle={{ borderRadius: "8px", width: "100%", height: "100%" }}
-            center={{
-              lat: thing?.lat,
-              lng: thing?.lng,
-            }}
-            zoom={12}
-          >
-            <MarkerF
-              position={{
-                lat: thing?.lat,
-                lng: thing?.lng,
-              }}
-            >
-            </MarkerF>
-          </GoogleMap>
-        }
+        <div dangerouslySetInnerHTML={
+          {
+            __html: `${thing.maps}`
+          }
+        } />
       </div>
     </div>
   );

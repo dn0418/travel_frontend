@@ -10,8 +10,7 @@ export interface EventType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  lat: number;
-  lng: number;
+  maps: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;

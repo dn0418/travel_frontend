@@ -29,8 +29,7 @@ export interface HotelInputType {
   longDescription_ru: string;
   longDescription_hy: string;
   type: string;
-  lat: number | null;
-  lng: number | null;
+  maps: string;
 }
 
 export interface BlogInputType {
@@ -153,8 +152,7 @@ export interface ThingToDoInputType {
   entrance: string;
   entrance_ru: string;
   entrance_hy: string;
-  lat: number | null;
-  lng: number | null;
+  maps: string;
 }
 
 export interface SurroundingInputType {
@@ -187,8 +185,7 @@ export interface SurroundingInputType {
   entrance: string;
   entrance_ru: string;
   entrance_hy: string;
-  lat: number | null;
-  lng: number | null;
+  maps: string;
 }
 
 export interface FoodAndDrinkInputType {
@@ -221,8 +218,7 @@ export interface FoodAndDrinkInputType {
   entrance: string;
   entrance_ru: string;
   entrance_hy: string;
-  lat: number | null;
-  lng: number | null;
+  maps: string;
 }
 
 export interface TourInputType {
@@ -298,8 +294,7 @@ export interface EventInputType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  lat: number | null;
-  lng: number | null;
+  maps: string;
   shortDescription: string;
   shortDescription_ru: string;
   shortDescription_hy: string;

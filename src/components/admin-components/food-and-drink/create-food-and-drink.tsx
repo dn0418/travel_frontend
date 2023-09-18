@@ -5,7 +5,6 @@ import { FoodAndDrinkInputType } from "../../../types/input-type";
 import { foodAndDrinksTypes } from "../../../utils/data/armenia-data";
 import SunTextEditor from "../../common/SunEditor";
 import SectionTitle from "../../common/section-title";
-import AdminGoogleMap from "../google-maps";
 
 interface PropsType {
   handleImageChange: any;
@@ -109,12 +108,15 @@ function CreateNewFoodAndDrink({
                 />
               </div>
           }
-          <div className="col-span-2">
-            <AdminGoogleMap
-              setState={setInputData}
-              state={inputData}
-            />
-          </div>
+          <TextField
+            label='Google Maps Code (400 x 400)'
+            onChange={(e: any) => handleInputChange('maps', e.target.value)}
+            variant='outlined'
+            className="w-full col-span-2"
+            multiline
+            rows={3}
+            value={inputData.maps}
+          />
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Food and Drink Type</InputLabel>
             <Select

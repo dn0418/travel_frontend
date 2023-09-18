@@ -10,8 +10,7 @@ export interface HotelDataType {
   name_ru: string;
   name_hy: string;
   thumbnail: string;
-  lat: number;
-  lng: number;
+  maps: string;
   price: number;
   score: number;
   fromAirport: string;
