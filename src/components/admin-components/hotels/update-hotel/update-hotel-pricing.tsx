@@ -12,19 +12,19 @@ import {
   TableRow,
   TextField,
   Typography,
-  useTheme
-} from '@mui/material';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import swal from 'sweetalert';
-import serviceClient from '../../../../rest-api/client/service-client';
-import { HotelDataType, HotelPricingTable } from '../../../../types/services';
-import UpdatePricing from './update-pricing';
+  useTheme,
+} from "@mui/material";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import swal from "sweetalert";
+import serviceClient from "../../../../rest-api/client/service-client";
+import { HotelDataType, HotelPricingTable } from "../../../../types/services";
+import UpdatePricing from "./update-pricing";
 
 interface PropsType {
-  pricing: HotelPricingTable[],
-  setPricing: any,
-  hotel?: HotelDataType
+  pricing: HotelPricingTable[];
+  setPricing: any;
+  hotel?: HotelDataType;
 }
 
 function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
@@ -32,23 +32,23 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
   const [priceInput, setPriceInput] = useState({
-    name: '',
-    name_ru: '',
-    name_hy: '',
-    firstPart: '',
-    lastPart: '',
+    name: "",
+    name_ru: "",
+    name_hy: "",
+    firstPart: "",
+    lastPart: "",
   });
   const theme = useTheme();
   // console.log(hotel)
 
   const closeUpdateModal = () => {
     setUpdateModal(false);
-  }
+  };
 
   const changeUpdateModal = (price: any) => {
     setSelectedPrice(price);
     setUpdateModal(true);
-  }
+  };
 
   const handleAddModal = () => {
     setOpenModal(!openModal);
@@ -59,11 +59,17 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
       const temp = JSON.parse(JSON.stringify(prev));
       temp[name] = value;
       return temp;
-    })
-  }
+    });
+  };
 
   const handleSubmit = async () => {
-    if (!priceInput.name || !priceInput.name_ru || !priceInput.name_hy || !priceInput.firstPart || !priceInput.lastPart) {
+    if (
+      !priceInput.name ||
+      !priceInput.name_ru ||
+      !priceInput.name_hy ||
+      !priceInput.firstPart ||
+      !priceInput.lastPart
+    ) {
       toast.error("All fields are required!");
       return;
     }
@@ -76,14 +82,14 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
         const temp = JSON.parse(JSON.stringify(previewData));
         temp.push(res.data);
         return temp;
-      })
+      });
       toast.success("Price created successfully!");
       handleAddModal();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
     }
-  }
+  };
 
   const handleDeletePrice = async (id: number) => {
     swal({
@@ -102,26 +108,25 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
           text: "Delete",
           value: true,
           visible: true,
-          closeModal: true
+          closeModal: true,
+        },
+      },
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        try {
+          const res = await serviceClient.hotels.deleteHotelPrice(id);
+          toast.success("Price deleted successfully!");
+          setPricing((previewData: any) => {
+            const temp = JSON.parse(JSON.stringify(previewData));
+            const filteredData = temp.filter((item: any) => item.id !== id);
+            return filteredData;
+          });
+        } catch (error) {
+          toast.error("Something went wrong!");
         }
       }
-    })
-      .then(async (willDelete) => {
-        if (willDelete) {
-          try {
-            const res = await serviceClient.hotels.deleteHotelPrice(id);
-            toast.success('Price deleted successfully!')
-            setPricing((previewData: any) => {
-              const temp = JSON.parse(JSON.stringify(previewData));
-              const filteredData = temp.filter((item: any) => item.id !== id);
-              return filteredData;
-            })
-          } catch (error) {
-            toast.error('Something went wrong!')
-          }
-        }
-      });
-  }
+    });
+  };
 
   const formStyles = {
     modalContainer: {
@@ -132,7 +137,7 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
       width: "50%",
       bgcolor: "background.paper",
       boxShadow: 24,
-      px: '32px',
+      px: "32px",
       py: 5,
       borderRadius: "12px",
       overflowY: "scroll",
@@ -151,7 +156,7 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
       [theme.breakpoints.down("md")]: {
         gridTemplateColumns: "repeat(1, 1fr)",
         gap: "8px",
-        mt: "12px"
+        mt: "12px",
       },
     },
     buttonContainer: {
@@ -162,8 +167,7 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   };
 
   return (
-    <div
-      className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb] tour-details-page">
+    <div className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb] tour-details-page">
       <div className="">
         <p className="text-lg font-medium uppercase">Hotel Pricing Table</p>
         <TableContainer className="tour-price-table bg-white">
@@ -173,106 +177,180 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
                 <TableCell className="text-base" align="center">
                   Name
                 </TableCell>
-                <TableCell className="text-base" align="center">Name(Ru)</TableCell>
-                <TableCell className="text-base" align="center">Name(Hy)</TableCell>
-                <TableCell className="text-base" align="center">First Part</TableCell>
-                <TableCell className="text-base" align="center">Last Part</TableCell>
-                <TableCell className="text-base" align="center">Actions</TableCell>
+                <TableCell className="text-base" align="center">
+                  Name(Ru)
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  Name(Hy)
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  First Part
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  Last Part
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {
-                pricing.map((pricing, index: number) => (
-                  <TableRow key={index}>
-                    <TableCell align="center">{pricing.name}</TableCell>
-                    <TableCell align="center">{pricing.name_ru} </TableCell>
-                    <TableCell align="center">{pricing.name_hy} </TableCell>
-                    <TableCell align="center">{pricing.firstPart} </TableCell>
-                    <TableCell align="center">{pricing.lastPart} </TableCell>
-                    <TableCell className='flex gap-2' align="center">
-                      <Button
-                        variant='text'
-                        color='secondary'
-                        onClick={() => changeUpdateModal(pricing)}
-                        className='shadow text-xs'>Edit</Button>
-                      <Button
-                        variant='text'
-                        color='secondary'
-                        onClick={() => handleDeletePrice(pricing.id)}
-                        className='shadow text-xs'>Delete</Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
+              {pricing.map((pricing, index: number) => (
+                <TableRow key={index}>
+                  <TableCell align="center">{pricing.name}</TableCell>
+                  <TableCell align="center">{pricing.name_ru} </TableCell>
+                  <TableCell align="center">{pricing.name_hy} </TableCell>
+                  <TableCell align="center">{pricing.firstPart} </TableCell>
+                  <TableCell align="center">{pricing.lastPart} </TableCell>
+                  <TableCell className="flex gap-2" align="center">
+                    <Button
+                      variant="text"
+                      color="secondary"
+                      onClick={() => changeUpdateModal(pricing)}
+                      className="shadow text-xs"
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="text"
+                      color="secondary"
+                      onClick={() => handleDeletePrice(pricing.id)}
+                      className="shadow text-xs"
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
+
+        {/* FirstPart & Lastpart Naming */}
+        <p className="text-lg font-medium uppercase">Column Names</p>
+        <TableContainer className="tour-price-table bg-white">
+          <Table aria-label="tour pricing table">
+            <TableHead>
+              <TableRow>
+                <TableCell className="text-base" align="center">
+                  FirstPart Name
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  FirstPart Name (Ru)
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  FirstPart Name (Hy)
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  LastPart Name
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  LastPart Name (Ru)
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  LastPart Name (Hy)
+                </TableCell>
+                <TableCell className="text-base" align="center">
+                  Actions
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {pricing.map((pricing, index: number) => (
+                <TableRow key={index}>
+                  <TableCell align="center">{pricing.name}</TableCell>
+                  <TableCell align="center">{pricing.name_ru} </TableCell>
+                  <TableCell align="center">{pricing.name_hy} </TableCell>
+                  <TableCell align="center">{pricing.firstPart} </TableCell>
+                  <TableCell align="center">{pricing.lastPart} </TableCell>
+                  <TableCell className="flex gap-2" align="center">
+                    <Button
+                      variant="text"
+                      color="secondary"
+                      onClick={() => changeUpdateModal(pricing)}
+                      className="shadow text-xs"
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="text"
+                      color="secondary"
+                      onClick={() => handleDeletePrice(pricing.id)}
+                      className="shadow text-xs"
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
         <div className="flex mt-5 justify-end">
           <Button
-            className='bg-black text-white'
+            className="bg-black text-white"
             onClick={handleAddModal}
-            variant='contained'>
+            variant="contained"
+          >
             Add New Price
           </Button>
         </div>
       </div>
-      <Modal
-        open={openModal}
-        onClose={handleAddModal}>
+      <Modal open={openModal} onClose={handleAddModal}>
         <Box sx={formStyles.modalContainer}>
           <Typography
-            sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
+            sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}
+          >
             Create New Price
           </Typography>
-          <Box
-            sx={formStyles.gridContainer}>
+          <Box sx={formStyles.gridContainer}>
             <TextField
-              label='Name'
+              label="Name"
               name="name"
               value={priceInput?.name}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
+              variant="outlined"
             />
             <TextField
-              label='Name Ru'
+              label="Name Ru"
               name="name_ru"
               value={priceInput?.name_ru}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
+              variant="outlined"
             />
             <TextField
-              label='Name Hy'
+              label="Name Hy"
               name="name_hy"
               value={priceInput?.name_hy}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
+              variant="outlined"
             />
             <TextField
-              label='01.02-30.03'
+              label="01.02-30.03"
               name="firstPart"
               value={priceInput?.firstPart}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
-              type='number'
+              variant="outlined"
+              type="number"
             />
             <TextField
-              label='01.04-30.12'
+              label="01.04-30.12"
               name="lastPart"
               value={priceInput?.lastPart}
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
-              variant='outlined'
-              type='number'
+              variant="outlined"
+              type="number"
             />
             <div style={formStyles.buttonContainer}>
               <Button
                 onClick={handleAddModal}
                 color="secondary"
-                variant="outlined">
+                variant="outlined"
+              >
                 Cancle
               </Button>
-              <Button
-                onClick={handleSubmit}
-                variant="contained">
+              <Button onClick={handleSubmit} variant="contained">
                 Create
               </Button>
             </div>
@@ -281,7 +359,8 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
       </Modal>
       <Modal
         open={updateModal && selectedPrice !== null}
-        onClose={closeUpdateModal}>
+        onClose={closeUpdateModal}
+      >
         <UpdatePricing
           price={selectedPrice}
           handleCancelModal={closeUpdateModal}

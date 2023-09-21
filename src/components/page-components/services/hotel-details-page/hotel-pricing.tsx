@@ -15,6 +15,7 @@ interface Props {
 }
 
 export default function HotelPricingTable({ hotel }: Props) {
+  console.log(hotel)
   const { pricingTable } = hotel;
   const { locale } = useRouter();
   const localData =
