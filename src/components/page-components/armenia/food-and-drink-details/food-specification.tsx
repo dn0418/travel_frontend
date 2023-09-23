@@ -119,7 +119,7 @@ function FoodAndDrinkSpecification({ thing }: { thing: FoodAndDrinksType }) {
       <p className="flex items-center gap-3">
         <MdEventAvailable className="text-base text-[#EDA592]  font-bold" />
         <span className="text-base text-[#5e5e5e]">
-          {localData.vegas_text}:
+          {localData.vegan_menu}:
         </span>
         <span className="text-base text-[#5e5e5e] font-medium">
           {locale === "ru"

@@ -72,7 +72,7 @@ export interface LocaleDataItems {
   route_text: string;
   package_details_text: string;
   related_tours_text: string;
-  vegas_text: string;
+  vegan_menu: string;
   food_and_drink: string;
   no_text: string;
   yes_text: string;
