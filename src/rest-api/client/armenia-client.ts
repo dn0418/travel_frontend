@@ -111,6 +111,16 @@ class ArmeniaClient {
     newImage: (data: any) => HttpClient.post(
       `${API_ENDPOINTS.FOOD_AND_DRINKS}/image/create`, data),
   }
+
+  brochure = {
+    all: (page?: any, search?: any, locale?: string) => HttpClient.get(
+      `${API_ENDPOINTS.BROCHURE}?page=${page}&locale=${locale}&search=${search}`
+    ),
+    findById: (id: any) => HttpClient.get(`${API_ENDPOINTS.BROCHURE}/${id}`),
+    create: (data: any) => HttpClient.post(`${API_ENDPOINTS.BROCHURE}/create`, data),
+    delete: (id: any) => HttpClient.delete(`${API_ENDPOINTS.BROCHURE}/delete/${id}`),
+    update: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.BROCHURE}/update/${id}`, data),
+  }
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

@@ -3,8 +3,8 @@
 import { InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import GeneralLayout from '../../../src/components/layouts/_general';
-import BrochureUI from '../../../src/components/page-components/armenia/brochure';
+import AdminBrochureUI from '../../../src/components/admin-components/brochure';
+import DashboardLayout from '../../../src/components/layouts/dashboard-layout';
 import { getServerSideProps } from "../../../src/rest-api/armenia/brochure/brochure.ssr";
 import { NextPageWithLayout } from '../../../src/types/page-props';
 export { getServerSideProps };
@@ -40,7 +40,7 @@ const Brochure: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerS
 
   return (
     <>
-      <BrochureUI
+      <AdminBrochureUI
         brochures={brochures}
         handleSearch={handleSearch}
         handlePageChange={handlePageChange}
@@ -52,7 +52,7 @@ const Brochure: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerS
 
 
 Brochure.getLayout = function getLayout(page) {
-  return <GeneralLayout>{page}</GeneralLayout>;
+  return <DashboardLayout>{page}</DashboardLayout>;
 };
 
 export default Brochure;

@@ -90,6 +90,11 @@ const sidebarItems: SidebarItemTypes[] = [
     path: '/admin/mice',
   },
   {
+    title: 'Brochure',
+    icon: <BsFillCaretRightFill />,
+    path: '/admin/brochure',
+  },
+  {
     title: 'Call Back',
     icon: <BsFillCaretRightFill />,
     path: '/admin/callback',

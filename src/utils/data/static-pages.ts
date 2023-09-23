@@ -13,10 +13,5 @@ export const staticPages = [
     title: "Useful To Know",
     code: "useful_to_know",
     link: "/armenia/useful_to_know"
-  },
-  {
-    title: "Brochure",
-    code: "brochure",
-    link: "/armenia/brochure"
   }
 ]

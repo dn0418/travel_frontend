@@ -33,5 +33,6 @@ export const API_ENDPOINTS = {
   EVENTS: "/events",
   BLOGS: "/blogs",
   RUBRICS: "/rubrics",
-  VACANCY: "/vacancy"
+  VACANCY: "/vacancy",
+  BROCHURE: "brochure"
 };
