@@ -15,15 +15,14 @@ interface Props {
 }
 
 export default function HotelPricingTable({ hotel }: Props) {
-  console.log(hotel)
   const { pricingTable } = hotel;
   const { locale } = useRouter();
   const localData =
     locale === "ru"
       ? localizationData.ru
       : locale === "hy"
-        ? localizationData.hy
-        : localizationData.en;
+      ? localizationData.hy
+      : localizationData.en;
 
   return (
     <Container className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb]">
@@ -37,10 +36,10 @@ export default function HotelPricingTable({ hotel }: Props) {
               <TableRow>
                 <TableCell className="text-base" align="center"></TableCell>
                 <TableCell className="text-base" align="center">
-                  01.02-30.03
+                  {hotel?.pricingTableHeaderFirstPartName}
                 </TableCell>
                 <TableCell className="text-base" align="center">
-                  01.04-30.12
+                  {hotel?.pricingTableHeaderLastPartName}
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -51,8 +50,8 @@ export default function HotelPricingTable({ hotel }: Props) {
                     {locale === "ru"
                       ? row.name_ru
                       : locale === "hy"
-                        ? row.name_hy
-                        : row.name}
+                      ? row.name_hy
+                      : row.name}
                   </TableCell>
                   <TableCell align="center">{row.firstPart}</TableCell>
                   <TableCell align="center">{row.lastPart} AMD</TableCell>

@@ -20,6 +20,7 @@ import swal from "sweetalert";
 import serviceClient from "../../../../rest-api/client/service-client";
 import { HotelDataType, HotelPricingTable } from "../../../../types/services";
 import UpdatePricing from "./update-pricing";
+import UpdatePricingTableColumnName from "./update-pricing-column-name";
 
 interface PropsType {
   pricing: HotelPricingTable[];
@@ -31,6 +32,8 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
+  const [updateColumnNameModal, setUpdateColumnNameModal] = useState(false);
+  const [existingColumnNames, setExistingColumnNames] = useState({"firstPart": hotel?.pricingTableHeaderFirstPartName, "lastPart": hotel?.pricingTableHeaderLastPartName});
   const [priceInput, setPriceInput] = useState({
     name: "",
     name_ru: "",
@@ -39,7 +42,6 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
     lastPart: "",
   });
   const theme = useTheme();
-  // console.log(hotel)
 
   const closeUpdateModal = () => {
     setUpdateModal(false);
@@ -48,6 +50,14 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
   const changeUpdateModal = (price: any) => {
     setSelectedPrice(price);
     setUpdateModal(true);
+  };
+
+  const closeUpdateColumnNameModal = () => {
+    setUpdateColumnNameModal(false);
+  };
+
+  const changeUpdateColumnNameModal = () => {
+    setUpdateColumnNameModal(true);
   };
 
   const handleAddModal = () => {
@@ -184,71 +194,22 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
                   Name(Hy)
                 </TableCell>
                 <TableCell className="text-base" align="center">
-                  First Part
+                  {existingColumnNames.firstPart} &nbsp;
+                  <small
+                    className="font-thin italic text-slate-600 cursor-pointer"
+                    onClick={changeUpdateColumnNameModal}
+                  >
+                    edit date
+                  </small>
                 </TableCell>
                 <TableCell className="text-base" align="center">
-                  Last Part
-                </TableCell>
-                <TableCell className="text-base" align="center">
-                  Actions
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {pricing.map((pricing, index: number) => (
-                <TableRow key={index}>
-                  <TableCell align="center">{pricing.name}</TableCell>
-                  <TableCell align="center">{pricing.name_ru} </TableCell>
-                  <TableCell align="center">{pricing.name_hy} </TableCell>
-                  <TableCell align="center">{pricing.firstPart} </TableCell>
-                  <TableCell align="center">{pricing.lastPart} </TableCell>
-                  <TableCell className="flex gap-2" align="center">
-                    <Button
-                      variant="text"
-                      color="secondary"
-                      onClick={() => changeUpdateModal(pricing)}
-                      className="shadow text-xs"
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="text"
-                      color="secondary"
-                      onClick={() => handleDeletePrice(pricing.id)}
-                      className="shadow text-xs"
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-
-        {/* FirstPart & Lastpart Naming */}
-        <p className="text-lg font-medium uppercase">Column Names</p>
-        <TableContainer className="tour-price-table bg-white">
-          <Table aria-label="tour pricing table">
-            <TableHead>
-              <TableRow>
-                <TableCell className="text-base" align="center">
-                  FirstPart Name
-                </TableCell>
-                <TableCell className="text-base" align="center">
-                  FirstPart Name (Ru)
-                </TableCell>
-                <TableCell className="text-base" align="center">
-                  FirstPart Name (Hy)
-                </TableCell>
-                <TableCell className="text-base" align="center">
-                  LastPart Name
-                </TableCell>
-                <TableCell className="text-base" align="center">
-                  LastPart Name (Ru)
-                </TableCell>
-                <TableCell className="text-base" align="center">
-                  LastPart Name (Hy)
+                  {existingColumnNames.lastPart} &nbsp;
+                  <small
+                    className="font-thin italic text-slate-600 cursor-pointer"
+                    onClick={changeUpdateColumnNameModal}
+                  >
+                    edit date
+                  </small>
                 </TableCell>
                 <TableCell className="text-base" align="center">
                   Actions
@@ -286,7 +247,6 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
             </TableBody>
           </Table>
         </TableContainer>
-
         <div className="flex mt-5 justify-end">
           <Button
             className="bg-black text-white"
@@ -296,6 +256,34 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
             Add New Price
           </Button>
         </div>
+        <p className="text-lg font-medium uppercase">Column Names</p>
+
+        <TableContainer>
+          <Table>
+            <TableRow className="bg-white">
+              <TableCell className="text-base font-bold" align="center">
+                FirstPart
+              </TableCell>
+              <TableCell className="text-base font-bold" align="center">
+                LastPart
+              </TableCell>
+              <TableCell className="text-base font-bold" align="center">
+                Action
+              </TableCell>
+            </TableRow>
+            <TableRow className="bg-white">
+              <TableCell className="text-base" align="center">
+                En
+              </TableCell>
+              <TableCell className="text-base" align="center">
+                Hy
+              </TableCell>
+              <TableCell className="text-base" align="center">
+                Ru
+              </TableCell>
+            </TableRow>
+          </Table>
+        </TableContainer>
       </div>
       <Modal open={openModal} onClose={handleAddModal}>
         <Box sx={formStyles.modalContainer}>
@@ -365,6 +353,15 @@ function UpdateHotelPricing({ pricing, setPricing, hotel }: PropsType) {
           price={selectedPrice}
           handleCancelModal={closeUpdateModal}
           setPricing={setPricing}
+        />
+      </Modal>
+      {/* Below Modal is for FirstPart and LastPart remaning */}
+      <Modal open={updateColumnNameModal} onClose={closeUpdateColumnNameModal}>
+        <UpdatePricingTableColumnName
+          data={hotel}
+          hotelId={hotel?.id}
+          handleCancelPricingTableColumnNameModal={closeUpdateColumnNameModal}
+          setPricingTableColumnNameData={setExistingColumnNames}
         />
       </Modal>
     </div>

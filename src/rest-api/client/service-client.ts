@@ -97,6 +97,7 @@ class ServiceClient {
     updateHotel: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELS}/update/${id}`, data),
     createNewPrice: (data: any) => HttpClient.post(`${API_ENDPOINTS.HOTELS}/pricing/create`, data),
     updateHotelPrice: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELS}/pricing/update/${id}`, data),
+    updateHotelPriceTableColumnName: (id: any, data: any) => HttpClient.put(`${API_ENDPOINTS.HOTELS}/price-table-header/update/${id}`, data),
     deleteHotelPrice: (id: any) => HttpClient.delete(`${API_ENDPOINTS.HOTELS}/pricing/delete/${id}`),
   };
 

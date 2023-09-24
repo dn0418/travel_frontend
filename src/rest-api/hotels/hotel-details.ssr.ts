@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         hotelReviews: reviews,
         hotelsTypesData: hotelsTypes,
       },
-      revalidate: 30,
+      revalidate: 10,
     };
   } catch (error) {
     return {
