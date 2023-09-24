@@ -38,6 +38,8 @@ export interface HotelDataType {
   reviews: ReviewTypes[];
   rating: number;
   pricingTable: HotelPricingTable[]
+  pricingTableHeaderFirstPartName: string;
+  pricingTableHeaderLastPartName: string
 }
 
 export interface HotelPricingTable {
