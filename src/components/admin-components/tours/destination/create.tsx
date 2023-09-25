@@ -1,11 +1,12 @@
 // @flow strict
 
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import tourClient from "../../../../rest-api/client/tour-client";
+import AdminGoogleMap from "../../google-maps";
 
 interface PropsType {
   handleChangeModal: any;
@@ -13,19 +14,22 @@ interface PropsType {
 
 const CreateDestination = ({ handleChangeModal }: PropsType) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [destinationInput, setDestinationInput] = useState({
+  const [inputData, setInputData] = useState({
     name: '',
     name_ru: '',
     name_hy: '',
     country: '',
     country_ru: '',
     country_hy: '',
+    lat: null,
+    lng: null,
+    rideType: '',
   });
   const theme = useTheme();
   const router = useRouter();
 
   const handleChangeInput = (name: string, value: string) => {
-    setDestinationInput((prev) => {
+    setInputData((prev) => {
       const temp = JSON.parse(JSON.stringify(prev));
       temp[name] = value;
       return temp;
@@ -33,24 +37,32 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
   }
 
   const handleSubmit = async () => {
-    if (!destinationInput.name || !destinationInput.name_ru || !destinationInput.name_hy || !destinationInput.country || !destinationInput.country_ru || !destinationInput.country_hy) {
+    if (!inputData.name || !inputData.name_ru || !inputData.name_hy || !inputData.country || !inputData.country_ru || !inputData.country_hy || !inputData.rideType) {
       toast.error("Please fill all the fields");
+      return;
+    }
+
+    if (!inputData.lat || !inputData.lng) {
+      toast.error("Please select a location");
       return;
     }
 
     setIsLoading(true);
     const payload = {
-      name: destinationInput.name,
-      name_ru: destinationInput.name_ru,
-      name_hy: destinationInput.name_hy,
-      country: destinationInput.country,
-      country_ru: destinationInput.country_ru,
-      country_hy: destinationInput.country_hy,
+      name: inputData.name,
+      name_ru: inputData.name_ru,
+      name_hy: inputData.name_hy,
+      country: inputData.country,
+      country_ru: inputData.country_ru,
+      country_hy: inputData.country_hy,
+      lat: inputData.lat,
+      lng: inputData.lng,
+      rideType: inputData.rideType,
     }
 
     try {
-      const res = await tourClient.tourDestination.create(payload);
-      toast.success("Destination updated successfully");
+      await tourClient.tourDestination.create(payload);
+      toast.success("Destination created successfully");
       router.push({
         pathname: router.pathname
       });
@@ -69,7 +81,7 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      width: "50%",
+      width: "60%",
       bgcolor: "background.paper",
       boxShadow: 24,
       px: '32px',
@@ -85,7 +97,7 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
     },
     gridContainer: {
       display: "grid",
-      gridTemplateColumns: "repeat(1, 1fr)",
+      gridTemplateColumns: "repeat(2, 1fr)",
       gap: "16px",
       mt: "20px",
       [theme.breakpoints.down("md")]: {
@@ -98,7 +110,11 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
       display: "flex",
       justifyContent: "flex-end",
       gap: "16px",
+      gridColumn: "1 / -1",
     },
+    mapContainer: {
+      gridColumn: "1 / -1",
+    }
   };
 
   return (
@@ -110,49 +126,77 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
         </Typography>
         <Box
           sx={formStyles.gridContainer}>
+          <div style={formStyles.mapContainer}>
+            <AdminGoogleMap
+              setState={setInputData}
+              state={inputData}
+            />
+          </div>
           <TextField
             label='Name'
             name="name"
-            value={destinationInput?.name}
+            value={inputData?.name}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Name Ru'
             name="name_ru"
-            value={destinationInput?.name_ru}
+            value={inputData?.name_ru}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Name Hy'
             name="name_hy"
-            value={destinationInput?.name_hy}
+            value={inputData?.name_hy}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Country'
             name="country"
-            value={destinationInput?.country}
+            value={inputData?.country}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Country Ru'
             name="country_ru"
-            value={destinationInput?.country_ru}
+            value={inputData?.country_ru}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             variant='outlined'
           />
           <TextField
             label='Country Hy'
             name="country_hy"
-            value={destinationInput?.country_hy}
+            value={inputData?.country_hy}
             onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
             type='email'
             variant='outlined'
           />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Ride Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              value={inputData?.rideType}
+              label="Ride Type"
+              onChange={(e) => handleChangeInput("rideType", e.target.value)}
+            >
+              <MenuItem value="biCycle">
+                BiCycle
+              </MenuItem>
+              <MenuItem value="bike">
+                Bike
+              </MenuItem>
+              <MenuItem value="car">
+                Car
+              </MenuItem>
+              <MenuItem value="hiking">
+                Hiking
+              </MenuItem>
+            </Select>
+          </FormControl>
           <div style={formStyles.buttonContainer} className="">
             <Button
               onClick={handleChangeModal}
@@ -174,6 +218,6 @@ const CreateDestination = ({ handleChangeModal }: PropsType) => {
 }
 
 
-CreateDestination.displayName = 'UpdateDestination';
+CreateDestination.displayName = 'CreateDestination';
 
 export default CreateDestination;

@@ -2,6 +2,7 @@
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
 
 function RidePlanMap({ destinationInput }: any) {
+  console.log(destinationInput)
 
   return (
     <div className="p-4 regular-shadow rounded-xl">
@@ -12,12 +13,11 @@ function RidePlanMap({ destinationInput }: any) {
       >
         {destinationInput.length > 0 &&
           destinationInput.map((item: { lat: number, lng: number }, i: number) => (
-            item.lat && item.lng ?
-              <MarkerF key={`${item.lat}-${i}`} position={{
-                lat: item.lat,
-                lng: item.lng
-              }} />
-              : <></>
+            (item.lat && item.lng) &&
+            <MarkerF key={i} position={{
+              lat: item.lat,
+              lng: item.lng
+            }} />
           ))
         }
       </GoogleMap>

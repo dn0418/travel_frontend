@@ -3,9 +3,11 @@
 import { Button, Container } from "@mui/material";
 import Link from "next/link";
 import { BsCheckCircleFill } from 'react-icons/bs';
+import GeneralLayout from "../../src/components/layouts/_general";
+import { NextPageWithLayout } from "../../src/types/page-props";
 
 
-function RideSuccess() {
+const RideSuccess: NextPageWithLayout = () => {
   return (
     <Container className="min-h-[60vh] flex flex-col items-center justify-center">
       <div className="">
@@ -22,6 +24,10 @@ function RideSuccess() {
       </div>
     </Container>
   );
+};
+
+RideSuccess.getLayout = function getLayout(page) {
+  return <GeneralLayout footer={false}>{page}</GeneralLayout>;
 };
 
 export default RideSuccess;

@@ -11,7 +11,7 @@ import { FaBicycle, FaCarSide, FaHiking } from 'react-icons/fa';
 import { RiMotorbikeFill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { TiLocation } from 'react-icons/ti';
-import { destinationFilterData } from '../../../utils/data/homepage-data';
+import { TourDestinationType } from '../../../types/tour';
 import { localizationData } from '../../../utils/locales';
 
 function RidePlanForm({
@@ -25,16 +25,19 @@ function RidePlanForm({
   changeDestinationCount,
   handleRemoveDestination,
   handleSubmit,
-  isLoading
+  isLoading,
+  locations
 }: any) {
   const { locale } = useRouter()
   const localData = locale === "ru" ? localizationData.ru :
     (locale === 'hy' ? localizationData.hy : localizationData.en);
 
-
-  const findUnSelected = () => {
-    const filtered = destinationFilterData.filter((destination) => {
-      const find = destinationInput.find((item: any) => item.name === destination.value);
+  const findUnSelected = (i: number) => {
+    const filtered = locations.filter((destination: TourDestinationType) => {
+      if (destinationInput[i].name === destination.id) {
+        return true;
+      }
+      const find = destinationInput.find((item: any) => item.name === destination.id);
 
       if (!find) {
         return true;
@@ -45,7 +48,6 @@ function RidePlanForm({
     return filtered;
   };
 
-  console.log(findUnSelected())
 
   return (
     <div className="make-ride-plan">
@@ -125,80 +127,6 @@ function RidePlanForm({
             />
           </FormControl>
         </div>
-        {
-          destinationCount.map((item: any, i: number) => (
-            <div key={i} className="col-span-1 md:col-span-2 grid grid-cols-2 gap-5">
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                  {
-                    i === 0 ? localData.starting_city : localData.next_city
-                  }
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="starting city"
-                  value={destinationInput[i].name}
-                  onChange={(e: any) =>
-                    handleChangeDestination("name", e.target.value, i)
-                  }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <div
-                        className="flex flex-col bg-white rounded-[4px] px-1">
-                        {
-                          destinationInput[i].name ?
-                            <Button
-                              variant='text'
-                              onClick={() => handleRemoveDestination(i)}
-                              className='text-sm bg-[#EDA592] min-w-fit p-0.5 rounded-full'
-                            >
-                              <RxCross2 className="text-white" />
-                            </Button>
-                            :
-                            <TiLocation className="text-2xl text-[#EDA592]" />
-                        }
-                      </div>
-                    </InputAdornment>
-                  }
-                >
-                  {
-                    (destinationCount.length > 1 && i === destinationCount.length - 1)
-                      ?
-                      findUnSelected().map((item, j) => (
-                        <MenuItem key={j} value={item.value}>
-                          {item.title}
-                        </MenuItem>
-                      ))
-                      :
-                      destinationFilterData.map((item, j) => (
-                        <MenuItem key={j} value={item.value}>
-                          {item.title}
-                        </MenuItem>
-                      ))
-                  }
-                </Select>
-              </FormControl>
-              <FormControl variant='outlined'>
-                <InputLabel>{localData.duration_text}</InputLabel>
-                <OutlinedInput
-                  label={localData.duration_text}
-                  name='duration'
-                  value={destinationInput[i].duration}
-                  onChange={(e) => handleChangeDestination('duration', e.target.value, i)}
-                />
-              </FormControl>
-            </div>
-          ))
-        }
-        <div className="">
-          <Button
-            onClick={changeDestinationCount}
-            className='py-1'
-            variant="contained">
-            {localData.add_next}
-          </Button>
-        </div>
         <div className="md:col-span-2 flex items-center gap-5 border border-[#8c8c8ca2] border-solid rounded-lg p-2 w-fit px-4">
           <p className='text-[#5e5e5e] m-0'>{localData.ride_type}</p>
           <Radio
@@ -242,6 +170,74 @@ function RidePlanForm({
             checkedIcon={<FaHiking className="w-6 h-6 text-[#6F7531]" />}
           />
         </div>
+
+        {
+          destinationCount.map((item: any, i: number) => (
+            <div key={i} className="col-span-1 md:col-span-2 grid grid-cols-2 gap-5">
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  {
+                    i === 0 ? localData.starting_city : localData.next_city
+                  }
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="starting city"
+                  value={destinationInput[i].name}
+                  onChange={(e: any) =>
+                    handleChangeDestination("name", e.target.value, i)
+                  }
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <div
+                        className="flex flex-col bg-white rounded-[4px] px-1">
+                        {
+                          destinationInput[i].name ?
+                            <Button
+                              variant='text'
+                              onClick={() => handleRemoveDestination(i)}
+                              className='text-sm bg-[#EDA592] min-w-fit p-0.5 rounded-full'
+                            >
+                              <RxCross2 className="text-white" />
+                            </Button>
+                            :
+                            <TiLocation className="text-2xl text-[#EDA592]" />
+                        }
+                      </div>
+                    </InputAdornment>
+                  }
+                >
+                  {
+                    findUnSelected(i).map((destination: TourDestinationType) => (
+                      <MenuItem key={destination.id} value={destination.id}>
+                        {destination.name}
+                      </MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+              <FormControl variant='outlined'>
+                <InputLabel>{localData.duration_text}</InputLabel>
+                <OutlinedInput
+                  label={localData.duration_text}
+                  name='duration'
+                  value={destinationInput[i].duration}
+                  onChange={(e) => handleChangeDestination('duration', e.target.value, i)}
+                />
+              </FormControl>
+            </div>
+          ))
+        }
+        <div className="">
+          <Button
+            onClick={changeDestinationCount}
+            className='py-1'
+            variant="contained">
+            {localData.add_next}
+          </Button>
+        </div>
+
         <TextField
           className="text-area md:col-span-2"
           label={localData.add_your_comment}

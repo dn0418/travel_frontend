@@ -5,17 +5,20 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
-import { destinationFilterData } from "../../../utils/data/homepage-data";
+import { TourDestinationType } from "../../../types/tour";
 import { localizationData } from "../../../utils/locales";
 import SectionTitle from "../../common/section-title";
 import RidePlanForm from "./ride-plan-form";
 import RidePlanMap from "./ride-plan-map";
-import RideSuccess from "./success-page";
 
-function RidePlanUI() {
+interface PropsType {
+  destinations: TourDestinationType[];
+}
+
+function RidePlanUI({ destinations }: PropsType) {
+  const [locations, setLocations] = useState<TourDestinationType[]>(destinations);
   const [date, setDate] = useState<Dayjs | null>(dayjs(new Date()));
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [inputData, setInputData] = useState({
     name: '',
     email: '',
@@ -35,7 +38,9 @@ function RidePlanUI() {
     lng: null,
     title: '',
   }]);
-  const { locale } = useRouter()
+
+  const router = useRouter();
+  const { locale } = router;
   const localData = locale === "ru" ? localizationData.ru :
     (locale === 'hy' ? localizationData.hy : localizationData.en);
 
@@ -55,7 +60,7 @@ function RidePlanUI() {
     })
   }
 
-  const handleChangeDestination = (name: string, value: string, i: number) => {
+  const handleChangeDestination = (name: string, value: number, i: number) => {
     if (name === 'duration') {
       setDestinationInput((prev) => {
         const temp = JSON.parse(JSON.stringify(prev));
@@ -63,19 +68,37 @@ function RidePlanUI() {
         return temp;
       })
     } else {
-      const findDestination = destinationFilterData.find(destination => destination.value === value)
+      const findDestination = locations.find(destination => destination.id === value);
       setDestinationInput((prev) => {
         const temp = JSON.parse(JSON.stringify(prev));
         temp[i][name] = value;
         temp[i].lat = findDestination?.lat;
         temp[i].lng = findDestination?.lng;
-        temp[i].title = findDestination?.title;
+        temp[i].title = findDestination?.name;
         return temp;
       })
     }
   }
 
+  const filterLocation = (type: string) => {
+    const filteredLocation = destinations.filter(
+      (destination) => destination.rideType === type);
+    setLocations(filteredLocation);
+    setDestinationInput([{
+      name: '',
+      duration: '',
+      lat: null,
+      lng: null,
+      title: '',
+    }]);
+    setDestinationCount([1]);
+  };
+
   const handleOnChangeInputData = (name: string, value: any) => {
+    if (name === 'rideType') {
+      filterLocation(value);
+    }
+
     setInputData((prevState: any) => {
       const temp = JSON.parse(JSON.stringify(prevState))
       temp[name] = value;
@@ -129,9 +152,9 @@ function RidePlanUI() {
     });
 
     try {
-      const res = await client.ridePlan.newRidePlan(payload);
+      await client.ridePlan.newRidePlan(payload);
       // console.log(res)
-      setIsSuccess(true);
+      router.push('/ride-plan/success');
     } catch (error) {
       toast.error("Something went wrong");
       // console.log(error)
@@ -149,32 +172,26 @@ function RidePlanUI() {
   }, [])
 
   return (
-    <>
-      {
-        !isSuccess ?
-          <Container className=' flex flex-col  mb-12 lg:mb-16 py-5'>
-            <SectionTitle title={localData.home_plan_title} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-8">
-              <RidePlanForm
-                inputData={inputData}
-                handleOnChangeInputData={handleOnChangeInputData}
-                date={date}
-                setDate={setDate}
-                destinationCount={destinationCount}
-                destinationInput={destinationInput}
-                handleChangeDestination={handleChangeDestination}
-                changeDestinationCount={changeDestinationCount}
-                handleRemoveDestination={handleRemoveDestination}
-                handleSubmit={handleSubmit}
-                isLoading={isLoading}
-              />
-              <RidePlanMap destinationInput={destinationInput} />
-            </div>
-          </Container>
-          :
-          <RideSuccess />
-      }
-    </>
+    <Container className=' flex flex-col  mb-12 lg:mb-16 py-5'>
+      <SectionTitle title={localData.home_plan_title} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-8">
+        <RidePlanForm
+          inputData={inputData}
+          handleOnChangeInputData={handleOnChangeInputData}
+          date={date}
+          setDate={setDate}
+          destinationCount={destinationCount}
+          destinationInput={destinationInput}
+          handleChangeDestination={handleChangeDestination}
+          changeDestinationCount={changeDestinationCount}
+          handleRemoveDestination={handleRemoveDestination}
+          handleSubmit={handleSubmit}
+          isLoading={isLoading}
+          locations={locations}
+        />
+        <RidePlanMap destinationInput={destinationInput} />
+      </div>
+    </Container>
   );
 };
 

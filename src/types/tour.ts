@@ -70,6 +70,9 @@ export interface TourDestinationType {
   country: string;
   country_ru: string;
   country_hy: string;
+  rideType: string;
+  lat: number;
+  lng: number;
 }
 
 export interface TourService {
