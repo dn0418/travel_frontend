@@ -127,7 +127,7 @@ export const navData: NavTypes = {
         {
           id: 2,
           title: "How to book a tour",
-          route: "/about-us?tab=how-to-book-a-tour",
+          route: "/about-us?tab=how_to_book_a_tour",
         },
         {
           id: 3,
@@ -262,7 +262,7 @@ export const navData: NavTypes = {
         {
           id: 2,
           title: "Как заказать тур",
-          route: "/about-us?tab=how-to-book-a-tour",
+          route: "/about-us?tab=how_to_book_a_tour",
         },
         {
           id: 3,
@@ -397,7 +397,7 @@ export const navData: NavTypes = {
         {
           id: 2,
           title: "Ինչպես պատվիրել տուր",
-          route: "/about-us?tab=how-to-book-a-tour",
+          route: "/about-us?tab=how_to_book_a_tour",
         },
         {
           id: 3,
