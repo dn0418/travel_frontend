@@ -66,24 +66,45 @@ function SurroundingThumbnailSection({ surrounding }: { surrounding: Surrounding
         className="rounded-lg"
         alt="tour-details" />
       {
-        images.length > 4 ? <Slider
-          className='flex mt-5'
-          afterChange={(e) => setCurrentSlide(e)}
-          {...settings}>
-          {images.map((img, i) => (
+        images.length > 4 ?
+          <Slider
+            className='flex mt-5'
+            afterChange={(e) => setCurrentSlide(e)}
+            {...settings}>
             <Image
-              key={i}
-              src={img.url}
+              src={thumbnail}
               height={340}
               width={560}
               layout="responsive"
               className="rounded-lg"
-              onClick={() => setCurrentImage(img.url)}
-              alt="tour-details" />
-          ))}
-        </Slider>
+              onClick={() => setCurrentImage(thumbnail)}
+              alt="tour-details"
+              priority
+            />
+            {images.map((img, i) => (
+              <Image
+                key={i}
+                src={img.url}
+                height={340}
+                width={560}
+                layout="responsive"
+                className="rounded-lg"
+                onClick={() => setCurrentImage(img.url)}
+                alt="tour-details" />
+            ))}
+          </Slider>
           :
           <div className="grid grid-cols-4 gap-4 mt-5">
+            <Image
+              src={thumbnail}
+              height={340}
+              width={560}
+              layout="responsive"
+              className="rounded-lg"
+              onClick={() => setCurrentImage(thumbnail)}
+              alt="tour-details"
+              priority
+            />
             {images.map((img, i) => (
               <Image
                 key={i}

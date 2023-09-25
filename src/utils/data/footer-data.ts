@@ -23,12 +23,12 @@ export const footerData: {
         {
           id: 1,
           title: "Our team",
-          route: "/",
+          route: "/about-us?tab=who_we_are",
         },
         {
           id: 2,
           title: "To book a tour",
-          route: "/",
+          route: "/about-us?tab=how_to_book_a_tour",
         },
         {
           id: 3,
@@ -43,34 +43,8 @@ export const footerData: {
         {
           id: 5,
           title: "Contact us",
-          route: "/",
+          route: "/contacts",
         },
-      ],
-    },
-    {
-      id: 1,
-      title: "Link to",
-      children: [
-        {
-          id: 1,
-          title: "Who are we",
-          route: "/",
-        },
-        {
-          id: 2,
-          title: "How to book a tour",
-          route: "/",
-        },
-        {
-          id: 3,
-          title: "Vacancies",
-          route: "/about-us?tab=vacancy",
-        },
-        {
-          id: 4,
-          title: "Travel blog",
-          route: "/armenia/blogs",
-        }
       ],
     },
     {
@@ -134,12 +108,12 @@ export const footerData: {
         {
           id: 1,
           title: "Наша команда",
-          route: "/",
+          route: "/about-us?tab=who_we_are",
         },
         {
           id: 2,
           title: "Забронировать тур",
-          route: "/",
+          route: "/about-us?tab=how_to_book_a_tour",
         },
         {
           id: 3,
@@ -154,34 +128,8 @@ export const footerData: {
         {
           id: 5,
           title: "Свяжитесь с нами",
-          route: "/",
+          route: "/contacts",
         },
-      ],
-    },
-    {
-      id: 1,
-      title: "Ссылки",
-      children: [
-        {
-          id: 1,
-          title: "Кто мы",
-          route: "/",
-        },
-        {
-          id: 2,
-          title: "Как забронировать тур",
-          route: "/",
-        },
-        {
-          id: 3,
-          title: "Вакансии",
-          route: "/about-us?tab=vacancy",
-        },
-        {
-          id: 4,
-          title: "Путешествия блог",
-          route: "/armenia/blogs",
-        }
       ],
     },
     {
@@ -245,12 +193,12 @@ export const footerData: {
         {
           id: 1,
           title: "Մեր թիմ",
-          route: "/",
+          route: "/about-us?tab=who_we_are",
         },
         {
           id: 2,
           title: "Գնել աշխատանք",
-          route: "/",
+          route: "/about-us?tab=how_to_book_a_tour",
         },
         {
           id: 3,
@@ -265,34 +213,8 @@ export const footerData: {
         {
           id: 5,
           title: "Կապ մեզ հետ",
-          route: "/",
+          route: "/contacts",
         },
-      ],
-    },
-    {
-      id: 1,
-      title: "Հղումներ",
-      children: [
-        {
-          id: 1,
-          title: "Մենք ո՞վ ենք",
-          route: "/",
-        },
-        {
-          id: 2,
-          title: "Ինչպես պատվիրել աշխատանք",
-          route: "/",
-        },
-        {
-          id: 3,
-          title: "Հավաստագրեր",
-          route: "/about-us?tab=vacancy",
-        },
-        {
-          id: 4,
-          title: "Ճամփանիշների բլոգ",
-          route: "/armenia/blogs",
-        }
       ],
     },
     {
