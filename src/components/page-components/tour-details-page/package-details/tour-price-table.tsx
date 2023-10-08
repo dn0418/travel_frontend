@@ -13,8 +13,8 @@ import TourModal from "../../../modal/TourModal";
 
 const individualColumnsData = {
   en: ["2-3 pax", "4-6 pax", "7-18 pax", "20 or more"],
-  ru: ["2-3 человек", "4-6 человек", "7-18 человек", "20 и более"],
-  hy: ["2-3 անձ", "4-6 անձ", "7-18 անձ", "20 կամ ավելի"],
+  ru: ["2-3 чел.", "4-6 чел.", "7-18 чел.", "20 или больше чел."],
+  hy: ["2-3 անձ", "4-6 անձ", "7-18 անձ", "20 և ավել անձ"],
 };
 
 const departureColumnsData = {
@@ -55,7 +55,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
     <Container className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb]">
       <div className="">
         <p className="text-lg font-semibold">{localData.price_per_pax_title}</p>
-        <p className="text-sm font-semibold">
+        <p className="text-base font-semibold">
           {localData.individual_tour_title}
         </p>
         <TableContainer className="tour-price-table bg-white">
