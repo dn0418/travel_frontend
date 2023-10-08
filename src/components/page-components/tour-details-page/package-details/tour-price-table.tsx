@@ -12,9 +12,9 @@ import { localizationData } from "../../../../utils/locales";
 import TourModal from "../../../modal/TourModal";
 
 const individualColumnsData = {
-  en: ["2-3 pax", "4-6 pax", "7-18 pax", "20 more"],
-  ru: ["2-3 чел.", "4-6 чел.", "7-18 чел.", "20 и более"],
-  hy: ["2-3 հույս", "4-6 հույս", "7-18 հույս", "20 կամ ավելի"],
+  en: ["2-3 pax", "4-6 pax", "7-18 pax", "20 or more"],
+  ru: ["2-3 человек", "4-6 человек", "7-18 человек", "20 и более"],
+  hy: ["2-3 անձ", "4-6 անձ", "7-18 անձ", "20 կամ ավելի"],
 };
 
 const departureColumnsData = {
