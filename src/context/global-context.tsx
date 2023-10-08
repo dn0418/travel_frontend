@@ -43,17 +43,17 @@ export const GlobalContextProvider: React.FC<{ children: React.ReactNode }> = ({
       const findRate = currencyRates.find((rate: CurrencyRate) => rate.code === 'usd');
       if (findRate) {
         const total = amount * findRate.rate;
-        return `$${total}`;
+        return `$ ${total}`;
       }
     } else if (currencyValue === 'ruble') {
       const findRate = currencyRates.find((rate: CurrencyRate) => rate.code === 'ruble');
       if (findRate) {
         const total = amount * findRate.rate;
-        return `₽${total}`;
+        return `₽ ${total}`;
       }
     }
 
-    return `֏${amount}`;
+    return `֏ ${amount}`;
   };
 
   const convertOnlyCurrency = (amount: number) => {

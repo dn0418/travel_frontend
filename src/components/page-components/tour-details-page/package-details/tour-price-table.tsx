@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { TourType } from "../../../../types/tour";
 import { localizationData } from "../../../../utils/locales";
+import { useGlobalContext } from "../../../../context/global-context";
 import TourModal from "../../../modal/TourModal";
 
 const individualColumnsData = {
@@ -30,6 +31,7 @@ const departureColumnsData = {
 
 export default function TourPriceTable({ tour }: { tour: TourType }) {
   const { individualPricing, departuresPricing } = tour;
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
   const individualColumns =
     locale === "ru"
@@ -72,10 +74,11 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
             <TableBody>
               {individualPricing.map((row, i) => (
                 <TableRow key={i}>
-                  <TableCell align="center">{row.pax2_3}</TableCell>
-                  <TableCell align="center">{row.pax4_6}</TableCell>
-                  <TableCell align="center">{row.pax7_18}</TableCell>
-                  <TableCell align="center">{row.pax20_more}</TableCell>
+                  {/* <TableCell align="center">{row.pax2_3}</TableCell> */}
+                  <TableCell align="center">{convertCurrency(row.pax2_3)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.pax4_6)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.pax7_18)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.pax20_more)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -104,7 +107,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
                   <TableCell align="center">{row.startDate}</TableCell>
                   <TableCell align="center">{row.endDate}</TableCell>
                   <TableCell align="center">{row.maxPerson}</TableCell>
-                  <TableCell align="center">{row.price}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.price)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
