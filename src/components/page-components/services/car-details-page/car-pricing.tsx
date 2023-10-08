@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { CarWithOutType } from '../../../../types/car-type';
 import { localizationData } from '../../../../utils/locales';
 import CarModel from '../../../modal/CarModal';
+import { useGlobalContext } from '../../../../context/global-context';
 
 interface Props {
   car: CarWithOutType
@@ -17,6 +18,8 @@ interface Props {
 export default function CarPricingTable({ car }: Props) {
   const { priceWithoutDriver } = car;
   const { locale } = useRouter();
+  const { convertCurrency } = useGlobalContext();
+
   const localData = locale === "ru" ? localizationData.ru :
     (locale === 'hy' ? localizationData.hy : localizationData.en);
 
@@ -57,10 +60,10 @@ export default function CarPricingTable({ car }: Props) {
                           (locale === 'hy' ? row.destination_hy : row.destination)
                       }
                     </TableCell>
-                    <TableCell align="center">{row.sedan_3seat}</TableCell>
-                    <TableCell align="center">{row.minivan_7seat}</TableCell>
-                    <TableCell align="center">{row.minibus_18seat}</TableCell>
-                    <TableCell align="center">{row.bus_35seat}</TableCell>
+                    <TableCell align="center">{convertCurrency(row.sedan_3seat)}</TableCell>
+                    <TableCell align="center">{convertCurrency(row.minivan_7seat)}</TableCell>
+                    <TableCell align="center">{convertCurrency(row.minibus_18seat)}</TableCell>
+                    <TableCell align="center">{convertCurrency(row.bus_35seat)}</TableCell>
                   </TableRow>
                 ))
               }
