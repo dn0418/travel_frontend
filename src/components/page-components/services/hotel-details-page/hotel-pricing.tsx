@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { HotelDataType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 import HotelModal from "../../../modal/HotelModal";
+import { useGlobalContext } from "../../../../context/global-context";
 
 interface Props {
   hotel: HotelDataType;
@@ -16,6 +17,7 @@ interface Props {
 
 export default function HotelPricingTable({ hotel }: Props) {
   const { pricingTable } = hotel;
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
   const localData =
     locale === "ru"
@@ -53,8 +55,8 @@ export default function HotelPricingTable({ hotel }: Props) {
                       ? row.name_hy
                       : row.name}
                   </TableCell>
-                  <TableCell align="center">{row.firstPart}</TableCell>
-                  <TableCell align="center">{row.lastPart} AMD</TableCell>
+                  <TableCell align="center">{convertCurrency(row.firstPart)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.lastPart)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

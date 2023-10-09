@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { TourAccessoryType } from "../../../../types/services";
 import { localizationData } from "../../../../utils/locales";
 import TourAccessoriesModal from "../../../modal/TourAccessoriesModal";
+import { useGlobalContext } from "../../../../context/global-context";
 
 interface Props {
   accessoryDetails: TourAccessoryType;
@@ -16,6 +17,7 @@ interface Props {
 
 export default function AccessoryPricingTable({ accessoryDetails }: Props) {
   const { pricing } = accessoryDetails;
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
 
   const localData =
@@ -49,7 +51,7 @@ export default function AccessoryPricingTable({ accessoryDetails }: Props) {
                 <TableRow key={i}>
                   <TableCell align="center">{row.id}</TableCell>
                   <TableCell align="center">{row.duration}</TableCell>
-                  <TableCell align="center">{row.price} AMD</TableCell>
+                  <TableCell align="center">{convertCurrency(row.price)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

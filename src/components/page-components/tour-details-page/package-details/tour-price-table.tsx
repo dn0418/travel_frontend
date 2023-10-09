@@ -9,12 +9,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { TourType } from "../../../../types/tour";
 import { localizationData } from "../../../../utils/locales";
+import { useGlobalContext } from "../../../../context/global-context";
 import TourModal from "../../../modal/TourModal";
 
 const individualColumnsData = {
-  en: ["2-3 pax", "4-6 pax", "7-18 pax", "20 more"],
-  ru: ["2-3 чел.", "4-6 чел.", "7-18 чел.", "20 и более"],
-  hy: ["2-3 հույս", "4-6 հույս", "7-18 հույս", "20 կամ ավելի"],
+  en: ["2-3 pax", "4-6 pax", "7-18 pax", "20 or more"],
+  ru: ["2-3 чел.", "4-6 чел.", "7-18 чел.", "20 или больше чел."],
+  hy: ["2-3 անձ", "4-6 անձ", "7-18 անձ", "20 և ավել անձ"],
 };
 
 const departureColumnsData = {
@@ -30,6 +31,7 @@ const departureColumnsData = {
 
 export default function TourPriceTable({ tour }: { tour: TourType }) {
   const { individualPricing, departuresPricing } = tour;
+  const { convertCurrency } = useGlobalContext();
   const { locale } = useRouter();
   const individualColumns =
     locale === "ru"
@@ -55,7 +57,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
     <Container className="bg-[#f7f7f7] px-3 md:px-6 py-3 md:py-8 border-2 border-solid border-[#dbdbdb]">
       <div className="">
         <p className="text-lg font-semibold">{localData.price_per_pax_title}</p>
-        <p className="text-sm font-semibold">
+        <p className="text-base font-semibold">
           {localData.individual_tour_title}
         </p>
         <TableContainer className="tour-price-table bg-white">
@@ -72,10 +74,11 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
             <TableBody>
               {individualPricing.map((row, i) => (
                 <TableRow key={i}>
-                  <TableCell align="center">{row.pax2_3}</TableCell>
-                  <TableCell align="center">{row.pax4_6}</TableCell>
-                  <TableCell align="center">{row.pax7_18}</TableCell>
-                  <TableCell align="center">{row.pax20_more}</TableCell>
+                  {/* <TableCell align="center">{row.pax2_3}</TableCell> */}
+                  <TableCell align="center">{convertCurrency(row.pax2_3)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.pax4_6)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.pax7_18)}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.pax20_more)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -104,7 +107,7 @@ export default function TourPriceTable({ tour }: { tour: TourType }) {
                   <TableCell align="center">{row.startDate}</TableCell>
                   <TableCell align="center">{row.endDate}</TableCell>
                   <TableCell align="center">{row.maxPerson}</TableCell>
-                  <TableCell align="center">{row.price}</TableCell>
+                  <TableCell align="center">{convertCurrency(row.price)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
