@@ -23,7 +23,7 @@ function ThingToSeeCard({ thing, findTab }: ThingToSeeCardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
+    <Card className="regular-shadow rounded-lg md:min-h-[500px] flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={thing.thumbnail}

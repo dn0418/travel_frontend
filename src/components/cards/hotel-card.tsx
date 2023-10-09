@@ -19,7 +19,7 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
+    <Card className="regular-shadow md:min-h-[500px] rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={hotel.thumbnail}

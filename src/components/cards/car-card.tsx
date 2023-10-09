@@ -23,7 +23,7 @@ function TransportCard({ car }: TransportCardProps) {
   // console.log(car)
 
   return (
-    <Card className="regular-shadow  w-full h-full rounded-lg flex flex-col justify-between">
+    <Card className="regular-shadow md:min-h-[500px] w-full h-full rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3  w-full h-full">
         <Image
           src={car.thumbnail}
