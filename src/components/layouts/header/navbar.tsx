@@ -20,7 +20,7 @@ import React, { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { useGlobalContext } from "../../../context/global-context";
 import { NavDataTypes, NavLinkTypes } from "../../../types";
-import logo from "/public/Logo.png";
+import logo from "/public/logo.jpg";
 
 interface StateTypes {
   children: NavLinkTypes[] | undefined;
@@ -77,14 +77,16 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
                 aria-label='open drawer'
                 edge='start'
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { lg: "none" } }}>
+                className="mr-2 lg:hidden">
                 <HiMenu className='text-black' />
               </IconButton>
               <div className='flex items-center gap-5'>
                 <Link href='/'>
                   <Image
-                    className='cursor-pointer hidden sm:block flex-grow w-32 '
+                    className='cursor-pointer h-full hidden lg:block flex-grow w-32 '
                     src={logo}
+                    // height={32}
+                    // width={32}
                     alt=''
                   />
                 </Link>
@@ -165,9 +167,9 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
                   defaultValue=''
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}>
-                  <MenuItem value='usd'>$ Dollar</MenuItem>
-                  <MenuItem value='ruble'>₽ Ruble</MenuItem>
-                  <MenuItem value='amd'>֏AMD</MenuItem>
+                  <MenuItem value='usd'>$ USD</MenuItem>
+                  <MenuItem value='ruble'>₽ RUB</MenuItem>
+                  <MenuItem value='amd'>֏ AMD</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -178,7 +180,7 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
         <Image
           src='https://s3.ap-southeast-1.amazonaws.com/dgraphy.pics/dev/0048276e-406a-41c3-8727-523de54391fe-header1.png'
           width={1400}
-          height={236}
+          height={120}
           className="object-cover"
           alt=""
           layout="responsive"

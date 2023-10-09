@@ -23,7 +23,7 @@ function EventCard({ event }: CardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={event.thumbnail}
@@ -36,7 +36,7 @@ function EventCard({ event }: CardProps) {
         />
         <div className="p-3">
           <Link href={`/armenia/events/${event.id}`}>
-            <p className="text-xl font-medium my-2 text-black">
+            <p className="text-xl font-medium my-2 text-black line-clamp-2">
               {locale === 'ru' ? event?.name_ru :
                 (locale === 'hy' ? event?.name_hy : event?.name)
               }
@@ -66,14 +66,15 @@ function EventCard({ event }: CardProps) {
                 (locale === 'hy' ? event?.shortDescription_hy : event?.shortDescription)
             }
           </p>
-          <div className="flex justify-end items-end">
-            <Link href={`/armenia/events/${event.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-end p-3">
+        <Link href={`/armenia/events/${event.id}`}>
+          <Button className="rounded-lg bg-black text-white" variant='contained'>
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

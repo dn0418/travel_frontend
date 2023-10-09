@@ -13,7 +13,7 @@ import {
   IoLogoInstagram
 } from "react-icons/io5";
 import { footerData } from "../../../utils/data/footer-data";
-import logo from "/public/Logo.png";
+import logo from "/public/footer_logo.png";
 
 function Footer() {
   const [footerItems, setFooterItems] = useState(footerData?.en);
@@ -33,34 +33,28 @@ function Footer() {
     <footer className=' inset-x-0 bottom-0 bg-black text-white py-6 sm:py-12'>
       <Container className='grid sm:grid-cols-5 gap-x-5 lg:gap-x-8'>
         <div className='sm:col-span-2'>
-          <div className='bg-white w-fit px-8 py-3 rounded-lg'>
+          <div className='w-32 rounded-lg'>
             <Image src={logo} alt='logo' />
           </div>
-          <div className='ml-5'>
-            <p className='mt-5'>
-              {
-                locale === 'ru' ? footerData.description.ru :
-                  (locale === 'hy' ? footerData.description.hy : footerData.description.en)
-              }
-            </p>
-            <div className='flex items-center gap-8 mt-8'>
-              <Link href='https://www.facebook.com/toexpediGon'>
-                <IoLogoFacebook className='text-white text-xl' />
+          <div className='my-8'>
+            <div className='flex items-center gap-6 mt-8'>
+              <Link target="_blank" href='https://www.facebook.com/toexpedition'>
+                <IoLogoFacebook className='text-white text-2xl' />
               </Link>
-              <Link href='https://www.instagram.com/2expediGon.com_/'>
-                <IoLogoInstagram className='text-white text-xl' />
+              <Link target="_blank" href='https://www.instagram.com/2expedition.com_/'>
+                <IoLogoInstagram className='text-white text-2xl' />
               </Link>
-              <Link href='https://t.me/toexpediGon'>
-                <BsTelegram className='text-white text-xl' />
+              <Link target="_blank" href='https://t.me/toexpedition'>
+                <BsTelegram className='text-white text-2xl' />
               </Link>
-              <Link href='https://www.tripadvisor.com/Attraction_Review-g293932-d23954458-Reviews-2expedition_Tour_Operator-Yerevan.html'>
-                <FaTripadvisor className='text-white text-xl' />
+              <Link target="_blank" href='https://www.tripadvisor.com/Attraction_Review-g293932-d23954458-Reviews-2expedition_Tour_Operator-Yerevan.html'>
+                <FaTripadvisor className='text-white text-2xl' />
               </Link>
-              <Link href='https://www.youtube.com/@2expediGon816'>
-                <IoLogoYoutube className='text-white text-xl' />
+              <Link target="_blank" href='https://www.youtube.com/@2expedition816'>
+                <IoLogoYoutube className='text-white text-2xl' />
               </Link>
-              <Link href='https://vk.com/public214460114'>
-                <FaVk className='text-white text-xl' />
+              <Link target="_blank" href='https://vk.com/public214460114'>
+                <FaVk className='text-white text-2xl' />
               </Link>
             </div>
           </div>

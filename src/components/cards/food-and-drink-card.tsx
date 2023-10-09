@@ -23,7 +23,7 @@ function FoodAndDrinkCard({ foodDrink, findTab }: FoodAndDrinkCardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={foodDrink.thumbnail}
@@ -37,7 +37,7 @@ function FoodAndDrinkCard({ foodDrink, findTab }: FoodAndDrinkCardProps) {
         <div className="p-3">
           <div className="flex items-center justify-between">
             <Link href={`/armenia/food-and-drink/${foodDrink.id}`}>
-              <p className="text-xl font-medium my-2 text-black">
+              <p className="text-xl font-medium my-2 text-black line-clamp-2">
                 {locale === 'ru' ? foodDrink?.name_ru :
                   (locale === 'hy' ? foodDrink?.name_hy : foodDrink?.name)
                 }
@@ -82,14 +82,15 @@ function FoodAndDrinkCard({ foodDrink, findTab }: FoodAndDrinkCardProps) {
             }
           </p>
 
-          <div className="flex justify-end items-end">
-            <Link href={`/armenia/food-and-drink/${foodDrink.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-end p-3">
+        <Link href={`/armenia/food-and-drink/${foodDrink.id}`}>
+          <Button className="rounded-lg bg-black text-white" variant='contained'>
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

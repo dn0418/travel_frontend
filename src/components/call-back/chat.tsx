@@ -173,11 +173,11 @@ function ChatIcon() {
             </FormControl>
 
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">
-                Preferred time
+              <InputLabel id="demo-simple-select-label2">
+                Timezone
               </InputLabel>
               <Select
-                labelId="demo-simple-select-label"
+                labelId="demo-simple-select-label2"
                 value={inputData?.timezone}
                 label="Timezone"
                 onChange={(e) => handleChangeInput("timezone", e.target.value)}

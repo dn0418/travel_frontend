@@ -107,6 +107,15 @@ const FoodAndDrinks: NextPageWithLayout<InferGetServerSidePropsType<typeof getSe
     }
   }, [locale]);
 
+  useEffect(() => {
+    if (params["type"]) {
+      const findTab = foodTabs.en.find((tab) => tab.value === params["type"]);
+      findTab && setCurrentTab(findTab);
+    } else {
+      setCurrentTab(null);
+    }
+  }, [params]);
+
   return (
     <>
       <FoodAndDrinksUI

@@ -177,8 +177,6 @@ function HotelModal({ buttonText }: IProps) {
             />
             <TextField
               label={localData.quantity_text}
-              type="tel"
-              inputProps={{ maxLength: 1 }}
               onChange={(e) => handleChangeInput("quantity", e.target.value)}
               variant="outlined"
               required

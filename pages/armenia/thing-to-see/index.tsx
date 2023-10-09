@@ -51,7 +51,7 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
   const things = props.thingsData?.data || [];
   const metaData = props.thingsData?.meta || {};
   const [tabs, setTabs] = useState(thingsSeeTabs.en)
-  const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const [currentTab, setCurrentTab] = useState<any>(null);
   const router = useRouter();
   const params = router.query;
   const locale = router.locale;
@@ -114,7 +114,16 @@ const ThingToSee: NextPageWithLayout<InferGetServerSidePropsType<typeof getServe
     } else {
       setTabs(thingsSeeTabs.en);
     }
-  }, [locale])
+  }, [locale]);
+
+  useEffect(() => {
+    if (params["type"]) {
+      const findTab = thingsSeeTabs.en.find((tab) => tab.value === params["type"]);
+      setCurrentTab(findTab);
+    } else {
+      setCurrentTab(null);
+    }
+  }, [params]);
 
   return (
     <>

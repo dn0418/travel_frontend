@@ -21,7 +21,7 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={accessory.thumbnail}
@@ -36,7 +36,7 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
           <div className="">
             <div className="flex items-center justify-between">
               <Link href={`/services/tour-accessories/${accessory.id}`}>
-                <p className="text-xl font-medium my-2 text-black">
+                <p className="text-xl font-medium my-2 text-black line-clamp-2">
                   {locale === "ru"
                     ? accessory.title_ru
                     : locale === "hy"
@@ -100,17 +100,18 @@ function AccessoriesCard({ accessory }: TransportCardProps) {
                   : accessory.shortDescription}
             </p>
           </div>
-          <div className="flex justify-end items-center">
-            <Link href={`/services/tour-accessories/${accessory.id}`}>
-              <Button
-                className="rounded-lg bg-black text-white"
-                variant="contained"
-              >
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-center p-3">
+        <Link href={`/services/tour-accessories/${accessory.id}`}>
+          <Button
+            className="rounded-lg bg-black text-white"
+            variant="contained"
+          >
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

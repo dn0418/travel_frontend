@@ -118,7 +118,7 @@ function FilterSection({ destinations }: { destinations: TourDestinationType[] }
         <div className='flex justify-center'>
           <TextField
             name="days"
-            className='w-8 filter-date-count'
+            className='w-full filter-date-count'
             type="number"
             placeholder={localData.days_title}
             onChange={handleChangeFilterData}

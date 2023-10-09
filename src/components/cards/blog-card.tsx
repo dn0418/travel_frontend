@@ -23,7 +23,7 @@ function BlogCard({ blog }: CardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={blog.thumbnail}
@@ -36,7 +36,7 @@ function BlogCard({ blog }: CardProps) {
         />
         <div className="p-3">
           <Link href={`/armenia/blogs/${blog.id}`}>
-            <p className="text-xl font-medium my-2 text-black">
+            <p className="text-xl font-medium my-2 text-black line-clamp-2">
               {locale === 'ru' ? blog?.title_ru :
                 (locale === 'hy' ? blog?.title_hy : blog?.title)
               }
@@ -65,14 +65,15 @@ function BlogCard({ blog }: CardProps) {
                 (locale === 'hy' ? blog?.short_description_hy : blog?.short_description)
             }
           </p>
-          <div className="flex justify-end items-end">
-            <Link href={`/armenia/blogs/${blog.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {localData.read_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-end p-3">
+        <Link href={`/armenia/blogs/${blog.id}`}>
+          <Button className="rounded-lg bg-black text-white" variant='contained'>
+            {localData.read_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

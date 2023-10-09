@@ -23,7 +23,7 @@ function SurroundingCard({ surrounding }: SurroundingCardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={surrounding.thumbnail}
@@ -37,7 +37,7 @@ function SurroundingCard({ surrounding }: SurroundingCardProps) {
         <div className="p-3">
           <div className="flex items-center justify-between">
             <Link href={`/armenia/surrounding/${surrounding.id}`}>
-              <p className="text-xl font-medium my-2 text-black">
+              <p className="text-xl font-medium my-2 text-black line-clamp-2">
                 {locale === 'ru' ? surrounding?.name_ru :
                   (locale === 'hy' ? surrounding?.name_hy : surrounding?.name)
                 }
@@ -76,14 +76,15 @@ function SurroundingCard({ surrounding }: SurroundingCardProps) {
             }
           </p>
 
-          <div className="flex justify-end items-end">
-            <Link href={`/armenia/surrounding/${surrounding.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-end p-3">
+        <Link href={`/armenia/surrounding/${surrounding.id}`}>
+          <Button className="rounded-lg bg-black text-white" variant='contained'>
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

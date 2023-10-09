@@ -1,12 +1,10 @@
 // @flow strict
 
-import { Card, Container, FormControl, InputAdornment, InputLabel, OutlinedInput, Pagination, PaginationItem } from "@mui/material";
+import { Card, Container, Pagination, PaginationItem } from "@mui/material";
 import { useRouter } from "next/router";
-import { BiSearch } from "react-icons/bi";
 import { SearchPageProps } from "../../../types/page-props";
 import { localizationData } from "../../../utils/locales";
 import TourCard from "../../cards/tour-card";
-import SectionTitle from "../../common/section-title";
 import SearchFilterSection from "./filter-section";
 
 function SearchPage({
@@ -30,7 +28,7 @@ function SearchPage({
         <div className="">
           <SearchFilterSection typeItems={typeItems} destinations={destinations} />
         </div>
-        <div className="w-full flex items-center justify-between">
+        {/* <div className="w-full flex items-center justify-between">
           <SectionTitle title={localData.top_suggested_title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">
             <InputLabel>{localData.search_your_need}</InputLabel>
@@ -44,9 +42,9 @@ function SearchPage({
               onChange={(e) => handleSearch(e.target.value)}
             />
           </FormControl>
-        </div>
+        </div> */}
         <>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-8 md:gap-6'>
             {toursData?.map((item: any, i: number) => (
               <Card key={i} className="regular-shadow rounded-lg">
                 <TourCard tour={item} />

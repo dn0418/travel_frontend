@@ -19,7 +19,7 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={hotel.thumbnail}
@@ -33,7 +33,7 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
         <div className="p-3">
           <div className="flex items-center justify-between">
             <Link href={`/services/hotels/${hotel.id}`}>
-              <p className="text-xl font-medium my-2 text-black">
+              <p className="text-xl font-medium my-2 text-black line-clamp-2">
                 {locale === 'ru' ? hotel?.name_ru :
                   (locale === 'hy' ? hotel?.name_hy : hotel?.name)
                 }
@@ -82,14 +82,15 @@ function HotelCard({ hotel }: { hotel: HotelDataType }) {
                 (locale === 'hy' ? hotel?.shortDescription_hy : hotel?.shortDescription)
             }
           </p>
-          <div className="flex justify-end items-center">
-            <Link href={`/services/hotels/${hotel.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-center p-3">
+        <Link href={`/services/hotels/${hotel.id}`}>
+          <Button className="rounded-lg bg-black text-white" variant='contained'>
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

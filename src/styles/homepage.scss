@@ -94,8 +94,10 @@
 }
 
 .filter-date-count {
-  .MuiOutlinedInput-root {
-    width: 80px;
+  input::placeholder,
+  input::-webkit-input-placeholder {
+    color: black !important;
+    opacity: 1;
   }
 }
 

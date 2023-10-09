@@ -23,7 +23,7 @@ function TransportCard({ car }: TransportCardProps) {
   // console.log(car)
 
   return (
-    <Card className="regular-shadow  w-full h-full rounded-lg">
+    <Card className="regular-shadow  w-full h-full rounded-lg flex flex-col justify-between">
       <div className="bg-white p-3  w-full h-full">
         <Image
           src={car.thumbnail}
@@ -37,7 +37,7 @@ function TransportCard({ car }: TransportCardProps) {
         <div className="p-3">
           <div className="flex items-center justify-between">
             <Link href={`/services/transport/${car.id}`}>
-              <p className="text-xl font-medium my-2 text-black">
+              <p className="text-xl font-medium my-2 text-black line-clamp-2">
                 {locale === 'ru' ? car?.name_ru :
                   (locale === 'hy' ? car?.name_hy : car?.name)
                 }
@@ -78,14 +78,15 @@ function TransportCard({ car }: TransportCardProps) {
                 (locale === 'hy' ? car?.shortDescription_hy : car?.shortDescription)
             }
           </p>
-          <div className="flex justify-end items-center">
-            <Link href={`/services/transport/${car.id}`}>
-              <Button className="rounded-lg bg-black text-white" variant='contained'>
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-center p-3">
+        <Link href={`/services/transport/${car.id}`}>
+          <Button className="rounded-lg bg-black text-white" variant='contained'>
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

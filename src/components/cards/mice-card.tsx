@@ -21,7 +21,7 @@ function MiceCard({ mice }: CardProps) {
         : localizationData.en;
 
   return (
-    <Card className="regular-shadow rounded-lg">
+    <Card className="regular-shadow rounded-lg  flex flex-col justify-between">
       <div className="bg-white p-3">
         <Image
           src={mice.thumbnail}
@@ -36,7 +36,7 @@ function MiceCard({ mice }: CardProps) {
           <div className="">
             <div className="flex items-center justify-between">
               <Link href={`/services/mice/${mice.id}`}>
-                <p className="text-xl font-medium my-2 text-black">
+                <p className="text-xl font-medium my-2 text-black line-clamp-2">
                   {locale === "ru"
                     ? mice.name_ru
                     : locale === "hy"
@@ -86,17 +86,18 @@ function MiceCard({ mice }: CardProps) {
                   : mice.shortDescription}
             </p>
           </div>
-          <div className="flex justify-end items-center">
-            <Link href={`/services/mice/${mice.id}`}>
-              <Button
-                className="rounded-lg bg-black text-white"
-                variant="contained"
-              >
-                {localData.see_more_text}
-              </Button>
-            </Link>
-          </div>
+
         </div>
+      </div>
+      <div className="flex justify-end items-center p-3">
+        <Link href={`/services/mice/${mice.id}`}>
+          <Button
+            className="rounded-lg bg-black text-white"
+            variant="contained"
+          >
+            {localData.see_more_text}
+          </Button>
+        </Link>
       </div>
     </Card>
   );

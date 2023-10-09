@@ -39,7 +39,7 @@ const ThingToDo: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
   const things = props.thingsData?.data || [];
   const metaData = props.thingsData?.meta || {};
   const [tabs, setTabs] = useState(thingDoTabs.en);
-  const [currentTab, setCurrentTab] = useState(tabs[0]);
+  const [currentTab, setCurrentTab] = useState<any>(null);
   const router = useRouter();
   const params = router.query;
   const locale = router.locale;
@@ -102,7 +102,16 @@ const ThingToDo: NextPageWithLayout<InferGetServerSidePropsType<typeof getServer
     } else {
       setTabs(thingDoTabs.en);
     }
-  }, [locale])
+  }, [locale]);
+
+  useEffect(() => {
+    if (params["type"]) {
+      const findTab = thingDoTabs.en.find((tab) => tab.value === params["type"]);
+      setCurrentTab(findTab);
+    } else {
+      setCurrentTab(null);
+    }
+  }, [params]);
 
   return (
     <>

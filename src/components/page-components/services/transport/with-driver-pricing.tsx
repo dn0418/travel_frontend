@@ -40,15 +40,15 @@ export default function CarWithDriverPricingTable({ carsWithDriver }: Props) {
               <TableRow>
                 <TableCell className="text-base" align="center">
                   {
-                    locale === 'ru' ? 'продолжительность' :
-                      (locale === 'hy' ? 'տեւողությունը' : 'Duration')
+                    locale === 'ru' ? 'Место назначения' :
+                      (locale === 'hy' ? 'Նպատակակետ' : 'Destination')
                   }
                 </TableCell>
                 <TableCell className="text-base" align="center">
 
                   {
-                    locale === 'ru' ? 'Цены' :
-                      (locale === 'hy' ? 'Գնագոյացում' : 'Pricing')
+                    locale === 'ru' ? 'Цена' :
+                      (locale === 'hy' ? 'Գին' : 'Price')
                   }
                 </TableCell>
               </TableRow>

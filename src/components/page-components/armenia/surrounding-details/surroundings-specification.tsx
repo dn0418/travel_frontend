@@ -1,6 +1,6 @@
 // @flow strict
 
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import { useRouter } from "next/router";
 import { BiCalendar, BiCategory } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
@@ -131,15 +131,6 @@ function SurroundingSpecification({ surrounding }: { surrounding: SurroundingTyp
               : surrounding.entrance}
         </span>
       </p>
-
-      <div className="md:mt-8">
-        <Button
-          className="px-8 md:px-12 rounded-lg bg-black text-white"
-          variant="contained"
-        >
-          {localData.submit_text}
-        </Button>
-      </div>
     </div>
   );
 }

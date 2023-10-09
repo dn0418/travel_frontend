@@ -23,7 +23,7 @@ function PaymentMethod() {
               key={index}
               src={item.img}
               width={42}
-              height={32}
+              height={28}
               alt={item.alt}
             />
           ))}
