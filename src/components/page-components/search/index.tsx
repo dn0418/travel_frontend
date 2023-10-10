@@ -23,11 +23,9 @@ function SearchPage({
   // console.log(meta)
 
   return (
-    <Container className='my-8 flex flex-col items-center'>
+    <Container className='my-8'>
       <div className='w-full my-4 md:my-8'>
-        <div className="">
-          <SearchFilterSection typeItems={typeItems} destinations={destinations} />
-        </div>
+        <SearchFilterSection typeItems={typeItems} destinations={destinations} />
         {/* <div className="w-full flex items-center justify-between">
           <SectionTitle title={localData.top_suggested_title} />
           <FormControl size="small" className="shadow-sm" variant="outlined">

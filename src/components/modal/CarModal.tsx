@@ -26,7 +26,8 @@ function CarModel({ buttonText, type }: IProps) {
     additionalInfo: "",
     checkbox1: false,
     checkbox2: false,
-  }
+  };
+
   const [openContactModal, setOpenContactModal] = useState(false);
   const [inputData, setInputData] = useState<InputData>(initialInput);
   const theme = useTheme();
@@ -49,6 +50,7 @@ function CarModel({ buttonText, type }: IProps) {
 
   const handleChangeModal = () => {
     setOpenContactModal(!openContactModal);
+    setInputData(initialInput);
   };
 
   const handleSubmit = async () => {

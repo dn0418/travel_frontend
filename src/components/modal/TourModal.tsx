@@ -51,6 +51,7 @@ function TourModal({ buttonText, tour }: IProps) {
   };
 
   const handleChangeModal = () => {
+    setInputData(initialInput);
     setOpenContactModal(!openContactModal);
   };
 

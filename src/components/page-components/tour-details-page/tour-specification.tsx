@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { BiCalendar, BiHash } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { GiPriceTag } from "react-icons/gi";
-import { IoLocationOutline } from "react-icons/io5";
 import { TiCancelOutline } from "react-icons/ti";
 import { useGlobalContext } from "../../../context/global-context";
 import { ReviewTypes } from "../../../types";
@@ -41,22 +40,7 @@ function TourSpecification({ tour }: { tour: TourType }) {
             ? tour.title_hy
             : tour.title}
       </h3>
-      <p className="flex items-center gap-2">
-        <IoLocationOutline className="text-base text-[#EDA592]  font-bold" />
-        <span className="text-base text-[#5e5e5e]">
-          {(locale === "ru"
-            ? tour.destination?.country_hy
-            : locale === "hy"
-              ? tour.destination?.name_hy
-              : tour.destination?.name) +
-            " ( " +
-            (locale === "ru"
-              ? tour.destination?.country_ru
-              : locale === "hy"
-                ? tour.destination?.country_hy
-                : tour.destination?.country) + " )"}
-        </span>
-      </p>
+
       {tour.reviews.length > 0 && (
         <p className="flex items-center gap-2">
           <Rating

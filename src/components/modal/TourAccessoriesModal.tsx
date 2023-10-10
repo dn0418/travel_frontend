@@ -46,6 +46,7 @@ function TourAccessoriesModal({ buttonText }: IProps) {
   };
 
   const handleChangeModal = () => {
+    setInputData(initialInput);
     setOpenContactModal(!openContactModal);
   };
 

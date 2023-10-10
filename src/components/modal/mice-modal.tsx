@@ -47,6 +47,7 @@ function MiceModal({ buttonText }: IProps) {
   };
 
   const handleChangeModal = () => {
+    setInputData(initialInput);
     setOpenModal(!openOpenModal);
   };
 

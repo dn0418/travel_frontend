@@ -48,6 +48,7 @@ function HotelModal({ buttonText }: IProps) {
   };
 
   const handleChangeModal = () => {
+    setInputData(initialInput);
     setOpenContactModal(!openContactModal);
   };
 

@@ -22,6 +22,12 @@
 
 .home-filter-section {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+  & .react-datepicker__triangle::before,
+  & .react-datepicker__triangle::after {
+    display: none;
+  }
+
   & .MuiFormControl-root {
     min-width: 136px;
     width: fit-content;
@@ -106,13 +112,11 @@
     left: -4px;
     z-index: 9;
     top: 60%;
-    background-color: $bg_black;
-    background: $bg_black;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
     &:before {
       opacity: 100%;
-      font-size: 16px;
+      font-size: 20px;
+      color: #d0cece;
     }
   }
 
@@ -120,13 +124,11 @@
     right: -4px;
     z-index: 9;
     top: 60%;
-    background-color: $bg_black;
-    background: $bg_black;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
     &:before {
       opacity: 100%;
-      font-size: 16px;
+      font-size: 20px;
+      color: #d0cece;
     }
   }
 }

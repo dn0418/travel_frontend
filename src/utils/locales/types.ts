@@ -20,6 +20,7 @@ export interface LocaleDataItems {
   destination_title: string;
   mice_page_title: string;
   days_title: string;
+  months_title: string;
   date_title: string;
   search_text: string;
   top_suggested_title: string;

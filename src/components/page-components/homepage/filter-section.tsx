@@ -135,7 +135,7 @@ function FilterSection({ destinations }: { destinations: TourDestinationType[] }
               showMonthYearPicker
               showFullMonthYearPicker
               className='border-0 focus:outline-0 w-24 react-datepicker text-base font-medium'
-              placeholderText={localData.date_title}
+              placeholderText={localData.months_title}
             />
           </div>
         </div>

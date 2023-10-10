@@ -90,7 +90,7 @@ export const navData: NavTypes = {
         {
           id: 4,
           title: "Useful To Know",
-          route: "/armenia/useful-to-know",
+          route: "/armenia/useful_to_know",
         },
         {
           id: 5,
@@ -225,7 +225,7 @@ export const navData: NavTypes = {
         {
           id: 4,
           title: "Полезная информация",
-          route: "/armenia/useful-to-know",
+          route: "/armenia/useful_to_know",
         },
         {
           id: 5,
@@ -360,7 +360,7 @@ export const navData: NavTypes = {
         {
           id: 4,
           title: "Հատուկները իմանալու հնարավորություն",
-          route: "/armenia/useful-to-know",
+          route: "/armenia/useful_to_know",
         },
         {
           id: 5,
