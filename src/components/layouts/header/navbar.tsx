@@ -128,7 +128,9 @@ export default function Navbar({ handleDrawerToggle, headerItems }: PropTypes) {
                   <Link
                     style={{ color: "black" }}
                     key={item.id}
-                    href={item.route}>
+                    href={item.route}
+                    onClick={handleClose}
+                  >
                     <MenuItem
                       sx={{
                         paddingX: 5,

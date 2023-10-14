@@ -2,11 +2,13 @@
 
 import { Box, Button, FormControl, InputLabel, MenuItem, Rating, Select, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useRouter } from "next/router";
 import { forwardRef, useState } from "react";
 import { toast } from "react-toastify";
 import client from "../../../rest-api/client";
 import { AddReviewPyloadType } from "../../../types";
 import { countries } from "../../../utils/data/countries";
+import { localizationData } from "../../../utils/locales";
 import UploadAvatar from "./upload-avatar";
 
 interface PropsType {
@@ -15,20 +17,29 @@ interface PropsType {
   id: number;
 }
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  country: "",
+  email: "",
+  rating: "0",
+  note: ""
+}
+
 const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
   ({ handleChangeModal, type, id }, ref) => {
     const [uploading, setUploading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState<null | string>(null);
-    const [reviewInput, setReviewInput] = useState({
-      firstName: "",
-      lastName: "",
-      country: "",
-      email: "",
-      rating: "0",
-      note: ""
-    });
+    const [reviewInput, setReviewInput] = useState(initialState);
     const theme = useTheme();
+    const { locale } = useRouter();
+    const localData =
+      locale === "ru"
+        ? localizationData.ru
+        : locale === "hy"
+          ? localizationData.hy
+          : localizationData.en;
 
     const handleChangeInput = (name: string, value: string) => {
       setReviewInput((prev) => {
@@ -36,7 +47,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
         temp[name] = value;
         return temp;
       })
-    }
+    };
 
     const checkValidation = () => {
       // Check which fields in reviewInput are empty
@@ -44,9 +55,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
       if (reviewInput.firstName === "") {
         emptyFields.push("firstName");
       }
-      if (reviewInput.lastName === "") {
-        emptyFields.push("lastName");
-      }
+
       if (reviewInput.email === "") {
         emptyFields.push("email");
       }
@@ -55,9 +64,6 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
       }
       if (reviewInput.rating === "0") {
         emptyFields.push("rating");
-      }
-      if (!selectedImage) {
-        emptyFields.push("thumbnail");
       }
       if (reviewInput.note === "") {
         emptyFields.push("note");
@@ -70,7 +76,12 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
           } required`;
       }
       return errorMessage;
-    }
+    };
+
+    const handleClose = () => {
+      handleChangeModal();
+      setReviewInput(initialState);
+    };
 
     const handleSubmit = async () => {
       const err = checkValidation();
@@ -114,7 +125,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
         const res = await client.reviews.newReview(payload);
 
         toast.success("Review created successfully");
-        handleChangeModal()
+        handleClose()
       } catch (error) {
         toast.error("Something went wrong");
         // console.log(error)
@@ -196,7 +207,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
         <Box sx={formStyles.modalContainer}>
           <Typography
             sx={{ fontSize: "24px", color: "#081000", fontWeight: 600 }}>
-            Add review
+            {localData.add_reviews}
           </Typography>
           <div className="">
             <UploadAvatar
@@ -208,19 +219,19 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
           <Box
             sx={formStyles.gridContainer}>
             <TextField
-              label='First Name'
+              label={localData.firstName}
               name="firstName"
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Last Name'
+              label={localData.lastName}
               name="lastName"
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               variant='outlined'
             />
             <TextField
-              label='Email'
+              label={localData.email_text}
               name="email"
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               type='email'
@@ -228,7 +239,7 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
             />
 
             <FormControl fullWidth>
-              <InputLabel id='demo-simple-select-label'>Country</InputLabel>
+              <InputLabel id='demo-simple-select-label'>{localData.address_text}</InputLabel>
               <Select
                 labelId='demo-simple-select-label'
                 value={reviewInput?.country}
@@ -247,33 +258,33 @@ const CreateNewReview = forwardRef<HTMLDivElement, PropsType>(
               <Rating
                 name="rating"
                 precision={0.5}
-                value={parseInt(reviewInput?.rating)}
+                value={parseFloat(reviewInput?.rating)}
                 onChange={(event, newValue) =>
                   handleChangeInput("rating", newValue?.toString() ?? "0")
                 }
               />
-              <p>{" "}{reviewInput?.rating} Star</p>
+              <p>{reviewInput?.rating + " " + localData.star_text} </p>
             </Box>
             <TextField
               sx={formStyles.noteArea}
               name="note"
               onChange={(e) => handleChangeInput(e.target.name, e.target.value)}
               className="text-area"
-              label='Write your review'
+              label={localData.add_your_comment}
             />
             <div className=""></div>
             <div style={formStyles.buttonContainer} className="">
               <Button
-                onClick={handleChangeModal}
+                onClick={handleClose}
                 color="secondary"
                 variant="outlined">
-                Cancle
+                {localData.cancel_text}
               </Button>
               <Button
                 onClick={handleSubmit}
                 disabled={isLoading}
                 variant="contained">
-                {isLoading ? "Loading..." : "Submit"}
+                {isLoading ? localData.loading_text : localData.submit_text}
               </Button>
             </div>
           </Box>

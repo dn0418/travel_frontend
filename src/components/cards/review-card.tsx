@@ -16,7 +16,7 @@ function ReviewCard({ review, isRating = false }: ReviewCardProps) {
       <div className="flex justify-between items-start">
         <div className='md:flex items-center gap-3 md:gap-5 md:mb-5'>
           <Image
-            src={review.profilePhoto}
+            src={review?.profilePhoto ? review.profilePhoto : '/review_place.webp'}
             width={64}
             height={64}
             className='rounded-full'
@@ -32,14 +32,14 @@ function ReviewCard({ review, isRating = false }: ReviewCardProps) {
           isRating &&
           <div className="flex items-center gap-2">
             <Rating
-              max={1}
+              max={5}
               size="small"
               name="half-rating"
               readOnly
-              defaultValue={1}
-              precision={0.1}
+              defaultValue={review.rating}
+              precision={0.5}
             />
-            <span className="text-[#5E5E5E] text-sm">5 Star</span>
+            <span className="text-[#5E5E5E] text-sm">{review.rating} Star</span>
           </div>
         }
       </div>

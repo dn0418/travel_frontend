@@ -81,7 +81,7 @@ function ReviewAdminCard({ review, isRating = false }: ReviewCardProps) {
           <div className="flex justify-between items-start">
             <div className='md:flex items-center gap-3 md:gap-5 md:mb-5'>
               <Image
-                src={review.profilePhoto}
+                src={review?.profilePhoto ? review.profilePhoto : '/review_place.webp'}
                 width={64}
                 height={64}
                 className='rounded-full'
